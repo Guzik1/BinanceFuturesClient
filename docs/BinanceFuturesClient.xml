@@ -1,0 +1,226 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>BinanceFuturesClient</name>
+    </assembly>
+    <members>
+        <member name="T:BinanceFuturesClient.Market">
+            <summary>
+            Binance futures market endpoint.
+            </summary>
+        </member>
+        <member name="M:BinanceFuturesClient.Market.Ping">
+            <summary>
+            Ping to server. Check connection to rest api. Weight: 1.
+            </summary>
+            <returns>True if server response is ok, or false else.</returns>
+        </member>
+        <member name="M:BinanceFuturesClient.Market.GetServerTime">
+            <summary>
+            Get server time in unix milisecond timestamp. Weight: 1.
+            </summary>
+            <returns>Unix milisecond server time.</returns>
+        </member>
+        <member name="M:BinanceFuturesClient.Market.GetExchangeInfo">
+            <summary>
+            Get exchange info for all futures market. Weight: 1.
+            </summary>
+            <returns>Exchange info object.</returns>
+        </member>
+        <member name="M:BinanceFuturesClient.Market.GetOrderBook(System.String)">
+            <summary>
+            Get order book from api. Weight: 10
+            </summary>
+            <param name="symbol">Symbol of currence pair.</param>
+            <returns>OrderBook object. Return 500 ask and 500 bid offers.</returns>
+        </member>
+        <member name="M:BinanceFuturesClient.Market.GetOrderBook(System.String,System.Int32)">
+            <summary>
+            Get order book from api.
+            </summary>
+            <param name="symbol">Symbol of currence pair.</param>
+            <param name="limit">Limit of transaction, available: 5, 10, 20, 50 (weight 2), 100 (weight 5), 500 (weight 10), 1000 (weight 20).</param>
+            <returns>OrderBook object.</returns>
+        </member>
+        <member name="T:BinanceFuturesClient.Model.Market.ExchangeInfo">
+            <summary>
+            Response model for <see cref="M:BinanceFuturesClient.Market.GetExchangeInfo"/> request.
+            </summary>
+        </member>
+        <member name="P:BinanceFuturesClient.Model.Market.ExchangeInfo.ExchangeFilters">
+            <summary>
+            Exchange filters.
+            </summary>
+        </member>
+        <member name="P:BinanceFuturesClient.Model.Market.ExchangeInfo.RateLimits">
+            <summary>
+            List of rate limits.
+            </summary>
+        </member>
+        <member name="P:BinanceFuturesClient.Model.Market.ExchangeInfo.ServerTime">
+            <summary>
+            Server time in unix milisecond timestamp.
+            </summary>
+        </member>
+        <member name="P:BinanceFuturesClient.Model.Market.ExchangeInfo.Symbols">
+            <summary>
+            List of details for one market.
+            </summary>
+        </member>
+        <member name="P:BinanceFuturesClient.Model.Market.ExchangeInfo.Timezone">
+            <summary>
+            Time zone.
+            </summary>
+        </member>
+        <member name="T:BinanceFuturesClient.Model.Market.RateLimitItem">
+            <summary>
+            Rate limit details.
+            </summary>
+        </member>
+        <member name="P:BinanceFuturesClient.Model.Market.RateLimitItem.Interval">
+            <summary>
+            Time interval step
+            </summary>
+        </member>
+        <member name="P:BinanceFuturesClient.Model.Market.RateLimitItem.IntervalNum">
+            <summary>
+            Internal number.
+            </summary>
+        </member>
+        <member name="P:BinanceFuturesClient.Model.Market.RateLimitItem.Limit">
+            <summary>
+            Limit count.
+            </summary>
+        </member>
+        <member name="P:BinanceFuturesClient.Model.Market.RateLimitItem.RateLimitType">
+            <summary>
+            Limit type.
+            </summary>
+        </member>
+        <member name="T:BinanceFuturesClient.Model.Market.SymbolItem">
+            <summary>
+            Details for market.
+            </summary>
+        </member>
+        <member name="P:BinanceFuturesClient.Model.Market.SymbolItem.Symbol">
+            <summary>
+            Market code.
+            </summary>
+        </member>
+        <member name="P:BinanceFuturesClient.Model.Market.SymbolItem.Status">
+            <summary>
+            Status of market, default trading.
+            </summary>
+        </member>
+        <member name="P:BinanceFuturesClient.Model.Market.SymbolItem.MaintMarginPercent">
+            <summary>
+            Maint Margin Procent.
+            </summary>
+        </member>
+        <member name="P:BinanceFuturesClient.Model.Market.SymbolItem.RequiredMarginPercent">
+            <summary>
+            Maint Margin Procent.
+            </summary>
+        </member>
+        <member name="P:BinanceFuturesClient.Model.Market.SymbolItem.BaseAsset">
+            <summary>
+            Base/first currency in symbol.
+            </summary>
+        </member>
+        <member name="P:BinanceFuturesClient.Model.Market.SymbolItem.QuoteAsset">
+            <summary>
+            Quote/second currency in symbol.
+            </summary>
+        </member>
+        <member name="P:BinanceFuturesClient.Model.Market.SymbolItem.PricePrecision">
+            <summary>
+            Number of decimal places in price.
+            </summary>
+        </member>
+        <member name="P:BinanceFuturesClient.Model.Market.SymbolItem.QuantityPrecision">
+            <summary>
+            Number of decimal places in quantity.
+            </summary>
+        </member>
+        <member name="P:BinanceFuturesClient.Model.Market.SymbolItem.BaseAssetPrecision">
+            <summary>
+            Number of decimal places in base currencies.
+            </summary>
+        </member>
+        <member name="P:BinanceFuturesClient.Model.Market.SymbolItem.QuotePrecision">
+            <summary>
+            Number of decimal places in second currencies.
+            </summary>
+        </member>
+        <member name="P:BinanceFuturesClient.Model.Market.SymbolItem.Filters">
+            <summary>
+            List of market filters.
+            </summary>
+        </member>
+        <member name="P:BinanceFuturesClient.Model.Market.SymbolItem.OrderTypes">
+            <summary>
+            List of order types.
+            </summary>
+        </member>
+        <member name="P:BinanceFuturesClient.Model.Market.SymbolItem.TimeInForce">
+            <summary>
+            Time in foce types.
+            </summary>
+        </member>
+        <member name="T:BinanceFuturesClient.Model.Market.OrderBook">
+            <summary>
+            Response model for <see cref="M:BinanceFuturesClient.Market.GetOrderBook(System.String)"/> and <see cref="M:BinanceFuturesClient.Market.GetOrderBook(System.String)"/> request.
+            </summary>
+        </member>
+        <member name="P:BinanceFuturesClient.Model.Market.OrderBook.LastUpdateId">
+            <summary>
+            Last update identificator.
+            </summary>
+        </member>
+        <member name="P:BinanceFuturesClient.Model.Market.OrderBook.Bids">
+            <summary>
+            Bid offers list, first element on insiding list is price, second is quantity.
+            </summary>
+        </member>
+        <member name="P:BinanceFuturesClient.Model.Market.OrderBook.Asks">
+            <summary>
+            Ask offers list, first element on insiding list is price, second is quantity.
+            </summary>
+        </member>
+        <member name="T:BinanceFuturesClient.Model.Market.TradeItem">
+            <summary>
+            Trade item model, for .
+            </summary>
+        </member>
+        <member name="P:BinanceFuturesClient.Model.Market.TradeItem.Id">
+            <summary>
+            Trade identificator.
+            </summary>
+        </member>
+        <member name="P:BinanceFuturesClient.Model.Market.TradeItem.Price">
+            <summary>
+            Offer price.
+            </summary>
+        </member>
+        <member name="P:BinanceFuturesClient.Model.Market.TradeItem.Qty">
+            <summary>
+            Offer quantity.
+            </summary>
+        </member>
+        <member name="P:BinanceFuturesClient.Model.Market.TradeItem.QuoteQty">
+            <summary>
+            Quote offer quantity.
+            </summary>
+        </member>
+        <member name="P:BinanceFuturesClient.Model.Market.TradeItem.Time">
+            <summary>
+            Offer unit timestamp
+            </summary>
+        </member>
+        <member name="P:BinanceFuturesClient.Model.Market.TradeItem.IsBuyerMaker">
+            <summary>
+            Is buyer maker flag.
+            </summary>
+        </member>
+    </members>
+</doc>
