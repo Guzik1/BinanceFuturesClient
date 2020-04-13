@@ -36,7 +36,9 @@ namespace BinanceFuturesClient
                 return true;
             }
             else
-                return false;
+                //return false;
+
+            throw new Exception(rc.GetStatusCode + " - " + rc.GetResponseToString);
         }
     }
 }

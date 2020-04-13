@@ -95,6 +95,26 @@
             <param name="limit">Limit of trades, default 500.</param>
             <returns>List of aggregate trade items.</returns>
         </member>
+        <member name="M:BinanceFuturesClient.Market.GetCandleStick(System.String,System.String,System.Int32)">
+            <summary>
+            Get candle stick data.
+            </summary>
+            <param name="symbol">Currency pair code.</param>
+            <param name="interval">One candle time interval.</param>
+            <param name="limit">Limit of trades, default 500, max 1500.</param>
+            <returns>List of candles.</returns>
+        </member>
+        <member name="M:BinanceFuturesClient.Market.GetCandleStick(System.String,System.String,System.Int64,System.Int64,System.Int32)">
+            <summary>
+            Get candle stick data.
+            </summary>
+            <param name="symbol">Currency pair code.</param>
+            <param name="interval">One candle time interval.</param>
+            <param name="startTime">Get candles from start time.</param>
+            <param name="endTime">Get candles to start time.</param>
+            <param name="limit">Limit of trades, default 500, max 1500.</param>
+            <returns>List of candles.</returns>
+        </member>
         <member name="T:BinanceFuturesClient.Model.Market.AggregateTradeItem">
             <summary>
             Aggregate trade item model for reponse on <see cref="M:BinanceFuturesClient.Market.GetOldTradesLookup(System.String,System.Int32)"/> and <see cref="M:BinanceFuturesClient.Market.GetOldTradesLookup(System.String,System.Int64,System.Int32)"/> request.
@@ -133,6 +153,71 @@
         <member name="P:BinanceFuturesClient.Model.Market.AggregateTradeItem.BuyerIsTheMaker">
             <summary>
             Was the buyer the maker?
+            </summary>
+        </member>
+        <member name="T:BinanceFuturesClient.Model.Market.CandlestickData">
+            <summary>
+            Data model represent one candle.
+            </summary>
+        </member>
+        <member name="P:BinanceFuturesClient.Model.Market.CandlestickData.OpenTime">
+            <summary>
+            Candle open time in unix milisecond timestamp.
+            </summary>
+        </member>
+        <member name="P:BinanceFuturesClient.Model.Market.CandlestickData.CloseTime">
+            <summary>
+            Candle close time in unix milisecond timestamp.
+            </summary>
+        </member>
+        <member name="P:BinanceFuturesClient.Model.Market.CandlestickData.OpenPrice">
+            <summary>
+            Open candle price.
+            </summary>
+        </member>
+        <member name="P:BinanceFuturesClient.Model.Market.CandlestickData.HighPrice">
+            <summary>
+            High candle price.
+            </summary>
+        </member>
+        <member name="P:BinanceFuturesClient.Model.Market.CandlestickData.LowPrice">
+            <summary>
+            Low candle price.
+            </summary>
+        </member>
+        <member name="P:BinanceFuturesClient.Model.Market.CandlestickData.ClosePrice">
+            <summary>
+            Close candle price.
+            </summary>
+        </member>
+        <member name="P:BinanceFuturesClient.Model.Market.CandlestickData.BaseVolume">
+            <summary>
+            Candle base currence volume.
+            </summary>
+        </member>
+        <member name="P:BinanceFuturesClient.Model.Market.CandlestickData.QuoteVolume">
+            <summary>
+            Candle Quote currence volume.
+            </summary>
+        </member>
+        <member name="P:BinanceFuturesClient.Model.Market.CandlestickData.TradesCount">
+            <summary>
+            Number of trades count.
+            </summary>
+        </member>
+        <member name="P:BinanceFuturesClient.Model.Market.CandlestickData.TakerBuyBaseVolume">
+            <summary>
+            Taker buy base asset volume.
+            </summary>
+        </member>
+        <member name="P:BinanceFuturesClient.Model.Market.CandlestickData.TakerBuyQuoteVolume">
+            <summary>
+            Taker buy quote asset volume.
+            </summary>
+        </member>
+        <member name="M:BinanceFuturesClient.Model.Market.CandlestickData.#ctor">
+            <summary>
+            Default constructor.
             </summary>
         </member>
         <member name="T:BinanceFuturesClient.Model.Market.ExchangeInfo">

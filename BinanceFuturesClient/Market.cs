@@ -200,7 +200,7 @@ namespace BinanceFuturesClient
             return SendGetAggregateTradeListRequest(symbol, startTime, endTime, fromId, limit);
         }
 
-        List<AggregateTradeItem> SendGetAggregateTradeListRequest(string symbol, long startTime = 0, long endTIme = 0, long fromId = 0, int limit = 500)
+        List<AggregateTradeItem> SendGetAggregateTradeListRequest(string symbol, long startTime = 0, long endTime = 0, long fromId = 0, int limit = 500)
         {
             RestClient client = new RestClient(Config.ApiPublicMarketUrl + "aggTrades");
 
@@ -216,8 +216,8 @@ namespace BinanceFuturesClient
             if (startTime != 0)
                 query.Add("startTime", startTime.ToString());
 
-            if (endTIme != 0)
-                query.Add("endTime", endTIme.ToString());
+            if (endTime != 0)
+                query.Add("endTime", endTime.ToString());
 
             client.AddQuery(query);
             client.SendGET();
@@ -226,7 +226,63 @@ namespace BinanceFuturesClient
         }
         #endregion
 
+        #region GetCandleStick
+        //TODO: add interval enum.
+        /// <summary>
+        /// Get candle stick data.
+        /// </summary>
+        /// <param name="symbol">Currency pair code.</param>
+        /// <param name="interval">One candle time interval.</param>
+        /// <param name="limit">Limit of trades, default 500, max 1500.</param>
+        /// <returns>List of candles.</returns>
+        public List<CandlestickData> GetCandleStick(string symbol, string interval, int limit = 500)
+        {
+            return SendGetCandleStickRequest(symbol, interval, limit: limit);
+        }
 
+        /// <summary>
+        /// Get candle stick data.
+        /// </summary>
+        /// <param name="symbol">Currency pair code.</param>
+        /// <param name="interval">One candle time interval.</param>
+        /// <param name="startTime">Get candles from start time.</param>
+        /// <param name="endTime">Get candles to start time.</param>
+        /// <param name="limit">Limit of trades, default 500, max 1500.</param>
+        /// <returns>List of candles.</returns>
+        public List<CandlestickData> GetCandleStick(string symbol, string interval, long startTime, long endTime, int limit = 500)
+        {
+            return SendGetCandleStickRequest(symbol, interval, startTime, endTime, limit);
+        }
+
+        List<CandlestickData> SendGetCandleStickRequest(string symbol, string interval, long startTime = 0, long endTime = 0, int limit = 500)
+        {
+            RestClient client = new RestClient(Config.ApiPublicMarketUrl + "klines");
+
+            Dictionary<string, string> query = new Dictionary<string, string>();
+            query.Add("symbol", symbol);
+            query.Add("interval", interval);
+
+            if (limit != 500)
+                query.Add("limit", limit.ToString());
+
+            if (startTime != 0)
+                query.Add("startTime", startTime.ToString());
+
+            if (endTime != 0)
+                query.Add("endTime", endTime.ToString());
+
+            client.AddQuery(query);
+            client.SendGET();
+
+            List<List<string>> list = Tools.TryGetResponse<List<List<string>>>(client);
+
+            List<CandlestickData> candles = new List<CandlestickData>();
+            for (int i = 0; i < list.Count; i++)
+                candles.Add(new CandlestickData(list[i]));
+
+            return candles;
+        }
+        #endregion
 
 
     }
