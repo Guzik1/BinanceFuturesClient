@@ -42,20 +42,98 @@
             <param name="limit">Limit of transaction, available: 5, 10, 20, 50 (weight 2), 100 (weight 5), 500 (weight 10), 1000 (weight 20).</param>
             <returns>OrderBook object.</returns>
         </member>
-        <member name="M:BinanceFuturesClient.Market.GetRectenTradesList(System.String)">
-            <summary>
-            Get recent trade list. Weight: 1.
-            </summary>
-            <param name="symbol">Currency pair code.</param>
-            <returns>return List of 500 trades.</returns>
-        </member>
         <member name="M:BinanceFuturesClient.Market.GetRectenTradesList(System.String,System.Int32)">
             <summary>
             Get recent trade list. Weight: 1.
             </summary>
             <param name="symbol">Currency pair code.</param>
-            <param name="limit">Limit max 1000.</param>
+            <param name="limit">Limit max 1000, default 500.</param>
             <returns>List of trades.</returns>
+        </member>
+        <member name="M:BinanceFuturesClient.Market.GetOldTradesLookup(System.String,System.Int32)">
+            <summary>
+            Get old trades list.
+            </summary>
+            <param name="symbol">Currency pair code.</param>
+            <param name="limit">Limit of trades, default 500.</param>
+            <returns>List of trades data.</returns>
+        </member>
+        <member name="M:BinanceFuturesClient.Market.GetOldTradesLookup(System.String,System.Int64,System.Int32)">
+            <summary>
+            Get old trades list.
+            </summary>
+            <param name="symbol">Currency pair code.</param>
+            <param name="limit">Limit of trades, default 500.</param>
+            <param name="fromId">Start from identificator.</param>
+            <returns>List of trades data.</returns>
+        </member>
+        <member name="M:BinanceFuturesClient.Market.GetAggregateTradeList(System.String,System.Int32)">
+            <summary>
+            Get compressed, aggregate trades. 
+            </summary>
+            <param name="symbol">Currency pair code.</param>
+            <param name="limit">Limit of trades, default 500.</param>
+            <returns>List of aggregate trade items.</returns>
+        </member>
+        <member name="M:BinanceFuturesClient.Market.GetAggregateTradeList(System.String,System.Int64,System.Int32)">
+            <summary>
+            Get compressed, aggregate trades. 
+            </summary>
+            <param name="symbol">Currency pair code.</param>
+            <param name="fromId">Get form trade identificator.</param>
+            <param name="limit">Limit of trades, default 500.</param>
+            <returns>List of aggregate trade items.</returns>
+        </member>
+        <member name="M:BinanceFuturesClient.Market.GetAggregateTradeList(System.String,System.Int64,System.Int64,System.Int64,System.Int32)">
+            <summary>
+            Get compressed, aggregate trades. 
+            </summary>
+            <param name="symbol">Currency pair code.</param>
+            <param name="startTime">Get trades from start time.</param>
+            <param name="endTime">Get trades to end time.</param>
+            <param name="fromId">Get form trade identificator.</param>
+            <param name="limit">Limit of trades, default 500.</param>
+            <returns>List of aggregate trade items.</returns>
+        </member>
+        <member name="T:BinanceFuturesClient.Model.Market.AggregateTradeItem">
+            <summary>
+            Aggregate trade item model for reponse on <see cref="M:BinanceFuturesClient.Market.GetOldTradesLookup(System.String,System.Int32)"/> and <see cref="M:BinanceFuturesClient.Market.GetOldTradesLookup(System.String,System.Int64,System.Int32)"/> request.
+            </summary>
+        </member>
+        <member name="P:BinanceFuturesClient.Model.Market.AggregateTradeItem.AggregateTradeId">
+            <summary>
+            Aggregate trade id
+            </summary>
+        </member>
+        <member name="P:BinanceFuturesClient.Model.Market.AggregateTradeItem.Price">
+            <summary>
+            Trade price.
+            </summary>
+        </member>
+        <member name="P:BinanceFuturesClient.Model.Market.AggregateTradeItem.Quantity">
+            <summary>
+            Quantity in trade.
+            </summary>
+        </member>
+        <member name="P:BinanceFuturesClient.Model.Market.AggregateTradeItem.FirstTradeId">
+            <summary>
+            First trade id.
+            </summary>
+        </member>
+        <member name="P:BinanceFuturesClient.Model.Market.AggregateTradeItem.LastTradeId">
+            <summary>
+            Last trade id.
+            </summary>
+        </member>
+        <member name="P:BinanceFuturesClient.Model.Market.AggregateTradeItem.Timestamp">
+            <summary>
+            Trade timestamp in unix milisecond.
+            </summary>
+        </member>
+        <member name="P:BinanceFuturesClient.Model.Market.AggregateTradeItem.BuyerIsTheMaker">
+            <summary>
+            Was the buyer the maker?
+            </summary>
         </member>
         <member name="T:BinanceFuturesClient.Model.Market.ExchangeInfo">
             <summary>

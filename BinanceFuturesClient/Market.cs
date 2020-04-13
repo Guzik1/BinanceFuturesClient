@@ -11,6 +11,7 @@ namespace BinanceFuturesClient
     /// </summary>
     public class Market
     {
+        #region Ping
         /// <summary>
         /// Ping to server. Check connection to rest api. Weight: 1.
         /// </summary>
@@ -22,7 +23,9 @@ namespace BinanceFuturesClient
 
             return client.ResponseHasSuccessStatusCode;
         }
+        #endregion
 
+        #region GetServerTime
         /// <summary>
         /// Get server time in unix milisecond timestamp. Weight: 1.
         /// </summary>
@@ -36,7 +39,9 @@ namespace BinanceFuturesClient
 
             return response["serverTime"];
         }
+        #endregion
 
+        #region GetExchangeInfo
         /// <summary>
         /// Get exchange info for all futures market. Weight: 1.
         /// </summary>
@@ -48,7 +53,9 @@ namespace BinanceFuturesClient
 
             return Tools.TryGetResponse<ExchangeInfo>(client);
         }
-        
+        #endregion
+
+        #region GetOrderBook
         /// <summary>
         /// Get order book from api. Weight: 10
         /// </summary>
@@ -85,29 +92,16 @@ namespace BinanceFuturesClient
 
             return Tools.TryGetResponse<OrderBook>(client);
         }
+        #endregion
 
+        #region GetRectenTradesList
         /// <summary>
         /// Get recent trade list. Weight: 1.
         /// </summary>
         /// <param name="symbol">Currency pair code.</param>
-        /// <returns>return List of 500 trades.</returns>
-        public List<TradeItem> GetRectenTradesList(string symbol)
-        {
-            return SendGetRectenTradesListRequest(symbol);
-        }
-
-        /// <summary>
-        /// Get recent trade list. Weight: 1.
-        /// </summary>
-        /// <param name="symbol">Currency pair code.</param>
-        /// <param name="limit">Limit max 1000.</param>
+        /// <param name="limit">Limit max 1000, default 500.</param>
         /// <returns>List of trades.</returns>
-        public List<TradeItem> GetRectenTradesList(string symbol, int limit)
-        {
-            return SendGetRectenTradesListRequest(symbol, limit);
-        }
-
-        List<TradeItem> SendGetRectenTradesListRequest(string symbol, int limit = 0)
+        public List<TradeItem> GetRectenTradesList(string symbol, int limit = 500)
         {
             RestClient client = new RestClient(Config.ApiPublicMarketUrl + "trades");
 
@@ -122,6 +116,115 @@ namespace BinanceFuturesClient
 
             return Tools.TryGetResponse<List<TradeItem>>(client);
         }
+        #endregion
+
+        #region GetOldTradesLookup
+        /// <summary>
+        /// Get old trades list.
+        /// </summary>
+        /// <param name="symbol">Currency pair code.</param>
+        /// <param name="limit">Limit of trades, default 500.</param>
+        /// <returns>List of trades data.</returns>
+        public List<TradeItem> GetOldTradesLookup(string symbol, int limit = 500)
+        {
+            return SendGetOldTradesLookup(symbol, limit);
+        }
+
+        /// <summary>
+        /// Get old trades list.
+        /// </summary>
+        /// <param name="symbol">Currency pair code.</param>
+        /// <param name="limit">Limit of trades, default 500.</param>
+        /// <param name="fromId">Start from identificator.</param>
+        /// <returns>List of trades data.</returns>
+        public List<TradeItem> GetOldTradesLookup(string symbol, long fromId, int limit = 500)
+        {
+            return SendGetOldTradesLookup(symbol, limit, fromId);
+        }
+
+        List<TradeItem> SendGetOldTradesLookup(string symbol, int limit = 500, long fromId = 0)
+        {
+            RestClient client = new RestClient(Config.ApiPublicMarketUrl + "historicalTrades");
+
+            Dictionary<string, string> query = new Dictionary<string, string>();
+            query.Add("symbol", symbol);
+
+            if (limit != 500)
+                query.Add("limit", limit.ToString());
+
+            if (fromId != 0)
+                query.Add("fromId", fromId.ToString());
+
+            client.AddQuery(query);
+            client.SendGET();
+
+            return Tools.TryGetResponse<List<TradeItem>>(client);
+        }
+        #endregion
+
+        #region GetAggredateTradeList
+        /// <summary>
+        /// Get compressed, aggregate trades. 
+        /// </summary>
+        /// <param name="symbol">Currency pair code.</param>
+        /// <param name="limit">Limit of trades, default 500.</param>
+        /// <returns>List of aggregate trade items.</returns>
+        public List<AggregateTradeItem> GetAggregateTradeList(string symbol, int limit = 500)
+        {
+            return SendGetAggregateTradeListRequest(symbol, limit: limit);
+        }
+
+        /// <summary>
+        /// Get compressed, aggregate trades. 
+        /// </summary>
+        /// <param name="symbol">Currency pair code.</param>
+        /// <param name="fromId">Get form trade identificator.</param>
+        /// <param name="limit">Limit of trades, default 500.</param>
+        /// <returns>List of aggregate trade items.</returns>
+        public List<AggregateTradeItem> GetAggregateTradeList(string symbol, long fromId, int limit = 500)
+        {
+            return SendGetAggregateTradeListRequest(symbol, fromId: fromId, limit: limit);
+        }
+
+        /// <summary>
+        /// Get compressed, aggregate trades. 
+        /// </summary>
+        /// <param name="symbol">Currency pair code.</param>
+        /// <param name="startTime">Get trades from start time.</param>
+        /// <param name="endTime">Get trades to end time.</param>
+        /// <param name="fromId">Get form trade identificator.</param>
+        /// <param name="limit">Limit of trades, default 500.</param>
+        /// <returns>List of aggregate trade items.</returns>
+        public List<AggregateTradeItem> GetAggregateTradeList(string symbol, long startTime, long endTime, long fromId = 0, int limit = 500)
+        {
+            return SendGetAggregateTradeListRequest(symbol, startTime, endTime, fromId, limit);
+        }
+
+        List<AggregateTradeItem> SendGetAggregateTradeListRequest(string symbol, long startTime = 0, long endTIme = 0, long fromId = 0, int limit = 500)
+        {
+            RestClient client = new RestClient(Config.ApiPublicMarketUrl + "aggTrades");
+
+            Dictionary<string, string> query = new Dictionary<string, string>();
+            query.Add("symbol", symbol);
+
+            if (limit != 500)
+                query.Add("limit", limit.ToString());
+
+            if (fromId != 0)
+                query.Add("fromId", fromId.ToString());
+
+            if (startTime != 0)
+                query.Add("startTime", startTime.ToString());
+
+            if (endTIme != 0)
+                query.Add("endTime", endTIme.ToString());
+
+            client.AddQuery(query);
+            client.SendGET();
+
+            return Tools.TryGetResponse<List<AggregateTradeItem>>(client);
+        }
+        #endregion
 
 
 
