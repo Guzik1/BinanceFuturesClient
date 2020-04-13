@@ -320,6 +320,52 @@ namespace BinanceFuturesClient
         }
         #endregion
 
+        #region GetFundingRateHistory
+        /// <summary>
+        /// Get historicial funding rate. Weight: 1.
+        /// </summary>
+        /// <param name="symbol">Currency pair code.</param>
+        /// <param name="limit">Limit of result object, default 100, max 1000.</param>
+        /// <returns>List of funding rate histori items.</returns>
+        public List<FundingRateHistory> GetFundingRateHistory(string symbol, int limit = 100)
+        {
+            return SendGetFundingRateHistoryRequest(symbol, limit: limit);
+        }
 
+        /// <summary>
+        /// Get historicial funding rate. Weight: 1.
+        /// </summary>
+        /// <param name="symbol">Currency pair code.</param>
+        /// <param name="startTime">Start getting result from start time.</param>
+        /// <param name="endTime">End getting result to end time.</param>
+        /// <param name="limit">Limit of result object, default 100, max 1000.</param>
+        /// <returns>List of funding rate histori items.</returns
+        public List<FundingRateHistory> GetFundingRateHistory(string symbol, long startTime, long endTime, int limit = 100)
+        {
+            return SendGetFundingRateHistoryRequest(symbol, startTime, endTime, limit);
+        }
+
+        List<FundingRateHistory> SendGetFundingRateHistoryRequest(string symbol, long startTime = 0, long endTime = 0, int limit = 100)
+        {
+            RestClient client = new RestClient(Config.ApiPublicMarketUrl + "fundingRate");
+
+            Dictionary<string, string> query = new Dictionary<string, string>();
+            query.Add("symbol", symbol);
+            
+            if(startTime != 0)
+                query.Add("startTime", startTime.ToString());
+
+            if (endTime != 0)
+                query.Add("endTime", startTime.ToString());
+
+            if (limit != 100)
+                query.Add("limit", limit.ToString());
+
+            client.AddQuery(query);
+            client.SendGET();
+
+            return Tools.TryGetResponse<List<FundingRateHistory>>(client);
+        }
+        #endregion
     }
 }

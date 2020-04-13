@@ -33,6 +33,8 @@ namespace BinanceFuturesClient
         {
             if (rc.ResponseHasNoErrors())
             {
+                //throw new Exception(rc.GetStatusCode + " - " + rc.GetResponseToString);
+
                 return true;
             }
             else

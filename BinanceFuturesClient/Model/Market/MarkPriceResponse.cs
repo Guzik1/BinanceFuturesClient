@@ -22,7 +22,7 @@ namespace BinanceFuturesClient.Model.Market
         public decimal MarkPrice { get; set; }
 
         /// <summary>
-        /// Last funding rate.
+        /// Last funding rate in percent.
         /// </summary>
         [JsonProperty("lastFundingRate")]
         public decimal LastFundingRate { get; set; }
