@@ -115,6 +115,19 @@
             <param name="limit">Limit of trades, default 500, max 1500.</param>
             <returns>List of candles.</returns>
         </member>
+        <member name="M:BinanceFuturesClient.Market.GetMarkPrice">
+            <summary>
+            Get mark price. Weight: 1.
+            </summary>
+            <returns>List of mark price object.</returns>
+        </member>
+        <member name="M:BinanceFuturesClient.Market.GetMarkPrice(System.String)">
+            <summary>
+            Get mark price. Weight: 1.
+            </summary>
+            <param name="symbol">Currency pair code.</param>
+            <returns>Mark price object.</returns>
+        </member>
         <member name="T:BinanceFuturesClient.Model.Market.AggregateTradeItem">
             <summary>
             Aggregate trade item model for reponse on <see cref="M:BinanceFuturesClient.Market.GetOldTradesLookup(System.String,System.Int32)"/> and <see cref="M:BinanceFuturesClient.Market.GetOldTradesLookup(System.String,System.Int64,System.Int32)"/> request.
@@ -343,6 +356,36 @@
         <member name="P:BinanceFuturesClient.Model.Market.SymbolItem.TimeInForce">
             <summary>
             Time in foce types.
+            </summary>
+        </member>
+        <member name="T:BinanceFuturesClient.Model.Market.MarkPriceResponse">
+            <summary>
+            Data model for response on <see cref="M:BinanceFuturesClient.Market.GetMarkPrice"/> and <see cref="M:BinanceFuturesClient.Market.GetMarkPrice(System.String)"/> request.
+            </summary>
+        </member>
+        <member name="P:BinanceFuturesClient.Model.Market.MarkPriceResponse.Symbol">
+            <summary>
+            Currency pair code.
+            </summary>
+        </member>
+        <member name="P:BinanceFuturesClient.Model.Market.MarkPriceResponse.MarkPrice">
+            <summary>
+            Mark price.
+            </summary>
+        </member>
+        <member name="P:BinanceFuturesClient.Model.Market.MarkPriceResponse.LastFundingRate">
+            <summary>
+            Last funding rate.
+            </summary>
+        </member>
+        <member name="P:BinanceFuturesClient.Model.Market.MarkPriceResponse.NextFundingTime">
+            <summary>
+            Next funding time in unix timestamp.
+            </summary>
+        </member>
+        <member name="P:BinanceFuturesClient.Model.Market.MarkPriceResponse.Time">
+            <summary>
+            Server time.
             </summary>
         </member>
         <member name="T:BinanceFuturesClient.Model.Market.OrderBook">

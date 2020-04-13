@@ -284,6 +284,42 @@ namespace BinanceFuturesClient
         }
         #endregion
 
+        #region GetMarkPrice
+        /// <summary>
+        /// Get mark price. Weight: 1.
+        /// </summary>
+        /// <returns>List of mark price object.</returns>
+        public List<MarkPriceResponse> GetMarkPrice()
+        {
+            RestClient client = new RestClient(Config.ApiPublicMarketUrl + "premiumIndex");
+            client.SendGET();
+
+            return Tools.TryGetResponse<List<MarkPriceResponse>>(client);
+        }
+
+        /// <summary>
+        /// Get mark price. Weight: 1.
+        /// </summary>
+        /// <param name="symbol">Currency pair code.</param>
+        /// <returns>Mark price object.</returns>
+        public MarkPriceResponse GetMarkPrice(string symbol)
+        {
+            RestClient client = new RestClient(Config.ApiPublicMarketUrl + "premiumIndex");
+
+            if(symbol != "")
+            {
+                Dictionary<string, string> query = new Dictionary<string, string>();
+                query.Add("symbol", symbol);
+
+                client.AddQuery(query);
+            }
+
+            client.SendGET();
+
+            return Tools.TryGetResponse<MarkPriceResponse>(client);
+        }
+        #endregion
+
 
     }
 }
