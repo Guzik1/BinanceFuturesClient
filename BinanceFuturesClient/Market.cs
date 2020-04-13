@@ -48,7 +48,7 @@ namespace BinanceFuturesClient
 
             return Tools.TryGetResponse<ExchangeInfo>(client);
         }
-
+        
         /// <summary>
         /// Get order book from api. Weight: 10
         /// </summary>
@@ -86,6 +86,45 @@ namespace BinanceFuturesClient
             return Tools.TryGetResponse<OrderBook>(client);
         }
 
-        
+        /// <summary>
+        /// Get recent trade list. Weight: 1.
+        /// </summary>
+        /// <param name="symbol">Currency pair code.</param>
+        /// <returns>return List of 500 trades.</returns>
+        public List<TradeItem> GetRectenTradesList(string symbol)
+        {
+            return SendGetRectenTradesListRequest(symbol);
+        }
+
+        /// <summary>
+        /// Get recent trade list. Weight: 1.
+        /// </summary>
+        /// <param name="symbol">Currency pair code.</param>
+        /// <param name="limit">Limit max 1000.</param>
+        /// <returns>List of trades.</returns>
+        public List<TradeItem> GetRectenTradesList(string symbol, int limit)
+        {
+            return SendGetRectenTradesListRequest(symbol, limit);
+        }
+
+        List<TradeItem> SendGetRectenTradesListRequest(string symbol, int limit = 0)
+        {
+            RestClient client = new RestClient(Config.ApiPublicMarketUrl + "trades");
+
+            Dictionary<string, string> query = new Dictionary<string, string>();
+            query.Add("symbol", symbol);
+
+            if (limit != 0)
+                query.Add("limit", limit.ToString());
+
+            client.AddQuery(query);
+            client.SendGET();
+
+            return Tools.TryGetResponse<List<TradeItem>>(client);
+        }
+
+
+
+
     }
 }

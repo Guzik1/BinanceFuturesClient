@@ -42,6 +42,21 @@
             <param name="limit">Limit of transaction, available: 5, 10, 20, 50 (weight 2), 100 (weight 5), 500 (weight 10), 1000 (weight 20).</param>
             <returns>OrderBook object.</returns>
         </member>
+        <member name="M:BinanceFuturesClient.Market.GetRectenTradesList(System.String)">
+            <summary>
+            Get recent trade list. Weight: 1.
+            </summary>
+            <param name="symbol">Currency pair code.</param>
+            <returns>return List of 500 trades.</returns>
+        </member>
+        <member name="M:BinanceFuturesClient.Market.GetRectenTradesList(System.String,System.Int32)">
+            <summary>
+            Get recent trade list. Weight: 1.
+            </summary>
+            <param name="symbol">Currency pair code.</param>
+            <param name="limit">Limit max 1000.</param>
+            <returns>List of trades.</returns>
+        </member>
         <member name="T:BinanceFuturesClient.Model.Market.ExchangeInfo">
             <summary>
             Response model for <see cref="M:BinanceFuturesClient.Market.GetExchangeInfo"/> request.
