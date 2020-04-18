@@ -339,7 +339,7 @@ namespace BinanceFuturesClient
         /// <param name="startTime">Start getting result from start time.</param>
         /// <param name="endTime">End getting result to end time.</param>
         /// <param name="limit">Limit of result object, default 100, max 1000.</param>
-        /// <returns>List of funding rate histori items.</returns
+        /// <returns>List of funding rate histori items.</returns>
         public List<FundingRateHistory> GetFundingRateHistory(string symbol, long startTime, long endTime, int limit = 100)
         {
             return SendGetFundingRateHistoryRequest(symbol, startTime, endTime, limit);
@@ -366,6 +366,43 @@ namespace BinanceFuturesClient
 
             return Tools.TryGetResponse<List<FundingRateHistory>>(client);
         }
+        #endregion
+
+        #region 24hTickerPriceChangeStatisctic
+        /// <summary>
+        /// Get ticker, 24 hours statistic. Weight: 40
+        /// </summary>
+        /// <returns>24 hours statistic ticker.</returns>
+        public List<Ticker> Get24hTicker()
+        {
+            RestClient client = new RestClient(Config.ApiPublicMarketUrl + "ticker/24hr");
+            client.SendGET();
+
+            return Tools.TryGetResponse<List<Ticker>>(client);
+        }
+
+        /// <summary>
+        /// Get ticker, 24 hours statistic. Weight: 1
+        /// </summary>
+        /// <param name="symbol">Currency pair symbol.</param>
+        /// <returns>24 hours statistic ticker.</returns>
+        public Ticker Get24hTicker(string symbol)
+        {
+            RestClient client = new RestClient(Config.ApiPublicMarketUrl + "ticker/24hr");
+
+            Dictionary<string, string> query = new Dictionary<string, string>();
+            query.Add("symbol", symbol);
+            client.AddQuery(query);
+            client.SendGET();
+
+            return Tools.TryGetResponse<Ticker>(client);
+        }
+        #endregion
+
+        #region GetSymbolPriceTicker
+
+
+
         #endregion
     }
 }

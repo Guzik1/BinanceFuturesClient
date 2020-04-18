@@ -136,7 +136,29 @@
             <param name="limit">Limit of result object, default 100, max 1000.</param>
             <returns>List of funding rate histori items.</returns>
         </member>
-        <!-- Badly formed XML comment ignored for member "M:BinanceFuturesClient.Market.GetFundingRateHistory(System.String,System.Int64,System.Int64,System.Int32)" -->
+        <member name="M:BinanceFuturesClient.Market.GetFundingRateHistory(System.String,System.Int64,System.Int64,System.Int32)">
+            <summary>
+            Get historicial funding rate. Weight: 1.
+            </summary>
+            <param name="symbol">Currency pair code.</param>
+            <param name="startTime">Start getting result from start time.</param>
+            <param name="endTime">End getting result to end time.</param>
+            <param name="limit">Limit of result object, default 100, max 1000.</param>
+            <returns>List of funding rate histori items.</returns>
+        </member>
+        <member name="M:BinanceFuturesClient.Market.Get24hTicker">
+            <summary>
+            Get ticker, 24 hours statistic. Weight: 40
+            </summary>
+            <returns>24 hours statistic ticker.</returns>
+        </member>
+        <member name="M:BinanceFuturesClient.Market.Get24hTicker(System.String)">
+            <summary>
+            Get ticker, 24 hours statistic. Weight: 1
+            </summary>
+            <param name="symbol">Currency pair symbol.</param>
+            <returns>24 hours statistic ticker.</returns>
+        </member>
         <member name="T:BinanceFuturesClient.Model.Market.AggregateTradeItem">
             <summary>
             Aggregate trade item model for reponse on <see cref="M:BinanceFuturesClient.Market.GetOldTradesLookup(System.String,System.Int32)"/> and <see cref="M:BinanceFuturesClient.Market.GetOldTradesLookup(System.String,System.Int64,System.Int32)"/> request.
@@ -436,6 +458,96 @@
         <member name="P:BinanceFuturesClient.Model.Market.OrderBook.Asks">
             <summary>
             Ask offers list, first element on insiding list is price, second is quantity.
+            </summary>
+        </member>
+        <member name="T:BinanceFuturesClient.Model.Market.Ticker">
+            <summary>
+            Ticker data model for <see cref="M:BinanceFuturesClient.Market.Get24hTicker"/> and <see cref="M:BinanceFuturesClient.Market.Get24hTicker(System.String)"/> request.
+            </summary>
+        </member>
+        <member name="P:BinanceFuturesClient.Model.Market.Ticker.Symbol">
+            <summary>
+            Currency pair code.
+            </summary>
+        </member>
+        <member name="P:BinanceFuturesClient.Model.Market.Ticker.PriceChange">
+            <summary>
+            24 hours price change in base currency.
+            </summary>
+        </member>
+        <member name="P:BinanceFuturesClient.Model.Market.Ticker.PriceChangePercent">
+            <summary>
+            24 hours price change in percent.
+            </summary>
+        </member>
+        <member name="P:BinanceFuturesClient.Model.Market.Ticker.WeightedAvgPrice">
+            <summary>
+            Weighted average price.
+            </summary>
+        </member>
+        <member name="P:BinanceFuturesClient.Model.Market.Ticker.PrevClosePrice">
+            <summary>
+            Prev close price.
+            </summary>
+        </member>
+        <member name="P:BinanceFuturesClient.Model.Market.Ticker.LastPrice">
+            <summary>
+            Last transaction price.
+            </summary>
+        </member>
+        <member name="P:BinanceFuturesClient.Model.Market.Ticker.LastQty">
+            <summary>
+            Last transaction quantity.
+            </summary>
+        </member>
+        <member name="P:BinanceFuturesClient.Model.Market.Ticker.OpenPrice">
+            <summary>
+            Open price.
+            </summary>
+        </member>
+        <member name="P:BinanceFuturesClient.Model.Market.Ticker.HighPrice">
+            <summary>
+            High price.
+            </summary>
+        </member>
+        <member name="P:BinanceFuturesClient.Model.Market.Ticker.LowPrice">
+            <summary>
+            Low price.
+            </summary>
+        </member>
+        <member name="P:BinanceFuturesClient.Model.Market.Ticker.Volume">
+            <summary>
+            24 hours volume in base currency.
+            </summary>
+        </member>
+        <member name="P:BinanceFuturesClient.Model.Market.Ticker.QuoteVolume">
+            <summary>
+            24 hours volume in quote currency.
+            </summary>
+        </member>
+        <member name="P:BinanceFuturesClient.Model.Market.Ticker.OpenTime">
+            <summary>
+            Open time, unix timestamp.
+            </summary>
+        </member>
+        <member name="P:BinanceFuturesClient.Model.Market.Ticker.CloseTime">
+            <summary>
+            Close time, unix timestamp.
+            </summary>
+        </member>
+        <member name="P:BinanceFuturesClient.Model.Market.Ticker.FirstId">
+            <summary>
+            First trade identificator.
+            </summary>
+        </member>
+        <member name="P:BinanceFuturesClient.Model.Market.Ticker.LastId">
+            <summary>
+            Last trade identificator.
+            </summary>
+        </member>
+        <member name="P:BinanceFuturesClient.Model.Market.Ticker.Count">
+            <summary>
+            Trade count in 24 hours.
             </summary>
         </member>
         <member name="T:BinanceFuturesClient.Model.Market.TradeItem">
