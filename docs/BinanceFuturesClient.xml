@@ -171,6 +171,19 @@
             </summary>
             <returns>Symbol price ticker object.</returns>
         </member>
+        <member name="M:BinanceFuturesClient.Market.GetOrderBookTicker">
+            <summary>
+            Get best price/qty on the order book for symbols. Weight: 2
+            </summary>
+            <returns>List of order book ticker objects.</returns>
+        </member>
+        <member name="M:BinanceFuturesClient.Market.GetOrderBookTicker(System.String)">
+            <summary>
+            Get best price/qty on the order book for a single symbols. Weight: 1
+            </summary>
+            <param name="symbol"></param>
+            <returns>Order book ticker object,</returns>
+        </member>
         <member name="T:BinanceFuturesClient.Model.Market.AggregateTradeItem">
             <summary>
             Aggregate trade item model for reponse on <see cref="M:BinanceFuturesClient.Market.GetOldTradesLookup(System.String,System.Int32)"/> and <see cref="M:BinanceFuturesClient.Market.GetOldTradesLookup(System.String,System.Int64,System.Int32)"/> request.
@@ -472,18 +485,49 @@
             Ask offers list, first element on insiding list is price, second is quantity.
             </summary>
         </member>
-        <member name="T:BinanceFuturesClient.Model.Market.SymbolPriceTicker">
+        <member name="T:BinanceFuturesClient.Model.Market.OrderBookTicker">
+            <summary>
+            Data model for <see cref="M:BinanceFuturesClient.Market.GetOrderBookTicker"/> and 
+            <see cref="M:BinanceFuturesClient.Market.GetOrderBookTicker(System.String)"/> request.
+            </summary>
+        </member>
+        <member name="P:BinanceFuturesClient.Model.Market.OrderBookTicker.Symbol">
+            <summary>
+            Currency pair code.
+            </summary>
+        </member>
+        <member name="P:BinanceFuturesClient.Model.Market.OrderBookTicker.BidPrice">
+            <summary>
+            Bid price.
+            </summary>
+        </member>
+        <member name="P:BinanceFuturesClient.Model.Market.OrderBookTicker.BidQty">
+            <summary>
+            Bid quantity
+            </summary>
+        </member>
+        <member name="P:BinanceFuturesClient.Model.Market.OrderBookTicker.AskPrice">
+            <summary>
+            Ask price.
+            </summary>
+        </member>
+        <member name="P:BinanceFuturesClient.Model.Market.OrderBookTicker.AskQty">
+            <summary>
+            Ask quantity.
+            </summary>
+        </member>
+        <member name="T:BinanceFuturesClient.Model.Market.PriceTicker">
             <summary>
             Data model for response on <see cref="M:BinanceFuturesClient.Market.GetSymbolPriceTicker"/> and 
             <see cref="M:BinanceFuturesClient.Market.GetSymbolPriceTicker(System.String)"/> request.
             </summary>
         </member>
-        <member name="P:BinanceFuturesClient.Model.Market.SymbolPriceTicker.Symbol">
+        <member name="P:BinanceFuturesClient.Model.Market.PriceTicker.Symbol">
             <summary>
             Currency pair symbol.
             </summary>
         </member>
-        <member name="P:BinanceFuturesClient.Model.Market.SymbolPriceTicker.Price">
+        <member name="P:BinanceFuturesClient.Model.Market.PriceTicker.Price">
             <summary>
             Price for currency pair.
             </summary>

@@ -6,24 +6,25 @@ using System.Text;
 
 namespace BinanceIntegratedTests.Market
 {
-    public class GetSymbolPriceTickerTests
+    public class GetOrderBookPriceTickerTests
     {
         BinanceFuturesClient.Market market = new BinanceFuturesClient.Market();
 
         [Test]
-        public void GetSingleSymbolPriceTickerTest()
+        public void GetSingleOrderBookPriceTickerTest()
         {
-            PriceTicker ticker = market.GetSymbolPriceTicker("BTCUSDT");
+            OrderBookTicker ticker = market.GetOrderBookTicker("BTCUSDT");
 
             Assert.IsNotNull(ticker);
             Assert.AreEqual("BTCUSDT", ticker.Symbol);
-            Assert.Greater(ticker.Price, 0);
+            Assert.Greater(ticker.AskPrice, 0);
+            Assert.Greater(ticker.BidPrice, 0);
         }
 
         [Test]
-        public void GetAllSymbolPricetickersTest()
+        public void GetAllOrderBookPriceTickersTest()
         {
-            List<PriceTicker> tickers = market.GetSymbolPriceTicker();
+            List<OrderBookTicker> tickers = market.GetOrderBookTicker();
 
             Assert.IsNotNull(tickers);
             int index = tickers.FindIndex(n => n.Symbol == "BTCUSDT");

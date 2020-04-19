@@ -404,19 +404,19 @@ namespace BinanceFuturesClient
         /// Get symbol price ticker. Weight 2.
         /// </summary>
         /// <returns>List of all symbols price ticker.</returns>
-        public List<SymbolPriceTicker> GetSymbolPriceTicker()
+        public List<PriceTicker> GetSymbolPriceTicker()
         {
             RestClient client = new RestClient(Config.ApiPublicMarketUrl + "ticker/price");
             client.SendGET();
 
-            return Tools.TryGetResponse<List<SymbolPriceTicker>>(client);
+            return Tools.TryGetResponse<List<PriceTicker>>(client);
         }
 
         /// <summary>
         /// Get symbol price ticker. Weight 1.
         /// </summary>
         /// <returns>Symbol price ticker object.</returns>
-        public SymbolPriceTicker GetSymbolPriceTicker(string symbol)
+        public PriceTicker GetSymbolPriceTicker(string symbol)
         {
             RestClient client = new RestClient(Config.ApiPublicMarketUrl + "ticker/price");
 
@@ -425,7 +425,38 @@ namespace BinanceFuturesClient
             client.AddQuery(query);
             client.SendGET();
 
-            return Tools.TryGetResponse<SymbolPriceTicker>(client);
+            return Tools.TryGetResponse<PriceTicker>(client);
+        }
+        #endregion
+
+        #region SymbolOrderBookTicker
+        /// <summary>
+        /// Get best price/qty on the order book for symbols. Weight: 2
+        /// </summary>
+        /// <returns>List of order book ticker objects.</returns>
+        public List<OrderBookTicker> GetOrderBookTicker()
+        {
+            RestClient client = new RestClient(Config.ApiPublicMarketUrl + "ticker/bookTicker");
+            client.SendGET();
+
+            return Tools.TryGetResponse<List<OrderBookTicker>>(client);
+        }
+
+        /// <summary>
+        /// Get best price/qty on the order book for a single symbols. Weight: 1
+        /// </summary>
+        /// <param name="symbol"></param>
+        /// <returns>Order book ticker object,</returns>
+        public OrderBookTicker GetOrderBookTicker(string symbol)
+        {
+            RestClient client = new RestClient(Config.ApiPublicMarketUrl + "ticker/bookTicker");
+
+            Dictionary<string, string> query = new Dictionary<string, string>();
+            query.Add("symbol", symbol);
+            client.AddQuery(query);
+            client.SendGET();
+
+            return Tools.TryGetResponse<OrderBookTicker>(client);
         }
         #endregion
     }

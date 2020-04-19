@@ -8,7 +8,7 @@ namespace BinanceFuturesClient.Model.Market
     /// Data model for response on <see cref="BinanceFuturesClient.Market.GetSymbolPriceTicker()"/> and 
     /// <see cref="BinanceFuturesClient.Market.GetSymbolPriceTicker(string)"/> request.
     /// </summary>
-    public class SymbolPriceTicker
+    public class PriceTicker
     {
         /// <summary>
         /// Currency pair symbol.
