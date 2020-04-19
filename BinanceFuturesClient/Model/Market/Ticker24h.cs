@@ -8,7 +8,7 @@ namespace BinanceFuturesClient.Model.Market
     /// <summary>
     /// Ticker data model for <see cref="BinanceFuturesClient.Market.Get24hTicker()"/> and <see cref="BinanceFuturesClient.Market.Get24hTicker(string)"/> request.
     /// </summary>
-    public class Ticker
+    public class Ticker24h
     {
         /// <summary>
         /// Currency pair code.

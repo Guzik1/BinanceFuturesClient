@@ -159,6 +159,18 @@
             <param name="symbol">Currency pair symbol.</param>
             <returns>24 hours statistic ticker.</returns>
         </member>
+        <member name="M:BinanceFuturesClient.Market.GetSymbolPriceTicker">
+            <summary>
+            Get symbol price ticker. Weight 2.
+            </summary>
+            <returns>List of all symbols price ticker.</returns>
+        </member>
+        <member name="M:BinanceFuturesClient.Market.GetSymbolPriceTicker(System.String)">
+            <summary>
+            Get symbol price ticker. Weight 1.
+            </summary>
+            <returns>Symbol price ticker object.</returns>
+        </member>
         <member name="T:BinanceFuturesClient.Model.Market.AggregateTradeItem">
             <summary>
             Aggregate trade item model for reponse on <see cref="M:BinanceFuturesClient.Market.GetOldTradesLookup(System.String,System.Int32)"/> and <see cref="M:BinanceFuturesClient.Market.GetOldTradesLookup(System.String,System.Int64,System.Int32)"/> request.
@@ -460,92 +472,108 @@
             Ask offers list, first element on insiding list is price, second is quantity.
             </summary>
         </member>
-        <member name="T:BinanceFuturesClient.Model.Market.Ticker">
+        <member name="T:BinanceFuturesClient.Model.Market.SymbolPriceTicker">
+            <summary>
+            Data model for response on <see cref="M:BinanceFuturesClient.Market.GetSymbolPriceTicker"/> and 
+            <see cref="M:BinanceFuturesClient.Market.GetSymbolPriceTicker(System.String)"/> request.
+            </summary>
+        </member>
+        <member name="P:BinanceFuturesClient.Model.Market.SymbolPriceTicker.Symbol">
+            <summary>
+            Currency pair symbol.
+            </summary>
+        </member>
+        <member name="P:BinanceFuturesClient.Model.Market.SymbolPriceTicker.Price">
+            <summary>
+            Price for currency pair.
+            </summary>
+        </member>
+        <member name="T:BinanceFuturesClient.Model.Market.Ticker24h">
             <summary>
             Ticker data model for <see cref="M:BinanceFuturesClient.Market.Get24hTicker"/> and <see cref="M:BinanceFuturesClient.Market.Get24hTicker(System.String)"/> request.
             </summary>
         </member>
-        <member name="P:BinanceFuturesClient.Model.Market.Ticker.Symbol">
+        <member name="P:BinanceFuturesClient.Model.Market.Ticker24h.Symbol">
             <summary>
             Currency pair code.
             </summary>
         </member>
-        <member name="P:BinanceFuturesClient.Model.Market.Ticker.PriceChange">
+        <member name="P:BinanceFuturesClient.Model.Market.Ticker24h.PriceChange">
             <summary>
             24 hours price change in base currency.
             </summary>
         </member>
-        <member name="P:BinanceFuturesClient.Model.Market.Ticker.PriceChangePercent">
+        <member name="P:BinanceFuturesClient.Model.Market.Ticker24h.PriceChangePercent">
             <summary>
             24 hours price change in percent.
             </summary>
         </member>
-        <member name="P:BinanceFuturesClient.Model.Market.Ticker.WeightedAvgPrice">
+        <member name="P:BinanceFuturesClient.Model.Market.Ticker24h.WeightedAvgPrice">
             <summary>
             Weighted average price.
             </summary>
         </member>
-        <member name="P:BinanceFuturesClient.Model.Market.Ticker.PrevClosePrice">
+        <member name="P:BinanceFuturesClient.Model.Market.Ticker24h.PrevClosePrice">
             <summary>
             Prev close price.
             </summary>
         </member>
-        <member name="P:BinanceFuturesClient.Model.Market.Ticker.LastPrice">
+        <member name="P:BinanceFuturesClient.Model.Market.Ticker24h.LastPrice">
             <summary>
             Last transaction price.
             </summary>
         </member>
-        <member name="P:BinanceFuturesClient.Model.Market.Ticker.LastQty">
+        <member name="P:BinanceFuturesClient.Model.Market.Ticker24h.LastQty">
             <summary>
             Last transaction quantity.
             </summary>
         </member>
-        <member name="P:BinanceFuturesClient.Model.Market.Ticker.OpenPrice">
+        <member name="P:BinanceFuturesClient.Model.Market.Ticker24h.OpenPrice">
             <summary>
             Open price.
             </summary>
         </member>
-        <member name="P:BinanceFuturesClient.Model.Market.Ticker.HighPrice">
+        <member name="P:BinanceFuturesClient.Model.Market.Ticker24h.HighPrice">
             <summary>
             High price.
             </summary>
         </member>
-        <member name="P:BinanceFuturesClient.Model.Market.Ticker.LowPrice">
+        <member name="P:BinanceFuturesClient.Model.Market.Ticker24h.LowPrice">
             <summary>
             Low price.
             </summary>
         </member>
-        <member name="P:BinanceFuturesClient.Model.Market.Ticker.Volume">
+        <member name="P:BinanceFuturesClient.Model.Market.Ticker24h.Volume">
             <summary>
             24 hours volume in base currency.
             </summary>
         </member>
-        <member name="P:BinanceFuturesClient.Model.Market.Ticker.QuoteVolume">
+        <member name="P:BinanceFuturesClient.Model.Market.Ticker24h.QuoteVolume">
             <summary>
             24 hours volume in quote currency.
             </summary>
         </member>
-        <member name="P:BinanceFuturesClient.Model.Market.Ticker.OpenTime">
+        <member name="P:BinanceFuturesClient.Model.Market.Ticker24h.OpenTime">
             <summary>
             Open time, unix timestamp.
             </summary>
         </member>
-        <member name="P:BinanceFuturesClient.Model.Market.Ticker.CloseTime">
+        <member name="P:BinanceFuturesClient.Model.Market.Ticker24h.CloseTime">
             <summary>
             Close time, unix timestamp.
             </summary>
         </member>
-        <member name="P:BinanceFuturesClient.Model.Market.Ticker.FirstId">
+        <member name="P:BinanceFuturesClient.Model.Market.Ticker24h.FirstId">
             <summary>
             First trade identificator.
             </summary>
         </member>
-        <member name="P:BinanceFuturesClient.Model.Market.Ticker.LastId">
+        <member name="P:BinanceFuturesClient.Model.Market.Ticker24h.LastId">
             <summary>
             Last trade identificator.
             </summary>
         </member>
-        <member name="P:BinanceFuturesClient.Model.Market.Ticker.Count">
+        <member name="P:BinanceFuturesClient.Model.Market.Ticker24h.Count">
             <summary>
             Trade count in 24 hours.
             </summary>

@@ -13,7 +13,7 @@ namespace BinanceIntegratedTests.Market
         [Test]
         public void Get24hAllTickersTest()
         {
-            List<Ticker> tickers = market.Get24hTicker();
+            List<Ticker24h> tickers = market.Get24hTicker();
 
             Assert.IsNotNull(tickers);
             Assert.Greater(tickers.Count, 0);
@@ -25,7 +25,7 @@ namespace BinanceIntegratedTests.Market
         [Test]
         public void Get24hTickerTest()
         {
-            Ticker ticker = market.Get24hTicker("BTCUSDT");
+            Ticker24h ticker = market.Get24hTicker("BTCUSDT");
             
             Assert.IsNotNull(ticker);
             Assert.Greater(ticker.Count, 0);

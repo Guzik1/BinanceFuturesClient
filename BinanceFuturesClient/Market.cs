@@ -373,12 +373,12 @@ namespace BinanceFuturesClient
         /// Get ticker, 24 hours statistic. Weight: 40
         /// </summary>
         /// <returns>24 hours statistic ticker.</returns>
-        public List<Ticker> Get24hTicker()
+        public List<Ticker24h> Get24hTicker()
         {
             RestClient client = new RestClient(Config.ApiPublicMarketUrl + "ticker/24hr");
             client.SendGET();
 
-            return Tools.TryGetResponse<List<Ticker>>(client);
+            return Tools.TryGetResponse<List<Ticker24h>>(client);
         }
 
         /// <summary>
@@ -386,7 +386,7 @@ namespace BinanceFuturesClient
         /// </summary>
         /// <param name="symbol">Currency pair symbol.</param>
         /// <returns>24 hours statistic ticker.</returns>
-        public Ticker Get24hTicker(string symbol)
+        public Ticker24h Get24hTicker(string symbol)
         {
             RestClient client = new RestClient(Config.ApiPublicMarketUrl + "ticker/24hr");
 
@@ -395,14 +395,38 @@ namespace BinanceFuturesClient
             client.AddQuery(query);
             client.SendGET();
 
-            return Tools.TryGetResponse<Ticker>(client);
+            return Tools.TryGetResponse<Ticker24h>(client);
         }
         #endregion
 
         #region GetSymbolPriceTicker
+        /// <summary>
+        /// Get symbol price ticker. Weight 2.
+        /// </summary>
+        /// <returns>List of all symbols price ticker.</returns>
+        public List<SymbolPriceTicker> GetSymbolPriceTicker()
+        {
+            RestClient client = new RestClient(Config.ApiPublicMarketUrl + "ticker/price");
+            client.SendGET();
 
+            return Tools.TryGetResponse<List<SymbolPriceTicker>>(client);
+        }
 
+        /// <summary>
+        /// Get symbol price ticker. Weight 1.
+        /// </summary>
+        /// <returns>Symbol price ticker object.</returns>
+        public SymbolPriceTicker GetSymbolPriceTicker(string symbol)
+        {
+            RestClient client = new RestClient(Config.ApiPublicMarketUrl + "ticker/price");
 
+            Dictionary<string, string> query = new Dictionary<string, string>();
+            query.Add("symbol", symbol);
+            client.AddQuery(query);
+            client.SendGET();
+
+            return Tools.TryGetResponse<SymbolPriceTicker>(client);
+        }
         #endregion
     }
 }
