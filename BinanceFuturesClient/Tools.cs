@@ -1,10 +1,31 @@
 ﻿using RestApiClient;
 using System;
+using System.Collections.Generic;
 
 namespace BinanceFuturesClient
 {
     internal static class Tools
     {
+        internal static Excepted GetFromServer<Excepted>(string url)
+        {
+            RestClient client = new RestClient(url);
+            client.SendGET();
+
+            return TryGetResponse<Excepted>(client);
+        }
+
+        internal static Excepted GetFromServer<Excepted>(string url, string symbol)
+        {
+            RestClient client = new RestClient(url);
+
+            Dictionary<string, string> query = new Dictionary<string, string>();
+            query.Add("symbol", symbol);
+            client.AddQuery(query);
+            client.SendGET();
+
+            return TryGetResponse<Excepted>(client);
+        }
+
         internal static Expected TryGetResponse<Expected>(RestClient rc)
         {
             if (CheckResult(rc))
@@ -29,7 +50,7 @@ namespace BinanceFuturesClient
             throw new Exception("Unknown error.");
         }
 
-        internal static bool CheckResult(RestClient rc)
+        static bool CheckResult(RestClient rc)
         {
             if (rc.ResponseHasNoErrors())
             {

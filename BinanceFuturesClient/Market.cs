@@ -48,10 +48,7 @@ namespace BinanceFuturesClient
         /// <returns>Exchange info object.</returns>
         public ExchangeInfo GetExchangeInfo()
         {
-            RestClient client = new RestClient(Config.ApiPublicMarketUrl + "exchangeInfo");
-            client.SendGET();
-
-            return Tools.TryGetResponse<ExchangeInfo>(client);
+            return Tools.GetFromServer<ExchangeInfo>(Config.ApiPublicMarketUrl + "exchangeInfo");
         }
         #endregion
 
@@ -291,10 +288,7 @@ namespace BinanceFuturesClient
         /// <returns>List of mark price object.</returns>
         public List<MarkPriceResponse> GetMarkPrice()
         {
-            RestClient client = new RestClient(Config.ApiPublicMarketUrl + "premiumIndex");
-            client.SendGET();
-
-            return Tools.TryGetResponse<List<MarkPriceResponse>>(client);
+            return Tools.GetFromServer<List<MarkPriceResponse>>(Config.ApiPublicMarketUrl + "premiumIndex");
         }
 
         /// <summary>
@@ -304,19 +298,7 @@ namespace BinanceFuturesClient
         /// <returns>Mark price object.</returns>
         public MarkPriceResponse GetMarkPrice(string symbol)
         {
-            RestClient client = new RestClient(Config.ApiPublicMarketUrl + "premiumIndex");
-
-            if(symbol != "")
-            {
-                Dictionary<string, string> query = new Dictionary<string, string>();
-                query.Add("symbol", symbol);
-
-                client.AddQuery(query);
-            }
-
-            client.SendGET();
-
-            return Tools.TryGetResponse<MarkPriceResponse>(client);
+            return Tools.GetFromServer<MarkPriceResponse>(Config.ApiPublicMarketUrl + "premiumIndex", symbol);
         }
         #endregion
 
@@ -375,10 +357,7 @@ namespace BinanceFuturesClient
         /// <returns>24 hours statistic ticker.</returns>
         public List<Ticker24h> Get24hTicker()
         {
-            RestClient client = new RestClient(Config.ApiPublicMarketUrl + "ticker/24hr");
-            client.SendGET();
-
-            return Tools.TryGetResponse<List<Ticker24h>>(client);
+            return Tools.GetFromServer<List<Ticker24h>>(Config.ApiPublicMarketUrl + "ticker/24hr");
         }
 
         /// <summary>
@@ -388,14 +367,7 @@ namespace BinanceFuturesClient
         /// <returns>24 hours statistic ticker.</returns>
         public Ticker24h Get24hTicker(string symbol)
         {
-            RestClient client = new RestClient(Config.ApiPublicMarketUrl + "ticker/24hr");
-
-            Dictionary<string, string> query = new Dictionary<string, string>();
-            query.Add("symbol", symbol);
-            client.AddQuery(query);
-            client.SendGET();
-
-            return Tools.TryGetResponse<Ticker24h>(client);
+            return Tools.GetFromServer<Ticker24h>(Config.ApiPublicMarketUrl + "ticker/24hr", symbol);
         }
         #endregion
 
@@ -406,10 +378,7 @@ namespace BinanceFuturesClient
         /// <returns>List of all symbols price ticker.</returns>
         public List<PriceTicker> GetSymbolPriceTicker()
         {
-            RestClient client = new RestClient(Config.ApiPublicMarketUrl + "ticker/price");
-            client.SendGET();
-
-            return Tools.TryGetResponse<List<PriceTicker>>(client);
+            return Tools.GetFromServer<List<PriceTicker>>(Config.ApiPublicMarketUrl + "ticker/price");
         }
 
         /// <summary>
@@ -418,14 +387,7 @@ namespace BinanceFuturesClient
         /// <returns>Symbol price ticker object.</returns>
         public PriceTicker GetSymbolPriceTicker(string symbol)
         {
-            RestClient client = new RestClient(Config.ApiPublicMarketUrl + "ticker/price");
-
-            Dictionary<string, string> query = new Dictionary<string, string>();
-            query.Add("symbol", symbol);
-            client.AddQuery(query);
-            client.SendGET();
-
-            return Tools.TryGetResponse<PriceTicker>(client);
+            return Tools.GetFromServer<PriceTicker>(Config.ApiPublicMarketUrl + "ticker/price", symbol);
         }
         #endregion
 
@@ -436,10 +398,7 @@ namespace BinanceFuturesClient
         /// <returns>List of order book ticker objects.</returns>
         public List<OrderBookTicker> GetOrderBookTicker()
         {
-            RestClient client = new RestClient(Config.ApiPublicMarketUrl + "ticker/bookTicker");
-            client.SendGET();
-
-            return Tools.TryGetResponse<List<OrderBookTicker>>(client);
+            return Tools.GetFromServer<List<OrderBookTicker>>(Config.ApiPublicMarketUrl + "ticker/bookTicker");
         }
 
         /// <summary>
@@ -449,15 +408,10 @@ namespace BinanceFuturesClient
         /// <returns>Order book ticker object,</returns>
         public OrderBookTicker GetOrderBookTicker(string symbol)
         {
-            RestClient client = new RestClient(Config.ApiPublicMarketUrl + "ticker/bookTicker");
-
-            Dictionary<string, string> query = new Dictionary<string, string>();
-            query.Add("symbol", symbol);
-            client.AddQuery(query);
-            client.SendGET();
-
-            return Tools.TryGetResponse<OrderBookTicker>(client);
+            return Tools.GetFromServer<OrderBookTicker>(Config.ApiPublicMarketUrl + "ticker/bookTicker", symbol);
         }
         #endregion
+
+
     }
 }
