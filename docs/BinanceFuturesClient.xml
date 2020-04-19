@@ -184,6 +184,24 @@
             <param name="symbol"></param>
             <returns>Order book ticker object,</returns>
         </member>
+        <member name="M:BinanceFuturesClient.Market.GetLiquidationOrders(System.String,System.Int32)">
+            <summary>
+            Get all liquidation orders. Weight: 5.
+            </summary>
+            <param name="symbol">Currency pair symbol code.</param>
+            <param name="limit">Limit of resault, default 100, nax 1000.</param>
+            <returns>List of liquidation order.</returns>
+        </member>
+        <member name="M:BinanceFuturesClient.Market.GetLiquidationOrders(System.Int64,System.Int64,System.String,System.Int32)">
+            <summary>
+            Get all liquidation orders. Weight: 5.
+            </summary>
+            <param name="startTime">Get order from start time (in unixtimestamp ).</param>
+            <param name="endTime">Get order to end time (in unixtimestamp).</param>
+            <param name="symbol">Currency pair symbol code.</param>
+            <param name="limit">Limit of resault, default 100, nax 1000.</param>
+            <returns></returns>
+        </member>
         <member name="T:BinanceFuturesClient.Model.Market.AggregateTradeItem">
             <summary>
             Aggregate trade item model for reponse on <see cref="M:BinanceFuturesClient.Market.GetOldTradesLookup(System.String,System.Int32)"/> and <see cref="M:BinanceFuturesClient.Market.GetOldTradesLookup(System.String,System.Int64,System.Int32)"/> request.
@@ -433,6 +451,62 @@
         <member name="P:BinanceFuturesClient.Model.Market.FundingRateHistory.FundingTime">
             <summary>
             Funding time in unix timestamp.
+            </summary>
+        </member>
+        <member name="T:BinanceFuturesClient.Model.Market.LiquidationOrder">
+            <summary>
+            Data model for response on <see cref="M:BinanceFuturesClient.Market.GetLiquidationOrders(System.String,System.Int32)"/> and
+            <see cref="M:BinanceFuturesClient.Market.GetLiquidationOrders(System.String,System.Int32)"/> request.
+            </summary>
+        </member>
+        <member name="P:BinanceFuturesClient.Model.Market.LiquidationOrder.Symbol">
+            <summary>
+            Currency pair code.
+            </summary>
+        </member>
+        <member name="P:BinanceFuturesClient.Model.Market.LiquidationOrder.Price">
+            <summary>
+            Order price.
+            </summary>
+        </member>
+        <member name="P:BinanceFuturesClient.Model.Market.LiquidationOrder.OrigQty">
+            <summary>
+            Order amount.
+            </summary>
+        </member>
+        <member name="P:BinanceFuturesClient.Model.Market.LiquidationOrder.ExecutedQty">
+            <summary>
+            Executed quantity.
+            </summary>
+        </member>
+        <member name="P:BinanceFuturesClient.Model.Market.LiquidationOrder.AvragePrice">
+            <summary>
+            Avrage price.
+            </summary>
+        </member>
+        <member name="P:BinanceFuturesClient.Model.Market.LiquidationOrder.Status">
+            <summary>
+            Order status.
+            </summary>
+        </member>
+        <member name="P:BinanceFuturesClient.Model.Market.LiquidationOrder.TimeInForce">
+            <summary>
+            Time in force.
+            </summary>
+        </member>
+        <member name="P:BinanceFuturesClient.Model.Market.LiquidationOrder.Type">
+            <summary>
+            Order type, for example Limit.
+            </summary>
+        </member>
+        <member name="P:BinanceFuturesClient.Model.Market.LiquidationOrder.Side">
+            <summary>
+            Side type: BUY or SELL.
+            </summary>
+        </member>
+        <member name="P:BinanceFuturesClient.Model.Market.LiquidationOrder.Time">
+            <summary>
+            Liquidation time in unix timestamp.
             </summary>
         </member>
         <member name="T:BinanceFuturesClient.Model.Market.MarkPriceResponse">

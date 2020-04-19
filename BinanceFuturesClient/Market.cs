@@ -412,6 +412,54 @@ namespace BinanceFuturesClient
         }
         #endregion
 
+        #region GetAllLiquidationOrders
+        /// <summary>
+        /// Get all liquidation orders. Weight: 5.
+        /// </summary>
+        /// <param name="symbol">Currency pair symbol code.</param>
+        /// <param name="limit">Limit of resault, default 100, nax 1000.</param>
+        /// <returns>List of liquidation order.</returns>
+        public List<LiquidationOrder> GetLiquidationOrders(string symbol = "", int limit = 100)
+        {
+             return SendGetLiquidationOrdersAndGetResponse(symbol, limit);
+        }
+
+        /// <summary>
+        /// Get all liquidation orders. Weight: 5.
+        /// </summary>
+        /// <param name="startTime">Get order from start time (in unixtimestamp ).</param>
+        /// <param name="endTime">Get order to end time (in unixtimestamp).</param>
+        /// <param name="symbol">Currency pair symbol code.</param>
+        /// <param name="limit">Limit of resault, default 100, nax 1000.</param>
+        /// <returns></returns>
+        public List<LiquidationOrder> GetLiquidationOrders(long startTime, long endTime, string symbol = "", int limit = 100)
+        {
+            return SendGetLiquidationOrdersAndGetResponse(symbol, limit, startTime, endTime);
+        }
+
+        List<LiquidationOrder> SendGetLiquidationOrdersAndGetResponse(string symbol = "", int limit = 100, long startTime = 0, long endTime = 0)
+        {
+            RestClient client = new RestClient(Config.ApiPublicMarketUrl + "allForceOrders");
+            Dictionary<string, string> query = new Dictionary<string, string>();
+
+            if (symbol != "")
+                query.Add("symbol", symbol);
+
+            if (limit != 100)
+                query.Add("limit", limit.ToString());
+
+            if (startTime != 0)
+                query.Add("startTime", startTime.ToString());
+
+            if (endTime != 0)
+                query.Add("endTime", endTime.ToString());
+
+            client.AddQuery(query);
+            client.SendGET();
+
+            return Tools.TryGetResponse<List<LiquidationOrder>>(client);
+        }
+        #endregion
 
     }
 }
