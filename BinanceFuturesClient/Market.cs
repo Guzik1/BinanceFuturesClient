@@ -11,6 +11,8 @@ namespace BinanceFuturesClient
     /// </summary>
     public class Market
     {
+        SessionData session;
+
         #region Ping
         /// <summary>
         /// Ping to server. Check connection to rest api. Weight: 1.
@@ -473,6 +475,37 @@ namespace BinanceFuturesClient
         }
         #endregion
 
+        #region Notional and Leverage Brackets
+        /// <summary>
+        /// Get Notional and Leverage Brackets. Weight: 1.
+        /// </summary>
+        /// <returns>List of brackets.</returns>
+        public List<NationalAndLeverageBrackets> GetNationalAndLeverageBrackets()
+        {
+            RestClient client = new RestClient(Config.ApiPublicMarketUrl + "leverageBracket");
+            client.AddOwnHeaderToRequest(new AutenticateMarket(session));
+            client.SendGET();
 
+            return Tools.TryGetResponse<List<NationalAndLeverageBrackets>>(client);
+        }
+
+        /// <summary>
+        /// Get Notional and Leverage Brackets. Weight: 1.
+        /// </summary>
+        /// <param name="symbol">Currency pair code.</param>
+        /// <returns>Brackets object.</returns>
+        public NationalAndLeverageBrackets GetNationalAndLeverageBrackets(string symbol)
+        {
+            RestClient client = new RestClient(Config.ApiPublicMarketUrl + "leverageBracket");
+
+            Dictionary<string, string> query = new Dictionary<string, string>();
+            query.Add("symbol", symbol);
+            client.AddQuery(query);
+            client.AddOwnHeaderToRequest(new AutenticateMarket(session));
+            client.SendGET();
+
+            return Tools.TryGetResponse<NationalAndLeverageBrackets>(client);
+        }
+        #endregion
     }
 }

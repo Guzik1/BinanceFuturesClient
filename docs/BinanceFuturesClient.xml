@@ -209,6 +209,19 @@
             <param name="symbol">Currency pair code.</param>
             <returns>Open interest item object.</returns>
         </member>
+        <member name="M:BinanceFuturesClient.Market.GetNationalAndLeverageBrackets">
+            <summary>
+            Get Notional and Leverage Brackets. Weight: 1.
+            </summary>
+            <returns>List of brackets.</returns>
+        </member>
+        <member name="M:BinanceFuturesClient.Market.GetNationalAndLeverageBrackets(System.String)">
+            <summary>
+            Get Notional and Leverage Brackets. Weight: 1.
+            </summary>
+            <param name="symbol">Currency pair code.</param>
+            <returns>Brackets object.</returns>
+        </member>
         <member name="T:BinanceFuturesClient.Model.Market.AggregateTradeItem">
             <summary>
             Aggregate trade item model for reponse on <see cref="M:BinanceFuturesClient.Market.GetOldTradesLookup(System.String,System.Int32)"/> and <see cref="M:BinanceFuturesClient.Market.GetOldTradesLookup(System.String,System.Int64,System.Int32)"/> request.
@@ -544,6 +557,52 @@
         <member name="P:BinanceFuturesClient.Model.Market.MarkPriceResponse.Time">
             <summary>
             Server time.
+            </summary>
+        </member>
+        <member name="T:BinanceFuturesClient.Model.Market.NationalAndLeverageBrackets">
+            <summary>
+            Data model for response on <see cref="M:BinanceFuturesClient.Market.GetNationalAndLeverageBrackets"/> and
+            <see cref="M:BinanceFuturesClient.Market.GetNationalAndLeverageBrackets"/> request.
+            </summary>
+        </member>
+        <member name="P:BinanceFuturesClient.Model.Market.NationalAndLeverageBrackets.Symbol">
+            <summary>
+            Currency pair code.
+            </summary>
+        </member>
+        <member name="P:BinanceFuturesClient.Model.Market.NationalAndLeverageBrackets.Brackets">
+            <summary>
+            List of brackets for this currency symbol.
+            </summary>
+        </member>
+        <member name="T:BinanceFuturesClient.Model.Market.Brackets">
+            <summary>
+            Brackets item.
+            </summary>
+        </member>
+        <member name="P:BinanceFuturesClient.Model.Market.Brackets.Bracket">
+            <summary>
+            National bracket.
+            </summary>
+        </member>
+        <member name="P:BinanceFuturesClient.Model.Market.Brackets.InitialLeverage">
+            <summary>
+            Max initial leverge for this bracket.
+            </summary>
+        </member>
+        <member name="P:BinanceFuturesClient.Model.Market.Brackets.NotionalCap">
+            <summary>
+            Cap notional of this bracket
+            </summary>
+        </member>
+        <member name="P:BinanceFuturesClient.Model.Market.Brackets.NotionalFloor">
+            <summary>
+            Notionl threshold of this bracket 
+            </summary>
+        </member>
+        <member name="P:BinanceFuturesClient.Model.Market.Brackets.MaintMarginRatio">
+            <summary>
+            Maintenance ratio for this bracket
             </summary>
         </member>
         <member name="T:BinanceFuturesClient.Model.Market.OpenInterestItem">
