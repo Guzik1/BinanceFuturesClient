@@ -25,7 +25,7 @@ namespace BinanceFuturesClient
         }
         #endregion
 
-        #region GetServerTime
+        #region Get server time
         /// <summary>
         /// Get server time in unix milisecond timestamp. Weight: 1.
         /// </summary>
@@ -41,7 +41,7 @@ namespace BinanceFuturesClient
         }
         #endregion
 
-        #region GetExchangeInfo
+        #region Get exchange info
         /// <summary>
         /// Get exchange info for all futures market. Weight: 1.
         /// </summary>
@@ -52,7 +52,7 @@ namespace BinanceFuturesClient
         }
         #endregion
 
-        #region GetOrderBook
+        #region Get order book
         /// <summary>
         /// Get order book from api. Weight: 10
         /// </summary>
@@ -91,7 +91,7 @@ namespace BinanceFuturesClient
         }
         #endregion
 
-        #region GetRectenTradesList
+        #region Get recten trades list
         /// <summary>
         /// Get recent trade list. Weight: 1.
         /// </summary>
@@ -115,7 +115,7 @@ namespace BinanceFuturesClient
         }
         #endregion
 
-        #region GetOldTradesLookup
+        #region Get old trades lookup
         /// <summary>
         /// Get old trades list.
         /// </summary>
@@ -159,7 +159,7 @@ namespace BinanceFuturesClient
         }
         #endregion
 
-        #region GetAggredateTradeList
+        #region Get aggredate trade list
         /// <summary>
         /// Get compressed, aggregate trades. 
         /// </summary>
@@ -223,7 +223,7 @@ namespace BinanceFuturesClient
         }
         #endregion
 
-        #region GetCandleStick
+        #region Get candle stick
         //TODO: add interval enum.
         /// <summary>
         /// Get candle stick data.
@@ -281,7 +281,7 @@ namespace BinanceFuturesClient
         }
         #endregion
 
-        #region GetMarkPrice
+        #region Get mark price
         /// <summary>
         /// Get mark price. Weight: 1.
         /// </summary>
@@ -302,7 +302,7 @@ namespace BinanceFuturesClient
         }
         #endregion
 
-        #region GetFundingRateHistory
+        #region Get funding rate history
         /// <summary>
         /// Get historicial funding rate. Weight: 1.
         /// </summary>
@@ -350,7 +350,7 @@ namespace BinanceFuturesClient
         }
         #endregion
 
-        #region 24hTickerPriceChangeStatisctic
+        #region 24h ticker price change statisctic
         /// <summary>
         /// Get ticker, 24 hours statistic. Weight: 40
         /// </summary>
@@ -371,7 +371,7 @@ namespace BinanceFuturesClient
         }
         #endregion
 
-        #region GetSymbolPriceTicker
+        #region Get symbol price ticker
         /// <summary>
         /// Get symbol price ticker. Weight 2.
         /// </summary>
@@ -391,7 +391,7 @@ namespace BinanceFuturesClient
         }
         #endregion
 
-        #region SymbolOrderBookTicker
+        #region Symbol order book ticker
         /// <summary>
         /// Get best price/qty on the order book for symbols. Weight: 2
         /// </summary>
@@ -412,7 +412,7 @@ namespace BinanceFuturesClient
         }
         #endregion
 
-        #region GetAllLiquidationOrders
+        #region Get all liquidation orders
         /// <summary>
         /// Get all liquidation orders. Weight: 5.
         /// </summary>
@@ -460,6 +460,19 @@ namespace BinanceFuturesClient
             return Tools.TryGetResponse<List<LiquidationOrder>>(client);
         }
         #endregion
+
+        #region Open Interest
+        /// <summary>
+        /// Get present open interest of a specific symbol. 
+        /// </summary>
+        /// <param name="symbol">Currency pair code.</param>
+        /// <returns>Open interest item object.</returns>
+        public OpenInterestItem GetOpenInterest(string symbol)
+        {
+            return Tools.GetFromServer<OpenInterestItem>(Config.ApiPublicMarketUrl + "openInterest", symbol);
+        }
+        #endregion
+
 
     }
 }

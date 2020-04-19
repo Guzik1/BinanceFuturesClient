@@ -202,6 +202,13 @@
             <param name="limit">Limit of resault, default 100, nax 1000.</param>
             <returns></returns>
         </member>
+        <member name="M:BinanceFuturesClient.Market.GetOpenInterest(System.String)">
+            <summary>
+            Get present open interest of a specific symbol. 
+            </summary>
+            <param name="symbol">Currency pair code.</param>
+            <returns>Open interest item object.</returns>
+        </member>
         <member name="T:BinanceFuturesClient.Model.Market.AggregateTradeItem">
             <summary>
             Aggregate trade item model for reponse on <see cref="M:BinanceFuturesClient.Market.GetOldTradesLookup(System.String,System.Int32)"/> and <see cref="M:BinanceFuturesClient.Market.GetOldTradesLookup(System.String,System.Int64,System.Int32)"/> request.
@@ -537,6 +544,21 @@
         <member name="P:BinanceFuturesClient.Model.Market.MarkPriceResponse.Time">
             <summary>
             Server time.
+            </summary>
+        </member>
+        <member name="T:BinanceFuturesClient.Model.Market.OpenInterestItem">
+            <summary>
+            Data model for response on <see cref="M:BinanceFuturesClient.Market.GetOpenInterest(System.String)"/> request.
+            </summary>
+        </member>
+        <member name="P:BinanceFuturesClient.Model.Market.OpenInterestItem.OpenInterest">
+            <summary>
+            Open interest
+            </summary>
+        </member>
+        <member name="P:BinanceFuturesClient.Model.Market.OpenInterestItem.Symbol">
+            <summary>
+            Currency pair code.
             </summary>
         </member>
         <member name="T:BinanceFuturesClient.Model.Market.OrderBook">
