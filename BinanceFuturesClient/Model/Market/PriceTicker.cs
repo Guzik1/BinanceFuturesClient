@@ -2,11 +2,11 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace BinanceFuturesClient.Model.Market
+namespace GBinanceFuturesClient.Model.Market
 {
     /// <summary>
-    /// Data model for response on <see cref="BinanceFuturesClient.Market.GetSymbolPriceTicker()"/> and 
-    /// <see cref="BinanceFuturesClient.Market.GetSymbolPriceTicker(string)"/> request.
+    /// Data model for response on <see cref="GBinanceFuturesClient.Market.GetSymbolPriceTicker()"/> and 
+    /// <see cref="GBinanceFuturesClient.Market.GetSymbolPriceTicker(string)"/> request.
     /// </summary>
     public class PriceTicker
     {

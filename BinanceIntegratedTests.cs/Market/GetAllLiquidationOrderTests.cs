@@ -1,5 +1,4 @@
-﻿using BinanceFuturesClient.Model.Market;
-using BinanceFuturesClient;
+﻿using GBinanceFuturesClient.Model.Market;
 using NUnit.Framework;
 using System;
 using System.Collections.Generic;
@@ -9,7 +8,7 @@ namespace BinanceIntegratedTests.Market
 {
     public class GetAllLiquidationOrderTests
     {
-        BinanceFuturesClient.Market market = new BinanceFuturesClient.Market();
+        GBinanceFuturesClient.Market market = new GBinanceFuturesClient.BinanceFuturesClient().Market;
 
         [Test]
         public void GetLiquidationOrderTest()

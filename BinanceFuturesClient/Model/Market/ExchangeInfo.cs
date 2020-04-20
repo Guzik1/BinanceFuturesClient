@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using System.Text;
 using Newtonsoft.Json;
 
-namespace BinanceFuturesClient.Model.Market
+namespace GBinanceFuturesClient.Model.Market
 {
     /// <summary>
-    /// Response model for <see cref="BinanceFuturesClient.Market.GetExchangeInfo()"/> request.
+    /// Response model for <see cref="GBinanceFuturesClient.Market.GetExchangeInfo()"/> request.
     /// </summary>
     public class ExchangeInfo
     {

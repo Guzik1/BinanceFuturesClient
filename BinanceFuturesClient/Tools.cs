@@ -2,7 +2,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace BinanceFuturesClient
+namespace GBinanceFuturesClient
 {
     internal static class Tools
     {

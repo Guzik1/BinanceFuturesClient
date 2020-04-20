@@ -3,10 +3,10 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace BinanceFuturesClient.Model.Market
+namespace GBinanceFuturesClient.Model.Market
 {
     /// <summary>
-    /// Data model for response on <see cref="BinanceFuturesClient.Market.GetOpenInterest(string)"/> request.
+    /// Data model for response on <see cref="GBinanceFuturesClient.Market.GetOpenInterest(string)"/> request.
     /// </summary>
     public class OpenInterestItem
     {

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace BinanceFuturesClient
+namespace GBinanceFuturesClient
 {
     internal class SessionData
     {
@@ -16,10 +16,15 @@ namespace BinanceFuturesClient
             IsAutorized = false;
         }
 
-        internal SessionData(string PublicApi, string PrivateApi)
+        internal SessionData(string publicApi, string privateApi)
         {
-            PublicKey = PublicApi;
-            PrivateKey = PrivateApi;
+            Autorize(publicApi, privateApi);
+        }
+
+        internal void Autorize(string publicApi, string privateApi)
+        {
+            PublicKey = publicApi;
+            PrivateKey = privateApi;
             IsAutorized = true;
         }
     }

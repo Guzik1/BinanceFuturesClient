@@ -1,40 +1,74 @@
 <?xml version="1.0"?>
 <doc>
     <assembly>
-        <name>BinanceFuturesClient</name>
+        <name>GBinanceFuturesClient</name>
     </assembly>
     <members>
-        <member name="T:BinanceFuturesClient.Market">
+        <member name="T:GBinanceFuturesClient.BinanceFuturesClient">
+            <summary>
+            Main of class, biance futures rest api client.
+            </summary>
+        </member>
+        <member name="P:GBinanceFuturesClient.BinanceFuturesClient.Market">
+            <summary>
+            Market api methods object.
+            </summary>
+        </member>
+        <member name="M:GBinanceFuturesClient.BinanceFuturesClient.#ctor">
+            <summary>
+            Default constructor, for unautorized client.
+            </summary>
+        </member>
+        <member name="M:GBinanceFuturesClient.BinanceFuturesClient.#ctor(System.String,System.String)">
+            <summary>
+            Constructor to set keys for sercure client.
+            </summary>
+            <param name="PublicKey">Public api key.</param>
+            <param name="PrivateKey">Private api key.</param>
+        </member>
+        <member name="M:GBinanceFuturesClient.BinanceFuturesClient.SetAutorizationData(System.String,System.String)">
+            <summary>
+            Set autorization data for autorize client.
+            </summary>
+            <param name="publicKey">Public api key.</param>
+            <param name="privateKey">Private api key.</param>
+        </member>
+        <member name="T:GBinanceFuturesClient.Market">
             <summary>
             Binance futures market endpoint.
             </summary>
         </member>
-        <member name="M:BinanceFuturesClient.Market.Ping">
+        <member name="M:GBinanceFuturesClient.Market.#ctor">
+            <summary>
+            Default constructor
+            </summary>
+        </member>
+        <member name="M:GBinanceFuturesClient.Market.Ping">
             <summary>
             Ping to server. Check connection to rest api. Weight: 1.
             </summary>
             <returns>True if server response is ok, or false else.</returns>
         </member>
-        <member name="M:BinanceFuturesClient.Market.GetServerTime">
+        <member name="M:GBinanceFuturesClient.Market.GetServerTime">
             <summary>
             Get server time in unix milisecond timestamp. Weight: 1.
             </summary>
             <returns>Unix milisecond server time.</returns>
         </member>
-        <member name="M:BinanceFuturesClient.Market.GetExchangeInfo">
+        <member name="M:GBinanceFuturesClient.Market.GetExchangeInfo">
             <summary>
             Get exchange info for all futures market. Weight: 1.
             </summary>
             <returns>Exchange info object.</returns>
         </member>
-        <member name="M:BinanceFuturesClient.Market.GetOrderBook(System.String)">
+        <member name="M:GBinanceFuturesClient.Market.GetOrderBook(System.String)">
             <summary>
             Get order book from api. Weight: 10
             </summary>
             <param name="symbol">Symbol of currence pair.</param>
             <returns>OrderBook object. Return 500 ask and 500 bid offers.</returns>
         </member>
-        <member name="M:BinanceFuturesClient.Market.GetOrderBook(System.String,System.Int32)">
+        <member name="M:GBinanceFuturesClient.Market.GetOrderBook(System.String,System.Int32)">
             <summary>
             Get order book from api.
             </summary>
@@ -42,7 +76,7 @@
             <param name="limit">Limit of transaction, available: 5, 10, 20, 50 (weight 2), 100 (weight 5), 500 (weight 10), 1000 (weight 20).</param>
             <returns>OrderBook object.</returns>
         </member>
-        <member name="M:BinanceFuturesClient.Market.GetRectenTradesList(System.String,System.Int32)">
+        <member name="M:GBinanceFuturesClient.Market.GetRectenTradesList(System.String,System.Int32)">
             <summary>
             Get recent trade list. Weight: 1.
             </summary>
@@ -50,7 +84,7 @@
             <param name="limit">Limit max 1000, default 500.</param>
             <returns>List of trades.</returns>
         </member>
-        <member name="M:BinanceFuturesClient.Market.GetOldTradesLookup(System.String,System.Int32)">
+        <member name="M:GBinanceFuturesClient.Market.GetOldTradesLookup(System.String,System.Int32)">
             <summary>
             Get old trades list.
             </summary>
@@ -58,7 +92,7 @@
             <param name="limit">Limit of trades, default 500.</param>
             <returns>List of trades data.</returns>
         </member>
-        <member name="M:BinanceFuturesClient.Market.GetOldTradesLookup(System.String,System.Int64,System.Int32)">
+        <member name="M:GBinanceFuturesClient.Market.GetOldTradesLookup(System.String,System.Int64,System.Int32)">
             <summary>
             Get old trades list.
             </summary>
@@ -67,7 +101,7 @@
             <param name="fromId">Start from identificator.</param>
             <returns>List of trades data.</returns>
         </member>
-        <member name="M:BinanceFuturesClient.Market.GetAggregateTradeList(System.String,System.Int32)">
+        <member name="M:GBinanceFuturesClient.Market.GetAggregateTradeList(System.String,System.Int32)">
             <summary>
             Get compressed, aggregate trades. 
             </summary>
@@ -75,7 +109,7 @@
             <param name="limit">Limit of trades, default 500.</param>
             <returns>List of aggregate trade items.</returns>
         </member>
-        <member name="M:BinanceFuturesClient.Market.GetAggregateTradeList(System.String,System.Int64,System.Int32)">
+        <member name="M:GBinanceFuturesClient.Market.GetAggregateTradeList(System.String,System.Int64,System.Int32)">
             <summary>
             Get compressed, aggregate trades. 
             </summary>
@@ -84,7 +118,7 @@
             <param name="limit">Limit of trades, default 500.</param>
             <returns>List of aggregate trade items.</returns>
         </member>
-        <member name="M:BinanceFuturesClient.Market.GetAggregateTradeList(System.String,System.Int64,System.Int64,System.Int64,System.Int32)">
+        <member name="M:GBinanceFuturesClient.Market.GetAggregateTradeList(System.String,System.Int64,System.Int64,System.Int64,System.Int32)">
             <summary>
             Get compressed, aggregate trades. 
             </summary>
@@ -95,7 +129,7 @@
             <param name="limit">Limit of trades, default 500.</param>
             <returns>List of aggregate trade items.</returns>
         </member>
-        <member name="M:BinanceFuturesClient.Market.GetCandleStick(System.String,System.String,System.Int32)">
+        <member name="M:GBinanceFuturesClient.Market.GetCandleStick(System.String,System.String,System.Int32)">
             <summary>
             Get candle stick data.
             </summary>
@@ -104,7 +138,7 @@
             <param name="limit">Limit of trades, default 500, max 1500.</param>
             <returns>List of candles.</returns>
         </member>
-        <member name="M:BinanceFuturesClient.Market.GetCandleStick(System.String,System.String,System.Int64,System.Int64,System.Int32)">
+        <member name="M:GBinanceFuturesClient.Market.GetCandleStick(System.String,System.String,System.Int64,System.Int64,System.Int32)">
             <summary>
             Get candle stick data.
             </summary>
@@ -115,20 +149,20 @@
             <param name="limit">Limit of trades, default 500, max 1500.</param>
             <returns>List of candles.</returns>
         </member>
-        <member name="M:BinanceFuturesClient.Market.GetMarkPrice">
+        <member name="M:GBinanceFuturesClient.Market.GetMarkPrice">
             <summary>
             Get mark price. Weight: 1.
             </summary>
             <returns>List of mark price object.</returns>
         </member>
-        <member name="M:BinanceFuturesClient.Market.GetMarkPrice(System.String)">
+        <member name="M:GBinanceFuturesClient.Market.GetMarkPrice(System.String)">
             <summary>
             Get mark price. Weight: 1.
             </summary>
             <param name="symbol">Currency pair code.</param>
             <returns>Mark price object.</returns>
         </member>
-        <member name="M:BinanceFuturesClient.Market.GetFundingRateHistory(System.String,System.Int32)">
+        <member name="M:GBinanceFuturesClient.Market.GetFundingRateHistory(System.String,System.Int32)">
             <summary>
             Get historicial funding rate. Weight: 1.
             </summary>
@@ -136,7 +170,7 @@
             <param name="limit">Limit of result object, default 100, max 1000.</param>
             <returns>List of funding rate histori items.</returns>
         </member>
-        <member name="M:BinanceFuturesClient.Market.GetFundingRateHistory(System.String,System.Int64,System.Int64,System.Int32)">
+        <member name="M:GBinanceFuturesClient.Market.GetFundingRateHistory(System.String,System.Int64,System.Int64,System.Int32)">
             <summary>
             Get historicial funding rate. Weight: 1.
             </summary>
@@ -146,45 +180,45 @@
             <param name="limit">Limit of result object, default 100, max 1000.</param>
             <returns>List of funding rate histori items.</returns>
         </member>
-        <member name="M:BinanceFuturesClient.Market.Get24hTicker">
+        <member name="M:GBinanceFuturesClient.Market.Get24hTicker">
             <summary>
             Get ticker, 24 hours statistic. Weight: 40
             </summary>
             <returns>24 hours statistic ticker.</returns>
         </member>
-        <member name="M:BinanceFuturesClient.Market.Get24hTicker(System.String)">
+        <member name="M:GBinanceFuturesClient.Market.Get24hTicker(System.String)">
             <summary>
             Get ticker, 24 hours statistic. Weight: 1
             </summary>
             <param name="symbol">Currency pair symbol.</param>
             <returns>24 hours statistic ticker.</returns>
         </member>
-        <member name="M:BinanceFuturesClient.Market.GetSymbolPriceTicker">
+        <member name="M:GBinanceFuturesClient.Market.GetSymbolPriceTicker">
             <summary>
             Get symbol price ticker. Weight 2.
             </summary>
             <returns>List of all symbols price ticker.</returns>
         </member>
-        <member name="M:BinanceFuturesClient.Market.GetSymbolPriceTicker(System.String)">
+        <member name="M:GBinanceFuturesClient.Market.GetSymbolPriceTicker(System.String)">
             <summary>
             Get symbol price ticker. Weight 1.
             </summary>
             <returns>Symbol price ticker object.</returns>
         </member>
-        <member name="M:BinanceFuturesClient.Market.GetOrderBookTicker">
+        <member name="M:GBinanceFuturesClient.Market.GetOrderBookTicker">
             <summary>
             Get best price/qty on the order book for symbols. Weight: 2
             </summary>
             <returns>List of order book ticker objects.</returns>
         </member>
-        <member name="M:BinanceFuturesClient.Market.GetOrderBookTicker(System.String)">
+        <member name="M:GBinanceFuturesClient.Market.GetOrderBookTicker(System.String)">
             <summary>
             Get best price/qty on the order book for a single symbols. Weight: 1
             </summary>
             <param name="symbol"></param>
             <returns>Order book ticker object,</returns>
         </member>
-        <member name="M:BinanceFuturesClient.Market.GetLiquidationOrders(System.String,System.Int32)">
+        <member name="M:GBinanceFuturesClient.Market.GetLiquidationOrders(System.String,System.Int32)">
             <summary>
             Get all liquidation orders. Weight: 5.
             </summary>
@@ -192,7 +226,7 @@
             <param name="limit">Limit of resault, default 100, nax 1000.</param>
             <returns>List of liquidation order.</returns>
         </member>
-        <member name="M:BinanceFuturesClient.Market.GetLiquidationOrders(System.Int64,System.Int64,System.String,System.Int32)">
+        <member name="M:GBinanceFuturesClient.Market.GetLiquidationOrders(System.Int64,System.Int64,System.String,System.Int32)">
             <summary>
             Get all liquidation orders. Weight: 5.
             </summary>
@@ -202,612 +236,614 @@
             <param name="limit">Limit of resault, default 100, nax 1000.</param>
             <returns></returns>
         </member>
-        <member name="M:BinanceFuturesClient.Market.GetOpenInterest(System.String)">
+        <member name="M:GBinanceFuturesClient.Market.GetOpenInterest(System.String)">
             <summary>
             Get present open interest of a specific symbol. 
             </summary>
             <param name="symbol">Currency pair code.</param>
             <returns>Open interest item object.</returns>
         </member>
-        <member name="M:BinanceFuturesClient.Market.GetNationalAndLeverageBrackets">
+        <member name="M:GBinanceFuturesClient.Market.GetNationalAndLeverageBrackets">
             <summary>
             Get Notional and Leverage Brackets. Weight: 1.
             </summary>
             <returns>List of brackets.</returns>
         </member>
-        <member name="M:BinanceFuturesClient.Market.GetNationalAndLeverageBrackets(System.String)">
+        <member name="M:GBinanceFuturesClient.Market.GetNationalAndLeverageBrackets(System.String)">
             <summary>
             Get Notional and Leverage Brackets. Weight: 1.
             </summary>
             <param name="symbol">Currency pair code.</param>
             <returns>Brackets object.</returns>
         </member>
-        <member name="T:BinanceFuturesClient.Model.Market.AggregateTradeItem">
+        <member name="T:GBinanceFuturesClient.Model.Market.AggregateTradeItem">
             <summary>
-            Aggregate trade item model for reponse on <see cref="M:BinanceFuturesClient.Market.GetOldTradesLookup(System.String,System.Int32)"/> and <see cref="M:BinanceFuturesClient.Market.GetOldTradesLookup(System.String,System.Int64,System.Int32)"/> request.
+            Aggregate trade item model for reponse on <see cref="M:GBinanceFuturesClient.Market.GetOldTradesLookup(System.String,System.Int32)"/> 
+            and <see cref="M:GBinanceFuturesClient.Market.GetOldTradesLookup(System.String,System.Int64,System.Int32)"/> request.
             </summary>
         </member>
-        <member name="P:BinanceFuturesClient.Model.Market.AggregateTradeItem.AggregateTradeId">
+        <member name="P:GBinanceFuturesClient.Model.Market.AggregateTradeItem.AggregateTradeId">
             <summary>
             Aggregate trade id
             </summary>
         </member>
-        <member name="P:BinanceFuturesClient.Model.Market.AggregateTradeItem.Price">
+        <member name="P:GBinanceFuturesClient.Model.Market.AggregateTradeItem.Price">
             <summary>
             Trade price.
             </summary>
         </member>
-        <member name="P:BinanceFuturesClient.Model.Market.AggregateTradeItem.Quantity">
+        <member name="P:GBinanceFuturesClient.Model.Market.AggregateTradeItem.Quantity">
             <summary>
             Quantity in trade.
             </summary>
         </member>
-        <member name="P:BinanceFuturesClient.Model.Market.AggregateTradeItem.FirstTradeId">
+        <member name="P:GBinanceFuturesClient.Model.Market.AggregateTradeItem.FirstTradeId">
             <summary>
             First trade id.
             </summary>
         </member>
-        <member name="P:BinanceFuturesClient.Model.Market.AggregateTradeItem.LastTradeId">
+        <member name="P:GBinanceFuturesClient.Model.Market.AggregateTradeItem.LastTradeId">
             <summary>
             Last trade id.
             </summary>
         </member>
-        <member name="P:BinanceFuturesClient.Model.Market.AggregateTradeItem.Timestamp">
+        <member name="P:GBinanceFuturesClient.Model.Market.AggregateTradeItem.Timestamp">
             <summary>
             Trade timestamp in unix milisecond.
             </summary>
         </member>
-        <member name="P:BinanceFuturesClient.Model.Market.AggregateTradeItem.BuyerIsTheMaker">
+        <member name="P:GBinanceFuturesClient.Model.Market.AggregateTradeItem.BuyerIsTheMaker">
             <summary>
             Was the buyer the maker?
             </summary>
         </member>
-        <member name="T:BinanceFuturesClient.Model.Market.CandlestickData">
+        <member name="T:GBinanceFuturesClient.Model.Market.CandlestickData">
             <summary>
             Data model represent one candle.
             </summary>
         </member>
-        <member name="P:BinanceFuturesClient.Model.Market.CandlestickData.OpenTime">
+        <member name="P:GBinanceFuturesClient.Model.Market.CandlestickData.OpenTime">
             <summary>
             Candle open time in unix milisecond timestamp.
             </summary>
         </member>
-        <member name="P:BinanceFuturesClient.Model.Market.CandlestickData.CloseTime">
+        <member name="P:GBinanceFuturesClient.Model.Market.CandlestickData.CloseTime">
             <summary>
             Candle close time in unix milisecond timestamp.
             </summary>
         </member>
-        <member name="P:BinanceFuturesClient.Model.Market.CandlestickData.OpenPrice">
+        <member name="P:GBinanceFuturesClient.Model.Market.CandlestickData.OpenPrice">
             <summary>
             Open candle price.
             </summary>
         </member>
-        <member name="P:BinanceFuturesClient.Model.Market.CandlestickData.HighPrice">
+        <member name="P:GBinanceFuturesClient.Model.Market.CandlestickData.HighPrice">
             <summary>
             High candle price.
             </summary>
         </member>
-        <member name="P:BinanceFuturesClient.Model.Market.CandlestickData.LowPrice">
+        <member name="P:GBinanceFuturesClient.Model.Market.CandlestickData.LowPrice">
             <summary>
             Low candle price.
             </summary>
         </member>
-        <member name="P:BinanceFuturesClient.Model.Market.CandlestickData.ClosePrice">
+        <member name="P:GBinanceFuturesClient.Model.Market.CandlestickData.ClosePrice">
             <summary>
             Close candle price.
             </summary>
         </member>
-        <member name="P:BinanceFuturesClient.Model.Market.CandlestickData.BaseVolume">
+        <member name="P:GBinanceFuturesClient.Model.Market.CandlestickData.BaseVolume">
             <summary>
             Candle base currence volume.
             </summary>
         </member>
-        <member name="P:BinanceFuturesClient.Model.Market.CandlestickData.QuoteVolume">
+        <member name="P:GBinanceFuturesClient.Model.Market.CandlestickData.QuoteVolume">
             <summary>
             Candle Quote currence volume.
             </summary>
         </member>
-        <member name="P:BinanceFuturesClient.Model.Market.CandlestickData.TradesCount">
+        <member name="P:GBinanceFuturesClient.Model.Market.CandlestickData.TradesCount">
             <summary>
             Number of trades count.
             </summary>
         </member>
-        <member name="P:BinanceFuturesClient.Model.Market.CandlestickData.TakerBuyBaseVolume">
+        <member name="P:GBinanceFuturesClient.Model.Market.CandlestickData.TakerBuyBaseVolume">
             <summary>
             Taker buy base asset volume.
             </summary>
         </member>
-        <member name="P:BinanceFuturesClient.Model.Market.CandlestickData.TakerBuyQuoteVolume">
+        <member name="P:GBinanceFuturesClient.Model.Market.CandlestickData.TakerBuyQuoteVolume">
             <summary>
             Taker buy quote asset volume.
             </summary>
         </member>
-        <member name="M:BinanceFuturesClient.Model.Market.CandlestickData.#ctor">
+        <member name="M:GBinanceFuturesClient.Model.Market.CandlestickData.#ctor">
             <summary>
             Default constructor.
             </summary>
         </member>
-        <member name="T:BinanceFuturesClient.Model.Market.ExchangeInfo">
+        <member name="T:GBinanceFuturesClient.Model.Market.ExchangeInfo">
             <summary>
-            Response model for <see cref="M:BinanceFuturesClient.Market.GetExchangeInfo"/> request.
+            Response model for <see cref="M:GBinanceFuturesClient.Market.GetExchangeInfo"/> request.
             </summary>
         </member>
-        <member name="P:BinanceFuturesClient.Model.Market.ExchangeInfo.ExchangeFilters">
+        <member name="P:GBinanceFuturesClient.Model.Market.ExchangeInfo.ExchangeFilters">
             <summary>
             Exchange filters.
             </summary>
         </member>
-        <member name="P:BinanceFuturesClient.Model.Market.ExchangeInfo.RateLimits">
+        <member name="P:GBinanceFuturesClient.Model.Market.ExchangeInfo.RateLimits">
             <summary>
             List of rate limits.
             </summary>
         </member>
-        <member name="P:BinanceFuturesClient.Model.Market.ExchangeInfo.ServerTime">
+        <member name="P:GBinanceFuturesClient.Model.Market.ExchangeInfo.ServerTime">
             <summary>
             Server time in unix milisecond timestamp.
             </summary>
         </member>
-        <member name="P:BinanceFuturesClient.Model.Market.ExchangeInfo.Symbols">
+        <member name="P:GBinanceFuturesClient.Model.Market.ExchangeInfo.Symbols">
             <summary>
             List of details for one market.
             </summary>
         </member>
-        <member name="P:BinanceFuturesClient.Model.Market.ExchangeInfo.Timezone">
+        <member name="P:GBinanceFuturesClient.Model.Market.ExchangeInfo.Timezone">
             <summary>
             Time zone.
             </summary>
         </member>
-        <member name="T:BinanceFuturesClient.Model.Market.RateLimitItem">
+        <member name="T:GBinanceFuturesClient.Model.Market.RateLimitItem">
             <summary>
             Rate limit details.
             </summary>
         </member>
-        <member name="P:BinanceFuturesClient.Model.Market.RateLimitItem.Interval">
+        <member name="P:GBinanceFuturesClient.Model.Market.RateLimitItem.Interval">
             <summary>
             Time interval step
             </summary>
         </member>
-        <member name="P:BinanceFuturesClient.Model.Market.RateLimitItem.IntervalNum">
+        <member name="P:GBinanceFuturesClient.Model.Market.RateLimitItem.IntervalNum">
             <summary>
             Internal number.
             </summary>
         </member>
-        <member name="P:BinanceFuturesClient.Model.Market.RateLimitItem.Limit">
+        <member name="P:GBinanceFuturesClient.Model.Market.RateLimitItem.Limit">
             <summary>
             Limit count.
             </summary>
         </member>
-        <member name="P:BinanceFuturesClient.Model.Market.RateLimitItem.RateLimitType">
+        <member name="P:GBinanceFuturesClient.Model.Market.RateLimitItem.RateLimitType">
             <summary>
             Limit type.
             </summary>
         </member>
-        <member name="T:BinanceFuturesClient.Model.Market.SymbolItem">
+        <member name="T:GBinanceFuturesClient.Model.Market.SymbolItem">
             <summary>
             Details for market.
             </summary>
         </member>
-        <member name="P:BinanceFuturesClient.Model.Market.SymbolItem.Symbol">
+        <member name="P:GBinanceFuturesClient.Model.Market.SymbolItem.Symbol">
             <summary>
             Market code.
             </summary>
         </member>
-        <member name="P:BinanceFuturesClient.Model.Market.SymbolItem.Status">
+        <member name="P:GBinanceFuturesClient.Model.Market.SymbolItem.Status">
             <summary>
             Status of market, default trading.
             </summary>
         </member>
-        <member name="P:BinanceFuturesClient.Model.Market.SymbolItem.MaintMarginPercent">
+        <member name="P:GBinanceFuturesClient.Model.Market.SymbolItem.MaintMarginPercent">
             <summary>
             Maint Margin Procent.
             </summary>
         </member>
-        <member name="P:BinanceFuturesClient.Model.Market.SymbolItem.RequiredMarginPercent">
+        <member name="P:GBinanceFuturesClient.Model.Market.SymbolItem.RequiredMarginPercent">
             <summary>
             Maint Margin Procent.
             </summary>
         </member>
-        <member name="P:BinanceFuturesClient.Model.Market.SymbolItem.BaseAsset">
+        <member name="P:GBinanceFuturesClient.Model.Market.SymbolItem.BaseAsset">
             <summary>
             Base/first currency in symbol.
             </summary>
         </member>
-        <member name="P:BinanceFuturesClient.Model.Market.SymbolItem.QuoteAsset">
+        <member name="P:GBinanceFuturesClient.Model.Market.SymbolItem.QuoteAsset">
             <summary>
             Quote/second currency in symbol.
             </summary>
         </member>
-        <member name="P:BinanceFuturesClient.Model.Market.SymbolItem.PricePrecision">
+        <member name="P:GBinanceFuturesClient.Model.Market.SymbolItem.PricePrecision">
             <summary>
             Number of decimal places in price.
             </summary>
         </member>
-        <member name="P:BinanceFuturesClient.Model.Market.SymbolItem.QuantityPrecision">
+        <member name="P:GBinanceFuturesClient.Model.Market.SymbolItem.QuantityPrecision">
             <summary>
             Number of decimal places in quantity.
             </summary>
         </member>
-        <member name="P:BinanceFuturesClient.Model.Market.SymbolItem.BaseAssetPrecision">
+        <member name="P:GBinanceFuturesClient.Model.Market.SymbolItem.BaseAssetPrecision">
             <summary>
             Number of decimal places in base currencies.
             </summary>
         </member>
-        <member name="P:BinanceFuturesClient.Model.Market.SymbolItem.QuotePrecision">
+        <member name="P:GBinanceFuturesClient.Model.Market.SymbolItem.QuotePrecision">
             <summary>
             Number of decimal places in second currencies.
             </summary>
         </member>
-        <member name="P:BinanceFuturesClient.Model.Market.SymbolItem.Filters">
+        <member name="P:GBinanceFuturesClient.Model.Market.SymbolItem.Filters">
             <summary>
             List of market filters.
             </summary>
         </member>
-        <member name="P:BinanceFuturesClient.Model.Market.SymbolItem.OrderTypes">
+        <member name="P:GBinanceFuturesClient.Model.Market.SymbolItem.OrderTypes">
             <summary>
             List of order types.
             </summary>
         </member>
-        <member name="P:BinanceFuturesClient.Model.Market.SymbolItem.TimeInForce">
+        <member name="P:GBinanceFuturesClient.Model.Market.SymbolItem.TimeInForce">
             <summary>
             Time in foce types.
             </summary>
         </member>
-        <member name="T:BinanceFuturesClient.Model.Market.FundingRateHistory">
+        <member name="T:GBinanceFuturesClient.Model.Market.FundingRateHistory">
             <summary>
-            Data model for response on <see cref="M:BinanceFuturesClient.Market.GetFundingRateHistory(System.String,System.Int32)"/> 
-            and <see cref="M:BinanceFuturesClient.Market.GetFundingRateHistory(System.String,System.Int64,System.Int64,System.Int32)"/> request.
+            Data model for response on <see cref="M:GBinanceFuturesClient.Market.GetFundingRateHistory(System.String,System.Int32)"/> 
+            and <see cref="M:GBinanceFuturesClient.Market.GetFundingRateHistory(System.String,System.Int64,System.Int64,System.Int32)"/> request.
             </summary>
         </member>
-        <member name="P:BinanceFuturesClient.Model.Market.FundingRateHistory.Symbol">
+        <member name="P:GBinanceFuturesClient.Model.Market.FundingRateHistory.Symbol">
             <summary>
             Currency pair code.
             </summary>
         </member>
-        <member name="P:BinanceFuturesClient.Model.Market.FundingRateHistory.FundingRate">
+        <member name="P:GBinanceFuturesClient.Model.Market.FundingRateHistory.FundingRate">
             <summary>
             Funding rate in percent.
             </summary>
         </member>
-        <member name="P:BinanceFuturesClient.Model.Market.FundingRateHistory.FundingTime">
+        <member name="P:GBinanceFuturesClient.Model.Market.FundingRateHistory.FundingTime">
             <summary>
             Funding time in unix timestamp.
             </summary>
         </member>
-        <member name="T:BinanceFuturesClient.Model.Market.LiquidationOrder">
+        <member name="T:GBinanceFuturesClient.Model.Market.LiquidationOrder">
             <summary>
-            Data model for response on <see cref="M:BinanceFuturesClient.Market.GetLiquidationOrders(System.String,System.Int32)"/> and
-            <see cref="M:BinanceFuturesClient.Market.GetLiquidationOrders(System.String,System.Int32)"/> request.
+            Data model for response on <see cref="M:GBinanceFuturesClient.Market.GetLiquidationOrders(System.String,System.Int32)"/> and
+            <see cref="M:GBinanceFuturesClient.Market.GetLiquidationOrders(System.String,System.Int32)"/> request.
             </summary>
         </member>
-        <member name="P:BinanceFuturesClient.Model.Market.LiquidationOrder.Symbol">
+        <member name="P:GBinanceFuturesClient.Model.Market.LiquidationOrder.Symbol">
             <summary>
             Currency pair code.
             </summary>
         </member>
-        <member name="P:BinanceFuturesClient.Model.Market.LiquidationOrder.Price">
+        <member name="P:GBinanceFuturesClient.Model.Market.LiquidationOrder.Price">
             <summary>
             Order price.
             </summary>
         </member>
-        <member name="P:BinanceFuturesClient.Model.Market.LiquidationOrder.OrigQty">
+        <member name="P:GBinanceFuturesClient.Model.Market.LiquidationOrder.OrigQty">
             <summary>
             Order amount.
             </summary>
         </member>
-        <member name="P:BinanceFuturesClient.Model.Market.LiquidationOrder.ExecutedQty">
+        <member name="P:GBinanceFuturesClient.Model.Market.LiquidationOrder.ExecutedQty">
             <summary>
             Executed quantity.
             </summary>
         </member>
-        <member name="P:BinanceFuturesClient.Model.Market.LiquidationOrder.AvragePrice">
+        <member name="P:GBinanceFuturesClient.Model.Market.LiquidationOrder.AvragePrice">
             <summary>
             Avrage price.
             </summary>
         </member>
-        <member name="P:BinanceFuturesClient.Model.Market.LiquidationOrder.Status">
+        <member name="P:GBinanceFuturesClient.Model.Market.LiquidationOrder.Status">
             <summary>
             Order status.
             </summary>
         </member>
-        <member name="P:BinanceFuturesClient.Model.Market.LiquidationOrder.TimeInForce">
+        <member name="P:GBinanceFuturesClient.Model.Market.LiquidationOrder.TimeInForce">
             <summary>
             Time in force.
             </summary>
         </member>
-        <member name="P:BinanceFuturesClient.Model.Market.LiquidationOrder.Type">
+        <member name="P:GBinanceFuturesClient.Model.Market.LiquidationOrder.Type">
             <summary>
             Order type, for example Limit.
             </summary>
         </member>
-        <member name="P:BinanceFuturesClient.Model.Market.LiquidationOrder.Side">
+        <member name="P:GBinanceFuturesClient.Model.Market.LiquidationOrder.Side">
             <summary>
             Side type: BUY or SELL.
             </summary>
         </member>
-        <member name="P:BinanceFuturesClient.Model.Market.LiquidationOrder.Time">
+        <member name="P:GBinanceFuturesClient.Model.Market.LiquidationOrder.Time">
             <summary>
             Liquidation time in unix timestamp.
             </summary>
         </member>
-        <member name="T:BinanceFuturesClient.Model.Market.MarkPriceResponse">
+        <member name="T:GBinanceFuturesClient.Model.Market.MarkPriceResponse">
             <summary>
-            Data model for response on <see cref="M:BinanceFuturesClient.Market.GetMarkPrice"/> and <see cref="M:BinanceFuturesClient.Market.GetMarkPrice(System.String)"/> request.
+            Data model for response on <see cref="M:GBinanceFuturesClient.Market.GetMarkPrice"/> and <see cref="M:GBinanceFuturesClient.Market.GetMarkPrice(System.String)"/> request.
             </summary>
         </member>
-        <member name="P:BinanceFuturesClient.Model.Market.MarkPriceResponse.Symbol">
+        <member name="P:GBinanceFuturesClient.Model.Market.MarkPriceResponse.Symbol">
             <summary>
             Currency pair code.
             </summary>
         </member>
-        <member name="P:BinanceFuturesClient.Model.Market.MarkPriceResponse.MarkPrice">
+        <member name="P:GBinanceFuturesClient.Model.Market.MarkPriceResponse.MarkPrice">
             <summary>
             Mark price.
             </summary>
         </member>
-        <member name="P:BinanceFuturesClient.Model.Market.MarkPriceResponse.LastFundingRate">
+        <member name="P:GBinanceFuturesClient.Model.Market.MarkPriceResponse.LastFundingRate">
             <summary>
             Last funding rate in percent.
             </summary>
         </member>
-        <member name="P:BinanceFuturesClient.Model.Market.MarkPriceResponse.NextFundingTime">
+        <member name="P:GBinanceFuturesClient.Model.Market.MarkPriceResponse.NextFundingTime">
             <summary>
             Next funding time in unix timestamp.
             </summary>
         </member>
-        <member name="P:BinanceFuturesClient.Model.Market.MarkPriceResponse.Time">
+        <member name="P:GBinanceFuturesClient.Model.Market.MarkPriceResponse.Time">
             <summary>
             Server time.
             </summary>
         </member>
-        <member name="T:BinanceFuturesClient.Model.Market.NationalAndLeverageBrackets">
+        <member name="T:GBinanceFuturesClient.Model.Market.NationalAndLeverageBrackets">
             <summary>
-            Data model for response on <see cref="M:BinanceFuturesClient.Market.GetNationalAndLeverageBrackets"/> and
-            <see cref="M:BinanceFuturesClient.Market.GetNationalAndLeverageBrackets"/> request.
+            Data model for response on <see cref="M:GBinanceFuturesClient.Market.GetNationalAndLeverageBrackets"/> and
+            <see cref="M:GBinanceFuturesClient.Market.GetNationalAndLeverageBrackets"/> request.
             </summary>
         </member>
-        <member name="P:BinanceFuturesClient.Model.Market.NationalAndLeverageBrackets.Symbol">
+        <member name="P:GBinanceFuturesClient.Model.Market.NationalAndLeverageBrackets.Symbol">
             <summary>
             Currency pair code.
             </summary>
         </member>
-        <member name="P:BinanceFuturesClient.Model.Market.NationalAndLeverageBrackets.Brackets">
+        <member name="P:GBinanceFuturesClient.Model.Market.NationalAndLeverageBrackets.Brackets">
             <summary>
             List of brackets for this currency symbol.
             </summary>
         </member>
-        <member name="T:BinanceFuturesClient.Model.Market.Brackets">
+        <member name="T:GBinanceFuturesClient.Model.Market.Brackets">
             <summary>
             Brackets item.
             </summary>
         </member>
-        <member name="P:BinanceFuturesClient.Model.Market.Brackets.Bracket">
+        <member name="P:GBinanceFuturesClient.Model.Market.Brackets.Bracket">
             <summary>
             National bracket.
             </summary>
         </member>
-        <member name="P:BinanceFuturesClient.Model.Market.Brackets.InitialLeverage">
+        <member name="P:GBinanceFuturesClient.Model.Market.Brackets.InitialLeverage">
             <summary>
             Max initial leverge for this bracket.
             </summary>
         </member>
-        <member name="P:BinanceFuturesClient.Model.Market.Brackets.NotionalCap">
+        <member name="P:GBinanceFuturesClient.Model.Market.Brackets.NotionalCap">
             <summary>
             Cap notional of this bracket
             </summary>
         </member>
-        <member name="P:BinanceFuturesClient.Model.Market.Brackets.NotionalFloor">
+        <member name="P:GBinanceFuturesClient.Model.Market.Brackets.NotionalFloor">
             <summary>
             Notionl threshold of this bracket 
             </summary>
         </member>
-        <member name="P:BinanceFuturesClient.Model.Market.Brackets.MaintMarginRatio">
+        <member name="P:GBinanceFuturesClient.Model.Market.Brackets.MaintMarginRatio">
             <summary>
             Maintenance ratio for this bracket
             </summary>
         </member>
-        <member name="T:BinanceFuturesClient.Model.Market.OpenInterestItem">
+        <member name="T:GBinanceFuturesClient.Model.Market.OpenInterestItem">
             <summary>
-            Data model for response on <see cref="M:BinanceFuturesClient.Market.GetOpenInterest(System.String)"/> request.
+            Data model for response on <see cref="M:GBinanceFuturesClient.Market.GetOpenInterest(System.String)"/> request.
             </summary>
         </member>
-        <member name="P:BinanceFuturesClient.Model.Market.OpenInterestItem.OpenInterest">
+        <member name="P:GBinanceFuturesClient.Model.Market.OpenInterestItem.OpenInterest">
             <summary>
             Open interest
             </summary>
         </member>
-        <member name="P:BinanceFuturesClient.Model.Market.OpenInterestItem.Symbol">
+        <member name="P:GBinanceFuturesClient.Model.Market.OpenInterestItem.Symbol">
             <summary>
             Currency pair code.
             </summary>
         </member>
-        <member name="T:BinanceFuturesClient.Model.Market.OrderBook">
+        <member name="T:GBinanceFuturesClient.Model.Market.OrderBook">
             <summary>
-            Response model for <see cref="M:BinanceFuturesClient.Market.GetOrderBook(System.String)"/> and <see cref="M:BinanceFuturesClient.Market.GetOrderBook(System.String)"/> request.
+            Response model for <see cref="M:GBinanceFuturesClient.Market.GetOrderBook(System.String)"/> and <see cref="M:GBinanceFuturesClient.Market.GetOrderBook(System.String)"/> request.
             </summary>
         </member>
-        <member name="P:BinanceFuturesClient.Model.Market.OrderBook.LastUpdateId">
+        <member name="P:GBinanceFuturesClient.Model.Market.OrderBook.LastUpdateId">
             <summary>
             Last update identificator.
             </summary>
         </member>
-        <member name="P:BinanceFuturesClient.Model.Market.OrderBook.Bids">
+        <member name="P:GBinanceFuturesClient.Model.Market.OrderBook.Bids">
             <summary>
             Bid offers list, first element on insiding list is price, second is quantity.
             </summary>
         </member>
-        <member name="P:BinanceFuturesClient.Model.Market.OrderBook.Asks">
+        <member name="P:GBinanceFuturesClient.Model.Market.OrderBook.Asks">
             <summary>
             Ask offers list, first element on insiding list is price, second is quantity.
             </summary>
         </member>
-        <member name="T:BinanceFuturesClient.Model.Market.OrderBookTicker">
+        <member name="T:GBinanceFuturesClient.Model.Market.OrderBookTicker">
             <summary>
-            Data model for <see cref="M:BinanceFuturesClient.Market.GetOrderBookTicker"/> and 
-            <see cref="M:BinanceFuturesClient.Market.GetOrderBookTicker(System.String)"/> request.
+            Data model for <see cref="M:GBinanceFuturesClient.Market.GetOrderBookTicker"/> and 
+            <see cref="M:GBinanceFuturesClient.Market.GetOrderBookTicker(System.String)"/> request.
             </summary>
         </member>
-        <member name="P:BinanceFuturesClient.Model.Market.OrderBookTicker.Symbol">
+        <member name="P:GBinanceFuturesClient.Model.Market.OrderBookTicker.Symbol">
             <summary>
             Currency pair code.
             </summary>
         </member>
-        <member name="P:BinanceFuturesClient.Model.Market.OrderBookTicker.BidPrice">
+        <member name="P:GBinanceFuturesClient.Model.Market.OrderBookTicker.BidPrice">
             <summary>
             Bid price.
             </summary>
         </member>
-        <member name="P:BinanceFuturesClient.Model.Market.OrderBookTicker.BidQty">
+        <member name="P:GBinanceFuturesClient.Model.Market.OrderBookTicker.BidQty">
             <summary>
             Bid quantity
             </summary>
         </member>
-        <member name="P:BinanceFuturesClient.Model.Market.OrderBookTicker.AskPrice">
+        <member name="P:GBinanceFuturesClient.Model.Market.OrderBookTicker.AskPrice">
             <summary>
             Ask price.
             </summary>
         </member>
-        <member name="P:BinanceFuturesClient.Model.Market.OrderBookTicker.AskQty">
+        <member name="P:GBinanceFuturesClient.Model.Market.OrderBookTicker.AskQty">
             <summary>
             Ask quantity.
             </summary>
         </member>
-        <member name="T:BinanceFuturesClient.Model.Market.PriceTicker">
+        <member name="T:GBinanceFuturesClient.Model.Market.PriceTicker">
             <summary>
-            Data model for response on <see cref="M:BinanceFuturesClient.Market.GetSymbolPriceTicker"/> and 
-            <see cref="M:BinanceFuturesClient.Market.GetSymbolPriceTicker(System.String)"/> request.
+            Data model for response on <see cref="M:GBinanceFuturesClient.Market.GetSymbolPriceTicker"/> and 
+            <see cref="M:GBinanceFuturesClient.Market.GetSymbolPriceTicker(System.String)"/> request.
             </summary>
         </member>
-        <member name="P:BinanceFuturesClient.Model.Market.PriceTicker.Symbol">
+        <member name="P:GBinanceFuturesClient.Model.Market.PriceTicker.Symbol">
             <summary>
             Currency pair symbol.
             </summary>
         </member>
-        <member name="P:BinanceFuturesClient.Model.Market.PriceTicker.Price">
+        <member name="P:GBinanceFuturesClient.Model.Market.PriceTicker.Price">
             <summary>
             Price for currency pair.
             </summary>
         </member>
-        <member name="T:BinanceFuturesClient.Model.Market.Ticker24h">
+        <member name="T:GBinanceFuturesClient.Model.Market.Ticker24h">
             <summary>
-            Ticker data model for <see cref="M:BinanceFuturesClient.Market.Get24hTicker"/> and <see cref="M:BinanceFuturesClient.Market.Get24hTicker(System.String)"/> request.
+            Ticker data model for <see cref="M:GBinanceFuturesClient.Market.Get24hTicker"/> 
+            and <see cref="M:GBinanceFuturesClient.Market.Get24hTicker(System.String)"/> request.
             </summary>
         </member>
-        <member name="P:BinanceFuturesClient.Model.Market.Ticker24h.Symbol">
+        <member name="P:GBinanceFuturesClient.Model.Market.Ticker24h.Symbol">
             <summary>
             Currency pair code.
             </summary>
         </member>
-        <member name="P:BinanceFuturesClient.Model.Market.Ticker24h.PriceChange">
+        <member name="P:GBinanceFuturesClient.Model.Market.Ticker24h.PriceChange">
             <summary>
             24 hours price change in base currency.
             </summary>
         </member>
-        <member name="P:BinanceFuturesClient.Model.Market.Ticker24h.PriceChangePercent">
+        <member name="P:GBinanceFuturesClient.Model.Market.Ticker24h.PriceChangePercent">
             <summary>
             24 hours price change in percent.
             </summary>
         </member>
-        <member name="P:BinanceFuturesClient.Model.Market.Ticker24h.WeightedAvgPrice">
+        <member name="P:GBinanceFuturesClient.Model.Market.Ticker24h.WeightedAvgPrice">
             <summary>
             Weighted average price.
             </summary>
         </member>
-        <member name="P:BinanceFuturesClient.Model.Market.Ticker24h.PrevClosePrice">
+        <member name="P:GBinanceFuturesClient.Model.Market.Ticker24h.PrevClosePrice">
             <summary>
             Prev close price.
             </summary>
         </member>
-        <member name="P:BinanceFuturesClient.Model.Market.Ticker24h.LastPrice">
+        <member name="P:GBinanceFuturesClient.Model.Market.Ticker24h.LastPrice">
             <summary>
             Last transaction price.
             </summary>
         </member>
-        <member name="P:BinanceFuturesClient.Model.Market.Ticker24h.LastQty">
+        <member name="P:GBinanceFuturesClient.Model.Market.Ticker24h.LastQty">
             <summary>
             Last transaction quantity.
             </summary>
         </member>
-        <member name="P:BinanceFuturesClient.Model.Market.Ticker24h.OpenPrice">
+        <member name="P:GBinanceFuturesClient.Model.Market.Ticker24h.OpenPrice">
             <summary>
             Open price.
             </summary>
         </member>
-        <member name="P:BinanceFuturesClient.Model.Market.Ticker24h.HighPrice">
+        <member name="P:GBinanceFuturesClient.Model.Market.Ticker24h.HighPrice">
             <summary>
             High price.
             </summary>
         </member>
-        <member name="P:BinanceFuturesClient.Model.Market.Ticker24h.LowPrice">
+        <member name="P:GBinanceFuturesClient.Model.Market.Ticker24h.LowPrice">
             <summary>
             Low price.
             </summary>
         </member>
-        <member name="P:BinanceFuturesClient.Model.Market.Ticker24h.Volume">
+        <member name="P:GBinanceFuturesClient.Model.Market.Ticker24h.Volume">
             <summary>
             24 hours volume in base currency.
             </summary>
         </member>
-        <member name="P:BinanceFuturesClient.Model.Market.Ticker24h.QuoteVolume">
+        <member name="P:GBinanceFuturesClient.Model.Market.Ticker24h.QuoteVolume">
             <summary>
             24 hours volume in quote currency.
             </summary>
         </member>
-        <member name="P:BinanceFuturesClient.Model.Market.Ticker24h.OpenTime">
+        <member name="P:GBinanceFuturesClient.Model.Market.Ticker24h.OpenTime">
             <summary>
             Open time, unix timestamp.
             </summary>
         </member>
-        <member name="P:BinanceFuturesClient.Model.Market.Ticker24h.CloseTime">
+        <member name="P:GBinanceFuturesClient.Model.Market.Ticker24h.CloseTime">
             <summary>
             Close time, unix timestamp.
             </summary>
         </member>
-        <member name="P:BinanceFuturesClient.Model.Market.Ticker24h.FirstId">
+        <member name="P:GBinanceFuturesClient.Model.Market.Ticker24h.FirstId">
             <summary>
             First trade identificator.
             </summary>
         </member>
-        <member name="P:BinanceFuturesClient.Model.Market.Ticker24h.LastId">
+        <member name="P:GBinanceFuturesClient.Model.Market.Ticker24h.LastId">
             <summary>
             Last trade identificator.
             </summary>
         </member>
-        <member name="P:BinanceFuturesClient.Model.Market.Ticker24h.Count">
+        <member name="P:GBinanceFuturesClient.Model.Market.Ticker24h.Count">
             <summary>
             Trade count in 24 hours.
             </summary>
         </member>
-        <member name="T:BinanceFuturesClient.Model.Market.TradeItem">
+        <member name="T:GBinanceFuturesClient.Model.Market.TradeItem">
             <summary>
             Trade item model, for .
             </summary>
         </member>
-        <member name="P:BinanceFuturesClient.Model.Market.TradeItem.Id">
+        <member name="P:GBinanceFuturesClient.Model.Market.TradeItem.Id">
             <summary>
             Trade identificator.
             </summary>
         </member>
-        <member name="P:BinanceFuturesClient.Model.Market.TradeItem.Price">
+        <member name="P:GBinanceFuturesClient.Model.Market.TradeItem.Price">
             <summary>
             Offer price.
             </summary>
         </member>
-        <member name="P:BinanceFuturesClient.Model.Market.TradeItem.Qty">
+        <member name="P:GBinanceFuturesClient.Model.Market.TradeItem.Qty">
             <summary>
             Offer quantity.
             </summary>
         </member>
-        <member name="P:BinanceFuturesClient.Model.Market.TradeItem.QuoteQty">
+        <member name="P:GBinanceFuturesClient.Model.Market.TradeItem.QuoteQty">
             <summary>
             Quote offer quantity.
             </summary>
         </member>
-        <member name="P:BinanceFuturesClient.Model.Market.TradeItem.Time">
+        <member name="P:GBinanceFuturesClient.Model.Market.TradeItem.Time">
             <summary>
             Offer unit timestamp
             </summary>
         </member>
-        <member name="P:BinanceFuturesClient.Model.Market.TradeItem.IsBuyerMaker">
+        <member name="P:GBinanceFuturesClient.Model.Market.TradeItem.IsBuyerMaker">
             <summary>
             Is buyer maker flag.
             </summary>

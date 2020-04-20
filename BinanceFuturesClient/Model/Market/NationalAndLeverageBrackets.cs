@@ -3,11 +3,11 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace BinanceFuturesClient.Model.Market
+namespace GBinanceFuturesClient.Model.Market
 {
     /// <summary>
-    /// Data model for response on <see cref="BinanceFuturesClient.Market.GetNationalAndLeverageBrackets()"/> and
-    /// <see cref="BinanceFuturesClient.Market.GetNationalAndLeverageBrackets()"/> request.
+    /// Data model for response on <see cref="GBinanceFuturesClient.Market.GetNationalAndLeverageBrackets()"/> and
+    /// <see cref="GBinanceFuturesClient.Market.GetNationalAndLeverageBrackets()"/> request.
     /// </summary>
     public class NationalAndLeverageBrackets
     {

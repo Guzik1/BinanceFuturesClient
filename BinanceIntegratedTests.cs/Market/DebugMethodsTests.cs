@@ -1,11 +1,10 @@
 using NUnit.Framework;
-using BinanceFuturesClient;
 
 namespace BinanceIntegratedTests.Market
 {
     public class DebugMethodsTests
     {
-        BinanceFuturesClient.Market market = new BinanceFuturesClient.Market();
+        GBinanceFuturesClient.Market market = new GBinanceFuturesClient.BinanceFuturesClient().Market;
 
         [Test]
         public void PingTest()

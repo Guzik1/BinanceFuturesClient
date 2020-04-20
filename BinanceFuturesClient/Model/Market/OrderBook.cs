@@ -3,10 +3,10 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace BinanceFuturesClient.Model.Market
+namespace GBinanceFuturesClient.Model.Market
 {
     /// <summary>
-    /// Response model for <see cref="BinanceFuturesClient.Market.GetOrderBook(string)"/> and <see cref="BinanceFuturesClient.Market.GetOrderBook(string)"/> request.
+    /// Response model for <see cref="GBinanceFuturesClient.Market.GetOrderBook(string)"/> and <see cref="GBinanceFuturesClient.Market.GetOrderBook(string)"/> request.
     /// </summary>
     public class OrderBook
     {

@@ -1,4 +1,4 @@
-﻿using BinanceFuturesClient.Model.Market;
+﻿using GBinanceFuturesClient.Model.Market;
 using NUnit.Framework;
 using System;
 using System.Collections.Generic;
@@ -8,8 +8,8 @@ namespace BinanceIntegratedTests.Market
 {
     public class GetOrderBookTests
     {
-        BinanceFuturesClient.Market market = new BinanceFuturesClient.Market();
-
+        GBinanceFuturesClient.Market market = new GBinanceFuturesClient.BinanceFuturesClient().Market;
+        
         [Test]
         public void GetOrderBookWithDefaultLimitTest()
         {

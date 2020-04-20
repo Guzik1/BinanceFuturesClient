@@ -2,9 +2,9 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
-using BinanceFuturesClient.Model.Market;
+using GBinanceFuturesClient.Model.Market;
 
-namespace BinanceFuturesClient
+namespace GBinanceFuturesClient
 {
     /// <summary>
     /// Binance futures market endpoint.
@@ -529,5 +529,7 @@ namespace BinanceFuturesClient
                 return null;
             }
         #endregion
+
+
     }
 }

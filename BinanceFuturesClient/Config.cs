@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace BinanceFuturesClient
+namespace GBinanceFuturesClient
 {
     internal static class Config
     {

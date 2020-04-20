@@ -3,10 +3,11 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace BinanceFuturesClient.Model.Market
+namespace GBinanceFuturesClient.Model.Market
 {
     /// <summary>
-    /// Ticker data model for <see cref="BinanceFuturesClient.Market.Get24hTicker()"/> and <see cref="BinanceFuturesClient.Market.Get24hTicker(string)"/> request.
+    /// Ticker data model for <see cref="GBinanceFuturesClient.Market.Get24hTicker()"/> 
+    /// and <see cref="GBinanceFuturesClient.Market.Get24hTicker(string)"/> request.
     /// </summary>
     public class Ticker24h
     {

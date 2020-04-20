@@ -3,11 +3,11 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace BinanceFuturesClient.Model.Market
+namespace GBinanceFuturesClient.Model.Market
 {    
     /// <summary>
-     /// Data model for response on <see cref="BinanceFuturesClient.Market.GetFundingRateHistory(string, int)"/> 
-     /// and <see cref="BinanceFuturesClient.Market.GetFundingRateHistory(string, long, long, int)"/> request.
+     /// Data model for response on <see cref="GBinanceFuturesClient.Market.GetFundingRateHistory(string, int)"/> 
+     /// and <see cref="GBinanceFuturesClient.Market.GetFundingRateHistory(string, long, long, int)"/> request.
      /// </summary>
     public class FundingRateHistory
     {

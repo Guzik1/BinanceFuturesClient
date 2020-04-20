@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using RestApiClient;
 
-namespace BinanceFuturesClient
+namespace GBinanceFuturesClient
 {
     public class AutenticateMarket : IAddOwnHeaderToRequest
     {

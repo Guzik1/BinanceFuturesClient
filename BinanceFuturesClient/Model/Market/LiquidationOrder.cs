@@ -3,11 +3,11 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace BinanceFuturesClient.Model.Market
+namespace GBinanceFuturesClient.Model.Market
 {
     /// <summary>
-    /// Data model for response on <see cref="BinanceFuturesClient.Market.GetLiquidationOrders(string, int)"/> and
-    /// <see cref="BinanceFuturesClient.Market.GetLiquidationOrders(string, int)"/> request.
+    /// Data model for response on <see cref="GBinanceFuturesClient.Market.GetLiquidationOrders(string, int)"/> and
+    /// <see cref="GBinanceFuturesClient.Market.GetLiquidationOrders(string, int)"/> request.
     /// </summary>
     public class LiquidationOrder
     {

@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.29926.136
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BinanceFuturesClient", "BinanceFuturesClient\BinanceFuturesClient.csproj", "{DF2EC333-6E17-4D1D-9275-A78D76EF914F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BinanceFuturesClient", "BinanceFuturesClient\BinanceFuturesClient.csproj", "{DF2EC333-6E17-4D1D-9275-A78D76EF914F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BinanceIntegratedTests", "BinanceIntegratedTests.cs\BinanceIntegratedTests.csproj", "{465F6230-5985-44DB-B8DB-99BDB765DC2B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BinanceIntegratedTests", "BinanceIntegratedTests.cs\BinanceIntegratedTests.csproj", "{465F6230-5985-44DB-B8DB-99BDB765DC2B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

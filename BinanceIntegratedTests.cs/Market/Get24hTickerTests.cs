@@ -1,4 +1,4 @@
-﻿using BinanceFuturesClient.Model.Market;
+﻿using GBinanceFuturesClient.Model.Market;
 using NUnit.Framework;
 using System;
 using System.Collections.Generic;
@@ -8,7 +8,7 @@ namespace BinanceIntegratedTests.Market
 {
     public class Get24hTickerTests
     {
-        BinanceFuturesClient.Market market = new BinanceFuturesClient.Market();
+        GBinanceFuturesClient.Market market = new GBinanceFuturesClient.BinanceFuturesClient().Market;
 
         [Test]
         public void Get24hAllTickersTest()

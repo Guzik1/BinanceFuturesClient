@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using System.Text;
 using Newtonsoft.Json;
 
-namespace BinanceFuturesClient.Model.Market
+namespace GBinanceFuturesClient.Model.Market
 {
     /// <summary>
-    /// Aggregate trade item model for reponse on <see cref="BinanceFuturesClient.Market.GetOldTradesLookup(string, int)"/> and <see cref="BinanceFuturesClient.Market.GetOldTradesLookup(string, long, int)"/> request.
+    /// Aggregate trade item model for reponse on <see cref="GBinanceFuturesClient.Market.GetOldTradesLookup(string, int)"/> 
+    /// and <see cref="GBinanceFuturesClient.Market.GetOldTradesLookup(string, long, int)"/> request.
     /// </summary>
     public class AggregateTradeItem
     {

@@ -3,14 +3,14 @@ using System.Collections.Generic;
 using System.Security;
 using System.Text;
 
-namespace BinanceFuturesClient
+namespace GBinanceFuturesClient
 {
     /// <summary>
     /// Main of class, biance futures rest api client.
     /// </summary>
     public class BinanceFuturesClient
     {
-        SessionData session;
+        SessionData session = new SessionData();
 
         /// <summary>
         /// Market api methods object.
@@ -27,12 +27,11 @@ namespace BinanceFuturesClient
         /// <summary>
         /// Constructor to set keys for sercure client.
         /// </summary>
-        /// <param name="PublicKey">Public api key.</param>
-        /// <param name="PrivateKey">Private api key.</param>
-        public BinanceFuturesClient(string PublicKey, string PrivateKey) {
+        /// <param name="publicKey">Public api key.</param>
+        /// <param name="privateKey">Private api key.</param>
+        public BinanceFuturesClient(string publicKey, string privateKey) {
             Inicjalize();
-
-            session = new SessionData(PublicKey, PrivateKey);
+            SetAutorizationData(publicKey, privateKey);
         }
 
         /// <summary>
@@ -42,8 +41,7 @@ namespace BinanceFuturesClient
         /// <param name="privateKey">Private api key.</param>
         public void SetAutorizationData(string publicKey, string privateKey)
         {
-            session.PublicKey = publicKey;
-            session.PrivateKey = privateKey;
+            session.Autorize(publicKey, privateKey);
         }
 
         void Inicjalize()

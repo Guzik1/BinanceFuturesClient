@@ -3,10 +3,10 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace BinanceFuturesClient.Model.Market
+namespace GBinanceFuturesClient.Model.Market
 {
     /// <summary>
-    /// Data model for response on <see cref="BinanceFuturesClient.Market.GetMarkPrice()"/> and <see cref="BinanceFuturesClient.Market.GetMarkPrice(string)"/> request.
+    /// Data model for response on <see cref="GBinanceFuturesClient.Market.GetMarkPrice()"/> and <see cref="GBinanceFuturesClient.Market.GetMarkPrice(string)"/> request.
     /// </summary>
     public class MarkPriceResponse
     {
