@@ -9,6 +9,9 @@ namespace GBinanceFuturesClient
         internal const string ApiPublicMarketUrl = "https://fapi.binance.com/fapi/v1/";
 
 
+        internal const string ApiFuturesDataUrl = "https://fapi.binance.com/futures/data/";
+
+
         internal const string ApiPrivateUrl = "https://api.binance.com/sapi/v1/futures";
     }
 }

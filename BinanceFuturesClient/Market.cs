@@ -473,7 +473,7 @@ namespace GBinanceFuturesClient
         }
         #endregion
 
-        #region Open Interest
+        #region Get Open Interest
         /// <summary>
         /// Get present open interest of a specific symbol. 
         /// </summary>
@@ -485,7 +485,7 @@ namespace GBinanceFuturesClient
         }
         #endregion
 
-        #region Notional and Leverage Brackets
+        #region Get Notional and Leverage Brackets
         /// <summary>
         /// Get Notional and Leverage Brackets. Weight: 1.
         /// </summary>
@@ -530,6 +530,57 @@ namespace GBinanceFuturesClient
             }
         #endregion
 
+        #region GetOpenInterestStatistics
+        /// <summary>
+        /// Get open interest statistics. If there is no limit of startime and endtime, it will return the value brfore the current time by default. Weight: 1.
+        /// </summary>
+        /// <param name="symbol">Currency pair code.</param>
+        /// <param name="period">Peroid, available: 5m, 15m, 30m, 1h, 2h, 4h, 6h, 12h, 1d.</param>
+        /// <param name="limit">Limit of result count, default 30, max 500. Optional</param>
+        /// <returns>List of open interest statistics objects.</returns>
+        public List<OpenInterestStatistics> GetOpenInterestStatistics(string symbol, string period, int limit = 30)
+        {
+            return GetOpenInterestStatistics(symbol, period, 0, 0, limit);
+        }
 
+        /// <summary>
+        /// Get open interest statistics. Only the data of the latest 30 days is available. Weight: 1.
+        /// </summary>
+        /// <param name="symbol">Currency pair code.</param>
+        /// <param name="period">Peroid, available: 5m, 15m, 30m, 1h, 2h, 4h, 6h, 12h, 1d.</param>
+        /// <param name="startTime">Get data from start time.</param>
+        /// <param name="endTime">Get data to end time.</param>
+        /// <param name="limit">Limit of result count, default 30, max 500. Optional</param>
+        /// <returns>List of open interest statistics objects.</returns>
+        public List<OpenInterestStatistics> GetOpenInterestStatistics(string symbol, string period, long startTime, long endTime, int limit = 30)
+        {
+            if (session.IsAutorized)
+            {
+                RestClient client = new RestClient(Config.ApiFuturesDataUrl + "openInterestHist");
+
+                Dictionary<string, string> query = new Dictionary<string, string>();
+                query.Add("symbol", symbol);
+                query.Add("period", period);
+
+                if (limit != 30)
+                    query.Add("limit", limit.ToString());
+
+                if (startTime != 0)
+                    query.Add("startTime", startTime.ToString());
+
+                if (endTime != 0)
+                    query.Add("limit", endTime.ToString());
+
+                client.AddQuery(query);
+                client.AddOwnHeaderToRequest(new AutenticateMarket(session));
+                client.SendGET();
+
+                return Tools.TryGetResponse<List<OpenInterestStatistics>>(client);
+            }
+            else
+                Tools.ThrowUnautorizedException();
+            return null;
+        }   
+        #endregion
     }
 }

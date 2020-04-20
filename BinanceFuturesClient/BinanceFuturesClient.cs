@@ -25,7 +25,7 @@ namespace GBinanceFuturesClient
         }
 
         /// <summary>
-        /// Constructor to set keys for sercure client.
+        /// Constructor to set public and private keys for sercure client.
         /// </summary>
         /// <param name="publicKey">Public api key.</param>
         /// <param name="privateKey">Private api key.</param>
