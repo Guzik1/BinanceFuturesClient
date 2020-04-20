@@ -13,6 +13,16 @@ namespace BinanceFuturesClient
     {
         SessionData session;
 
+        /// <summary>
+        /// Default constructor
+        /// </summary>
+        public Market() { }
+
+        internal Market(SessionData session)
+        {
+            this.session = session;
+        }
+
         #region Ping
         /// <summary>
         /// Ping to server. Check connection to rest api. Weight: 1.
@@ -482,11 +492,17 @@ namespace BinanceFuturesClient
         /// <returns>List of brackets.</returns>
         public List<NationalAndLeverageBrackets> GetNationalAndLeverageBrackets()
         {
-            RestClient client = new RestClient(Config.ApiPublicMarketUrl + "leverageBracket");
-            client.AddOwnHeaderToRequest(new AutenticateMarket(session));
-            client.SendGET();
+            if (session.IsAutorized)
+            {
+                RestClient client = new RestClient(Config.ApiPublicMarketUrl + "leverageBracket");
+                client.AddOwnHeaderToRequest(new AutenticateMarket(session));
+                client.SendGET();
 
-            return Tools.TryGetResponse<List<NationalAndLeverageBrackets>>(client);
+                return Tools.TryGetResponse<List<NationalAndLeverageBrackets>>(client);
+            }
+            else
+                Tools.ThrowUnautorizedException();
+                return null;
         }
 
         /// <summary>
@@ -496,16 +512,22 @@ namespace BinanceFuturesClient
         /// <returns>Brackets object.</returns>
         public NationalAndLeverageBrackets GetNationalAndLeverageBrackets(string symbol)
         {
-            RestClient client = new RestClient(Config.ApiPublicMarketUrl + "leverageBracket");
+            if (session.IsAutorized)
+            {
+                RestClient client = new RestClient(Config.ApiPublicMarketUrl + "leverageBracket");
 
-            Dictionary<string, string> query = new Dictionary<string, string>();
-            query.Add("symbol", symbol);
-            client.AddQuery(query);
-            client.AddOwnHeaderToRequest(new AutenticateMarket(session));
-            client.SendGET();
+                Dictionary<string, string> query = new Dictionary<string, string>();
+                query.Add("symbol", symbol);
+                client.AddQuery(query);
+                client.AddOwnHeaderToRequest(new AutenticateMarket(session));
+                client.SendGET();
 
-            return Tools.TryGetResponse<NationalAndLeverageBrackets>(client);
-        }
+                return Tools.TryGetResponse<NationalAndLeverageBrackets>(client);
+            }
+            else
+                Tools.ThrowUnautorizedException();
+                return null;
+            }
         #endregion
     }
 }

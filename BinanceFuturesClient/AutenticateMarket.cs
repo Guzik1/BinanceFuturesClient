@@ -15,7 +15,7 @@ namespace BinanceFuturesClient
         public Dictionary<string, string> AddOwnHeader()
         {
             Dictionary<string, string> headers = new Dictionary<string, string>();
-            headers.Add("X-MBX-APIKEY", config.PublicApiKey);
+            headers.Add("X-MBX-APIKEY", config.PublicKey);
 
             return headers;
         }

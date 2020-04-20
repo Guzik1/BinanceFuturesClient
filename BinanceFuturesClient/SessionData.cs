@@ -6,14 +6,21 @@ namespace BinanceFuturesClient
 {
     internal class SessionData
     {
-        internal SessionData(string PublicApi, string PrivateApi)
-        {
-            PublicApiKey = PublicApi;
-            PrivateApiKey = PrivateApi;
+        internal string PublicKey { get; set; }
+
+        internal string PrivateKey { get; set; }
+
+        internal bool IsAutorized { get; set; }
+
+        internal SessionData() {
+            IsAutorized = false;
         }
 
-        internal string PublicApiKey { get; set; }
-
-        internal string PrivateApiKey { get; set; }
+        internal SessionData(string PublicApi, string PrivateApi)
+        {
+            PublicKey = PublicApi;
+            PrivateKey = PrivateApi;
+            IsAutorized = true;
+        }
     }
 }

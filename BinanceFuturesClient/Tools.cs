@@ -38,6 +38,12 @@ namespace BinanceFuturesClient
             throw new Exception("Unknown error.");
         }
 
+        internal static void ThrowUnautorizedException()
+        {
+            throw new Exception("Client is unautorized, use SetAutorizationData() method for autorize client."); 
+            //TODO change this exception to UnautorizedClientException();
+        }
+
         internal static dynamic TryGetResponseDynamic(RestClient rc)
         {
             if (CheckResult(rc))

@@ -9,12 +9,12 @@ namespace BinanceIntegratedTests.Market
 {
     public class GetNationalAndLeverageBracketsTests
     {
-        BinanceFuturesClient.Market market = new BinanceFuturesClient.Market();
+        BinanceFuturesClient.BinanceFuturesClient client = new BinanceFuturesClient.BinanceFuturesClient(Config.PublicKey, Config.PrivateKey);
 
         [Test]
         public void GetNationalAndLEverageBracketsForOneMarketTest()
         {
-            NationalAndLeverageBrackets nlb = market.GetNationalAndLeverageBrackets("BTCUSDT");
+            NationalAndLeverageBrackets nlb = client.Market.GetNationalAndLeverageBrackets("BTCUSDT");
 
             Assert.IsNotNull(nlb);
             Assert.AreEqual("BTCUSDT", nlb.Symbol);
@@ -24,7 +24,7 @@ namespace BinanceIntegratedTests.Market
         [Test]
         public void GetAllNationalAndLEverageBracketsTest()
         {
-            List<NationalAndLeverageBrackets> nlb = market.GetNationalAndLeverageBrackets();
+            List<NationalAndLeverageBrackets> nlb = client.Market.GetNationalAndLeverageBrackets();
 
             Assert.IsNotNull(nlb);
             Assert.Greater(nlb.Count, 0);
