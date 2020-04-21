@@ -640,9 +640,37 @@ namespace GBinanceFuturesClient
         }
         #endregion
 
+        #region Get Taker Buy/Sell Volume
+        /// <summary>
+        /// Get taker, buy/selll volume. If there is no limit of startime and endtime, it will return the value brfore the 
+        /// current time by default. Weight: 1.
+        /// </summary>
+        /// <param name="symbol">Currency pair code.</param>
+        /// <param name="period">Peroid, available: 5m, 15m, 30m, 1h, 2h, 4h, 6h, 12h, 1d.</param>
+        /// <param name="limit">Limit of result count, default 30, max 500. Optional</param>
+        /// <returns>List of buy sell volume objects.</returns>
+        public List<BuySellVolume> GetTakerBuySellVolume(string symbol, string period, int limit = 30)
+        {
+            return GetTakerBuySellVolume(symbol, period, 0, 0, limit);
+        }
 
+        /// <summary>
+        /// Get taker, buy/selll volume. If there is no limit of startime and endtime, it will return the value brfore the 
+        /// current time by default. Only the data of the latest 30 days is available. Weight: 1.
+        /// </summary>
+        /// <param name="symbol">Currency pair code.</param>
+        /// <param name="period">Peroid, available: 5m, 15m, 30m, 1h, 2h, 4h, 6h, 12h, 1d.</param>
+        /// <param name="startTime"></param>
+        /// <param name="endTime"></param>
+        /// <param name="limit">Limit of result count, default 30, max 500. Optional</param>
+        /// <returns>List of buy sell volume objects.</returns>
+        public List<BuySellVolume> GetTakerBuySellVolume(string symbol, string period, long startTime, long endTime, int limit = 30)
+        {
+            return SendGetStatisticOrRatoRequest<List<BuySellVolume>>("takerlongshortRatio", symbol, period, limit, startTime, endTime);
+        }
+        #endregion
 
-        #region Tools (private)
+        #region Tools for ratio and volume requests (private)
         T SendGetStatisticOrRatoRequest<T>(string url, string symbol, string period, int limit = 30, long startTime = 0, long endTime = 0)
         {
             Tools.CheckAutorizatioWhenUnautorizedThrowException(session);
