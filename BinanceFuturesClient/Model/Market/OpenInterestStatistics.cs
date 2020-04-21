@@ -5,7 +5,10 @@ using System.Text;
 
 namespace GBinanceFuturesClient.Model.Market
 {
-
+    /// <summary>
+    /// Data model for response on <see cref="GBinanceFuturesClient.Market.GetOpenInterestStatistics(string, string, int)"/> and
+    /// <see cref="GBinanceFuturesClient.Market.GetOpenInterestStatistics(string, string, long, long, int)"/> request.
+    /// </summary>
     public class OpenInterestStatistics
     {
         /// <summary>

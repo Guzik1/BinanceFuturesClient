@@ -492,17 +492,13 @@ namespace GBinanceFuturesClient
         /// <returns>List of brackets.</returns>
         public List<NationalAndLeverageBrackets> GetNationalAndLeverageBrackets()
         {
-            if (session.IsAutorized)
-            {
-                RestClient client = new RestClient(Config.ApiPublicMarketUrl + "leverageBracket");
-                client.AddOwnHeaderToRequest(new AutenticateMarket(session));
-                client.SendGET();
+            Tools.CheckAutorizatioWhenUnautorizedThrowException(session);
 
-                return Tools.TryGetResponse<List<NationalAndLeverageBrackets>>(client);
-            }
-            else
-                Tools.ThrowUnautorizedException();
-                return null;
+            RestClient client = new RestClient(Config.ApiPublicMarketUrl + "leverageBracket");
+            client.AddOwnHeaderToRequest(new AutenticateMarket(session));
+            client.SendGET();
+
+            return Tools.TryGetResponse<List<NationalAndLeverageBrackets>>(client);
         }
 
         /// <summary>
@@ -512,22 +508,18 @@ namespace GBinanceFuturesClient
         /// <returns>Brackets object.</returns>
         public NationalAndLeverageBrackets GetNationalAndLeverageBrackets(string symbol)
         {
-            if (session.IsAutorized)
-            {
-                RestClient client = new RestClient(Config.ApiPublicMarketUrl + "leverageBracket");
+            Tools.CheckAutorizatioWhenUnautorizedThrowException(session);
 
-                Dictionary<string, string> query = new Dictionary<string, string>();
-                query.Add("symbol", symbol);
-                client.AddQuery(query);
-                client.AddOwnHeaderToRequest(new AutenticateMarket(session));
-                client.SendGET();
+            RestClient client = new RestClient(Config.ApiPublicMarketUrl + "leverageBracket");
 
-                return Tools.TryGetResponse<NationalAndLeverageBrackets>(client);
-            }
-            else
-                Tools.ThrowUnautorizedException();
-                return null;
-            }
+            Dictionary<string, string> query = new Dictionary<string, string>();
+            query.Add("symbol", symbol);
+            client.AddQuery(query);
+            client.AddOwnHeaderToRequest(new AutenticateMarket(session));
+            client.SendGET();
+
+            return Tools.TryGetResponse<NationalAndLeverageBrackets>(client);
+        }
         #endregion
 
         #region GetOpenInterestStatistics
@@ -554,33 +546,66 @@ namespace GBinanceFuturesClient
         /// <returns>List of open interest statistics objects.</returns>
         public List<OpenInterestStatistics> GetOpenInterestStatistics(string symbol, string period, long startTime, long endTime, int limit = 30)
         {
-            if (session.IsAutorized)
-            {
-                RestClient client = new RestClient(Config.ApiFuturesDataUrl + "openInterestHist");
+            return SendGetStatisticOrRatoRequest<List<OpenInterestStatistics>>("openInterestHist", symbol, period, limit, startTime, endTime);
+        }
+        #endregion
 
-                Dictionary<string, string> query = new Dictionary<string, string>();
-                query.Add("symbol", symbol);
-                query.Add("period", period);
+        #region Top Trader Long/Short Ratio (Accounts)
+        /// <summary>
+        /// Get top trader long/short ratio. If there is no limit of startime and endtime, it will return the value brfore the 
+        /// current time by default. Weight: 1.
+        /// </summary>
+        /// <param name="symbol">Currency pair code.</param>
+        /// <param name="period">Peroid, available: 5m, 15m, 30m, 1h, 2h, 4h, 6h, 12h, 1d.</param>
+        /// <param name="limit">Limit of result count, default 30, max 500. Optional</param>
+        /// <returns>List of ratio item objects.</returns>
+        public List<RatioItem> GetTopTradeLongShortRatio(string symbol, string period, int limit = 30)
+        {
+            return GetTopTradeLongShortRatio(symbol, period, 0, 0, limit);
+        }
 
-                if (limit != 30)
-                    query.Add("limit", limit.ToString());
+        /// <summary>
+        /// Get top trader long/short ratio. If there is no limit of startime and endtime, it will return the value brfore the 
+        /// current time by default. Only the data of the latest 30 days is available. Weight: 1.
+        /// </summary>
+        /// <param name="symbol">Currency pair code.</param>
+        /// <param name="period">Peroid, available: 5m, 15m, 30m, 1h, 2h, 4h, 6h, 12h, 1d.</param>
+        /// <param name="startTime"></param>
+        /// <param name="endTime"></param>
+        /// <param name="limit">Limit of result count, default 30, max 500. Optional</param>
+        /// <returns>List of ratio item objects.</returns>
+        public List<RatioItem> GetTopTradeLongShortRatio(string symbol, string period, long startTime, long endTime, int limit = 30)
+        {
+            return SendGetStatisticOrRatoRequest<List<RatioItem>>("topLongShortAccountRatio", symbol, period, limit, startTime, endTime);
+        }
+        #endregion
 
-                if (startTime != 0)
-                    query.Add("startTime", startTime.ToString());
+        #region Tools (private)
+        T SendGetStatisticOrRatoRequest<T>(string url, string symbol, string period, int limit = 30, long startTime = 0, long endTime = 0)
+        {
+            Tools.CheckAutorizatioWhenUnautorizedThrowException(session);
 
-                if (endTime != 0)
-                    query.Add("limit", endTime.ToString());
+            RestClient client = new RestClient(Config.ApiFuturesDataUrl + url);
 
-                client.AddQuery(query);
-                client.AddOwnHeaderToRequest(new AutenticateMarket(session));
-                client.SendGET();
+            Dictionary<string, string> query = new Dictionary<string, string>();
+            query.Add("symbol", symbol);
+            query.Add("period", period);
 
-                return Tools.TryGetResponse<List<OpenInterestStatistics>>(client);
-            }
-            else
-                Tools.ThrowUnautorizedException();
-            return null;
-        }   
+            if (limit != 30)
+                query.Add("limit", limit.ToString());
+
+            if (startTime != 0)
+                query.Add("startTime", startTime.ToString());
+
+            if (endTime != 0)
+                query.Add("limit", endTime.ToString());
+
+            client.AddQuery(query);
+            client.AddOwnHeaderToRequest(new AutenticateMarket(session));
+            client.SendGET();
+
+            return Tools.TryGetResponse<T>(client);
+        }
         #endregion
     }
 }

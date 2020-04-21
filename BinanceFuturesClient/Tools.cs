@@ -38,9 +38,10 @@ namespace GBinanceFuturesClient
             throw new Exception("Unknown error.");
         }
 
-        internal static void ThrowUnautorizedException()
+        internal static void CheckAutorizatioWhenUnautorizedThrowException(SessionData session)
         {
-            throw new Exception("Client is unautorized, use SetAutorizationData() method for autorize client."); 
+            if(session.IsAutorized == false)
+                throw new Exception("Client is unautorized, use SetAutorizationData() method for autorize client."); 
             //TODO change this exception to UnautorizedClientException();
         }
 
