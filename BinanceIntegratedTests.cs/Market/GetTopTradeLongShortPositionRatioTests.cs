@@ -6,33 +6,33 @@ using System.Text;
 
 namespace BinanceIntegratedTests.Market
 {
-    public class GetTopTradeLongShortRatioTests
+    public class GetTopTradeLongShortPositionRatioTests
     {
         GBinanceFuturesClient.Market market = new GBinanceFuturesClient.BinanceFuturesClient(Config.PublicKey, Config.PrivateKey).Market;
         List<RatioItem> ois;
 
         [Test]
-        public void GetTopTradeLongShortRatioTest()
+        public void GetTopTradeLongShortPositionTest()
         {
-            ois = market.GetTopTradeLongShortRatio("BTCUSDT", "5m");
+            ois = market.GetTopTradeLongShortPositionsRatio("BTCUSDT", "5m");
             
             Test();
             Assert.AreEqual(30, ois.Count);
         }
 
         [Test]
-        public void GetOpenInterestStatisticWithLimitTest()
+        public void GetTopTradeLongShortPositionWithLimitTest()
         {
-            ois = market.GetTopTradeLongShortRatio("BTCUSDT", "5m", 10);
+            ois = market.GetTopTradeLongShortPositionsRatio("BTCUSDT", "5m", 10);
 
             Test();
             Assert.AreEqual(10, ois.Count);
         }
 
         [Test]
-        public void GetOpenInterestStatisticCustomTimeTest()
+        public void GetTopTradeLongShortPositionCustomTimeTest()
         {
-            ois = market.GetTopTradeLongShortRatio("BTCUSDT", "5m", 1587408856829, 1587409956829);
+            ois = market.GetTopTradeLongShortPositionsRatio("BTCUSDT", "5m", 1587408856829, 1587409956829);
 
             Test();
             Assert.Greater(ois.Count, 0);

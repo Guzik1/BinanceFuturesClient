@@ -5,7 +5,12 @@ using System.Text;
 
 namespace GBinanceFuturesClient.Model.Market
 {
-    //TODO: ADD docs
+    //TODO: ADD docs (add new method in see block)
+    /// <summary>
+    /// Data model used in repspone on <see cref="GBinanceFuturesClient.Market.GetTopTradeLongShortAccountsRatio(string, string, int)"/>, 
+    /// <see cref="GBinanceFuturesClient.Market.GetTopTradeLongShortPositionsRatio(string, string, int)"/> and 
+    /// <see cref=""/>
+    /// </summary>
     public class RatioItem
     {
         /// <summary>
