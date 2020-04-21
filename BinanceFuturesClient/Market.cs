@@ -550,9 +550,9 @@ namespace GBinanceFuturesClient
         }
         #endregion
 
-        #region Top Trader Long/Short Ratio (Accounts)
+        #region Get Top Trader Long/Short Ratio (Accounts)
         /// <summary>
-        /// Get top trader long/short ratio. If there is no limit of startime and endtime, it will return the value brfore the 
+        /// Get top trader long/short accounts ratio. If there is no limit of startime and endtime, it will return the value brfore the 
         /// current time by default. Weight: 1.
         /// </summary>
         /// <param name="symbol">Currency pair code.</param>
@@ -565,7 +565,7 @@ namespace GBinanceFuturesClient
         }
 
         /// <summary>
-        /// Get top trader long/short ratio. If there is no limit of startime and endtime, it will return the value brfore the 
+        /// Get top trader long/short accounts ratio. If there is no limit of startime and endtime, it will return the value brfore the 
         /// current time by default. Only the data of the latest 30 days is available. Weight: 1.
         /// </summary>
         /// <param name="symbol">Currency pair code.</param>
@@ -580,9 +580,9 @@ namespace GBinanceFuturesClient
         }
         #endregion
 
-        #region Top Trader Long/Short Ratio (Positions)
+        #region Get Top Trader Long/Short Ratio (Positions)
         /// <summary>
-        /// Get top trader long/short ratio. If there is no limit of startime and endtime, it will return the value brfore the 
+        /// Get top trader long/short positions ratio. If there is no limit of startime and endtime, it will return the value brfore the 
         /// current time by default. Weight: 1.
         /// </summary>
         /// <param name="symbol">Currency pair code.</param>
@@ -595,7 +595,7 @@ namespace GBinanceFuturesClient
         }
 
         /// <summary>
-        /// Get top trader long/short ratio. If there is no limit of startime and endtime, it will return the value brfore the 
+        /// Get top trader long/short positions ratio. If there is no limit of startime and endtime, it will return the value brfore the 
         /// current time by default. Only the data of the latest 30 days is available. Weight: 1.
         /// </summary>
         /// <param name="symbol">Currency pair code.</param>
@@ -607,6 +607,36 @@ namespace GBinanceFuturesClient
         public List<RatioItem> GetTopTradeLongShortPositionsRatio(string symbol, string period, long startTime, long endTime, int limit = 30)
         {
             return SendGetStatisticOrRatoRequest<List<RatioItem>>("topLongShortPositionRatio", symbol, period, limit, startTime, endTime);
+        }
+        #endregion
+
+        #region Get Long/Short Ratio
+        /// <summary>
+        /// Get top trader long/short ratio. If there is no limit of startime and endtime, it will return the value brfore the 
+        /// current time by default. Weight: 1.
+        /// </summary>
+        /// <param name="symbol">Currency pair code.</param>
+        /// <param name="period">Peroid, available: 5m, 15m, 30m, 1h, 2h, 4h, 6h, 12h, 1d.</param>
+        /// <param name="limit">Limit of result count, default 30, max 500. Optional</param>
+        /// <returns>List of ratio item objects.</returns>
+        public List<RatioItem> GetTopTradeLongShortRatio(string symbol, string period, int limit = 30)
+        {
+            return GetTopTradeLongShortRatio(symbol, period, 0, 0, limit);
+        }
+
+        /// <summary>
+        /// Get top trader long/short ratio. If there is no limit of startime and endtime, it will return the value brfore the 
+        /// current time by default. Only the data of the latest 30 days is available. Weight: 1.
+        /// </summary>
+        /// <param name="symbol">Currency pair code.</param>
+        /// <param name="period">Peroid, available: 5m, 15m, 30m, 1h, 2h, 4h, 6h, 12h, 1d.</param>
+        /// <param name="startTime"></param>
+        /// <param name="endTime"></param>
+        /// <param name="limit">Limit of result count, default 30, max 500. Optional</param>
+        /// <returns>List of ratio item objects.</returns>
+        public List<RatioItem> GetTopTradeLongShortRatio(string symbol, string period, long startTime, long endTime, int limit = 30)
+        {
+            return SendGetStatisticOrRatoRequest<List<RatioItem>>("globalLongShortAccountRatio", symbol, period, limit, startTime, endTime);
         }
         #endregion
 

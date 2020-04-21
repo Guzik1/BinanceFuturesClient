@@ -9,7 +9,7 @@ namespace GBinanceFuturesClient.Model.Market
     /// <summary>
     /// Data model used in repspone on <see cref="GBinanceFuturesClient.Market.GetTopTradeLongShortAccountsRatio(string, string, int)"/>, 
     /// <see cref="GBinanceFuturesClient.Market.GetTopTradeLongShortPositionsRatio(string, string, int)"/> and 
-    /// <see cref=""/>
+    /// <see cref="GBinanceFuturesClient.Market.GetTopTradeLongShortRatio(string, string, int)"/> requests.
     /// </summary>
     public class RatioItem
     {
