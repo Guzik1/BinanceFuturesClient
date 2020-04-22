@@ -44,6 +44,11 @@ namespace GBinanceFuturesClient
             session.Autorize(publicKey, privateKey);
         }
 
+        public void UseTestnet(bool use)
+        {
+            UseTestnet(use);
+        }
+
         void Inicjalize()
         {
             Market = new Market(session);

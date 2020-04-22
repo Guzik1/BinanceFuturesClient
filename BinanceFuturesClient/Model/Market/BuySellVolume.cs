@@ -5,7 +5,10 @@ using System.Text;
 
 namespace GBinanceFuturesClient.Model.Market
 {
-
+    /// <summary>
+    /// Data model for repspone on <see cref="GBinanceFuturesClient.Market.GetTakerBuySellVolume(string, string, int)"/> and
+    /// <see cref="GBinanceFuturesClient.Market.GetTakerBuySellVolume(string, string, long, long, int)"/> request.
+    /// </summary>
     public class BuySellVolume
     {
         /// <summary>

@@ -688,7 +688,7 @@ namespace GBinanceFuturesClient
                 query.Add("startTime", startTime.ToString());
 
             if (endTime != 0)
-                query.Add("limit", endTime.ToString());
+                query.Add("endTime", endTime.ToString());
 
             client.AddQuery(query);
             client.AddOwnHeaderToRequest(new AutenticateMarket(session));

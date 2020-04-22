@@ -8,7 +8,15 @@ namespace BinanceIntegratedTests.Market
 {
     public class GetNationalAndLeverageBracketsTests
     {
-        GBinanceFuturesClient.Market market = new GBinanceFuturesClient.BinanceFuturesClient(Config.PublicKey, Config.PrivateKey).Market;
+        GBinanceFuturesClient.Market market;
+
+        [SetUp]
+        public void SetUp()
+        {
+            GBinanceFuturesClient.BinanceFuturesClient client = new GBinanceFuturesClient.BinanceFuturesClient(Config.PublicKey, Config.PrivateKey);
+            client.UseTestnet(true);
+            market = client.Market;
+        }
 
         [Test]
         public void GetNationalAndLEverageBracketsForOneMarketTest()
