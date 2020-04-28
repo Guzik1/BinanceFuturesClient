@@ -45,6 +45,11 @@ namespace GBinanceFuturesClient
             //TODO change this exception to UnautorizedClientException();
         }
 
+        internal static long NowUnixTime()
+        {
+            return DateTimeOffset.UtcNow.ToUnixTimeSeconds();
+        }
+
         internal static dynamic TryGetResponseDynamic(RestClient rc)
         {
             if (CheckResult(rc))
@@ -60,15 +65,9 @@ namespace GBinanceFuturesClient
         static bool CheckResult(RestClient rc)
         {
             if (rc.ResponseHasNoErrors())
-            {
-                //throw new Exception(rc.GetStatusCode + " - " + rc.GetResponseToString);
-
                 return true;
-            }
             else
-                //return false;
-
-            throw new Exception(rc.GetStatusCode + " - " + rc.GetResponseToString);
+                throw new Exception(rc.GetResponseToString);
         }
     }
 }

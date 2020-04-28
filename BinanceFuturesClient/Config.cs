@@ -12,7 +12,7 @@ namespace GBinanceFuturesClient
 
         static string Url { get; set; } = ApiUrl;
 
-        internal static bool IsTestnet { get; set; } = false;
+        internal static bool IsTestnet { get; private set; } = false;
 
         internal static string ApiPublicMarketUrl { 
             get { 
@@ -34,12 +34,27 @@ namespace GBinanceFuturesClient
             }
         }
 
-        static void UseTestnet(bool use)
+        internal static string ApiAccountTransferAndHistoryUrl
+        {
+            get
+            {
+                return @"https://api.binance.com/sapi/v1/futures/";
+            }
+        }
+
+        internal static void UseTestnet(bool use)
         {
             if (use)
+            {
                 Url = TestNetUrl;
+                IsTestnet = true;
+            }
             else
+            {
+                IsTestnet = false;
                 Url = ApiUrl;
+            }
+
         }
     }
 }

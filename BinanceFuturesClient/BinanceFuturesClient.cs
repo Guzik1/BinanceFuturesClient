@@ -13,9 +13,14 @@ namespace GBinanceFuturesClient
         SessionData session = new SessionData();
 
         /// <summary>
-        /// Market api methods object.
+        /// Market endpoints. Market api methods object.
         /// </summary>
         public Market Market { get; private set; }
+
+        /// <summary>
+        /// Trade/Account endpoints. All trade api methods.
+        /// </summary>
+        public Trade Trade { get; private set; }
 
         /// <summary>
         /// Default constructor, for unautorized client.
@@ -44,14 +49,19 @@ namespace GBinanceFuturesClient
             session.Autorize(publicKey, privateKey);
         }
 
+        /// <summary>
+        /// Use testnet for own app testing.
+        /// </summary>
+        /// <param name="use">True for use testnet, false for disable testneta and set norlmal url address.</param>
         public void UseTestnet(bool use)
         {
-            UseTestnet(use);
+            Config.UseTestnet(use);
         }
 
         void Inicjalize()
         {
             Market = new Market(session);
+            Trade = new Trade(session);
         }
     }
 }

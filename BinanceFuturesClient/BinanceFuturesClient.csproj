@@ -11,12 +11,17 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="GRestApiClient" Version="1.1.0" />
+    <PackageReference Include="DefaultDocumentation" Version="0.6.2">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="GRestApiClient" Version="1.2.0" />
     <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
   </ItemGroup>
 
   <ItemGroup>
     <Folder Include="Model\Internal\" />
+    <Folder Include="Model\TradeRequest\" />
   </ItemGroup>
 
 </Project>

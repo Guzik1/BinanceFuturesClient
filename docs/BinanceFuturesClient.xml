@@ -4,6 +4,40 @@
         <name>GBinanceFuturesClient</name>
     </assembly>
     <members>
+        <member name="T:GBinanceFuturesClient.AutenticateMarket">
+            <summary>
+            Autenticate market endpoint. Implement IAddOwnHeaderToRequest interface. Use be GRestApiClient.
+            </summary>
+        </member>
+        <member name="M:GBinanceFuturesClient.AutenticateMarket.AddOwnHeader">
+            <summary>
+            Add headers to GET, PUT, DELETE methods. Use be GRestApiClient.
+            </summary>
+            <returns>Dictionary of header (keys and values).</returns>
+        </member>
+        <member name="M:GBinanceFuturesClient.AutenticateMarket.AddOwnHeaderPOST(System.Object)">
+            <summary>
+            Add headers to POST methods. Use be GRestApiClient.
+            </summary>
+            <returns>Dictionary of header (keys and values).</returns>
+        </member>
+        <member name="T:GBinanceFuturesClient.AutenticateTrade">
+            <summary>
+            Autenticate trade endpoint. Implement IAddOwnHeaderToRequest interface. Use be GRestApiClient.
+            </summary>
+        </member>
+        <member name="M:GBinanceFuturesClient.AutenticateTrade.AddOwnHeader">
+            <summary>
+            Add headers to GET, PUT, DELETE methods. Use be GRestApiClient.
+            </summary>
+            <returns>Dictionary of header (keys and values).</returns>
+        </member>
+        <member name="M:GBinanceFuturesClient.AutenticateTrade.AddOwnHeaderPOST(System.Object)">
+            <summary>
+            Add headers to POST methods. Use be GRestApiClient.
+            </summary>
+            <returns>Dictionary of header (keys and values).</returns>
+        </member>
         <member name="T:GBinanceFuturesClient.BinanceFuturesClient">
             <summary>
             Main of class, biance futures rest api client.
@@ -11,7 +45,12 @@
         </member>
         <member name="P:GBinanceFuturesClient.BinanceFuturesClient.Market">
             <summary>
-            Market api methods object.
+            Market endpoints. Market api methods object.
+            </summary>
+        </member>
+        <member name="P:GBinanceFuturesClient.BinanceFuturesClient.Trade">
+            <summary>
+            Trade/Account endpoints. All trade api methods.
             </summary>
         </member>
         <member name="M:GBinanceFuturesClient.BinanceFuturesClient.#ctor">
@@ -32,6 +71,12 @@
             </summary>
             <param name="publicKey">Public api key.</param>
             <param name="privateKey">Private api key.</param>
+        </member>
+        <member name="M:GBinanceFuturesClient.BinanceFuturesClient.UseTestnet(System.Boolean)">
+            <summary>
+            Use testnet for own app testing.
+            </summary>
+            <param name="use">True for use testnet, false for disable testneta and set norlmal url address.</param>
         </member>
         <member name="T:GBinanceFuturesClient.Market">
             <summary>
@@ -1039,6 +1084,26 @@
             <summary>
             Is buyer maker flag.
             </summary>
+        </member>
+        <member name="T:GBinanceFuturesClient.Trade">
+            <summary>
+            Binance futures account/trade endpoints methods.
+            </summary>
+        </member>
+        <member name="M:GBinanceFuturesClient.Trade.#ctor">
+            <summary>
+            Default constructor
+            </summary>
+        </member>
+        <member name="M:GBinanceFuturesClient.Trade.NewFundsTransfer(System.String,System.Decimal,System.Int32)">
+            <summary>
+            
+            </summary>
+            <param name="currencyToTransfer"></param>
+            <param name="amount"></param>
+            <param name="type">Type of transfer: 1: transfer from spot main account to future account,  
+            2: transfer from future account to spot main account</param>
+            <returns>Transaction identificator.</returns>
         </member>
     </members>
 </doc>

@@ -8,7 +8,15 @@ namespace BinanceIntegratedTests.Market
 {
     public class GetOpenInterestTests
     {
-        GBinanceFuturesClient.Market market = new GBinanceFuturesClient.BinanceFuturesClient().Market;
+        GBinanceFuturesClient.Market market;
+
+        [SetUp]
+        public void SetUp()
+        {
+            GBinanceFuturesClient.BinanceFuturesClient client = new GBinanceFuturesClient.BinanceFuturesClient(Config.PublicKey, Config.PrivateKey);
+            client.UseTestnet(true);
+            market = client.Market;
+        }
 
         [Test]
         public void GetOpenInterestTest()
