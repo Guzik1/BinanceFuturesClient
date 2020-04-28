@@ -20,7 +20,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Model\Internal\" />
     <Folder Include="Model\TradeRequest\" />
   </ItemGroup>
 

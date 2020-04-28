@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using GBinanceFuturesClient.Model.Market;
+using GBinanceFuturesClient.Inside;
 
 namespace GBinanceFuturesClient
 {

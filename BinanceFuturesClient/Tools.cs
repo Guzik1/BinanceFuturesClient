@@ -1,4 +1,5 @@
-﻿using RestApiClient;
+﻿using GBinanceFuturesClient.Model.Internal;
+using RestApiClient;
 using System;
 using System.Collections.Generic;
 
@@ -67,7 +68,10 @@ namespace GBinanceFuturesClient
             if (rc.ResponseHasNoErrors())
                 return true;
             else
-                throw new Exception(rc.GetResponseToString);
+            {
+                ErrorMessage error = JsonTools.DeserializeFromJson<ErrorMessage>(rc.GetResponseToString);
+                throw new ErrorMessageException(error.Code, error.Msg);
+            }
         }
     }
 }

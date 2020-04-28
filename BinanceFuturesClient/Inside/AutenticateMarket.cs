@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using RestApiClient;
 
-namespace GBinanceFuturesClient
+namespace GBinanceFuturesClient.Inside
 {
     /// <summary>
     /// Autenticate market endpoint. Implement IAddOwnHeaderToRequest interface. Use be GRestApiClient.

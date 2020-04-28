@@ -1,12 +1,12 @@
 #### [GBinanceFuturesClient](./index.md 'index')
-### [GBinanceFuturesClient](./GBinanceFuturesClient.md 'GBinanceFuturesClient').[AutenticateMarket](./GBinanceFuturesClient-AutenticateMarket.md 'GBinanceFuturesClient.AutenticateMarket')
-## AutenticateMarket.AddOwnHeaderPOST(object) Method
+### [GBinanceFuturesClient.Inside](./GBinanceFuturesClient-Inside.md 'GBinanceFuturesClient.Inside').[AutenticateTrade](./GBinanceFuturesClient-Inside-AutenticateTrade.md 'GBinanceFuturesClient.Inside.AutenticateTrade')
+## AutenticateTrade.AddOwnHeaderPOST(object) Method
 Add headers to POST methods. Use be GRestApiClient.  
 ```csharp
 public System.Collections.Generic.Dictionary<string,string> AddOwnHeaderPOST(object POSTDataToSend);
 ```
 #### Parameters
-<a name='GBinanceFuturesClient-AutenticateMarket-AddOwnHeaderPOST(object)-POSTDataToSend'></a>
+<a name='GBinanceFuturesClient-Inside-AutenticateTrade-AddOwnHeaderPOST(object)-POSTDataToSend'></a>
 `POSTDataToSend` [System.Object](https://docs.microsoft.com/en-us/dotnet/api/System.Object 'System.Object')  
   
 #### Returns

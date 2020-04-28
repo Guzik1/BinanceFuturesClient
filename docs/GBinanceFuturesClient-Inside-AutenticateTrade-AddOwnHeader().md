@@ -1,5 +1,5 @@
 #### [GBinanceFuturesClient](./index.md 'index')
-### [GBinanceFuturesClient](./GBinanceFuturesClient.md 'GBinanceFuturesClient').[AutenticateTrade](./GBinanceFuturesClient-AutenticateTrade.md 'GBinanceFuturesClient.AutenticateTrade')
+### [GBinanceFuturesClient.Inside](./GBinanceFuturesClient-Inside.md 'GBinanceFuturesClient.Inside').[AutenticateTrade](./GBinanceFuturesClient-Inside-AutenticateTrade.md 'GBinanceFuturesClient.Inside.AutenticateTrade')
 ## AutenticateTrade.AddOwnHeader() Method
 Add headers to GET, PUT, DELETE methods. Use be GRestApiClient.  
 ```csharp

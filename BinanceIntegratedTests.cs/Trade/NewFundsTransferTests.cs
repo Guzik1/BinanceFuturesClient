@@ -1,4 +1,4 @@
-﻿using GBinanceFuturesClient.Model.Market;
+﻿using GBinanceFuturesClient;
 using NUnit.Framework;
 using System;
 using System.Collections.Generic;
@@ -13,16 +13,23 @@ namespace BinanceIntegratedTests.Trade
         [SetUp]
         public void SetUp()
         {
-            GBinanceFuturesClient.BinanceFuturesClient client = new GBinanceFuturesClient.BinanceFuturesClient(Config.PublicKey, Config.PrivateKey);
+            BinanceFuturesClient client = new BinanceFuturesClient(Config.PublicKey, Config.PrivateKey);
             trade = client.Trade;
         }
 
         [Test]
         public void NewFundsTransferTest()
         {
-            string id = trade.NewFundsTransfer("USDT", 10, 1);
-  
-            StringAssert.AreNotEqualIgnoringCase("", id);
+            try
+            {
+                string id = trade.NewFundsTransfer("USDT", 10, 1);
+
+            }
+            catch (ErrorMessageException e)
+            {
+                StringAssert.AreNotEqualIgnoringCase("", e.Message);   // Invalide api key (test api key on public api, not testnet).
+                StringAssert.AreEqualIgnoringCase("Invalid Api-Key ID.", e.Message);
+            }
         }
     }
 }

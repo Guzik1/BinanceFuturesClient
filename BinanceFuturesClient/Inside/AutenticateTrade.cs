@@ -4,7 +4,7 @@ using System.Security.Cryptography;
 using System.Text;
 using RestApiClient;
 
-namespace GBinanceFuturesClient
+namespace GBinanceFuturesClient.Inside
 {
     /// <summary>
     /// Autenticate trade endpoint. Implement IAddOwnHeaderToRequest interface. Use be GRestApiClient.

@@ -1,4 +1,5 @@
-﻿using RestApiClient;
+﻿using GBinanceFuturesClient.Inside;
+using RestApiClient;
 using System;
 using System.Collections.Generic;
 using System.Text;
