@@ -44,6 +44,48 @@
             </summary>
             <param name="use">True for use testnet, false for disable testneta and set norlmal url address.</param>
         </member>
+        <member name="T:GBinanceFuturesClient.ErrorMessageException">
+            <summary>
+            Error message exception.
+            </summary>
+        </member>
+        <member name="P:GBinanceFuturesClient.ErrorMessageException.Code">
+            <summary>
+            Error code.
+            </summary>
+        </member>
+        <member name="M:GBinanceFuturesClient.ErrorMessageException.#ctor">
+            <summary>
+            Default constructor.
+            </summary>
+        </member>
+        <member name="M:GBinanceFuturesClient.ErrorMessageException.#ctor(System.String)">
+            <summary>
+            Exception constructor with message.
+            </summary>
+            <param name="message">Message.</param>
+        </member>
+        <member name="M:GBinanceFuturesClient.ErrorMessageException.#ctor(System.Int32,System.String)">
+            <summary>
+            Exception constructor with code and message.
+            </summary>
+            <param name="code">Exception code.</param>
+            <param name="message">Exception message.</param>
+        </member>
+        <member name="M:GBinanceFuturesClient.ErrorMessageException.#ctor(System.Int32,System.String,System.Exception)">
+            <summary>
+            Exception constructor with code, message and exception stack.
+            </summary>
+            <param name="code">Exception code.</param>
+            <param name="message">Exception message.</param>
+            <param name="innerException">Inner exception.</param>
+        </member>
+        <member name="M:GBinanceFuturesClient.ErrorMessageException.ToString">
+            <summary>
+            Convert exception to string. Format: "ErrorMessageException : msg: " + Message + ", code: " + code.
+            </summary>
+            <returns></returns>
+        </member>
         <member name="T:GBinanceFuturesClient.Inside.AutenticateMarket">
             <summary>
             Autenticate market endpoint. Implement IAddOwnHeaderToRequest interface. Use be GRestApiClient.
