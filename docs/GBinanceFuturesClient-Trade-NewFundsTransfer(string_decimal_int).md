@@ -1,7 +1,7 @@
 #### [GBinanceFuturesClient](./index.md 'index')
 ### [GBinanceFuturesClient](./GBinanceFuturesClient.md 'GBinanceFuturesClient').[Trade](./GBinanceFuturesClient-Trade.md 'GBinanceFuturesClient.Trade')
 ## Trade.NewFundsTransfer(string, decimal, int) Method
-  
+Transfer funds between futures and spot account.  
 ```csharp
 public string NewFundsTransfer(string currencyToTransfer, decimal amount, int type);
 ```

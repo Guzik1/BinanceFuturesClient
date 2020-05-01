@@ -30,7 +30,17 @@ namespace GBinanceFuturesClient
         }
 
         /// <summary>
-        /// Constructor to set public and private keys for sercure client.
+        /// Constructor to set public keys for sercure client, use for market endpoint.
+        /// </summary>
+        /// <param name="publicKey">Public api key.</param>
+        public BinanceFuturesClient(string publicKey)
+        {
+            Inicjalize();
+            SetAutorizationData(publicKey);
+        }
+
+        /// <summary>
+        /// Constructor to set public and private keys for sercure client, use for trading endpoint.
         /// </summary>
         /// <param name="publicKey">Public api key.</param>
         /// <param name="privateKey">Private api key.</param>
@@ -44,7 +54,7 @@ namespace GBinanceFuturesClient
         /// </summary>
         /// <param name="publicKey">Public api key.</param>
         /// <param name="privateKey">Private api key.</param>
-        public void SetAutorizationData(string publicKey, string privateKey)
+        public void SetAutorizationData(string publicKey, string privateKey = "")
         {
             session.Autorize(publicKey, privateKey);
         }

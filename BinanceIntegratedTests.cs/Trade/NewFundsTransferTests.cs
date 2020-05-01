@@ -8,18 +8,13 @@ namespace BinanceIntegratedTests.Trade
 {
     public class NewFundsTransferTests
     {
-        GBinanceFuturesClient.Trade trade;
 
-        [SetUp]
-        public void SetUp()
-        {
-            BinanceFuturesClient client = new BinanceFuturesClient(Config.PublicKey, Config.PrivateKey);
-            trade = client.Trade;
-        }
 
         [Test]
         public void NewFundsTransferTest()
         {
+            GBinanceFuturesClient.Trade trade = new BinanceFuturesClient(Config.PublicKey, Config.PrivateKey).Trade;
+
             try
             {
                 string id = trade.NewFundsTransfer("USDT", 10, 1);
@@ -29,6 +24,25 @@ namespace BinanceIntegratedTests.Trade
             {
                 StringAssert.AreNotEqualIgnoringCase("", e.Message);   // Invalide api key (test api key on public api, not testnet).
                 StringAssert.AreEqualIgnoringCase("Invalid Api-Key ID.", e.Message);
+            }
+        }
+
+        [Test]
+        public void UnautorizeUserTest()
+        {
+            GBinanceFuturesClient.Trade trade = new BinanceFuturesClient().Trade;
+
+            try
+            {
+                string id = trade.NewFundsTransfer("USDT", 10, 1);
+                Assert.Fail();
+            }
+            catch (ErrorMessageException e) { 
+                Assert.Fail(e.Message); 
+            }
+            catch (Exception)
+            {
+                Assert.IsTrue(true);
             }
         }
     }

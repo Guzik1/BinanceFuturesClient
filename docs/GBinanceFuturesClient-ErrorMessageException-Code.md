@@ -1,7 +1,7 @@
 #### [GBinanceFuturesClient](./index.md 'index')
 ### [GBinanceFuturesClient](./GBinanceFuturesClient.md 'GBinanceFuturesClient').[ErrorMessageException](./GBinanceFuturesClient-ErrorMessageException.md 'GBinanceFuturesClient.ErrorMessageException')
 ## ErrorMessageException.Code Property
-Error code.  
+Server error code.  
 ```csharp
 public int Code { get; }
 ```

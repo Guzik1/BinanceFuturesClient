@@ -10,10 +10,18 @@ namespace GBinanceFuturesClient
 
         internal string PrivateKey { get; set; }
 
-        internal bool IsAutorized { get; set; }
+        internal bool IsMarketAutorized { get; set; }
+
+        internal bool IsTradingAutorized { get; set; }
 
         internal SessionData() {
-            IsAutorized = false;
+            IsMarketAutorized = false;
+            IsTradingAutorized = false;
+        }
+
+        internal SessionData(string publicApi)
+        {
+            Autorize(publicApi);
         }
 
         internal SessionData(string publicApi, string privateApi)
@@ -21,11 +29,17 @@ namespace GBinanceFuturesClient
             Autorize(publicApi, privateApi);
         }
 
-        internal void Autorize(string publicApi, string privateApi)
+        internal void Autorize(string publicApi, string privateApi = "")
         {
             PublicKey = publicApi;
             PrivateKey = privateApi;
-            IsAutorized = true;
+
+            IsMarketAutorized = false;
+
+            if(privateApi.Length != 0)
+                IsTradingAutorized = true;
+            else 
+                IsTradingAutorized = false;
         }
     }
 }

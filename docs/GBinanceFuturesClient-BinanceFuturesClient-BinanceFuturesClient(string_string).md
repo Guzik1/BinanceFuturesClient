@@ -1,7 +1,7 @@
 #### [GBinanceFuturesClient](./index.md 'index')
 ### [GBinanceFuturesClient](./GBinanceFuturesClient.md 'GBinanceFuturesClient').[BinanceFuturesClient](./GBinanceFuturesClient-BinanceFuturesClient.md 'GBinanceFuturesClient.BinanceFuturesClient')
 ## BinanceFuturesClient(string, string) Constructor
-Constructor to set public and private keys for sercure client.  
+Constructor to set public and private keys for sercure client, use for trading endpoint.  
 ```csharp
 public BinanceFuturesClient(string publicKey, string privateKey);
 ```

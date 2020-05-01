@@ -3,7 +3,7 @@
 ## BinanceFuturesClient.SetAutorizationData(string, string) Method
 Set autorization data for autorize client.  
 ```csharp
-public void SetAutorizationData(string publicKey, string privateKey);
+public void SetAutorizationData(string publicKey, string privateKey="");
 ```
 #### Parameters
 <a name='GBinanceFuturesClient-BinanceFuturesClient-SetAutorizationData(string_string)-publicKey'></a>

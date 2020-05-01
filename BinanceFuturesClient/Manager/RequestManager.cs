@@ -52,16 +52,21 @@ namespace GBinanceFuturesClient.Manager
 
         void Autorize(string query = "")
         {
-            // TODO throw exception when client is unautorized.
+            // TODO change exception to UnautorizedClientException;
 
             if (autorization == Autorization.MARKET)
             {
-
+                if (!session.IsMarketAutorized)
+                    throw new Exception("Client is unautorized, use SetAutorizationData() method for autorize client, " +
+                        "method required public api key.");
 
                 client.AddOwnHeaderToRequest(new AutenticateMarket(session));
             }
             else if (autorization == Autorization.TRADING)
             {
+                if (!session.IsTradingAutorized)
+                    throw new Exception("Client is unautorized, use SetAutorizationData() method for autorize client, " +
+                        "method required public and private api key.");
 
                 client.AddOwnHeaderToRequest(new AutenticateTrade(session, query));
             }

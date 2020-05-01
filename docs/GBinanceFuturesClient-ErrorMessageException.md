@@ -1,7 +1,7 @@
 #### [GBinanceFuturesClient](./index.md 'index')
 ### [GBinanceFuturesClient](./GBinanceFuturesClient.md 'GBinanceFuturesClient')
 ## ErrorMessageException Class
-Error message exception.  
+Error message exception, throw when server was return error message.  
 ```csharp
 public class ErrorMessageException : Exception
 ```

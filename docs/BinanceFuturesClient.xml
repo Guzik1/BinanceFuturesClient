@@ -24,9 +24,15 @@
             Default constructor, for unautorized client.
             </summary>
         </member>
+        <member name="M:GBinanceFuturesClient.BinanceFuturesClient.#ctor(System.String)">
+            <summary>
+            Constructor to set public keys for sercure client, use for market endpoint.
+            </summary>
+            <param name="publicKey">Public api key.</param>
+        </member>
         <member name="M:GBinanceFuturesClient.BinanceFuturesClient.#ctor(System.String,System.String)">
             <summary>
-            Constructor to set public and private keys for sercure client.
+            Constructor to set public and private keys for sercure client, use for trading endpoint.
             </summary>
             <param name="publicKey">Public api key.</param>
             <param name="privateKey">Private api key.</param>
@@ -46,12 +52,12 @@
         </member>
         <member name="T:GBinanceFuturesClient.ErrorMessageException">
             <summary>
-            Error message exception.
+            Error message exception, throw when server was return error message.
             </summary>
         </member>
         <member name="P:GBinanceFuturesClient.ErrorMessageException.Code">
             <summary>
-            Error code.
+            Server error code.
             </summary>
         </member>
         <member name="M:GBinanceFuturesClient.ErrorMessageException.#ctor">
@@ -61,30 +67,30 @@
         </member>
         <member name="M:GBinanceFuturesClient.ErrorMessageException.#ctor(System.String)">
             <summary>
-            Exception constructor with message.
+            Constructor with message.
             </summary>
-            <param name="message">Message.</param>
+            <param name="message">Error message.</param>
         </member>
         <member name="M:GBinanceFuturesClient.ErrorMessageException.#ctor(System.Int32,System.String)">
             <summary>
-            Exception constructor with code and message.
+            Constructor with error code and message.
             </summary>
-            <param name="code">Exception code.</param>
-            <param name="message">Exception message.</param>
+            <param name="code">Error code.</param>
+            <param name="message">Error message.</param>
         </member>
         <member name="M:GBinanceFuturesClient.ErrorMessageException.#ctor(System.Int32,System.String,System.Exception)">
             <summary>
-            Exception constructor with code, message and exception stack.
+            Constructor with error code, error message and exception stack.
             </summary>
-            <param name="code">Exception code.</param>
-            <param name="message">Exception message.</param>
-            <param name="innerException">Inner exception.</param>
+            <param name="code">Error code.</param>
+            <param name="message">Error message.</param>
+            <param name="innerException">Inner exception stack.</param>
         </member>
         <member name="M:GBinanceFuturesClient.ErrorMessageException.ToString">
             <summary>
-            Convert exception to string. Format: "ErrorMessageException : msg: " + Message + ", code: " + code.
+            Convert exception object to string.
             </summary>
-            <returns></returns>
+            <returns>Return string, format: "ErrorMessageException : msg: " + Message + ", code: " + code</returns>
         </member>
         <member name="T:GBinanceFuturesClient.Inside.AutenticateMarket">
             <summary>
@@ -1132,14 +1138,9 @@
             Binance futures account/trade endpoints methods.
             </summary>
         </member>
-        <member name="M:GBinanceFuturesClient.Trade.#ctor">
-            <summary>
-            Default constructor
-            </summary>
-        </member>
         <member name="M:GBinanceFuturesClient.Trade.NewFundsTransfer(System.String,System.Decimal,System.Int32)">
             <summary>
-            
+            Transfer funds between futures and spot account.
             </summary>
             <param name="currencyToTransfer"></param>
             <param name="amount"></param>
