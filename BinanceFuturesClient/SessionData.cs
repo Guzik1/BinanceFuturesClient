@@ -34,7 +34,7 @@ namespace GBinanceFuturesClient
             PublicKey = publicApi;
             PrivateKey = privateApi;
 
-            IsMarketAutorized = false;
+            IsMarketAutorized = true;
 
             if(privateApi.Length != 0)
                 IsTradingAutorized = true;

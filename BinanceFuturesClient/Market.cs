@@ -1,16 +1,16 @@
-﻿using RestApiClient;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Text;
 using GBinanceFuturesClient.Model.Market;
-using GBinanceFuturesClient.Inside;
+using GBinanceFuturesClient.Manager;
+using GBinanceFuturesClient.Model.Internal;
 
 namespace GBinanceFuturesClient
 {
     /// <summary>
     /// Binance futures market endpoint.
     /// </summary>
-    public class Market
+    public partial class Market
     {
         SessionData session;
 
@@ -31,10 +31,10 @@ namespace GBinanceFuturesClient
         /// <returns>True if server response is ok, or false else.</returns>
         public bool Ping()
         {
-            RestClient client = new RestClient(Config.ApiPublicMarketUrl + "ping");
-            client.SendGET();
+            RequestManager manager = new RequestManager(session, Autorization.NONE);
+            manager.SendRequest(Config.ApiPublicMarketUrl + "ping");
 
-            return client.ResponseHasSuccessStatusCode;
+            return manager.ResponceHasSuccesStatusCode();
         }
         #endregion
 
@@ -45,10 +45,8 @@ namespace GBinanceFuturesClient
         /// <returns>Unix milisecond server time.</returns>
         public long GetServerTime()
         {
-            RestClient client = new RestClient(Config.ApiPublicMarketUrl + "time");
-            client.SendGET();
-
-            dynamic response = Tools.TryGetResponseDynamic(client);
+            RequestManager manager = new RequestManager(session, Autorization.NONE);
+            dynamic response = manager.SendRequest(Config.ApiPublicMarketUrl + "time");
 
             return response["serverTime"];
         }
@@ -61,7 +59,8 @@ namespace GBinanceFuturesClient
         /// <returns>Exchange info object.</returns>
         public ExchangeInfo GetExchangeInfo()
         {
-            return Tools.GetFromServer<ExchangeInfo>(Config.ApiPublicMarketUrl + "exchangeInfo");
+            return RequestManager.GetFromServer<ExchangeInfo>(Config.ApiPublicMarketUrl + "exchangeInfo", session);
+
         }
         #endregion
 
@@ -89,18 +88,14 @@ namespace GBinanceFuturesClient
 
         OrderBook SendGetOrderBookRequest(string symbol, int limit = 0)
         {
-            RestClient client = new RestClient(Config.ApiPublicMarketUrl + "depth");
-
             Dictionary<string, string> query = new Dictionary<string, string>();
             query.Add("symbol", symbol);
 
             if(limit != 0)
                 query.Add("limit", limit.ToString());
 
-            client.AddQuery(query);
-            client.SendGET();
-
-            return Tools.TryGetResponse<OrderBook>(client);
+            RequestManager manager = new RequestManager(session, Autorization.NONE);
+            return manager.SendRequest<OrderBook>(Config.ApiPublicMarketUrl + "depth", query: query);
         }
         #endregion
 
@@ -113,18 +108,14 @@ namespace GBinanceFuturesClient
         /// <returns>List of trades.</returns>
         public List<TradeItem> GetRectenTradesList(string symbol, int limit = 500)
         {
-            RestClient client = new RestClient(Config.ApiPublicMarketUrl + "trades");
-
             Dictionary<string, string> query = new Dictionary<string, string>();
             query.Add("symbol", symbol);
 
             if (limit != 0)
                 query.Add("limit", limit.ToString());
 
-            client.AddQuery(query);
-            client.SendGET();
-
-            return Tools.TryGetResponse<List<TradeItem>>(client);
+            RequestManager manager = new RequestManager(session, Autorization.NONE);
+            return manager.SendRequest<List<TradeItem>>(Config.ApiPublicMarketUrl + "trades", query: query);
         }
         #endregion
 
@@ -154,8 +145,6 @@ namespace GBinanceFuturesClient
 
         List<TradeItem> SendGetOldTradesLookup(string symbol, int limit = 500, long fromId = 0)
         {
-            RestClient client = new RestClient(Config.ApiPublicMarketUrl + "historicalTrades");
-
             Dictionary<string, string> query = new Dictionary<string, string>();
             query.Add("symbol", symbol);
 
@@ -165,10 +154,8 @@ namespace GBinanceFuturesClient
             if (fromId != 0)
                 query.Add("fromId", fromId.ToString());
 
-            client.AddQuery(query);
-            client.SendGET();
-
-            return Tools.TryGetResponse<List<TradeItem>>(client);
+            RequestManager manager = new RequestManager(session, Autorization.NONE);
+            return manager.SendRequest<List<TradeItem>>(Config.ApiPublicMarketUrl + "historicalTrades", query: query);
         }
         #endregion
 
@@ -212,8 +199,6 @@ namespace GBinanceFuturesClient
 
         List<AggregateTradeItem> SendGetAggregateTradeListRequest(string symbol, long startTime = 0, long endTime = 0, long fromId = 0, int limit = 500)
         {
-            RestClient client = new RestClient(Config.ApiPublicMarketUrl + "aggTrades");
-
             Dictionary<string, string> query = new Dictionary<string, string>();
             query.Add("symbol", symbol);
 
@@ -229,10 +214,8 @@ namespace GBinanceFuturesClient
             if (endTime != 0)
                 query.Add("endTime", endTime.ToString());
 
-            client.AddQuery(query);
-            client.SendGET();
-
-            return Tools.TryGetResponse<List<AggregateTradeItem>>(client);
+            RequestManager manager = new RequestManager(session, Autorization.NONE);
+            return manager.SendRequest<List<AggregateTradeItem>>(Config.ApiPublicMarketUrl + "aggTrades", query: query);
         }
         #endregion
 
@@ -266,8 +249,6 @@ namespace GBinanceFuturesClient
 
         List<CandlestickData> SendGetCandleStickRequest(string symbol, string interval, long startTime = 0, long endTime = 0, int limit = 500)
         {
-            RestClient client = new RestClient(Config.ApiPublicMarketUrl + "klines");
-
             Dictionary<string, string> query = new Dictionary<string, string>();
             query.Add("symbol", symbol);
             query.Add("interval", interval);
@@ -281,10 +262,8 @@ namespace GBinanceFuturesClient
             if (endTime != 0)
                 query.Add("endTime", endTime.ToString());
 
-            client.AddQuery(query);
-            client.SendGET();
-
-            List<List<string>> list = Tools.TryGetResponse<List<List<string>>>(client);
+            RequestManager manager = new RequestManager(session, Autorization.NONE);
+            List<List<string>> list = manager.SendRequest<List<List<string>>>(Config.ApiPublicMarketUrl + "klines", query: query);
 
             List<CandlestickData> candles = new List<CandlestickData>();
             for (int i = 0; i < list.Count; i++)
@@ -301,7 +280,7 @@ namespace GBinanceFuturesClient
         /// <returns>List of mark price object.</returns>
         public List<MarkPriceResponse> GetMarkPrice()
         {
-            return Tools.GetFromServer<List<MarkPriceResponse>>(Config.ApiPublicMarketUrl + "premiumIndex");
+            return RequestManager.GetFromServer<List<MarkPriceResponse>>(Config.ApiPublicMarketUrl + "premiumIndex", session);
         }
 
         /// <summary>
@@ -311,7 +290,11 @@ namespace GBinanceFuturesClient
         /// <returns>Mark price object.</returns>
         public MarkPriceResponse GetMarkPrice(string symbol)
         {
-            return Tools.GetFromServer<MarkPriceResponse>(Config.ApiPublicMarketUrl + "premiumIndex", symbol);
+            Dictionary<string, string> query = new Dictionary<string, string>();
+            query.Add("symbol", symbol);
+
+            RequestManager manager = new RequestManager(session, Autorization.NONE);
+            return manager.SendRequest<MarkPriceResponse>(Config.ApiPublicMarketUrl + "premiumIndex", query: query);
         }
         #endregion
 
@@ -342,8 +325,6 @@ namespace GBinanceFuturesClient
 
         List<FundingRateHistory> SendGetFundingRateHistoryRequest(string symbol, long startTime = 0, long endTime = 0, int limit = 100)
         {
-            RestClient client = new RestClient(Config.ApiPublicMarketUrl + "fundingRate");
-
             Dictionary<string, string> query = new Dictionary<string, string>();
             query.Add("symbol", symbol);
             
@@ -356,10 +337,8 @@ namespace GBinanceFuturesClient
             if (limit != 100)
                 query.Add("limit", limit.ToString());
 
-            client.AddQuery(query);
-            client.SendGET();
-
-            return Tools.TryGetResponse<List<FundingRateHistory>>(client);
+            RequestManager manager = new RequestManager(session, Autorization.NONE);
+            return manager.SendRequest<List<FundingRateHistory>>(Config.ApiPublicMarketUrl + "fundingRate", query: query);
         }
         #endregion
 
@@ -370,7 +349,7 @@ namespace GBinanceFuturesClient
         /// <returns>24 hours statistic ticker.</returns>
         public List<Ticker24h> Get24hTicker()
         {
-            return Tools.GetFromServer<List<Ticker24h>>(Config.ApiPublicMarketUrl + "ticker/24hr");
+            return RequestManager.GetFromServer<List<Ticker24h>>(Config.ApiPublicMarketUrl + "ticker/24hr", session);
         }
 
         /// <summary>
@@ -380,7 +359,11 @@ namespace GBinanceFuturesClient
         /// <returns>24 hours statistic ticker.</returns>
         public Ticker24h Get24hTicker(string symbol)
         {
-            return Tools.GetFromServer<Ticker24h>(Config.ApiPublicMarketUrl + "ticker/24hr", symbol);
+            Dictionary<string, string> query = new Dictionary<string, string>();
+            query.Add("symbol", symbol);
+
+            RequestManager manager = new RequestManager(session, Autorization.NONE);
+            return manager.SendRequest<Ticker24h>(Config.ApiPublicMarketUrl + "ticker/24hr", query: query);
         }
         #endregion
 
@@ -391,7 +374,7 @@ namespace GBinanceFuturesClient
         /// <returns>List of all symbols price ticker.</returns>
         public List<PriceTicker> GetSymbolPriceTicker()
         {
-            return Tools.GetFromServer<List<PriceTicker>>(Config.ApiPublicMarketUrl + "ticker/price");
+            return RequestManager.GetFromServer<List<PriceTicker>>(Config.ApiPublicMarketUrl + "ticker/price", session);
         }
 
         /// <summary>
@@ -400,7 +383,11 @@ namespace GBinanceFuturesClient
         /// <returns>Symbol price ticker object.</returns>
         public PriceTicker GetSymbolPriceTicker(string symbol)
         {
-            return Tools.GetFromServer<PriceTicker>(Config.ApiPublicMarketUrl + "ticker/price", symbol);
+            Dictionary<string, string> query = new Dictionary<string, string>();
+            query.Add("symbol", symbol);
+
+            RequestManager manager = new RequestManager(session, Autorization.NONE);
+            return manager.SendRequest<PriceTicker>(Config.ApiPublicMarketUrl + "ticker/price", query: query);
         }
         #endregion
 
@@ -411,7 +398,7 @@ namespace GBinanceFuturesClient
         /// <returns>List of order book ticker objects.</returns>
         public List<OrderBookTicker> GetOrderBookTicker()
         {
-            return Tools.GetFromServer<List<OrderBookTicker>>(Config.ApiPublicMarketUrl + "ticker/bookTicker");
+            return RequestManager.GetFromServer<List<OrderBookTicker>>(Config.ApiPublicMarketUrl + "ticker/bookTicker", session);
         }
 
         /// <summary>
@@ -421,7 +408,11 @@ namespace GBinanceFuturesClient
         /// <returns>Order book ticker object,</returns>
         public OrderBookTicker GetOrderBookTicker(string symbol)
         {
-            return Tools.GetFromServer<OrderBookTicker>(Config.ApiPublicMarketUrl + "ticker/bookTicker", symbol);
+            Dictionary<string, string> query = new Dictionary<string, string>();
+            query.Add("symbol", symbol);
+
+            RequestManager manager = new RequestManager(session, Autorization.NONE);
+            return manager.SendRequest<OrderBookTicker>(Config.ApiPublicMarketUrl + "ticker/bookTicker", query: query);
         }
         #endregion
 
@@ -452,7 +443,6 @@ namespace GBinanceFuturesClient
 
         List<LiquidationOrder> SendGetLiquidationOrdersAndGetResponse(string symbol = "", int limit = 100, long startTime = 0, long endTime = 0)
         {
-            RestClient client = new RestClient(Config.ApiPublicMarketUrl + "allForceOrders");
             Dictionary<string, string> query = new Dictionary<string, string>();
 
             if (symbol != "")
@@ -467,10 +457,8 @@ namespace GBinanceFuturesClient
             if (endTime != 0)
                 query.Add("endTime", endTime.ToString());
 
-            client.AddQuery(query);
-            client.SendGET();
-
-            return Tools.TryGetResponse<List<LiquidationOrder>>(client);
+            RequestManager manager = new RequestManager(session, Autorization.NONE);
+            return manager.SendRequest<List<LiquidationOrder>>(Config.ApiPublicMarketUrl + "allForceOrders", query: query);
         }
         #endregion
 
@@ -482,220 +470,11 @@ namespace GBinanceFuturesClient
         /// <returns>Open interest item object.</returns>
         public OpenInterestItem GetOpenInterest(string symbol)
         {
-            return Tools.GetFromServer<OpenInterestItem>(Config.ApiPublicMarketUrl + "openInterest", symbol);
-        }
-        #endregion
-
-        #region Get Notional and Leverage Brackets
-        /// <summary>
-        /// Get Notional and Leverage Brackets. Weight: 1.
-        /// </summary>
-        /// <returns>List of brackets.</returns>
-        public List<NationalAndLeverageBrackets> GetNationalAndLeverageBrackets()
-        {
-            Tools.CheckAutorizatioWhenUnautorizedThrowException(session);
-
-            RestClient client = new RestClient(Config.ApiPublicMarketUrl + "leverageBracket");
-            client.AddOwnHeaderToRequest(new AutenticateMarket(session));
-            client.SendGET();
-
-            return Tools.TryGetResponse<List<NationalAndLeverageBrackets>>(client);
-        }
-
-        /// <summary>
-        /// Get Notional and Leverage Brackets. Weight: 1.
-        /// </summary>
-        /// <param name="symbol">Currency pair code.</param>
-        /// <returns>Brackets object.</returns>
-        public NationalAndLeverageBrackets GetNationalAndLeverageBrackets(string symbol)
-        {
-            Tools.CheckAutorizatioWhenUnautorizedThrowException(session);
-
-            RestClient client = new RestClient(Config.ApiPublicMarketUrl + "leverageBracket");
-
             Dictionary<string, string> query = new Dictionary<string, string>();
             query.Add("symbol", symbol);
-            client.AddQuery(query);
-            client.AddOwnHeaderToRequest(new AutenticateMarket(session));
-            client.SendGET();
 
-            return Tools.TryGetResponse<NationalAndLeverageBrackets>(client);
-        }
-        #endregion
-
-        #region GetOpenInterestStatistics
-        /// <summary>
-        /// Get open interest statistics. If there is no limit of startime and endtime, it will return the value brfore the current time by default. Weight: 1.
-        /// </summary>
-        /// <param name="symbol">Currency pair code.</param>
-        /// <param name="period">Peroid, available: 5m, 15m, 30m, 1h, 2h, 4h, 6h, 12h, 1d.</param>
-        /// <param name="limit">Limit of result count, default 30, max 500. Optional</param>
-        /// <returns>List of open interest statistics objects.</returns>
-        public List<OpenInterestStatistics> GetOpenInterestStatistics(string symbol, string period, int limit = 30)
-        {
-            return GetOpenInterestStatistics(symbol, period, 0, 0, limit);
-        }
-
-        /// <summary>
-        /// Get open interest statistics. Only the data of the latest 30 days is available. Weight: 1.
-        /// </summary>
-        /// <param name="symbol">Currency pair code.</param>
-        /// <param name="period">Peroid, available: 5m, 15m, 30m, 1h, 2h, 4h, 6h, 12h, 1d.</param>
-        /// <param name="startTime">Get data from start time.</param>
-        /// <param name="endTime">Get data to end time.</param>
-        /// <param name="limit">Limit of result count, default 30, max 500. Optional</param>
-        /// <returns>List of open interest statistics objects.</returns>
-        public List<OpenInterestStatistics> GetOpenInterestStatistics(string symbol, string period, long startTime, long endTime, int limit = 30)
-        {
-            return SendGetStatisticOrRatoRequest<List<OpenInterestStatistics>>("openInterestHist", symbol, period, limit, startTime, endTime);
-        }
-        #endregion
-
-        #region Get Top Trader Long/Short Ratio (Accounts)
-        /// <summary>
-        /// Get top trader long/short accounts ratio. If there is no limit of startime and endtime, it will return the value brfore the 
-        /// current time by default. Weight: 1.
-        /// </summary>
-        /// <param name="symbol">Currency pair code.</param>
-        /// <param name="period">Peroid, available: 5m, 15m, 30m, 1h, 2h, 4h, 6h, 12h, 1d.</param>
-        /// <param name="limit">Limit of result count, default 30, max 500. Optional</param>
-        /// <returns>List of ratio item objects.</returns>
-        public List<RatioItem> GetTopTradeLongShortAccountsRatio(string symbol, string period, int limit = 30)
-        {
-            return GetTopTradeLongShortAccountsRatio(symbol, period, 0, 0, limit);
-        }
-
-        /// <summary>
-        /// Get top trader long/short accounts ratio. If there is no limit of startime and endtime, it will return the value brfore the 
-        /// current time by default. Only the data of the latest 30 days is available. Weight: 1.
-        /// </summary>
-        /// <param name="symbol">Currency pair code.</param>
-        /// <param name="period">Peroid, available: 5m, 15m, 30m, 1h, 2h, 4h, 6h, 12h, 1d.</param>
-        /// <param name="startTime"></param>
-        /// <param name="endTime"></param>
-        /// <param name="limit">Limit of result count, default 30, max 500. Optional</param>
-        /// <returns>List of ratio item objects.</returns>
-        public List<RatioItem> GetTopTradeLongShortAccountsRatio(string symbol, string period, long startTime, long endTime, int limit = 30)
-        {
-            return SendGetStatisticOrRatoRequest<List<RatioItem>>("topLongShortAccountRatio", symbol, period, limit, startTime, endTime);
-        }
-        #endregion
-
-        #region Get Top Trader Long/Short Ratio (Positions)
-        /// <summary>
-        /// Get top trader long/short positions ratio. If there is no limit of startime and endtime, it will return the value brfore the 
-        /// current time by default. Weight: 1.
-        /// </summary>
-        /// <param name="symbol">Currency pair code.</param>
-        /// <param name="period">Peroid, available: 5m, 15m, 30m, 1h, 2h, 4h, 6h, 12h, 1d.</param>
-        /// <param name="limit">Limit of result count, default 30, max 500. Optional</param>
-        /// <returns>List of ratio item objects.</returns>
-        public List<RatioItem> GetTopTradeLongShortPositionsRatio(string symbol, string period, int limit = 30)
-        {
-            return GetTopTradeLongShortPositionsRatio(symbol, period, 0, 0, limit);
-        }
-
-        /// <summary>
-        /// Get top trader long/short positions ratio. If there is no limit of startime and endtime, it will return the value brfore the 
-        /// current time by default. Only the data of the latest 30 days is available. Weight: 1.
-        /// </summary>
-        /// <param name="symbol">Currency pair code.</param>
-        /// <param name="period">Peroid, available: 5m, 15m, 30m, 1h, 2h, 4h, 6h, 12h, 1d.</param>
-        /// <param name="startTime"></param>
-        /// <param name="endTime"></param>
-        /// <param name="limit">Limit of result count, default 30, max 500. Optional</param>
-        /// <returns>List of ratio item objects.</returns>
-        public List<RatioItem> GetTopTradeLongShortPositionsRatio(string symbol, string period, long startTime, long endTime, int limit = 30)
-        {
-            return SendGetStatisticOrRatoRequest<List<RatioItem>>("topLongShortPositionRatio", symbol, period, limit, startTime, endTime);
-        }
-        #endregion
-
-        #region Get Long/Short Ratio
-        /// <summary>
-        /// Get top trader long/short ratio. If there is no limit of startime and endtime, it will return the value brfore the 
-        /// current time by default. Weight: 1.
-        /// </summary>
-        /// <param name="symbol">Currency pair code.</param>
-        /// <param name="period">Peroid, available: 5m, 15m, 30m, 1h, 2h, 4h, 6h, 12h, 1d.</param>
-        /// <param name="limit">Limit of result count, default 30, max 500. Optional</param>
-        /// <returns>List of ratio item objects.</returns>
-        public List<RatioItem> GetTopTradeLongShortRatio(string symbol, string period, int limit = 30)
-        {
-            return GetTopTradeLongShortRatio(symbol, period, 0, 0, limit);
-        }
-
-        /// <summary>
-        /// Get top trader long/short ratio. If there is no limit of startime and endtime, it will return the value brfore the 
-        /// current time by default. Only the data of the latest 30 days is available. Weight: 1.
-        /// </summary>
-        /// <param name="symbol">Currency pair code.</param>
-        /// <param name="period">Peroid, available: 5m, 15m, 30m, 1h, 2h, 4h, 6h, 12h, 1d.</param>
-        /// <param name="startTime"></param>
-        /// <param name="endTime"></param>
-        /// <param name="limit">Limit of result count, default 30, max 500. Optional</param>
-        /// <returns>List of ratio item objects.</returns>
-        public List<RatioItem> GetTopTradeLongShortRatio(string symbol, string period, long startTime, long endTime, int limit = 30)
-        {
-            return SendGetStatisticOrRatoRequest<List<RatioItem>>("globalLongShortAccountRatio", symbol, period, limit, startTime, endTime);
-        }
-        #endregion
-
-        #region Get Taker Buy/Sell Volume
-        /// <summary>
-        /// Get taker, buy/selll volume. If there is no limit of startime and endtime, it will return the value brfore the 
-        /// current time by default. Weight: 1.
-        /// </summary>
-        /// <param name="symbol">Currency pair code.</param>
-        /// <param name="period">Peroid, available: 5m, 15m, 30m, 1h, 2h, 4h, 6h, 12h, 1d.</param>
-        /// <param name="limit">Limit of result count, default 30, max 500. Optional</param>
-        /// <returns>List of buy sell volume objects.</returns>
-        public List<BuySellVolume> GetTakerBuySellVolume(string symbol, string period, int limit = 30)
-        {
-            return GetTakerBuySellVolume(symbol, period, 0, 0, limit);
-        }
-
-        /// <summary>
-        /// Get taker, buy/selll volume. If there is no limit of startime and endtime, it will return the value brfore the 
-        /// current time by default. Only the data of the latest 30 days is available. Weight: 1.
-        /// </summary>
-        /// <param name="symbol">Currency pair code.</param>
-        /// <param name="period">Peroid, available: 5m, 15m, 30m, 1h, 2h, 4h, 6h, 12h, 1d.</param>
-        /// <param name="startTime"></param>
-        /// <param name="endTime"></param>
-        /// <param name="limit">Limit of result count, default 30, max 500. Optional</param>
-        /// <returns>List of buy sell volume objects.</returns>
-        public List<BuySellVolume> GetTakerBuySellVolume(string symbol, string period, long startTime, long endTime, int limit = 30)
-        {
-            return SendGetStatisticOrRatoRequest<List<BuySellVolume>>("takerlongshortRatio", symbol, period, limit, startTime, endTime);
-        }
-        #endregion
-
-        #region Tools for ratio and volume requests (private)
-        T SendGetStatisticOrRatoRequest<T>(string url, string symbol, string period, int limit = 30, long startTime = 0, long endTime = 0)
-        {
-            Tools.CheckAutorizatioWhenUnautorizedThrowException(session);
-
-            RestClient client = new RestClient(Config.ApiFuturesDataUrl + url);
-
-            Dictionary<string, string> query = new Dictionary<string, string>();
-            query.Add("symbol", symbol);
-            query.Add("period", period);
-
-            if (limit != 30)
-                query.Add("limit", limit.ToString());
-
-            if (startTime != 0)
-                query.Add("startTime", startTime.ToString());
-
-            if (endTime != 0)
-                query.Add("endTime", endTime.ToString());
-
-            client.AddQuery(query);
-            client.AddOwnHeaderToRequest(new AutenticateMarket(session));
-            client.SendGET();
-
-            return Tools.TryGetResponse<T>(client);
+            RequestManager manager = new RequestManager(session, Autorization.NONE);
+            return manager.SendRequest<OpenInterestItem>(Config.ApiPublicMarketUrl + "openInterest", query: query);
         }
         #endregion
     }

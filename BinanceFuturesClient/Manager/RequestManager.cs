@@ -21,7 +21,13 @@ namespace GBinanceFuturesClient.Manager
             this.autorization = autorization;
         }
 
-        internal Excepted SendRequest<Excepted>(MethodsType method, string url,
+        internal static Excepted GetFromServer<Excepted>(string url, SessionData session)
+        {
+            RequestManager manager = new RequestManager(session, Autorization.NONE);
+            return manager.SendRequest<Excepted>(url);
+        }
+
+        internal Excepted SendRequest<Excepted>(string url, MethodsType method = MethodsType.GET,
             Dictionary<string, string> query = null, object objectToSend = null)
         {
             SendRequestAndGetResponse(method, url, query, objectToSend);
@@ -29,12 +35,17 @@ namespace GBinanceFuturesClient.Manager
             return TryGetResponse<Excepted>(client);
         }
 
-        internal dynamic SendRequest(MethodsType method, string url,
+        internal dynamic SendRequest(string url, MethodsType method = MethodsType.GET,
             Dictionary<string, string> query = null, object objectToSend = null)
         {
             SendRequestAndGetResponse(method, url, query, objectToSend);
 
             return TryGetResponseDynamic(client);
+        }
+
+        internal bool ResponceHasSuccesStatusCode()
+        {
+            return client.ResponseHasSuccessStatusCode;
         }
 
         void SendRequestAndGetResponse(MethodsType method, string url, Dictionary<string, string> query = null, object objectToSend = null)

@@ -38,7 +38,7 @@ namespace GBinanceFuturesClient
             query.Add("timestamp", Tools.NowUnixTime().ToString());
 
             RequestManager manager = new RequestManager(session, Autorization.TRADING);
-            dynamic response = manager.SendRequest(MethodsType.POST, Config.ApiAccountTransferAndHistoryUrl + "transfer", query);
+            dynamic response = manager.SendRequest(Config.ApiAccountTransferAndHistoryUrl + "transfer", MethodsType.POST, query);
 
             return response["tranId"];
         }

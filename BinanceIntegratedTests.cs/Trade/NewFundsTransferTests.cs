@@ -17,7 +17,7 @@ namespace BinanceIntegratedTests.Trade
 
             try
             {
-                string id = trade.NewFundsTransfer("USDT", 10, 1);
+                trade.NewFundsTransfer("USDT", 10, 1);
 
             }
             catch (ErrorMessageException e)
