@@ -32,7 +32,7 @@ namespace GBinanceFuturesClient
         public bool Ping()
         {
             RequestManager manager = new RequestManager(session, Autorization.NONE);
-            manager.SendRequest(Config.ApiPublicMarketUrl + "ping");
+            manager.SendRequest(Config.ApiPublicUrl + "ping");
 
             return manager.ResponceHasSuccesStatusCode();
         }
@@ -46,7 +46,7 @@ namespace GBinanceFuturesClient
         public long GetServerTime()
         {
             RequestManager manager = new RequestManager(session, Autorization.NONE);
-            dynamic response = manager.SendRequest(Config.ApiPublicMarketUrl + "time");
+            dynamic response = manager.SendRequest(Config.ApiPublicUrl + "time");
 
             return response["serverTime"];
         }
@@ -59,7 +59,7 @@ namespace GBinanceFuturesClient
         /// <returns>Exchange info object.</returns>
         public ExchangeInfo GetExchangeInfo()
         {
-            return RequestManager.GetFromServer<ExchangeInfo>(Config.ApiPublicMarketUrl + "exchangeInfo", session);
+            return RequestManager.GetFromServer<ExchangeInfo>(Config.ApiPublicUrl + "exchangeInfo", session);
 
         }
         #endregion
@@ -95,7 +95,7 @@ namespace GBinanceFuturesClient
                 query.Add("limit", limit.ToString());
 
             RequestManager manager = new RequestManager(session, Autorization.NONE);
-            return manager.SendRequest<OrderBook>(Config.ApiPublicMarketUrl + "depth", query: query);
+            return manager.SendRequest<OrderBook>(Config.ApiPublicUrl + "depth", query: query);
         }
         #endregion
 
@@ -115,7 +115,7 @@ namespace GBinanceFuturesClient
                 query.Add("limit", limit.ToString());
 
             RequestManager manager = new RequestManager(session, Autorization.NONE);
-            return manager.SendRequest<List<TradeItem>>(Config.ApiPublicMarketUrl + "trades", query: query);
+            return manager.SendRequest<List<TradeItem>>(Config.ApiPublicUrl + "trades", query: query);
         }
         #endregion
 
@@ -155,7 +155,7 @@ namespace GBinanceFuturesClient
                 query.Add("fromId", fromId.ToString());
 
             RequestManager manager = new RequestManager(session, Autorization.NONE);
-            return manager.SendRequest<List<TradeItem>>(Config.ApiPublicMarketUrl + "historicalTrades", query: query);
+            return manager.SendRequest<List<TradeItem>>(Config.ApiPublicUrl + "historicalTrades", query: query);
         }
         #endregion
 
@@ -215,7 +215,7 @@ namespace GBinanceFuturesClient
                 query.Add("endTime", endTime.ToString());
 
             RequestManager manager = new RequestManager(session, Autorization.NONE);
-            return manager.SendRequest<List<AggregateTradeItem>>(Config.ApiPublicMarketUrl + "aggTrades", query: query);
+            return manager.SendRequest<List<AggregateTradeItem>>(Config.ApiPublicUrl + "aggTrades", query: query);
         }
         #endregion
 
@@ -263,7 +263,7 @@ namespace GBinanceFuturesClient
                 query.Add("endTime", endTime.ToString());
 
             RequestManager manager = new RequestManager(session, Autorization.NONE);
-            List<List<string>> list = manager.SendRequest<List<List<string>>>(Config.ApiPublicMarketUrl + "klines", query: query);
+            List<List<string>> list = manager.SendRequest<List<List<string>>>(Config.ApiPublicUrl + "klines", query: query);
 
             List<CandlestickData> candles = new List<CandlestickData>();
             for (int i = 0; i < list.Count; i++)
@@ -280,7 +280,7 @@ namespace GBinanceFuturesClient
         /// <returns>List of mark price object.</returns>
         public List<MarkPriceResponse> GetMarkPrice()
         {
-            return RequestManager.GetFromServer<List<MarkPriceResponse>>(Config.ApiPublicMarketUrl + "premiumIndex", session);
+            return RequestManager.GetFromServer<List<MarkPriceResponse>>(Config.ApiPublicUrl + "premiumIndex", session);
         }
 
         /// <summary>
@@ -294,7 +294,7 @@ namespace GBinanceFuturesClient
             query.Add("symbol", symbol);
 
             RequestManager manager = new RequestManager(session, Autorization.NONE);
-            return manager.SendRequest<MarkPriceResponse>(Config.ApiPublicMarketUrl + "premiumIndex", query: query);
+            return manager.SendRequest<MarkPriceResponse>(Config.ApiPublicUrl + "premiumIndex", query: query);
         }
         #endregion
 
@@ -338,7 +338,7 @@ namespace GBinanceFuturesClient
                 query.Add("limit", limit.ToString());
 
             RequestManager manager = new RequestManager(session, Autorization.NONE);
-            return manager.SendRequest<List<FundingRateHistory>>(Config.ApiPublicMarketUrl + "fundingRate", query: query);
+            return manager.SendRequest<List<FundingRateHistory>>(Config.ApiPublicUrl + "fundingRate", query: query);
         }
         #endregion
 
@@ -349,7 +349,7 @@ namespace GBinanceFuturesClient
         /// <returns>24 hours statistic ticker.</returns>
         public List<Ticker24h> Get24hTicker()
         {
-            return RequestManager.GetFromServer<List<Ticker24h>>(Config.ApiPublicMarketUrl + "ticker/24hr", session);
+            return RequestManager.GetFromServer<List<Ticker24h>>(Config.ApiPublicUrl + "ticker/24hr", session);
         }
 
         /// <summary>
@@ -363,7 +363,7 @@ namespace GBinanceFuturesClient
             query.Add("symbol", symbol);
 
             RequestManager manager = new RequestManager(session, Autorization.NONE);
-            return manager.SendRequest<Ticker24h>(Config.ApiPublicMarketUrl + "ticker/24hr", query: query);
+            return manager.SendRequest<Ticker24h>(Config.ApiPublicUrl + "ticker/24hr", query: query);
         }
         #endregion
 
@@ -374,7 +374,7 @@ namespace GBinanceFuturesClient
         /// <returns>List of all symbols price ticker.</returns>
         public List<PriceTicker> GetSymbolPriceTicker()
         {
-            return RequestManager.GetFromServer<List<PriceTicker>>(Config.ApiPublicMarketUrl + "ticker/price", session);
+            return RequestManager.GetFromServer<List<PriceTicker>>(Config.ApiPublicUrl + "ticker/price", session);
         }
 
         /// <summary>
@@ -387,7 +387,7 @@ namespace GBinanceFuturesClient
             query.Add("symbol", symbol);
 
             RequestManager manager = new RequestManager(session, Autorization.NONE);
-            return manager.SendRequest<PriceTicker>(Config.ApiPublicMarketUrl + "ticker/price", query: query);
+            return manager.SendRequest<PriceTicker>(Config.ApiPublicUrl + "ticker/price", query: query);
         }
         #endregion
 
@@ -398,7 +398,7 @@ namespace GBinanceFuturesClient
         /// <returns>List of order book ticker objects.</returns>
         public List<OrderBookTicker> GetOrderBookTicker()
         {
-            return RequestManager.GetFromServer<List<OrderBookTicker>>(Config.ApiPublicMarketUrl + "ticker/bookTicker", session);
+            return RequestManager.GetFromServer<List<OrderBookTicker>>(Config.ApiPublicUrl + "ticker/bookTicker", session);
         }
 
         /// <summary>
@@ -412,7 +412,7 @@ namespace GBinanceFuturesClient
             query.Add("symbol", symbol);
 
             RequestManager manager = new RequestManager(session, Autorization.NONE);
-            return manager.SendRequest<OrderBookTicker>(Config.ApiPublicMarketUrl + "ticker/bookTicker", query: query);
+            return manager.SendRequest<OrderBookTicker>(Config.ApiPublicUrl + "ticker/bookTicker", query: query);
         }
         #endregion
 
@@ -458,7 +458,7 @@ namespace GBinanceFuturesClient
                 query.Add("endTime", endTime.ToString());
 
             RequestManager manager = new RequestManager(session, Autorization.NONE);
-            return manager.SendRequest<List<LiquidationOrder>>(Config.ApiPublicMarketUrl + "allForceOrders", query: query);
+            return manager.SendRequest<List<LiquidationOrder>>(Config.ApiPublicUrl + "allForceOrders", query: query);
         }
         #endregion
 
@@ -474,7 +474,7 @@ namespace GBinanceFuturesClient
             query.Add("symbol", symbol);
 
             RequestManager manager = new RequestManager(session, Autorization.NONE);
-            return manager.SendRequest<OpenInterestItem>(Config.ApiPublicMarketUrl + "openInterest", query: query);
+            return manager.SendRequest<OpenInterestItem>(Config.ApiPublicUrl + "openInterest", query: query);
         }
         #endregion
     }

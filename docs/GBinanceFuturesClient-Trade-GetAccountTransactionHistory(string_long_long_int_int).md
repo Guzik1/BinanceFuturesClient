@@ -1,7 +1,7 @@
 #### [GBinanceFuturesClient](./index.md 'index')
 ### [GBinanceFuturesClient](./GBinanceFuturesClient.md 'GBinanceFuturesClient').[Trade](./GBinanceFuturesClient-Trade.md 'GBinanceFuturesClient.Trade')
 ## Trade.GetAccountTransactionHistory(string, long, long, int, int) Method
-Get future account transaction history list. Weight: 1.  
+Get future account transaction history list. Unavailable in testnet. Weight: 1.  
 ```csharp
 public GBinanceFuturesClient.Model.Trade.AccountTransactionHistory GetAccountTransactionHistory(string asset, long startTime, long endTime=0L, int current=1, int size=10);
 ```

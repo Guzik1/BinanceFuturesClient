@@ -23,7 +23,7 @@ namespace GBinanceFuturesClient
 
         #region New Future Account Transfer
         /// <summary>
-        /// Transfer funds between futures and spot account. Weight: 5.
+        /// Transfer funds between futures and spot account. Unavailable in testnet. Weight: 5.
         /// </summary>
         /// <param name="currencyToTransfer">Currency code.</param>
         /// <param name="amount">Transfer amount.</param>
@@ -47,7 +47,7 @@ namespace GBinanceFuturesClient
 
         #region Get Future Account Transaction History List
         /// <summary>
-        /// Get future account transaction history list. Weight: 1.
+        /// Get future account transaction history list. Unavailable in testnet. Weight: 1.
         /// </summary>
         /// <param name="asset">Currency code.</param>
         /// <param name="startTime">Unix timestamp start time.</param>
@@ -73,6 +73,32 @@ namespace GBinanceFuturesClient
 
             RequestManager manager = new RequestManager(session, Autorization.TRADING);
             return manager.SendRequest<AccountTransactionHistory>(Config.ApiAccountTransferAndHistoryUrl + "transfer", query: query);
+        }
+        #endregion
+
+        #region Change Position Mode
+        /// <summary>
+        /// Change user's position mode (Hedge Mode or One-way Mode) on EVERY symbol. Weight: 1
+        /// </summary>
+        /// <param name="dualSidePosition">Set true for Hedge Mode mode, false for One-way Mode</param>
+        /// <param name="recvWindow">Timing security, unix time milisecond. Specify the number of milliseconds after timestamp the request is valid for.</param>
+        /// <returns>True if the changes was successful, false the change was invalid.</returns>
+        public bool ChangePositionMode(bool dualSidePosition, long recvWindow = 5000)
+        {
+            Dictionary<string, string> query = new Dictionary<string, string>();
+            query.Add("dualSidePosition", dualSidePosition.ToString());
+            query.Add("timestamp", Tools.NowUnixTime().ToString());
+
+            if(recvWindow != 5000)
+                query.Add("recvWindow", recvWindow.ToString());
+
+            RequestManager manager = new RequestManager(session, Autorization.TRADING);
+            dynamic response = manager.SendRequest(Config.ApiPublicUrl + "positionSide/dual", MethodsType.POST, query);
+
+            if (response["code"] == 200 && response["msg"] == "success")
+                return true;
+            else
+                return false;
         }
         #endregion
     }

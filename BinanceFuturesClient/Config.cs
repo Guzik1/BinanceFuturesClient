@@ -14,7 +14,7 @@ namespace GBinanceFuturesClient
 
         internal static bool IsTestnet { get; private set; } = false;
 
-        internal static string ApiPublicMarketUrl { 
+        internal static string ApiPublicUrl { 
             get { 
                 return ApiUrl + "fapi/v1/"; 
             }

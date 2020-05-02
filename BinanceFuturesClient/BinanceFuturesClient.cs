@@ -60,7 +60,7 @@ namespace GBinanceFuturesClient
         }
 
         /// <summary>
-        /// Use testnet for own app testing.
+        /// Use testnet for own app testing. Testnet does not have all endpoints.
         /// </summary>
         /// <param name="use">True for use testnet, false for disable testneta and set norlmal url address.</param>
         public void UseTestnet(bool use)

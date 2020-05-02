@@ -377,7 +377,7 @@
         </member>
         <member name="M:GBinanceFuturesClient.BinanceFuturesClient.UseTestnet(System.Boolean)">
             <summary>
-            Use testnet for own app testing.
+            Use testnet for own app testing. Testnet does not have all endpoints.
             </summary>
             <param name="use">True for use testnet, false for disable testneta and set norlmal url address.</param>
         </member>
@@ -1190,7 +1190,7 @@
         </member>
         <member name="M:GBinanceFuturesClient.Trade.NewFundsTransfer(System.String,System.Decimal,System.Int32)">
             <summary>
-            Transfer funds between futures and spot account. Weight: 5.
+            Transfer funds between futures and spot account. Unavailable in testnet. Weight: 5.
             </summary>
             <param name="currencyToTransfer">Currency code.</param>
             <param name="amount">Transfer amount.</param>
@@ -1200,7 +1200,7 @@
         </member>
         <member name="M:GBinanceFuturesClient.Trade.GetAccountTransactionHistory(System.String,System.Int64,System.Int64,System.Int32,System.Int32)">
             <summary>
-            Get future account transaction history list. Weight: 1.
+            Get future account transaction history list. Unavailable in testnet. Weight: 1.
             </summary>
             <param name="asset">Currency code.</param>
             <param name="startTime">Unix timestamp start time.</param>
@@ -1208,6 +1208,14 @@
             <param name="current">Current page number, default: 1.</param>
             <param name="size">Limit of row count. default: 10, max: 100</param>
             <returns>Account transaction history object.</returns>
+        </member>
+        <member name="M:GBinanceFuturesClient.Trade.ChangePositionMode(System.Boolean,System.Int64)">
+            <summary>
+            Change user's position mode (Hedge Mode or One-way Mode) on EVERY symbol. Weight: 1
+            </summary>
+            <param name="dualSidePosition">Set true for Hedge Mode mode, false for One-way Mode</param>
+            <param name="recvWindow">Timing security, unix time milisecond. Specify the number of milliseconds after timestamp the request is valid for.</param>
+            <returns>True if the changes was successful, false the change was invalid.</returns>
         </member>
     </members>
 </doc>

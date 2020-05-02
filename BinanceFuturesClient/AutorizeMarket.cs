@@ -17,7 +17,7 @@ namespace GBinanceFuturesClient
         public List<NationalAndLeverageBrackets> GetNationalAndLeverageBrackets()
         {
             RequestManager manager = new RequestManager(session, Autorization.MARKET);
-            return manager.SendRequest<List<NationalAndLeverageBrackets>>(Config.ApiPublicMarketUrl + "leverageBracket");
+            return manager.SendRequest<List<NationalAndLeverageBrackets>>(Config.ApiPublicUrl + "leverageBracket");
         }
 
         /// <summary>
@@ -31,7 +31,7 @@ namespace GBinanceFuturesClient
             query.Add("symbol", symbol);
 
             RequestManager manager = new RequestManager(session, Autorization.MARKET);
-            return manager.SendRequest<NationalAndLeverageBrackets>(Config.ApiPublicMarketUrl + "leverageBracket", query: query);
+            return manager.SendRequest<NationalAndLeverageBrackets>(Config.ApiPublicUrl + "leverageBracket", query: query);
         }
         #endregion
 

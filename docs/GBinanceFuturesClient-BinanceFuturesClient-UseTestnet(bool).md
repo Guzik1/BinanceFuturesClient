@@ -1,7 +1,7 @@
 #### [GBinanceFuturesClient](./index.md 'index')
 ### [GBinanceFuturesClient](./GBinanceFuturesClient.md 'GBinanceFuturesClient').[BinanceFuturesClient](./GBinanceFuturesClient-BinanceFuturesClient.md 'GBinanceFuturesClient.BinanceFuturesClient')
 ## BinanceFuturesClient.UseTestnet(bool) Method
-Use testnet for own app testing.  
+Use testnet for own app testing. Testnet does not have all endpoints.  
 ```csharp
 public void UseTestnet(bool use);
 ```
