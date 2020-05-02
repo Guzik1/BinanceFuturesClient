@@ -1,4 +1,5 @@
-﻿using GBinanceFuturesClient.Model.Market;
+﻿using GBinanceFuturesClient;
+using GBinanceFuturesClient.Model.Market;
 using NUnit.Framework;
 using System;
 using System.Collections.Generic;
@@ -13,7 +14,7 @@ namespace BinanceIntegratedTests.Market
         [SetUp]
         public void SetUp()
         {
-            GBinanceFuturesClient.BinanceFuturesClient client = new GBinanceFuturesClient.BinanceFuturesClient(Config.PublicKey, Config.PrivateKey);
+            BinanceFuturesClient client = new BinanceFuturesClient(Config.PublicKey, Config.PrivateKey);
             client.UseTestnet(true);
             market = client.Market;
         }
@@ -21,7 +22,8 @@ namespace BinanceIntegratedTests.Market
         [Test]
         public void GetNationalAndLEverageBracketsForOneMarketTest()
         {
-            NationalAndLeverageBrackets nlb;
+            SetUp();
+               NationalAndLeverageBrackets nlb;
 
             try
             {
@@ -31,15 +33,17 @@ namespace BinanceIntegratedTests.Market
                 Assert.AreEqual("BTCUSDT", nlb.Symbol);
                 Assert.Greater(nlb.Brackets.Count, 0);
             }
-            catch(Exception)
+            catch(ErrorMessageException e)
             {
                 Assert.IsTrue(true);
+                //Assert.Fail(e.Message);
             }
         }
 
         [Test]
         public void GetAllNationalAndLEverageBracketsTest()
         {
+            SetUp();
             List<NationalAndLeverageBrackets> nlb = new List<NationalAndLeverageBrackets>();
 
             try
@@ -54,8 +58,9 @@ namespace BinanceIntegratedTests.Market
 
                 Assert.Greater(nlb[0].Brackets.Count, 0);
             }
-            catch (Exception)
+            catch (ErrorMessageException e)
             {
+                //Assert.Fail(e.Message);
                 Assert.IsTrue(true);
             }
         }

@@ -1217,5 +1217,11 @@
             <param name="recvWindow">Timing security, unix time milisecond. Specify the number of milliseconds after timestamp the request is valid for.</param>
             <returns>True if the changes was successful, false the change was invalid.</returns>
         </member>
+        <member name="M:GBinanceFuturesClient.Trade.GetCurrentPositionMode">
+            <summary>
+            Get user's position mode (Hedge Mode or One-way Mode ) on EVERY symbol. Weight: 30.
+            </summary>
+            <returns>Return ture for " Hedge Mode" or false for "One-way Mode".</returns>
+        </member>
     </members>
 </doc>

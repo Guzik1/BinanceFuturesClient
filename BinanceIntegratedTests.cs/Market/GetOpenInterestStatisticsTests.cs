@@ -1,4 +1,5 @@
 ﻿using GBinanceFuturesClient.Model.Market;
+using GBinanceFuturesClient;
 using NUnit.Framework;
 using System;
 using System.Collections.Generic;
@@ -8,16 +9,32 @@ namespace BinanceIntegratedTests.Market
 {
     public class GetOpenInterestStatisticsTests
     {
-        GBinanceFuturesClient.Market market = new GBinanceFuturesClient.BinanceFuturesClient(Config.PublicKey, Config.PrivateKey).Market;
+        GBinanceFuturesClient.Market market;
         List<OpenInterestStatistics> ois;
+
+        [SetUp]
+        public void OnSetUp()
+        {
+            BinanceFuturesClient client = new BinanceFuturesClient(Config.PublicKey, Config.PrivateKey);
+            client.UseTestnet(false);
+            market = client.Market;
+        }
 
         [Test]
         public void GetOpenInterestStatisticTest()
         {
-            ois = market.GetOpenInterestStatistics("BTCUSDT", "5m");
-            
-            Test();
-            Assert.AreEqual(30, ois.Count);
+            try
+            {
+                ois = market.GetOpenInterestStatistics("BTCUSDT", "5m");
+
+                Test();
+                Assert.AreEqual(30, ois.Count);
+
+            }
+            catch(ErrorMessageException e)
+            {
+                Assert.Fail(e.Code + " - " + e.Message);
+            }
         }
 
         [Test]

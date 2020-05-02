@@ -6,7 +6,7 @@ namespace GBinanceFuturesClient
 {
     internal static class Config
     {
-        const string TestNetUrl = "https://testnet.binancefuture.com";
+        const string TestNetUrl = "https://testnet.binancefuture.com/";
 
         const string ApiUrl = "https://fapi.binance.com/";
 
@@ -16,21 +16,21 @@ namespace GBinanceFuturesClient
 
         internal static string ApiPublicUrl { 
             get { 
-                return ApiUrl + "fapi/v1/"; 
+                return Url + "fapi/v1/"; 
             }
         }
 
         internal static string ApiFuturesDataUrl { 
             get 
             { 
-                return ApiUrl + "futures/data/"; 
+                return Url + "futures/data/"; 
             }
         }
 
         internal static string ApiPrivateUrl { 
             get
             { 
-                return ApiUrl + "sapi/v1/futures";
+                return Url + "sapi/v1/futures";
             }
         }
 

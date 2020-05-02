@@ -101,5 +101,24 @@ namespace GBinanceFuturesClient
                 return false;
         }
         #endregion
+
+        #region Get Current Position Mode
+        /// <summary>
+        /// Get user's position mode (Hedge Mode or One-way Mode ) on EVERY symbol. Weight: 30.
+        /// </summary>
+        /// <returns>Return ture for " Hedge Mode" or false for "One-way Mode".</returns>
+        public bool GetCurrentPositionMode()
+        {
+            Dictionary<string, string> query = new Dictionary<string, string>();
+            query.Add("timestamp", Tools.NowUnixTime().ToString());
+
+            RequestManager manager = new RequestManager(session, Autorization.TRADING);
+            dynamic response = manager.SendRequest(Config.ApiPublicUrl + "positionSide/dual", query: query);
+
+            return response["dualSidePosition"];
+        }
+        #endregion
+
+
     }
 }
