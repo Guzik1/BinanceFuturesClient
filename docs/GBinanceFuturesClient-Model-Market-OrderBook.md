@@ -5,7 +5,7 @@ Response model for [GetOrderBook(string)](./GBinanceFuturesClient-Market-GetOrde
 ```csharp
 public class OrderBook
 ```
-Inheritance [System.Object](https://docs.microsoft.com/en-us/dotnet/api/System.Object 'System.Object') &gt; [OrderBook](./GBinanceFuturesClient-Model-Market-OrderBook.md 'GBinanceFuturesClient.Model.Market.OrderBook')  
+Inheritance [System.Object](https://docs.microsoft.com/en-us/dotnet/api/System.Object 'System.Object') &#129106; OrderBook  
 ### Properties
 - [Asks](./GBinanceFuturesClient-Model-Market-OrderBook-Asks.md 'GBinanceFuturesClient.Model.Market.OrderBook.Asks')
 - [Bids](./GBinanceFuturesClient-Model-Market-OrderBook-Bids.md 'GBinanceFuturesClient.Model.Market.OrderBook.Bids')

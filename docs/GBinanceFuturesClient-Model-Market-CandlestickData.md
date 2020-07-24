@@ -5,7 +5,7 @@ Data model represent one candle.
 ```csharp
 public class CandlestickData
 ```
-Inheritance [System.Object](https://docs.microsoft.com/en-us/dotnet/api/System.Object 'System.Object') &gt; [CandlestickData](./GBinanceFuturesClient-Model-Market-CandlestickData.md 'GBinanceFuturesClient.Model.Market.CandlestickData')  
+Inheritance [System.Object](https://docs.microsoft.com/en-us/dotnet/api/System.Object 'System.Object') &#129106; CandlestickData  
 ### Constructors
 - [CandlestickData()](./GBinanceFuturesClient-Model-Market-CandlestickData-CandlestickData().md 'GBinanceFuturesClient.Model.Market.CandlestickData.CandlestickData()')
 ### Properties

@@ -5,7 +5,7 @@ Error message exception, throw when server was return error message.
 ```csharp
 public class ErrorMessageException : Exception
 ```
-Inheritance [System.Object](https://docs.microsoft.com/en-us/dotnet/api/System.Object 'System.Object') &gt; [System.Exception](https://docs.microsoft.com/en-us/dotnet/api/System.Exception 'System.Exception') &gt; [ErrorMessageException](./GBinanceFuturesClient-ErrorMessageException.md 'GBinanceFuturesClient.ErrorMessageException')  
+Inheritance [System.Object](https://docs.microsoft.com/en-us/dotnet/api/System.Object 'System.Object') &#129106; [System.Exception](https://docs.microsoft.com/en-us/dotnet/api/System.Exception 'System.Exception') &#129106; ErrorMessageException  
 ### Constructors
 - [ErrorMessageException()](./GBinanceFuturesClient-ErrorMessageException-ErrorMessageException().md 'GBinanceFuturesClient.ErrorMessageException.ErrorMessageException()')
 - [ErrorMessageException(int, string)](./GBinanceFuturesClient-ErrorMessageException-ErrorMessageException(int_string).md 'GBinanceFuturesClient.ErrorMessageException.ErrorMessageException(int, string)')

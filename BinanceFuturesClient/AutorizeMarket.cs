@@ -9,32 +9,6 @@ namespace GBinanceFuturesClient
 {
     public partial class Market
     {
-        #region Get Notional and Leverage Brackets
-        /// <summary>
-        /// Get Notional and Leverage Brackets. Weight: 1.
-        /// </summary>
-        /// <returns>List of brackets.</returns>
-        public List<NationalAndLeverageBrackets> GetNationalAndLeverageBrackets()
-        {
-            RequestManager manager = new RequestManager(session, Autorization.MARKET);
-            return manager.SendRequest<List<NationalAndLeverageBrackets>>(Config.ApiPublicUrl + "leverageBracket");
-        }
-
-        /// <summary>
-        /// Get Notional and Leverage Brackets. Weight: 1.
-        /// </summary>
-        /// <param name="symbol">Currency pair code.</param>
-        /// <returns>Brackets object.</returns>
-        public NationalAndLeverageBrackets GetNationalAndLeverageBrackets(string symbol)
-        {
-            Dictionary<string, string> query = new Dictionary<string, string>();
-            query.Add("symbol", symbol);
-
-            RequestManager manager = new RequestManager(session, Autorization.MARKET);
-            return manager.SendRequest<NationalAndLeverageBrackets>(Config.ApiPublicUrl + "leverageBracket", query: query);
-        }
-        #endregion
-
         #region GetOpenInterestStatistics
         /// <summary>
         /// Get open interest statistics. If there is no limit of startime and endtime, it will return the value brfore the current time by default. Weight: 1.

@@ -10,7 +10,7 @@ namespace GBinanceFuturesClient
     {
         internal static long NowUnixTime()
         {
-            return DateTimeOffset.UtcNow.ToUnixTimeSeconds();
+            return DateTimeOffset.UtcNow.ToUnixTimeMilliseconds();
         }
     }
 }

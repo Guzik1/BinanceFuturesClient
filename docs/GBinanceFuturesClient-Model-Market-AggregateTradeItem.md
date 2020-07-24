@@ -6,7 +6,7 @@ and [GetOldTradesLookup(string, long, int)](./GBinanceFuturesClient-Market-GetOl
 ```csharp
 public class AggregateTradeItem
 ```
-Inheritance [System.Object](https://docs.microsoft.com/en-us/dotnet/api/System.Object 'System.Object') &gt; [AggregateTradeItem](./GBinanceFuturesClient-Model-Market-AggregateTradeItem.md 'GBinanceFuturesClient.Model.Market.AggregateTradeItem')  
+Inheritance [System.Object](https://docs.microsoft.com/en-us/dotnet/api/System.Object 'System.Object') &#129106; AggregateTradeItem  
 ### Properties
 - [AggregateTradeId](./GBinanceFuturesClient-Model-Market-AggregateTradeItem-AggregateTradeId.md 'GBinanceFuturesClient.Model.Market.AggregateTradeItem.AggregateTradeId')
 - [BuyerIsTheMaker](./GBinanceFuturesClient-Model-Market-AggregateTradeItem-BuyerIsTheMaker.md 'GBinanceFuturesClient.Model.Market.AggregateTradeItem.BuyerIsTheMaker')

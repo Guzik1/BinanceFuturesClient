@@ -1,4 +1,5 @@
-﻿using GBinanceFuturesClient.Model.Market;
+﻿using GBinanceFuturesClient;
+using GBinanceFuturesClient.Model.Market;
 using NUnit.Framework;
 using System;
 using System.Collections.Generic;
@@ -8,19 +9,25 @@ namespace BinanceIntegratedTests.Market
 {
     public class GetCandlesDataTests
     {
-        GBinanceFuturesClient.Market market = new GBinanceFuturesClient.BinanceFuturesClient().Market;
+        GBinanceFuturesClient.Market market = new BinanceFuturesClient().Market;
 
         [Test]
         public void GetCandlesDataTest()
         {
-            List<CandlestickData> trades = market.GetCandleStick("BTCUSDT", "30m");
+            try
+            {
+                List<CandlestickData> trades = market.GetCandleStick("BTCUSDT", "30m");
 
-            Assert.IsNotNull(trades);
-            Assert.LessOrEqual(trades.Count, 500);
-            Assert.Greater(trades[0].ClosePrice, 0);
-            Assert.Greater(trades[0].LowPrice, 0);
-            Assert.Greater(trades[0].BaseVolume, 0);
+                Assert.IsNotNull(trades);
+                Assert.LessOrEqual(trades.Count, 500);
+                Assert.Greater(trades[0].ClosePrice, 0);
+                Assert.Greater(trades[0].LowPrice, 0);
+                Assert.Greater(trades[0].BaseVolume, 0);
+            }
+            catch (ErrorMessageException e)
+            {
+                Tools.OnThrowErrorMessageException(e);
+            }
         }
-
     }
 }

@@ -5,7 +5,7 @@ Data model for response on [GetMarkPrice()](./GBinanceFuturesClient-Market-GetMa
 ```csharp
 public class MarkPriceResponse
 ```
-Inheritance [System.Object](https://docs.microsoft.com/en-us/dotnet/api/System.Object 'System.Object') &gt; [MarkPriceResponse](./GBinanceFuturesClient-Model-Market-MarkPriceResponse.md 'GBinanceFuturesClient.Model.Market.MarkPriceResponse')  
+Inheritance [System.Object](https://docs.microsoft.com/en-us/dotnet/api/System.Object 'System.Object') &#129106; MarkPriceResponse  
 ### Properties
 - [LastFundingRate](./GBinanceFuturesClient-Model-Market-MarkPriceResponse-LastFundingRate.md 'GBinanceFuturesClient.Model.Market.MarkPriceResponse.LastFundingRate')
 - [MarkPrice](./GBinanceFuturesClient-Model-Market-MarkPriceResponse-MarkPrice.md 'GBinanceFuturesClient.Model.Market.MarkPriceResponse.MarkPrice')

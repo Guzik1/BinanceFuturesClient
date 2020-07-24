@@ -1,8 +1,11 @@
 ﻿using GBinanceFuturesClient.Inside;
+using GBinanceFuturesClient.Internal;
 using GBinanceFuturesClient.Model.Internal;
+using GBinanceFuturesClient.Model.Trade;
 using RestApiClient;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Text;
 
 namespace GBinanceFuturesClient.Manager
@@ -12,6 +15,7 @@ namespace GBinanceFuturesClient.Manager
         SessionData session;
         Autorization autorization;
         RestClient client;
+        Dictionary<string, string> query = new Dictionary<string, string>();
 
         internal RequestManager() { }
 
@@ -28,11 +32,14 @@ namespace GBinanceFuturesClient.Manager
         }
 
         internal Excepted SendRequest<Excepted>(string url, MethodsType method = MethodsType.GET,
-            Dictionary<string, string> query = null, object objectToSend = null)
+            Dictionary<string, string> query = null, object objectToSend = null, ICustomDeserializer<Excepted> customDeserializer = null)
         {
             SendRequestAndGetResponse(method, url, query, objectToSend);
 
-            return TryGetResponse<Excepted>(client);
+            if (customDeserializer == null)
+                return TryGetResponse<Excepted>(client);
+            else
+                return TryGetResponseWithCustomDeserializer<Excepted>(client, customDeserializer);
         }
 
         internal dynamic SendRequest(string url, MethodsType method = MethodsType.GET,
@@ -48,30 +55,66 @@ namespace GBinanceFuturesClient.Manager
             return client.ResponseHasSuccessStatusCode;
         }
 
-        void SendRequestAndGetResponse(MethodsType method, string url, Dictionary<string, string> query = null, object objectToSend = null)
+        internal void AddQueryParam(string key, string value)
         {
-            client = new RestClient(url);
-            string queryString = "";
-
-            if (query != null)
-                queryString = client.AddQuery(query);
-
-            Autorize(queryString);
-
-            client.Send(method, objectToSend);
+            query.Add(key, value);
         }
 
-        void Autorize(string query = "")
+        void SendRequestAndGetResponse(MethodsType method, string url, Dictionary<string, string> query = null, object objectToSend = null)
         {
-            // TODO change exception to UnautorizedClientException;
+            if(method != MethodsType.POST)
+                client = new RestClient(url);
+            else
+                client = new RestClient(url, "application/x-www-form-urlencoded");
 
-            if (autorization == Autorization.MARKET)
+            Dictionary<string, string> newQuery = AddTwoDictionary(query, this.query);
+
+            string bodyString = AddQueryAndAutorize(method, newQuery, objectToSend);
+
+            if (bodyString == string.Empty)
+                client.Send(method);
+            else
+               client.Send(method, bodyString, false);
+        }
+
+        Dictionary<T, Q> AddTwoDictionary<T, Q>(Dictionary<T, Q> first, Dictionary<T, Q> second)
+        {
+            Dictionary<T, Q> output;
+
+            if (first != null)
+                output = first;
+            else if (second != null)
+                output = second;
+            else
+                output = new Dictionary<T, Q>();
+
+            if(second != null && first != null)
+                foreach(KeyValuePair<T, Q> item in second)
+                {
+                    if (!output.ContainsKey(item.Key))
+                        output.Add(item.Key, item.Value);
+                }
+
+            return output;
+        }
+
+        string AddQueryAndAutorize(MethodsType method, Dictionary<string, string> query = null, object objectBody = null)
+        {
+            //client.AddOwnHeaderToRequest("Content-Type", "application/x-www-form-urlencoded");
+
+            // TODO change exception to UnautorizedClientException;
+            if (autorization == Autorization.NONE)
+            {
+                client.AddQuery(query);
+            }
+            else if (autorization == Autorization.MARKET)
             {
                 if (!session.IsMarketAutorized)
                     throw new Exception("Client is unautorized, use SetAutorizationData() method for autorize client, " +
                         "method required public api key.");
 
-                client.AddOwnHeaderToRequest(new AutenticateMarket(session));
+                client.AddQuery(query);
+                client.AddOwnHeaderToRequest("X-MBX-APIKEY", session.PublicKey);
             }
             else if (autorization == Autorization.TRADING)
             {
@@ -79,8 +122,42 @@ namespace GBinanceFuturesClient.Manager
                     throw new Exception("Client is unautorized, use SetAutorizationData() method for autorize client, " +
                         "method required public and private api key.");
 
-                client.AddOwnHeaderToRequest(new AutenticateTrade(session, query));
+                client.AddOwnHeaderToRequest("X-MBX-APIKEY", session.PublicKey);
+
+                string totalParmas = string.Empty;
+
+                if(query != null)
+                    totalParmas += client.AddQuery(query);
+                
+                string body = string.Empty;
+                if (objectBody != null)
+                {
+                    body = ObjectToQueryConverter.Convert(objectBody);
+
+                    if(method != MethodsType.POST)
+                        totalParmas += client.AddStringToEndOfQuery("&" + body);
+                    else
+                        totalParmas += body;
+                }
+                else
+                {
+                    if (method == MethodsType.POST)
+                    {
+                        body = "null";
+                        totalParmas += body;
+                    }
+                }
+
+                if (query != null)
+                    client.AddStringToEndOfQuery("&signature=" + HashManager.HashHMACHex(session.PrivateKey, totalParmas.Substring(1)));
+                else
+                    client.AddStringToEndOfQuery("?signature=" + HashManager.HashHMACHex(session.PrivateKey, totalParmas.Substring(1)));
+
+                if (method == MethodsType.POST)
+                    return body;
             }
+
+            return "";
         }
 
         Expected TryGetResponse<Expected>(RestClient rc)
@@ -93,6 +170,13 @@ namespace GBinanceFuturesClient.Manager
             }
 
             throw new Exception("Unknown error.");
+        }
+
+        Expected TryGetResponseWithCustomDeserializer<Expected>(RestClient rc, ICustomDeserializer<Expected> customDeserializer)
+        {
+            string response = rc.GetResponseToString;
+
+            return customDeserializer.Deserialize(response);
         }
 
         dynamic TryGetResponseDynamic(RestClient rc)

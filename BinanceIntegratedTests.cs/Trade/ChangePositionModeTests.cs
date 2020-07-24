@@ -6,7 +6,7 @@ using System.Text;
 
 namespace BinanceIntegratedTests.Trade
 {
-    public class ChangePositionModeTests
+    public class PositionModeTests
     {
         GBinanceFuturesClient.Trade trade;
 
@@ -19,18 +19,40 @@ namespace BinanceIntegratedTests.Trade
         }
 
         [Test]
+        public void GetCurrentPositionModeTest()
+        {
+            try
+            {
+                bool result = trade.GetCurrentPositionMode();
+                Assert.IsTrue(true);
+            }
+            catch (ErrorMessageException e)
+            {
+                Tools.OnThrowErrorMessageException(e);
+            }
+        }
+
+        /*[Test]
         public void ChangePostionModeTest()
         {
             try
             {
-                bool result = trade.ChangePositionMode(true);
+                bool result = trade.ChangePositionMode(false);
                 Assert.IsTrue(result);
+
+                result = trade.GetCurrentPositionMode();
+                Assert.IsTrue(result);
+
+                result = trade.ChangePositionMode(false);
+                Assert.IsTrue(result);
+
+                result = trade.GetCurrentPositionMode();
+                Assert.IsFalse(result);
             }
             catch (ErrorMessageException e)
             {
-                StringAssert.AreNotEqualIgnoringCase("", e.Message);   // Invalide api key (test api key on public api, not testnet).
-                StringAssert.AreEqualIgnoringCase("API-key format invalid.", e.Message);
+                Tools.OnThrowErrorMessageException(e);
             }
-        }
+        }*/
     }
 }

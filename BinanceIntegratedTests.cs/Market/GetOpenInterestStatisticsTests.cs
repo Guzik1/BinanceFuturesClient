@@ -33,26 +33,40 @@ namespace BinanceIntegratedTests.Market
             }
             catch(ErrorMessageException e)
             {
-                Assert.Fail(e.Code + " - " + e.Message);
+                Tools.OnThrowErrorMessageException(e);
             }
         }
 
         [Test]
         public void GetOpenInterestStatisticWithLimitTest()
         {
-            ois = market.GetOpenInterestStatistics("BTCUSDT", "5m", 10);
+            try
+            {
+                ois = market.GetOpenInterestStatistics("BTCUSDT", "5m", 10);
 
-            Test();
-            Assert.AreEqual(10, ois.Count);
+                Test();
+                Assert.AreEqual(10, ois.Count);
+            }
+            catch (ErrorMessageException e)
+            {
+                Tools.OnThrowErrorMessageException(e);
+            }
         }
 
         [Test]
         public void GetOpenInterestStatisticCustomTimeTest()
         {
-            ois = market.GetOpenInterestStatistics("BTCUSDT", "5m", 1587408856829, 1587409956829);
+            try
+            {
+                ois = market.GetOpenInterestStatistics("BTCUSDT", "5m", Tools.NowUnixTimeMinusDays(-1), Tools.NowUnixTime());
 
-            Test();
-            Assert.Greater(ois.Count, 0);
+                Test();
+                Assert.Greater(ois.Count, 0);
+            }
+            catch (ErrorMessageException e)
+            {
+                Tools.OnThrowErrorMessageException(e);
+            }
         }
 
         void Test()

@@ -8,8 +8,7 @@ namespace BinanceIntegratedTests.Trade
 {
     public class NewFundsTransferTests
     {
-
-
+        /* Already unavailable in futures api.
         [Test]
         public void NewFundsTransferTest()
         {
@@ -24,6 +23,7 @@ namespace BinanceIntegratedTests.Trade
             {
                 StringAssert.AreNotEqualIgnoringCase("", e.Message);   // Invalide api key (test api key on public api, not testnet).
                 StringAssert.AreEqualIgnoringCase("Invalid Api-Key ID.", e.Message);
+                //Assert.Fail();
             }
         }
 
@@ -40,10 +40,10 @@ namespace BinanceIntegratedTests.Trade
             catch (ErrorMessageException e) { 
                 Assert.Fail(e.Message); 
             }
-            catch (Exception)
+            catch (Exception) // TODO: change this exception to unautorize user exception.
             {
                 Assert.IsTrue(true);
             }
-        }
+        }*/
     }
 }

@@ -7,7 +7,7 @@ Data model used in repspone on [GetTopTradeLongShortAccountsRatio(string, string
 ```csharp
 public class RatioItem
 ```
-Inheritance [System.Object](https://docs.microsoft.com/en-us/dotnet/api/System.Object 'System.Object') &gt; [RatioItem](./GBinanceFuturesClient-Model-Market-RatioItem.md 'GBinanceFuturesClient.Model.Market.RatioItem')  
+Inheritance [System.Object](https://docs.microsoft.com/en-us/dotnet/api/System.Object 'System.Object') &#129106; RatioItem  
 ### Properties
 - [LongAccount](./GBinanceFuturesClient-Model-Market-RatioItem-LongAccount.md 'GBinanceFuturesClient.Model.Market.RatioItem.LongAccount')
 - [LongShortRatio](./GBinanceFuturesClient-Model-Market-RatioItem-LongShortRatio.md 'GBinanceFuturesClient.Model.Market.RatioItem.LongShortRatio')

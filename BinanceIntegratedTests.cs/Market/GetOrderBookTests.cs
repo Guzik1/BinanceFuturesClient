@@ -1,4 +1,5 @@
-﻿using GBinanceFuturesClient.Model.Market;
+﻿using GBinanceFuturesClient;
+using GBinanceFuturesClient.Model.Market;
 using NUnit.Framework;
 using System;
 using System.Collections.Generic;
@@ -13,25 +14,39 @@ namespace BinanceIntegratedTests.Market
         [Test]
         public void GetOrderBookWithDefaultLimitTest()
         {
-            OrderBook ob = market.GetOrderBook("BTCUSDT");
+            try
+            {
+                OrderBook ob = market.GetOrderBook("BTCUSDT");
 
-            Assert.IsNotNull(ob);
-            Assert.LessOrEqual(ob.Bids.Count, 500);
-            Assert.LessOrEqual(ob.Asks.Count, 500);
-            Assert.Greater(ob.Bids.Count, 0);
-            Assert.Greater(ob.Asks.Count, 0);
+                Assert.IsNotNull(ob);
+                Assert.LessOrEqual(ob.Bids.Count, 500);
+                Assert.LessOrEqual(ob.Asks.Count, 500);
+                Assert.Greater(ob.Bids.Count, 0);
+                Assert.Greater(ob.Asks.Count, 0);
+            }
+            catch (ErrorMessageException e)
+            {
+                Tools.OnThrowErrorMessageException(e);
+            }
         }
 
         [Test]
         public void GetOrderBookWithCustomLimitTest()
         {
-            OrderBook ob = market.GetOrderBook("BTCUSDT", 10);
+            try
+            {
+                OrderBook ob = market.GetOrderBook("BTCUSDT", 10);
 
-            Assert.IsNotNull(ob);
-            Assert.LessOrEqual(ob.Bids.Count, 10);
-            Assert.LessOrEqual(ob.Asks.Count, 10);
-            Assert.Greater(ob.Bids.Count, 0);
-            Assert.Greater(ob.Asks.Count, 0);
+                Assert.IsNotNull(ob);
+                Assert.LessOrEqual(ob.Bids.Count, 10);
+                Assert.LessOrEqual(ob.Asks.Count, 10);
+                Assert.Greater(ob.Bids.Count, 0);
+                Assert.Greater(ob.Asks.Count, 0);
+            }
+            catch (ErrorMessageException e)
+            {
+                Tools.OnThrowErrorMessageException(e);
+            }
         }
     }
 }

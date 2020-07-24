@@ -5,7 +5,7 @@ Response model for [GetExchangeInfo()](./GBinanceFuturesClient-Market-GetExchang
 ```csharp
 public class ExchangeInfo
 ```
-Inheritance [System.Object](https://docs.microsoft.com/en-us/dotnet/api/System.Object 'System.Object') &gt; [ExchangeInfo](./GBinanceFuturesClient-Model-Market-ExchangeInfo.md 'GBinanceFuturesClient.Model.Market.ExchangeInfo')  
+Inheritance [System.Object](https://docs.microsoft.com/en-us/dotnet/api/System.Object 'System.Object') &#129106; ExchangeInfo  
 ### Properties
 - [ExchangeFilters](./GBinanceFuturesClient-Model-Market-ExchangeInfo-ExchangeFilters.md 'GBinanceFuturesClient.Model.Market.ExchangeInfo.ExchangeFilters')
 - [RateLimits](./GBinanceFuturesClient-Model-Market-ExchangeInfo-RateLimits.md 'GBinanceFuturesClient.Model.Market.ExchangeInfo.RateLimits')

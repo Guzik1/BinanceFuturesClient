@@ -1,4 +1,5 @@
-﻿using GBinanceFuturesClient.Model.Market;
+﻿using GBinanceFuturesClient;
+using GBinanceFuturesClient.Model.Market;
 using NUnit.Framework;
 using System;
 using System.Collections.Generic;
@@ -14,28 +15,49 @@ namespace BinanceIntegratedTests.Market
         [Test]
         public void GetTopTradeLongShortPositionTest()
         {
-            ois = market.GetTopTradeLongShortPositionsRatio("BTCUSDT", "5m");
-            
-            Test();
-            Assert.AreEqual(30, ois.Count);
+            try
+            {
+                ois = market.GetTopTradeLongShortPositionsRatio("BTCUSDT", "5m");
+
+                Test();
+                Assert.AreEqual(30, ois.Count);
+            }
+            catch (ErrorMessageException e)
+            {
+                Tools.OnThrowErrorMessageException(e);
+            }
         }
 
         [Test]
         public void GetTopTradeLongShortPositionWithLimitTest()
         {
-            ois = market.GetTopTradeLongShortPositionsRatio("BTCUSDT", "5m", 10);
+            try
+            {
+                ois = market.GetTopTradeLongShortPositionsRatio("BTCUSDT", "5m", 10);
 
-            Test();
-            Assert.AreEqual(10, ois.Count);
+                Test();
+                Assert.AreEqual(10, ois.Count);
+            }
+            catch (ErrorMessageException e)
+            {
+                Tools.OnThrowErrorMessageException(e);
+            }
         }
 
         [Test]
         public void GetTopTradeLongShortPositionCustomTimeTest()
         {
-            ois = market.GetTopTradeLongShortPositionsRatio("BTCUSDT", "5m", 1587408856829, 1587409956829);
+            try
+            {
+                ois = market.GetTopTradeLongShortPositionsRatio("BTCUSDT", "5m", Tools.NowUnixTimeMinusDays(-1), Tools.NowUnixTime());
 
-            Test();
-            Assert.Greater(ois.Count, 0);
+                Test();
+                Assert.Greater(ois.Count, 0);
+            }
+            catch (ErrorMessageException e)
+            {
+                Tools.OnThrowErrorMessageException(e);
+            }
         }
 
         void Test()

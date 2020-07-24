@@ -21,6 +21,7 @@ namespace GBinanceFuturesClient
             this.session = session;
         }
 
+        /* Already unavailable in futures api.
         #region New Future Account Transfer
         /// <summary>
         /// Transfer funds between futures and spot account. Unavailable in testnet. Weight: 5.
@@ -43,7 +44,7 @@ namespace GBinanceFuturesClient
 
             return response["tranId"];
         }
-        #endregion
+        #endregion*/
 
         #region Get Future Account Transaction History List
         /// <summary>
@@ -78,15 +79,15 @@ namespace GBinanceFuturesClient
 
         #region Change Position Mode
         /// <summary>
-        /// Change user's position mode (Hedge Mode or One-way Mode) on EVERY symbol. Weight: 1
+        /// Change user's position mode (true for Hedge Mode or false for One-way Mode) on EVERY symbol. Weight: 1
         /// </summary>
-        /// <param name="dualSidePosition">Set true for Hedge Mode mode, false for One-way Mode</param>
+        /// <param name="dualSidePosition">Set true for Hedge Mode mode, false for One-way Mode, default: false</param>
         /// <param name="recvWindow">Timing security, unix time milisecond. Specify the number of milliseconds after timestamp the request is valid for.</param>
         /// <returns>True if the changes was successful, false the change was invalid.</returns>
         public bool ChangePositionMode(bool dualSidePosition, long recvWindow = 5000)
         {
             Dictionary<string, string> query = new Dictionary<string, string>();
-            query.Add("dualSidePosition", dualSidePosition.ToString());
+            query.Add("dualSidePosition", dualSidePosition.ToString().ToLower());
             query.Add("timestamp", Tools.NowUnixTime().ToString());
 
             if(recvWindow != 5000)
@@ -109,16 +110,153 @@ namespace GBinanceFuturesClient
         /// <returns>Return ture for " Hedge Mode" or false for "One-way Mode".</returns>
         public bool GetCurrentPositionMode()
         {
-            Dictionary<string, string> query = new Dictionary<string, string>();
-            query.Add("timestamp", Tools.NowUnixTime().ToString());
-
             RequestManager manager = new RequestManager(session, Autorization.TRADING);
-            dynamic response = manager.SendRequest(Config.ApiPublicUrl + "positionSide/dual", query: query);
+            manager.AddQueryParam("timestamp", Tools.NowUnixTime().ToString());
+            dynamic response = manager.SendRequest(Config.ApiPublicUrl + "positionSide/dual");
 
             return response["dualSidePosition"];
         }
         #endregion
 
+        #region Place New Order
+        /// <summary>
+        /// Place new order. Weight: 1.
+        /// </summary>
+        /// <param name="request">Order info object</param>
+        /// <returns>Order information object</returns>
+        public OrderInfo PlaceOrder(NewOrderRequest request)
+        {
+            RequestManager manager = new RequestManager(session, Autorization.TRADING);
+            manager.AddQueryParam("timestamp", Tools.NowUnixTime().ToString());
 
+            return manager.SendRequest<OrderInfo>(Config.ApiPublicUrl + "order", MethodsType.POST, objectToSend: request);
+        }
+
+        /// <summary>
+        /// Place new order. Weight: 1.
+        /// </summary>
+        /// <param name="request">Order info object</param>
+        /// <param name="recvWindow">Custom recvWindow, default: 5000</param>
+        /// <returns>Order information object</returns>
+        public OrderInfo PlaceOrder(NewOrderRequest request, long recvWindow)
+        {
+            RequestManager manager = new RequestManager(session, Autorization.TRADING);
+            manager.AddQueryParam("timestamp", Tools.NowUnixTime().ToString());
+
+            if(recvWindow != 5000)
+                manager.AddQueryParam("recvWindow", recvWindow.ToString());
+
+            return manager.SendRequest<OrderInfo>(Config.ApiPublicUrl + "order", MethodsType.POST, objectToSend: request);
+        }
+        #endregion
+
+        #region Place Multiple Orders
+        /// <summary>
+        /// Place multiple orders. Weight: 5.
+        /// </summary>
+        /// <param name="listOfNewOrder">List of orders</param>
+        /// <returns>List of valid or error response, containing response on order. Responses in the order of the list sent.</returns>
+        public List<ValidOrErrorResponse<OrderInfo>> PlaceMultipleOrders(List<NewOrderRequest> listOfNewOrder)
+        {
+            RequestManager manager = new RequestManager(session, Autorization.TRADING);
+            manager.AddQueryParam("timestamp", Tools.NowUnixTime().ToString());
+            manager.AddQueryParam("batchOrders", JsonTools.SerializeAsJson(listOfNewOrder));
+
+            return manager.SendRequest(Config.ApiPublicUrl + "batchOrders", MethodsType.POST, 
+                customDeserializer: new MultipleOrderCustomDeserializer<OrderInfo>());
+        }
+
+        /// <summary>
+        /// Place multiple orders. Weight: 5.
+        /// </summary>
+        /// <param name="listOfNewOrder">List of orders</param>
+        /// <param name="recvWindow">Custom recvWindow, default: 5000</param>
+        /// <returns>List of valid or error response, containing response on order. Responses in the order of the list sent.</returns>
+        public List<ValidOrErrorResponse<OrderInfo>> PlaceMultipleOrders(List<NewOrderRequest> listOfNewOrder, long recvWindow = 5000)
+        {
+            RequestManager manager = new RequestManager(session, Autorization.TRADING);
+            manager.AddQueryParam("timestamp", Tools.NowUnixTime().ToString());
+            manager.AddQueryParam("batchOrders", JsonTools.SerializeAsJson(listOfNewOrder));
+
+            if (recvWindow != 5000)
+                manager.AddQueryParam("recvWindow", recvWindow.ToString());
+
+            return manager.SendRequest(Config.ApiPublicUrl + "batchOrders", MethodsType.POST,
+                customDeserializer: new MultipleOrderCustomDeserializer<OrderInfo>());
+        }
+        #endregion
+
+        #region QueryOrder
+        /// <summary>
+        /// Get order info using orderId. Weight: 1.
+        /// </summary>
+        /// <param name="symbol">Currency pair code</param>
+        /// <param name="orderId">Order identificator</param>
+        /// <param name="recvWindow">Custom recvWindow, default: 5000</param>
+        /// <returns>Order information object</returns>
+        public OrderInfo GetOrder(string symbol, long orderId, long recvWindow = 5000)
+        {
+            RequestManager manager = new RequestManager(session, Autorization.TRADING);
+            manager.AddQueryParam("timestamp", Tools.NowUnixTime().ToString());
+            manager.AddQueryParam("symbol", symbol);
+            manager.AddQueryParam("orderId", orderId.ToString());
+
+            if (recvWindow != 5000)
+                manager.AddQueryParam("recvWindow", recvWindow.ToString());
+
+            return manager.SendRequest<OrderInfo>(Config.ApiPublicUrl + "order ", MethodsType.GET);
+        }
+
+        /// <summary>
+        /// Get order info using custom client order identificator. Weight: 1.
+        /// </summary>
+        /// <param name="symbol">Currency pair code</param>
+        /// <param name="clientOrderId">Client order identificator</param>
+        /// <param name="recvWindow">Custom recvWindow, default: 5000</param>
+        /// <returns>Order information object</returns>
+        public OrderInfo GetOrder(string symbol, string clientOrderId, long recvWindow = 5000)
+        {
+            RequestManager manager = new RequestManager(session, Autorization.TRADING);
+            manager.AddQueryParam("timestamp", Tools.NowUnixTime().ToString());
+            manager.AddQueryParam("symbol", symbol);
+            manager.AddQueryParam("origClientOrderId", clientOrderId);
+
+            if (recvWindow != 5000)
+                manager.AddQueryParam("recvWindow", recvWindow.ToString());
+
+            return manager.SendRequest<OrderInfo>(Config.ApiPublicUrl + "order ", MethodsType.GET);
+        }
+        #endregion
+
+
+
+        // ... //
+        #region Get Notional and Leverage Brackets
+        /// <summary>
+        /// Get Notional and Leverage Brackets. Weight: 1.
+        /// </summary>
+        /// <returns>List of brackets.</returns>
+        public List<NationalAndLeverageBrackets> GetNationalBrackets()
+        {
+            RequestManager manager = new RequestManager(session, Autorization.TRADING);
+            manager.AddQueryParam("timestamp", Tools.NowUnixTime().ToString());
+
+            return manager.SendRequest<List<NationalAndLeverageBrackets>>(Config.ApiPublicUrl + "leverageBracket");
+        }
+
+        /// <summary>
+        /// Get Notional and Leverage Brackets. Weight: 1.
+        /// </summary>
+        /// <param name="symbol">Currency pair code.</param>
+        /// <returns>Brackets object.</returns>
+        public NationalAndLeverageBrackets GetNationalBrackets(string symbol)
+        {
+            RequestManager manager = new RequestManager(session, Autorization.TRADING); ;
+            manager.AddQueryParam("timestamp", Tools.NowUnixTime().ToString());
+            manager.AddQueryParam("symbol", symbol);
+
+            return manager.SendRequest<NationalAndLeverageBrackets>(Config.ApiPublicUrl + "leverageBracket");
+        }
+        #endregion
     }
 }

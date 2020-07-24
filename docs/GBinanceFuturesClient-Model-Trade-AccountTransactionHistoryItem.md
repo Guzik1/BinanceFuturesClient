@@ -5,7 +5,7 @@ Account transaction history item.
 ```csharp
 public class AccountTransactionHistoryItem
 ```
-Inheritance [System.Object](https://docs.microsoft.com/en-us/dotnet/api/System.Object 'System.Object') &gt; [AccountTransactionHistoryItem](./GBinanceFuturesClient-Model-Trade-AccountTransactionHistoryItem.md 'GBinanceFuturesClient.Model.Trade.AccountTransactionHistoryItem')  
+Inheritance [System.Object](https://docs.microsoft.com/en-us/dotnet/api/System.Object 'System.Object') &#129106; AccountTransactionHistoryItem  
 ### Properties
 - [Amount](./GBinanceFuturesClient-Model-Trade-AccountTransactionHistoryItem-Amount.md 'GBinanceFuturesClient.Model.Trade.AccountTransactionHistoryItem.Amount')
 - [Asset](./GBinanceFuturesClient-Model-Trade-AccountTransactionHistoryItem-Asset.md 'GBinanceFuturesClient.Model.Trade.AccountTransactionHistoryItem.Asset')

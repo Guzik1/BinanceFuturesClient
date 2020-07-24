@@ -6,7 +6,7 @@ Data model for repspone on [GetTakerBuySellVolume(string, string, int)](./GBinan
 ```csharp
 public class BuySellVolume
 ```
-Inheritance [System.Object](https://docs.microsoft.com/en-us/dotnet/api/System.Object 'System.Object') &gt; [BuySellVolume](./GBinanceFuturesClient-Model-Market-BuySellVolume.md 'GBinanceFuturesClient.Model.Market.BuySellVolume')  
+Inheritance [System.Object](https://docs.microsoft.com/en-us/dotnet/api/System.Object 'System.Object') &#129106; BuySellVolume  
 ### Properties
 - [BuySellRatio](./GBinanceFuturesClient-Model-Market-BuySellVolume-BuySellRatio.md 'GBinanceFuturesClient.Model.Market.BuySellVolume.BuySellRatio')
 - [BuyVol](./GBinanceFuturesClient-Model-Market-BuySellVolume-BuyVol.md 'GBinanceFuturesClient.Model.Market.BuySellVolume.BuyVol')

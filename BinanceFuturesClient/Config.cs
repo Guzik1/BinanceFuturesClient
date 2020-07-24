@@ -6,8 +6,9 @@ namespace GBinanceFuturesClient
 {
     internal static class Config
     {
+        // https://testnet.binancefuture.com/
+        // http://localhost:1234/
         const string TestNetUrl = "https://testnet.binancefuture.com/";
-
         const string ApiUrl = "https://fapi.binance.com/";
 
         static string Url { get; set; } = ApiUrl;

@@ -9,19 +9,6 @@
             Binance futures market endpoint.
             </summary>
         </member>
-        <member name="M:GBinanceFuturesClient.Market.GetNationalAndLeverageBrackets">
-            <summary>
-            Get Notional and Leverage Brackets. Weight: 1.
-            </summary>
-            <returns>List of brackets.</returns>
-        </member>
-        <member name="M:GBinanceFuturesClient.Market.GetNationalAndLeverageBrackets(System.String)">
-            <summary>
-            Get Notional and Leverage Brackets. Weight: 1.
-            </summary>
-            <param name="symbol">Currency pair code.</param>
-            <returns>Brackets object.</returns>
-        </member>
         <member name="M:GBinanceFuturesClient.Market.GetOpenInterestStatistics(System.String,System.String,System.Int32)">
             <summary>
             Get open interest statistics. If there is no limit of startime and endtime, it will return the value brfore the current time by default. Weight: 1.
@@ -423,18 +410,18 @@
             </summary>
             <returns>Return string, format: "ErrorMessageException : msg: " + Message + ", code: " + code</returns>
         </member>
-        <member name="T:GBinanceFuturesClient.Inside.AutenticateMarket">
+        <member name="T:GBinanceFuturesClient.Internal.AutenticateMarket">
             <summary>
             Autenticate market endpoint. Implement IAddOwnHeaderToRequest interface. Use be GRestApiClient.
             </summary>
         </member>
-        <member name="M:GBinanceFuturesClient.Inside.AutenticateMarket.AddOwnHeader">
+        <member name="M:GBinanceFuturesClient.Internal.AutenticateMarket.AddOwnHeader">
             <summary>
             Add headers to GET, PUT, DELETE methods. Use be GRestApiClient.
             </summary>
             <returns>Dictionary of header (keys and values).</returns>
         </member>
-        <member name="M:GBinanceFuturesClient.Inside.AutenticateMarket.AddOwnHeaderPOST(System.Object)">
+        <member name="M:GBinanceFuturesClient.Internal.AutenticateMarket.AddOwnHeaderPOST(System.Object)">
             <summary>
             Add headers to POST methods. Use be GRestApiClient.
             </summary>
@@ -456,6 +443,31 @@
             Add headers to POST methods. Use be GRestApiClient.
             </summary>
             <returns>Dictionary of header (keys and values).</returns>
+        </member>
+        <member name="T:GBinanceFuturesClient.Manager.RateLimiters">
+            <summary>
+            Rate limit type enum.
+            </summary>
+        </member>
+        <member name="F:GBinanceFuturesClient.Manager.RateLimiters.REQUEST_WEIGHT">
+            <summary> Request weight limit. </summary>
+        </member>
+        <member name="F:GBinanceFuturesClient.Manager.RateLimiters.ORDERS">
+            <summary> Orders limit. </summary>
+        </member>
+        <member name="T:GBinanceFuturesClient.Manager.RateLimitIntervals">
+            <summary>
+            Rate limit time intervals.
+            </summary>
+        </member>
+        <member name="F:GBinanceFuturesClient.Manager.RateLimitIntervals.SECOND">
+            <summary> seconds. </summary>
+        </member>
+        <member name="F:GBinanceFuturesClient.Manager.RateLimitIntervals.MINUTE">
+            <summary> minutes. </summary>
+        </member>
+        <member name="F:GBinanceFuturesClient.Manager.RateLimitIntervals.DAY">
+            <summary> days. </summary>
         </member>
         <member name="T:GBinanceFuturesClient.Model.Market.AggregateTradeItem">
             <summary>
@@ -821,52 +833,6 @@
             Server time.
             </summary>
         </member>
-        <member name="T:GBinanceFuturesClient.Model.Market.NationalAndLeverageBrackets">
-            <summary>
-            Data model for response on <see cref="M:GBinanceFuturesClient.Market.GetNationalAndLeverageBrackets"/> and
-            <see cref="M:GBinanceFuturesClient.Market.GetNationalAndLeverageBrackets"/> request.
-            </summary>
-        </member>
-        <member name="P:GBinanceFuturesClient.Model.Market.NationalAndLeverageBrackets.Symbol">
-            <summary>
-            Currency pair code.
-            </summary>
-        </member>
-        <member name="P:GBinanceFuturesClient.Model.Market.NationalAndLeverageBrackets.Brackets">
-            <summary>
-            List of brackets for this currency symbol.
-            </summary>
-        </member>
-        <member name="T:GBinanceFuturesClient.Model.Market.Brackets">
-            <summary>
-            Brackets item.
-            </summary>
-        </member>
-        <member name="P:GBinanceFuturesClient.Model.Market.Brackets.Bracket">
-            <summary>
-            National bracket.
-            </summary>
-        </member>
-        <member name="P:GBinanceFuturesClient.Model.Market.Brackets.InitialLeverage">
-            <summary>
-            Max initial leverge for this bracket.
-            </summary>
-        </member>
-        <member name="P:GBinanceFuturesClient.Model.Market.Brackets.NotionalCap">
-            <summary>
-            Cap notional of this bracket
-            </summary>
-        </member>
-        <member name="P:GBinanceFuturesClient.Model.Market.Brackets.NotionalFloor">
-            <summary>
-            Notionl threshold of this bracket 
-            </summary>
-        </member>
-        <member name="P:GBinanceFuturesClient.Model.Market.Brackets.MaintMarginRatio">
-            <summary>
-            Maintenance ratio for this bracket
-            </summary>
-        </member>
         <member name="T:GBinanceFuturesClient.Model.Market.OpenInterestItem">
             <summary>
             Data model for response on <see cref="M:GBinanceFuturesClient.Market.GetOpenInterest(System.String)"/> request.
@@ -1133,6 +1099,147 @@
             Is buyer maker flag.
             </summary>
         </member>
+        <member name="T:GBinanceFuturesClient.Model.Trade.NewOrderRequest">
+            <summary>
+            Data model for use request in <see cref="M:GBinanceFuturesClient.Trade.PlaceOrder(GBinanceFuturesClient.Model.Trade.NewOrderRequest)"/> request.
+            </summary>
+        </member>
+        <member name="P:GBinanceFuturesClient.Model.Trade.NewOrderRequest.Symbol">
+            <summary>
+            Currency pair symbol. Required.
+            </summary>
+        </member>
+        <member name="P:GBinanceFuturesClient.Model.Trade.NewOrderRequest.Side">
+            <summary>
+            Order side, buy or sell. Required.
+            </summary>
+        </member>
+        <member name="P:GBinanceFuturesClient.Model.Trade.NewOrderRequest.PositionSide">
+            <summary>
+            Default BOTH for One-way Mode, LONG or SHORT for Hedge Mode. It must be sent with Hedge Mode.
+            </summary>
+        </member>
+        <member name="P:GBinanceFuturesClient.Model.Trade.NewOrderRequest.Type">
+            <summary>
+            Order type. Required.
+            </summary>
+        </member>
+        <member name="P:GBinanceFuturesClient.Model.Trade.NewOrderRequest.TimeInForce">
+            <summary>
+            Time in force, default GTC. Required only in Limit order.
+            </summary>
+        </member>
+        <member name="P:GBinanceFuturesClient.Model.Trade.NewOrderRequest.Quantity">
+            <summary>
+            Order quantity. Required.
+            </summary>
+        </member>
+        <member name="P:GBinanceFuturesClient.Model.Trade.NewOrderRequest.ReduceOnly">
+            <summary>
+            Reduce only, "true" or "false". Defalt "false".
+            </summary>
+        </member>
+        <member name="P:GBinanceFuturesClient.Model.Trade.NewOrderRequest.Price">
+            <summary>
+            Order price.
+            </summary>
+        </member>
+        <member name="P:GBinanceFuturesClient.Model.Trade.NewOrderRequest.NewClientOrderId">
+            <summary>
+            A unique id among open orders. Automatically generated if not sent. For each order NewClientOrderId, it must be different.
+            </summary>
+        </member>
+        <member name="P:GBinanceFuturesClient.Model.Trade.NewOrderRequest.StopPrice">
+            <summary>
+            Stop price. Used with STOP/STOP_MARKET or TAKE_PROFIT/TAKE_PROFIT_MARKET orders.
+            </summary>
+        </member>
+        <member name="P:GBinanceFuturesClient.Model.Trade.NewOrderRequest.ActivationPrice">
+            <summary>
+            Order activation price. Used with TRAILING_STOP_MARKET orders, default as the latest price（supporting different workingType).
+            </summary>
+        </member>
+        <member name="P:GBinanceFuturesClient.Model.Trade.NewOrderRequest.CallbackRate">
+            <summary>
+            callback order price. Used with TRAILING_STOP_MARKET orders, min 0.1, max 5 where 1 for 1%.
+            </summary>
+        </member>
+        <member name="P:GBinanceFuturesClient.Model.Trade.NewOrderRequest.WorkingType">
+            <summary>
+            Working type. stopPrice triggered by: "MARK_PRICE", "CONTRACT_PRICE". Default "CONTRACT_PRICE"
+            </summary>
+        </member>
+        <member name="P:GBinanceFuturesClient.Model.Trade.NewOrderRequest.NewOrderRespType">
+            <summary>
+            New order response type, "ACK" or "RESULT", default "ACK".
+            </summary>
+        </member>
+        <member name="M:GBinanceFuturesClient.Model.Trade.NewOrderRequest.SetLimitOrder(System.String,GBasicExchangeDefinitions.OrderSide,System.Decimal,System.Decimal,GBasicExchangeDefinitions.TimeInForce)">
+            <summary>
+            Create limit order request.
+            </summary>
+            <param name="symbol">Symbol string</param>
+            <param name="side">Order side</param>
+            <param name="quantity">Order quantity</param>
+            <param name="price">Order price</param>
+            <param name="timeInForce">Time in force, default: GTC</param>
+        </member>
+        <member name="M:GBinanceFuturesClient.Model.Trade.NewOrderRequest.SetMarketOrder(System.String,GBasicExchangeDefinitions.OrderSide,System.Decimal)">
+            <summary>
+            Create market order request.
+            </summary>
+            <param name="symbol">Symbol string</param>
+            <param name="side">Order side</param>
+            <param name="quantity">Order quantity</param>
+        </member>
+        <member name="M:GBinanceFuturesClient.Model.Trade.NewOrderRequest.SetStopLimitOrder(System.String,GBasicExchangeDefinitions.OrderSide,System.Decimal,System.Decimal,System.Decimal)">
+            <summary>
+            Create stop limit order.
+            </summary>
+            <param name="symbol">Symbol string</param>
+            <param name="side">Order side</param>
+            <param name="quantity">Order quantity</param>
+            <param name="price">Order price</param>
+            <param name="stopPrice">Stop price</param>
+        </member>
+        <member name="M:GBinanceFuturesClient.Model.Trade.NewOrderRequest.SetTakeProfitLimitOrder(System.String,GBasicExchangeDefinitions.OrderSide,System.Decimal,System.Decimal,System.Decimal)">
+            <summary>
+            Create take profit limit order.
+            </summary>
+            <param name="symbol">Symbol string</param>
+            <param name="side">Order side</param>
+            <param name="quantity">Order quantity</param>
+            <param name="price">Order price</param>
+            <param name="stopPrice">Stop price</param>
+        </member>
+        <member name="M:GBinanceFuturesClient.Model.Trade.NewOrderRequest.SetStopMarketOrder(System.String,GBasicExchangeDefinitions.OrderSide,System.Decimal,System.Decimal,System.Decimal)">
+            <summary>
+            Create stop market order.
+            </summary>
+            <param name="symbol">Symbol string</param>
+            <param name="side">Order side</param>
+            <param name="quantity">Order quantity</param>
+            <param name="price">Order price</param>
+            <param name="stopPrice">Stop price</param>
+        </member>
+        <member name="M:GBinanceFuturesClient.Model.Trade.NewOrderRequest.SetTakeProfitMarketOrder(System.String,GBasicExchangeDefinitions.OrderSide,System.Decimal,System.Decimal,System.Decimal)">
+            <summary>
+            Create take profit market order.
+            </summary>
+            <param name="symbol">Symbol string</param>
+            <param name="side">Order side</param>
+            <param name="quantity">Order quantity</param>
+            <param name="price">Order price</param>
+            <param name="stopPrice">Stop price</param>
+        </member>
+        <member name="M:GBinanceFuturesClient.Model.Trade.NewOrderRequest.SetTrailingStopMarketOrder(System.String,GBasicExchangeDefinitions.OrderSide,System.Decimal)">
+            <summary>
+            Create trailing stop market order.
+            </summary>
+            <param name="symbol">Symbol string</param>
+            <param name="side">Order side</param>
+            <param name="callbackRate">Callback rate</param>
+        </member>
         <member name="T:GBinanceFuturesClient.Model.Trade.AccountTransactionHistory">
             <summary>
             Data model for response on <see cref="M:GBinanceFuturesClient.Trade.GetAccountTransactionHistory(System.String,System.Int64,System.Int64,System.Int32,System.Int32)"/> request.
@@ -1183,20 +1290,188 @@
             Transactio status. one of PENDING (pending to execution), CONFIRMED (successfully transfered), FAILED (execution failed, nothing happened to your account)
             </summary>
         </member>
+        <member name="T:GBinanceFuturesClient.Model.Trade.ErrorMessage">
+            <summary>
+            Error message object. Using in multiple orders.
+            </summary>
+        </member>
+        <member name="P:GBinanceFuturesClient.Model.Trade.ErrorMessage.Code">
+            <summary>
+            Error code.
+            </summary>
+        </member>
+        <member name="P:GBinanceFuturesClient.Model.Trade.ErrorMessage.Msg">
+            <summary>
+            Error message.
+            </summary>
+        </member>
+        <member name="T:GBinanceFuturesClient.Model.Trade.NationalAndLeverageBrackets">
+            <summary>
+            Data model for response on <see cref="M:GBinanceFuturesClient.Trade.GetNationalBrackets"/> and
+            <see cref="M:GBinanceFuturesClient.Trade.GetNationalBrackets(System.String)"/> request.
+            </summary>
+        </member>
+        <member name="P:GBinanceFuturesClient.Model.Trade.NationalAndLeverageBrackets.Symbol">
+            <summary>
+            Currency pair code.
+            </summary>
+        </member>
+        <member name="P:GBinanceFuturesClient.Model.Trade.NationalAndLeverageBrackets.Brackets">
+            <summary>
+            List of brackets for this currency symbol.
+            </summary>
+        </member>
+        <member name="T:GBinanceFuturesClient.Model.Trade.Brackets">
+            <summary>
+            Brackets item.
+            </summary>
+        </member>
+        <member name="P:GBinanceFuturesClient.Model.Trade.Brackets.Bracket">
+            <summary>
+            National bracket.
+            </summary>
+        </member>
+        <member name="P:GBinanceFuturesClient.Model.Trade.Brackets.InitialLeverage">
+            <summary>
+            Max initial leverge for this bracket.
+            </summary>
+        </member>
+        <member name="P:GBinanceFuturesClient.Model.Trade.Brackets.NotionalCap">
+            <summary>
+            Cap notional of this bracket
+            </summary>
+        </member>
+        <member name="P:GBinanceFuturesClient.Model.Trade.Brackets.NotionalFloor">
+            <summary>
+            Notionl threshold of this bracket 
+            </summary>
+        </member>
+        <member name="P:GBinanceFuturesClient.Model.Trade.Brackets.MaintMarginRatio">
+            <summary>
+            Maintenance ratio for this bracket
+            </summary>
+        </member>
+        <member name="T:GBinanceFuturesClient.Model.Trade.OrderInfo">
+            <summary>
+            Data model for respone on <see cref="M:GBinanceFuturesClient.Trade.PlaceOrder(GBinanceFuturesClient.Model.Trade.NewOrderRequest)"/> request.
+            </summary>
+        </member>
+        <member name="P:GBinanceFuturesClient.Model.Trade.OrderInfo.ClientOrderId">
+            <summary>
+            Client custom order identificator.
+            </summary>
+        </member>
+        <member name="P:GBinanceFuturesClient.Model.Trade.OrderInfo.CumQuote">
+            <summary>
+            Cum quote.
+            </summary>
+        </member>
+        <member name="P:GBinanceFuturesClient.Model.Trade.OrderInfo.ExecutedQty">
+            <summary>
+            Executed quantity.
+            </summary>
+        </member>
+        <member name="P:GBinanceFuturesClient.Model.Trade.OrderInfo.OrderId">
+            <summary>
+            Order identificator.
+            </summary>
+        </member>
+        <member name="P:GBinanceFuturesClient.Model.Trade.OrderInfo.OrigQty">
+            <summary>
+            Original quantity.
+            </summary>
+        </member>
+        <member name="P:GBinanceFuturesClient.Model.Trade.OrderInfo.Price">
+            <summary>
+            Order price.
+            </summary>
+        </member>
+        <member name="P:GBinanceFuturesClient.Model.Trade.OrderInfo.ReduceOnly">
+            <summary>
+            Reduce only.
+            </summary>
+        </member>
+        <member name="P:GBinanceFuturesClient.Model.Trade.OrderInfo.Side">
+            <summary>
+            Order side: buy or sell.
+            </summary>
+        </member>
+        <member name="P:GBinanceFuturesClient.Model.Trade.OrderInfo.PositionSide">
+            <summary>
+            Order position side: long, shor, both.
+            </summary>
+        </member>
+        <member name="P:GBinanceFuturesClient.Model.Trade.OrderInfo.Status">
+            <summary>
+            Order status.
+            </summary>
+        </member>
+        <member name="P:GBinanceFuturesClient.Model.Trade.OrderInfo.StopPrice">
+            <summary>
+            Stop price.
+            </summary>
+        </member>
+        <member name="P:GBinanceFuturesClient.Model.Trade.OrderInfo.Symbol">
+            <summary>
+            Currency pair symbol.
+            </summary>
+        </member>
+        <member name="P:GBinanceFuturesClient.Model.Trade.OrderInfo.TimeInForce">
+            <summary>
+            Time in force.
+            </summary>
+        </member>
+        <member name="P:GBinanceFuturesClient.Model.Trade.OrderInfo.Type">
+            <summary>
+            Offer type.
+            </summary>
+        </member>
+        <member name="P:GBinanceFuturesClient.Model.Trade.OrderInfo.ActivatePrice">
+            <summary>
+            Order activate price.
+            </summary>
+        </member>
+        <member name="P:GBinanceFuturesClient.Model.Trade.OrderInfo.PriceRate">
+            <summary>
+            Price rate.
+            </summary>
+        </member>
+        <member name="P:GBinanceFuturesClient.Model.Trade.OrderInfo.UpdateTime">
+            <summary>
+            Order update time.
+            </summary>
+        </member>
+        <member name="P:GBinanceFuturesClient.Model.Trade.OrderInfo.WorkingType">
+            <summary>
+            Order update time.
+            </summary>
+        </member>
+        <member name="T:GBinanceFuturesClient.Model.Trade.ValidOrErrorResponse`1">
+            <summary>
+            Valid or error response class, Use for <see cref="M:GBinanceFuturesClient.Trade.PlaceMultipleOrders(System.Collections.Generic.List{GBinanceFuturesClient.Model.Trade.NewOrderRequest})"/> 
+            and <see cref="M:GBinanceFuturesClient.Trade.PlaceMultipleOrders(System.Collections.Generic.List{GBinanceFuturesClient.Model.Trade.NewOrderRequest},System.Int64)"/> request.
+            </summary>
+            <typeparam name="ValidResponseType">Dynamic valid type</typeparam>
+        </member>
+        <member name="F:GBinanceFuturesClient.Model.Trade.ValidOrErrorResponse`1.ValidResponse">
+            <summary>
+            Valid response object. Null if response have errors. Use IsValid propetry to check if the answer is correct.
+            </summary>
+        </member>
+        <member name="F:GBinanceFuturesClient.Model.Trade.ValidOrErrorResponse`1.ErrorResponse">
+            <summary>
+            Error response object. Null if response is valid. Use IsValid propetry to check if the answer is incorrect.
+            </summary>
+        </member>
+        <member name="F:GBinanceFuturesClient.Model.Trade.ValidOrErrorResponse`1.IsValid">
+            <summary>
+            True if the response is valid, for error response false.
+            </summary>
+        </member>
         <member name="T:GBinanceFuturesClient.Trade">
             <summary>
             Binance futures account/trade endpoints methods.
             </summary>
-        </member>
-        <member name="M:GBinanceFuturesClient.Trade.NewFundsTransfer(System.String,System.Decimal,System.Int32)">
-            <summary>
-            Transfer funds between futures and spot account. Unavailable in testnet. Weight: 5.
-            </summary>
-            <param name="currencyToTransfer">Currency code.</param>
-            <param name="amount">Transfer amount.</param>
-            <param name="type">Type of transfer: 1: transfer from spot main account to future account,  
-            2: transfer from future account to spot main account</param>
-            <returns>Transaction identificator.</returns>
         </member>
         <member name="M:GBinanceFuturesClient.Trade.GetAccountTransactionHistory(System.String,System.Int64,System.Int64,System.Int32,System.Int32)">
             <summary>
@@ -1211,9 +1486,9 @@
         </member>
         <member name="M:GBinanceFuturesClient.Trade.ChangePositionMode(System.Boolean,System.Int64)">
             <summary>
-            Change user's position mode (Hedge Mode or One-way Mode) on EVERY symbol. Weight: 1
+            Change user's position mode (true for Hedge Mode or false for One-way Mode) on EVERY symbol. Weight: 1
             </summary>
-            <param name="dualSidePosition">Set true for Hedge Mode mode, false for One-way Mode</param>
+            <param name="dualSidePosition">Set true for Hedge Mode mode, false for One-way Mode, default: false</param>
             <param name="recvWindow">Timing security, unix time milisecond. Specify the number of milliseconds after timestamp the request is valid for.</param>
             <returns>True if the changes was successful, false the change was invalid.</returns>
         </member>
@@ -1222,6 +1497,67 @@
             Get user's position mode (Hedge Mode or One-way Mode ) on EVERY symbol. Weight: 30.
             </summary>
             <returns>Return ture for " Hedge Mode" or false for "One-way Mode".</returns>
+        </member>
+        <member name="M:GBinanceFuturesClient.Trade.PlaceOrder(GBinanceFuturesClient.Model.Trade.NewOrderRequest)">
+            <summary>
+            Place new order. Weight: 1.
+            </summary>
+            <param name="request">Order info object</param>
+            <returns>Order information object</returns>
+        </member>
+        <member name="M:GBinanceFuturesClient.Trade.PlaceOrder(GBinanceFuturesClient.Model.Trade.NewOrderRequest,System.Int64)">
+            <summary>
+            Place new order. Weight: 1.
+            </summary>
+            <param name="request">Order info object</param>
+            <param name="recvWindow">Custom recvWindow, default: 5000</param>
+            <returns>Order information object</returns>
+        </member>
+        <member name="M:GBinanceFuturesClient.Trade.PlaceMultipleOrders(System.Collections.Generic.List{GBinanceFuturesClient.Model.Trade.NewOrderRequest})">
+            <summary>
+            Place multiple orders. Weight: 5.
+            </summary>
+            <param name="listOfNewOrder">List of orders</param>
+            <returns>List of valid or error response, containing response on order. Responses in the order of the list sent.</returns>
+        </member>
+        <member name="M:GBinanceFuturesClient.Trade.PlaceMultipleOrders(System.Collections.Generic.List{GBinanceFuturesClient.Model.Trade.NewOrderRequest},System.Int64)">
+            <summary>
+            Place multiple orders. Weight: 5.
+            </summary>
+            <param name="listOfNewOrder">List of orders</param>
+            <param name="recvWindow">Custom recvWindow, default: 5000</param>
+            <returns>List of valid or error response, containing response on order. Responses in the order of the list sent.</returns>
+        </member>
+        <member name="M:GBinanceFuturesClient.Trade.GetOrder(System.String,System.Int64,System.Int64)">
+            <summary>
+            Get order info using orderId. Weight: 1.
+            </summary>
+            <param name="symbol">Currency pair code</param>
+            <param name="orderId">Order identificator</param>
+            <param name="recvWindow">Custom recvWindow, default: 5000</param>
+            <returns>Order information object</returns>
+        </member>
+        <member name="M:GBinanceFuturesClient.Trade.GetOrder(System.String,System.String,System.Int64)">
+            <summary>
+            Get order info using custom client order identificator. Weight: 1.
+            </summary>
+            <param name="symbol">Currency pair code</param>
+            <param name="clientOrderId">Client order identificator</param>
+            <param name="recvWindow">Custom recvWindow, default: 5000</param>
+            <returns>Order information object</returns>
+        </member>
+        <member name="M:GBinanceFuturesClient.Trade.GetNationalBrackets">
+            <summary>
+            Get Notional and Leverage Brackets. Weight: 1.
+            </summary>
+            <returns>List of brackets.</returns>
+        </member>
+        <member name="M:GBinanceFuturesClient.Trade.GetNationalBrackets(System.String)">
+            <summary>
+            Get Notional and Leverage Brackets. Weight: 1.
+            </summary>
+            <param name="symbol">Currency pair code.</param>
+            <returns>Brackets object.</returns>
         </member>
     </members>
 </doc>

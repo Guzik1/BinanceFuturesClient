@@ -6,7 +6,7 @@ Autenticate trade endpoint. Implement IAddOwnHeaderToRequest interface. Use be G
 public class AutenticateTrade :
 IAddOwnHeaderToRequest
 ```
-Inheritance [System.Object](https://docs.microsoft.com/en-us/dotnet/api/System.Object 'System.Object') &gt; [AutenticateTrade](./GBinanceFuturesClient-Inside-AutenticateTrade.md 'GBinanceFuturesClient.Inside.AutenticateTrade')  
+Inheritance [System.Object](https://docs.microsoft.com/en-us/dotnet/api/System.Object 'System.Object') &#129106; AutenticateTrade  
 
 Implements [RestApiClient.IAddOwnHeaderToRequest](https://docs.microsoft.com/en-us/dotnet/api/RestApiClient.IAddOwnHeaderToRequest 'RestApiClient.IAddOwnHeaderToRequest')  
 ### Methods

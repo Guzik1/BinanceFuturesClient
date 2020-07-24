@@ -6,7 +6,7 @@ Data model for response on [GetSymbolPriceTicker()](./GBinanceFuturesClient-Mark
 ```csharp
 public class PriceTicker
 ```
-Inheritance [System.Object](https://docs.microsoft.com/en-us/dotnet/api/System.Object 'System.Object') &gt; [PriceTicker](./GBinanceFuturesClient-Model-Market-PriceTicker.md 'GBinanceFuturesClient.Model.Market.PriceTicker')  
+Inheritance [System.Object](https://docs.microsoft.com/en-us/dotnet/api/System.Object 'System.Object') &#129106; PriceTicker  
 ### Properties
 - [Price](./GBinanceFuturesClient-Model-Market-PriceTicker-Price.md 'GBinanceFuturesClient.Model.Market.PriceTicker.Price')
 - [Symbol](./GBinanceFuturesClient-Model-Market-PriceTicker-Symbol.md 'GBinanceFuturesClient.Model.Market.PriceTicker.Symbol')

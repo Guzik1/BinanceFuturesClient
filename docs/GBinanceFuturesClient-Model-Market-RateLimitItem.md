@@ -5,7 +5,7 @@ Rate limit details.
 ```csharp
 public class RateLimitItem
 ```
-Inheritance [System.Object](https://docs.microsoft.com/en-us/dotnet/api/System.Object 'System.Object') &gt; [RateLimitItem](./GBinanceFuturesClient-Model-Market-RateLimitItem.md 'GBinanceFuturesClient.Model.Market.RateLimitItem')  
+Inheritance [System.Object](https://docs.microsoft.com/en-us/dotnet/api/System.Object 'System.Object') &#129106; RateLimitItem  
 ### Properties
 - [Interval](./GBinanceFuturesClient-Model-Market-RateLimitItem-Interval.md 'GBinanceFuturesClient.Model.Market.RateLimitItem.Interval')
 - [IntervalNum](./GBinanceFuturesClient-Model-Market-RateLimitItem-IntervalNum.md 'GBinanceFuturesClient.Model.Market.RateLimitItem.IntervalNum')

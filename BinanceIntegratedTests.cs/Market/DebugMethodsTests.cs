@@ -1,3 +1,4 @@
+using GBinanceFuturesClient;
 using NUnit.Framework;
 
 namespace BinanceIntegratedTests.Market
@@ -9,15 +10,29 @@ namespace BinanceIntegratedTests.Market
         [Test]
         public void PingTest()
         {
-            Assert.IsTrue(market.Ping());
+            try
+            {
+                Assert.IsTrue(market.Ping());
+            }
+            catch(ErrorMessageException e)
+            {
+                Tools.OnThrowErrorMessageException(e);
+            }
         }
 
         [Test]
         public void ServerTimeTest()
         {
-            long time = market.GetServerTime();
+            try
+            {
+                long time = market.GetServerTime();
 
-            Assert.Greater(time, 0);
+                Assert.Greater(time, 0);
+            }
+            catch (ErrorMessageException e)
+            {
+                Tools.OnThrowErrorMessageException(e);
+            }
         }
 
 

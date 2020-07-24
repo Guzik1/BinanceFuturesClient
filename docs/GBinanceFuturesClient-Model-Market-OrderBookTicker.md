@@ -6,7 +6,7 @@ Data model for [GetOrderBookTicker()](./GBinanceFuturesClient-Market-GetOrderBoo
 ```csharp
 public class OrderBookTicker
 ```
-Inheritance [System.Object](https://docs.microsoft.com/en-us/dotnet/api/System.Object 'System.Object') &gt; [OrderBookTicker](./GBinanceFuturesClient-Model-Market-OrderBookTicker.md 'GBinanceFuturesClient.Model.Market.OrderBookTicker')  
+Inheritance [System.Object](https://docs.microsoft.com/en-us/dotnet/api/System.Object 'System.Object') &#129106; OrderBookTicker  
 ### Properties
 - [AskPrice](./GBinanceFuturesClient-Model-Market-OrderBookTicker-AskPrice.md 'GBinanceFuturesClient.Model.Market.OrderBookTicker.AskPrice')
 - [AskQty](./GBinanceFuturesClient-Model-Market-OrderBookTicker-AskQty.md 'GBinanceFuturesClient.Model.Market.OrderBookTicker.AskQty')

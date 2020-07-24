@@ -5,7 +5,7 @@ Data model for response on [GetAccountTransactionHistory(string, long, long, int
 ```csharp
 public class AccountTransactionHistory
 ```
-Inheritance [System.Object](https://docs.microsoft.com/en-us/dotnet/api/System.Object 'System.Object') &gt; [AccountTransactionHistory](./GBinanceFuturesClient-Model-Trade-AccountTransactionHistory.md 'GBinanceFuturesClient.Model.Trade.AccountTransactionHistory')  
+Inheritance [System.Object](https://docs.microsoft.com/en-us/dotnet/api/System.Object 'System.Object') &#129106; AccountTransactionHistory  
 ### Properties
 - [Rows](./GBinanceFuturesClient-Model-Trade-AccountTransactionHistory-Rows.md 'GBinanceFuturesClient.Model.Trade.AccountTransactionHistory.Rows')
 - [Total](./GBinanceFuturesClient-Model-Trade-AccountTransactionHistory-Total.md 'GBinanceFuturesClient.Model.Trade.AccountTransactionHistory.Total')

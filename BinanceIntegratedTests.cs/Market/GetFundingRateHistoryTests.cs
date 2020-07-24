@@ -1,4 +1,5 @@
-﻿using GBinanceFuturesClient.Model.Market;
+﻿using GBinanceFuturesClient;
+using GBinanceFuturesClient.Model.Market;
 using NUnit.Framework;
 using System;
 using System.Collections.Generic;
@@ -14,27 +15,47 @@ namespace BinanceIntegratedTests.Market
         [Test]
         public void GetFoundingRateHistoryWithDefaulLimitTest()
         {
-            mp = market.GetFundingRateHistory("BTCUSDT");
+            try
+            {
+                mp = market.GetFundingRateHistory("BTCUSDT");
 
-            CheckResponse(100);
+                CheckResponse(100);
+            }
+            catch (ErrorMessageException e)
+            {
+                Tools.OnThrowErrorMessageException(e);
+            }
         }
 
         [Test]
         public void GetFoundingRateHistoryWithCustomLimitTest()
-
         {
-            mp = market.GetFundingRateHistory("BTCUSDT", 20);
+            try
+            {
+                mp = market.GetFundingRateHistory("BTCUSDT", 20);
 
-            CheckResponse(20);
+                CheckResponse(20);
+            }
+            catch (ErrorMessageException e)
+            {
+                Tools.OnThrowErrorMessageException(e);
+            }
         }
 
         void CheckResponse(int limit)
         {
-            Assert.IsNotNull(mp);
-            Assert.AreEqual("BTCUSDT", mp[0].Symbol);
-            Assert.Greater(mp[0].FundingTime, 0);
+            try
+            {
+                Assert.IsNotNull(mp);
+                Assert.AreEqual("BTCUSDT", mp[0].Symbol);
+                Assert.Greater(mp[0].FundingTime, 0);
 
-            Assert.IsTrue(mp.Count > 0 && mp.Count <= limit);
+                Assert.IsTrue(mp.Count > 0 && mp.Count <= limit);
+            }
+            catch (ErrorMessageException e)
+            {
+                Tools.OnThrowErrorMessageException(e);
+            }
         }
     }
 }

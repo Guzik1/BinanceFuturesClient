@@ -5,7 +5,7 @@ Main of class, biance futures rest api client.
 ```csharp
 public class BinanceFuturesClient
 ```
-Inheritance [System.Object](https://docs.microsoft.com/en-us/dotnet/api/System.Object 'System.Object') &gt; [BinanceFuturesClient](./GBinanceFuturesClient-BinanceFuturesClient.md 'GBinanceFuturesClient.BinanceFuturesClient')  
+Inheritance [System.Object](https://docs.microsoft.com/en-us/dotnet/api/System.Object 'System.Object') &#129106; BinanceFuturesClient  
 ### Constructors
 - [BinanceFuturesClient()](./GBinanceFuturesClient-BinanceFuturesClient-BinanceFuturesClient().md 'GBinanceFuturesClient.BinanceFuturesClient.BinanceFuturesClient()')
 - [BinanceFuturesClient(string)](./GBinanceFuturesClient-BinanceFuturesClient-BinanceFuturesClient(string).md 'GBinanceFuturesClient.BinanceFuturesClient.BinanceFuturesClient(string)')

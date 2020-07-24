@@ -5,7 +5,7 @@ Trade item model, for .
 ```csharp
 public class TradeItem
 ```
-Inheritance [System.Object](https://docs.microsoft.com/en-us/dotnet/api/System.Object 'System.Object') &gt; [TradeItem](./GBinanceFuturesClient-Model-Market-TradeItem.md 'GBinanceFuturesClient.Model.Market.TradeItem')  
+Inheritance [System.Object](https://docs.microsoft.com/en-us/dotnet/api/System.Object 'System.Object') &#129106; TradeItem  
 ### Properties
 - [Id](./GBinanceFuturesClient-Model-Market-TradeItem-Id.md 'GBinanceFuturesClient.Model.Market.TradeItem.Id')
 - [IsBuyerMaker](./GBinanceFuturesClient-Model-Market-TradeItem-IsBuyerMaker.md 'GBinanceFuturesClient.Model.Market.TradeItem.IsBuyerMaker')

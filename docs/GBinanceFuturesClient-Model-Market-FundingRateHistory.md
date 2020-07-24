@@ -6,7 +6,7 @@ and [GetFundingRateHistory(string, long, long, int)](./GBinanceFuturesClient-Mar
 ```csharp
 public class FundingRateHistory
 ```
-Inheritance [System.Object](https://docs.microsoft.com/en-us/dotnet/api/System.Object 'System.Object') &gt; [FundingRateHistory](./GBinanceFuturesClient-Model-Market-FundingRateHistory.md 'GBinanceFuturesClient.Model.Market.FundingRateHistory')  
+Inheritance [System.Object](https://docs.microsoft.com/en-us/dotnet/api/System.Object 'System.Object') &#129106; FundingRateHistory  
 ### Properties
 - [FundingRate](./GBinanceFuturesClient-Model-Market-FundingRateHistory-FundingRate.md 'GBinanceFuturesClient.Model.Market.FundingRateHistory.FundingRate')
 - [FundingTime](./GBinanceFuturesClient-Model-Market-FundingRateHistory-FundingTime.md 'GBinanceFuturesClient.Model.Market.FundingRateHistory.FundingTime')

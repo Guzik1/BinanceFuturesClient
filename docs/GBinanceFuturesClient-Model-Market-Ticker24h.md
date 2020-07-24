@@ -6,7 +6,7 @@ and [Get24hTicker(string)](./GBinanceFuturesClient-Market-Get24hTicker(string).m
 ```csharp
 public class Ticker24h
 ```
-Inheritance [System.Object](https://docs.microsoft.com/en-us/dotnet/api/System.Object 'System.Object') &gt; [Ticker24h](./GBinanceFuturesClient-Model-Market-Ticker24h.md 'GBinanceFuturesClient.Model.Market.Ticker24h')  
+Inheritance [System.Object](https://docs.microsoft.com/en-us/dotnet/api/System.Object 'System.Object') &#129106; Ticker24h  
 ### Properties
 - [CloseTime](./GBinanceFuturesClient-Model-Market-Ticker24h-CloseTime.md 'GBinanceFuturesClient.Model.Market.Ticker24h.CloseTime')
 - [Count](./GBinanceFuturesClient-Model-Market-Ticker24h-Count.md 'GBinanceFuturesClient.Model.Market.Ticker24h.Count')

@@ -1,4 +1,5 @@
-﻿using GBinanceFuturesClient.Model.Market;
+﻿using GBinanceFuturesClient;
+using GBinanceFuturesClient.Model.Market;
 using NUnit.Framework;
 using System;
 using System.Collections.Generic;
@@ -13,19 +14,33 @@ namespace BinanceIntegratedTests.Market
         [Test]
         public void GetOldTradeLookupListWithDefaultLimitTest()
         {
-            List<TradeItem> trades = market.GetRectenTradesList("BTCUSDT");
+            try
+            {
+                List<TradeItem> trades = market.GetRectenTradesList("BTCUSDT");
 
-            Assert.IsNotNull(trades);
-            Assert.LessOrEqual(trades.Count, 500);
+                Assert.IsNotNull(trades);
+                Assert.LessOrEqual(trades.Count, 500);
+            }
+            catch (ErrorMessageException e)
+            {
+                Tools.OnThrowErrorMessageException(e);
+            }
         }
 
         [Test]
         public void GetOldTradeLookupListWithCustomLimitTest()
         {
-            List<TradeItem> trades = market.GetRectenTradesList("BTCUSDT", 200);
+            try
+            {
+                List<TradeItem> trades = market.GetRectenTradesList("BTCUSDT", 200);
 
-            Assert.IsNotNull(trades);
-            Assert.LessOrEqual(trades.Count, 200);
+                Assert.IsNotNull(trades);
+                Assert.LessOrEqual(trades.Count, 200);
+            }
+            catch (ErrorMessageException e)
+            {
+                Tools.OnThrowErrorMessageException(e);
+            }
         }
     }
 }

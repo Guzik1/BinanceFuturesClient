@@ -5,7 +5,7 @@ Binance futures market endpoint.
 ```csharp
 public class Market
 ```
-Inheritance [System.Object](https://docs.microsoft.com/en-us/dotnet/api/System.Object 'System.Object') &gt; [Market](./GBinanceFuturesClient-Market.md 'GBinanceFuturesClient.Market')  
+Inheritance [System.Object](https://docs.microsoft.com/en-us/dotnet/api/System.Object 'System.Object') &#129106; Market  
 ### Constructors
 - [Market()](./GBinanceFuturesClient-Market-Market().md 'GBinanceFuturesClient.Market.Market()')
 ### Methods
@@ -23,8 +23,6 @@ Inheritance [System.Object](https://docs.microsoft.com/en-us/dotnet/api/System.O
 - [GetLiquidationOrders(string, int)](./GBinanceFuturesClient-Market-GetLiquidationOrders(string_int).md 'GBinanceFuturesClient.Market.GetLiquidationOrders(string, int)')
 - [GetMarkPrice()](./GBinanceFuturesClient-Market-GetMarkPrice().md 'GBinanceFuturesClient.Market.GetMarkPrice()')
 - [GetMarkPrice(string)](./GBinanceFuturesClient-Market-GetMarkPrice(string).md 'GBinanceFuturesClient.Market.GetMarkPrice(string)')
-- [GetNationalAndLeverageBrackets()](./GBinanceFuturesClient-Market-GetNationalAndLeverageBrackets().md 'GBinanceFuturesClient.Market.GetNationalAndLeverageBrackets()')
-- [GetNationalAndLeverageBrackets(string)](./GBinanceFuturesClient-Market-GetNationalAndLeverageBrackets(string).md 'GBinanceFuturesClient.Market.GetNationalAndLeverageBrackets(string)')
 - [GetOldTradesLookup(string, int)](./GBinanceFuturesClient-Market-GetOldTradesLookup(string_int).md 'GBinanceFuturesClient.Market.GetOldTradesLookup(string, int)')
 - [GetOldTradesLookup(string, long, int)](./GBinanceFuturesClient-Market-GetOldTradesLookup(string_long_int).md 'GBinanceFuturesClient.Market.GetOldTradesLookup(string, long, int)')
 - [GetOpenInterest(string)](./GBinanceFuturesClient-Market-GetOpenInterest(string).md 'GBinanceFuturesClient.Market.GetOpenInterest(string)')

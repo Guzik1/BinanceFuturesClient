@@ -1,4 +1,5 @@
-﻿using GBinanceFuturesClient.Model.Market;
+﻿using GBinanceFuturesClient;
+using GBinanceFuturesClient.Model.Market;
 using NUnit.Framework;
 using System;
 using System.Collections.Generic;
@@ -21,11 +22,18 @@ namespace BinanceIntegratedTests.Market
         [Test]
         public void GetOpenInterestTest()
         {
-            OpenInterestItem oi = market.GetOpenInterest("BTCUSDT");
+            try
+            {
+                OpenInterestItem oi = market.GetOpenInterest("BTCUSDT");
 
-            Assert.IsNotNull(oi);
-            Assert.Greater(oi.OpenInterest, 0);
-            Assert.AreEqual("BTCUSDT", oi.Symbol);
+                Assert.IsNotNull(oi);
+                Assert.Greater(oi.OpenInterest, 0);
+                Assert.AreEqual("BTCUSDT", oi.Symbol);
+            }
+            catch (ErrorMessageException e)
+            {
+                Tools.OnThrowErrorMessageException(e);
+            }
         }
     }
 }

@@ -5,7 +5,7 @@ Details for market.
 ```csharp
 public class SymbolItem
 ```
-Inheritance [System.Object](https://docs.microsoft.com/en-us/dotnet/api/System.Object 'System.Object') &gt; [SymbolItem](./GBinanceFuturesClient-Model-Market-SymbolItem.md 'GBinanceFuturesClient.Model.Market.SymbolItem')  
+Inheritance [System.Object](https://docs.microsoft.com/en-us/dotnet/api/System.Object 'System.Object') &#129106; SymbolItem  
 ### Properties
 - [BaseAsset](./GBinanceFuturesClient-Model-Market-SymbolItem-BaseAsset.md 'GBinanceFuturesClient.Model.Market.SymbolItem.BaseAsset')
 - [BaseAssetPrecision](./GBinanceFuturesClient-Model-Market-SymbolItem-BaseAssetPrecision.md 'GBinanceFuturesClient.Model.Market.SymbolItem.BaseAssetPrecision')

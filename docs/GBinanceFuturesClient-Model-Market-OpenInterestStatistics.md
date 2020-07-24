@@ -6,7 +6,7 @@ Data model for response on [GetOpenInterestStatistics(string, string, int)](./GB
 ```csharp
 public class OpenInterestStatistics
 ```
-Inheritance [System.Object](https://docs.microsoft.com/en-us/dotnet/api/System.Object 'System.Object') &gt; [OpenInterestStatistics](./GBinanceFuturesClient-Model-Market-OpenInterestStatistics.md 'GBinanceFuturesClient.Model.Market.OpenInterestStatistics')  
+Inheritance [System.Object](https://docs.microsoft.com/en-us/dotnet/api/System.Object 'System.Object') &#129106; OpenInterestStatistics  
 ### Properties
 - [SumOpenInterest](./GBinanceFuturesClient-Model-Market-OpenInterestStatistics-SumOpenInterest.md 'GBinanceFuturesClient.Model.Market.OpenInterestStatistics.SumOpenInterest')
 - [SumOpenInterestValue](./GBinanceFuturesClient-Model-Market-OpenInterestStatistics-SumOpenInterestValue.md 'GBinanceFuturesClient.Model.Market.OpenInterestStatistics.SumOpenInterestValue')

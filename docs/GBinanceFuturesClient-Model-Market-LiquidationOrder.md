@@ -6,7 +6,7 @@ Data model for response on [GetLiquidationOrders(string, int)](./GBinanceFutures
 ```csharp
 public class LiquidationOrder
 ```
-Inheritance [System.Object](https://docs.microsoft.com/en-us/dotnet/api/System.Object 'System.Object') &gt; [LiquidationOrder](./GBinanceFuturesClient-Model-Market-LiquidationOrder.md 'GBinanceFuturesClient.Model.Market.LiquidationOrder')  
+Inheritance [System.Object](https://docs.microsoft.com/en-us/dotnet/api/System.Object 'System.Object') &#129106; LiquidationOrder  
 ### Properties
 - [AvragePrice](./GBinanceFuturesClient-Model-Market-LiquidationOrder-AvragePrice.md 'GBinanceFuturesClient.Model.Market.LiquidationOrder.AvragePrice')
 - [ExecutedQty](./GBinanceFuturesClient-Model-Market-LiquidationOrder-ExecutedQty.md 'GBinanceFuturesClient.Model.Market.LiquidationOrder.ExecutedQty')

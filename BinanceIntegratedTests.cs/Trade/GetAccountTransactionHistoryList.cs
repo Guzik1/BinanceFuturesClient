@@ -19,7 +19,7 @@ namespace BinanceIntegratedTests.Trade
             }
             catch (ErrorMessageException e)
             {
-                StringAssert.AreNotEqualIgnoringCase("", e.Message);   // Invalide api key (test api key on public api, not testnet).
+                StringAssert.AreNotEqualIgnoringCase("", e.Message);   // Invalide api key (test api key on public api, not testnet, unavailable in testnet).
                 StringAssert.AreEqualIgnoringCase("Invalid Api-Key ID.", e.Message);
             }
         }

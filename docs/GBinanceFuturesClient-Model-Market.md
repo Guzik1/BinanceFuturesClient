@@ -2,14 +2,12 @@
 ## GBinanceFuturesClient.Model.Market Namespace
 ### Classes
 - [AggregateTradeItem](./GBinanceFuturesClient-Model-Market-AggregateTradeItem.md 'GBinanceFuturesClient.Model.Market.AggregateTradeItem')
-- [Brackets](./GBinanceFuturesClient-Model-Market-Brackets.md 'GBinanceFuturesClient.Model.Market.Brackets')
 - [BuySellVolume](./GBinanceFuturesClient-Model-Market-BuySellVolume.md 'GBinanceFuturesClient.Model.Market.BuySellVolume')
 - [CandlestickData](./GBinanceFuturesClient-Model-Market-CandlestickData.md 'GBinanceFuturesClient.Model.Market.CandlestickData')
 - [ExchangeInfo](./GBinanceFuturesClient-Model-Market-ExchangeInfo.md 'GBinanceFuturesClient.Model.Market.ExchangeInfo')
 - [FundingRateHistory](./GBinanceFuturesClient-Model-Market-FundingRateHistory.md 'GBinanceFuturesClient.Model.Market.FundingRateHistory')
 - [LiquidationOrder](./GBinanceFuturesClient-Model-Market-LiquidationOrder.md 'GBinanceFuturesClient.Model.Market.LiquidationOrder')
 - [MarkPriceResponse](./GBinanceFuturesClient-Model-Market-MarkPriceResponse.md 'GBinanceFuturesClient.Model.Market.MarkPriceResponse')
-- [NationalAndLeverageBrackets](./GBinanceFuturesClient-Model-Market-NationalAndLeverageBrackets.md 'GBinanceFuturesClient.Model.Market.NationalAndLeverageBrackets')
 - [OpenInterestItem](./GBinanceFuturesClient-Model-Market-OpenInterestItem.md 'GBinanceFuturesClient.Model.Market.OpenInterestItem')
 - [OpenInterestStatistics](./GBinanceFuturesClient-Model-Market-OpenInterestStatistics.md 'GBinanceFuturesClient.Model.Market.OpenInterestStatistics')
 - [OrderBook](./GBinanceFuturesClient-Model-Market-OrderBook.md 'GBinanceFuturesClient.Model.Market.OrderBook')
