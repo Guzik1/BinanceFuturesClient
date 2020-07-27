@@ -8,7 +8,7 @@ using GBasicExchangeDefinitions;
 
 namespace BinanceIntegratedTests.Trade
 {
-    public class NewOrderTests
+    public class OrderTests
     {
         GBinanceFuturesClient.Trade trade;
 
@@ -21,10 +21,11 @@ namespace BinanceIntegratedTests.Trade
         }
 
         [Test]
-        public void NewLimitOrderTest()
+        public void LimitOrderTest()
         {
             try
             {
+                // Place order
                 NewOrderRequest request = new NewOrderRequest();
                 request.SetLimitOrder("BTCUSDT", OrderSide.BUY, 0.02m, 10000);
 
@@ -37,6 +38,14 @@ namespace BinanceIntegratedTests.Trade
                 //Assert.AreEqual(PositionSide.LONG, response.PositionSide);
                 StringAssert.AreEqualIgnoringCase("BTCUSDT", response.Symbol);
                 Assert.AreEqual(OrderType.LIMIT, response.Type);
+
+                // Cancel order
+                response = trade.CancelOrder("BTCUSDT", response.OrderId);
+
+                Assert.AreEqual(OrderStatus.CANCELED, response.Status);
+                Assert.AreEqual(0.02m, response.OrigQty);
+                Assert.AreEqual(10000, response.Price);
+                Assert.AreEqual(OrderType.LIMIT, response.Type);
             }
             catch (ErrorMessageException e)
             {
@@ -45,23 +54,36 @@ namespace BinanceIntegratedTests.Trade
         }
 
         [Test]
-        public void NewMarketOrderTest()
+        public void MarketOrderTest()
         {
             try
             {
                 NewOrderRequest request = new NewOrderRequest();
-                request.SetMarketOrder("BTCUSDT", OrderSide.SELL, 0.01m);
-                request.NewClientOrderId = "test2";
+                request.SetMarketOrder("BTCUSDT", OrderSide.SELL, 0.06m);
 
                 OrderInfo response = trade.PlaceOrder(request);
 
-                StringAssert.AreEqualIgnoringCase("test2", response.ClientOrderId);
                 Assert.Greater(response.OrderId, 0);
-                Assert.AreEqual(0.01m, response.OrigQty);
+                Assert.AreEqual(0.06m, response.OrigQty);
                 Assert.AreEqual(OrderSide.SELL, response.Side);
                 Assert.AreEqual(PositionSide.BOTH, response.PositionSide);
                 StringAssert.AreEqualIgnoringCase("BTCUSDT", response.Symbol);
                 Assert.AreEqual(OrderType.MARKET, response.Type);
+
+                response = trade.GetOrder("BTCUSDT", response.OrderId);
+                Assert.AreEqual(OrderStatus.FILLED, response.Status);
+
+                if (response.Status != OrderStatus.FILLED)
+                {
+                    // Cancel order
+                    response = trade.CancelOrder("BTCUSDT", response.OrderId);
+
+                    Assert.AreEqual(OrderStatus.CANCELED, response.Status);
+                    Assert.Greater(response.OrderId, 0);
+                    Assert.AreEqual(0.06m, response.OrigQty);
+                    Assert.AreEqual(OrderSide.SELL, response.Side);
+                    Assert.AreEqual(OrderType.MARKET, response.Type);
+                }
             }
             catch (ErrorMessageException e)
             {
@@ -70,7 +92,7 @@ namespace BinanceIntegratedTests.Trade
         }
 
         [Test]
-        public void NewStopLimitOrderTest()
+        public void StopLimitOrderTest()
         {
             try
             {
@@ -87,6 +109,15 @@ namespace BinanceIntegratedTests.Trade
                 Assert.AreEqual(PositionSide.BOTH, response.PositionSide);
                 StringAssert.AreEqualIgnoringCase("BTCUSDT", response.Symbol);
                 Assert.AreEqual(OrderType.STOP, response.Type);
+
+                // Cancel order
+                response = trade.CancelOrder("BTCUSDT", response.ClientOrderId);
+
+                Assert.AreEqual(OrderStatus.CANCELED, response.Status);
+                Assert.AreEqual(0.05m, response.OrigQty);
+                Assert.AreEqual(7990, response.StopPrice);
+                Assert.AreEqual(8000, response.Price);
+                Assert.AreEqual(OrderType.STOP, response.Type);
             }
             catch (ErrorMessageException e)
             {
@@ -95,7 +126,7 @@ namespace BinanceIntegratedTests.Trade
         }
 
         [Test]
-        public void NewTakeProfitOrderTest()
+        public void TakeProfitOrderTest()
         {
             try
             {
@@ -111,6 +142,15 @@ namespace BinanceIntegratedTests.Trade
                 Assert.AreEqual(OrderSide.BUY, response.Side);
                 Assert.AreEqual(PositionSide.BOTH, response.PositionSide);
                 StringAssert.AreEqualIgnoringCase("BTCUSDT", response.Symbol);
+                Assert.AreEqual(OrderType.TAKE_PROFIT, response.Type);
+
+                // Cancel order
+                response = trade.CancelOrder("BTCUSDT", response.ClientOrderId);
+
+                Assert.AreEqual(OrderStatus.CANCELED, response.Status);
+                Assert.AreEqual(0.1m, response.OrigQty);
+                Assert.AreEqual(8010m, response.StopPrice);
+                Assert.AreEqual(8000m, response.Price);
                 Assert.AreEqual(OrderType.TAKE_PROFIT, response.Type);
             }
             catch (ErrorMessageException e)

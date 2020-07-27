@@ -1,7 +1,7 @@
 #### [GBinanceFuturesClient](./index.md 'index')
 ### [GBinanceFuturesClient.Model.Trade](./GBinanceFuturesClient-Model-Trade.md 'GBinanceFuturesClient.Model.Trade')
 ## OrderInfo Class
-Data model for respone on [PlaceOrder(GBinanceFuturesClient.Model.Trade.NewOrderRequest)](./GBinanceFuturesClient-Trade-PlaceOrder(GBinanceFuturesClient-Model-Trade-NewOrderRequest).md 'GBinanceFuturesClient.Trade.PlaceOrder(GBinanceFuturesClient.Model.Trade.NewOrderRequest)') request.  
+Data model for order information.  
 ```csharp
 public class OrderInfo
 ```

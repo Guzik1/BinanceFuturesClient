@@ -108,12 +108,14 @@ namespace GBinanceFuturesClient.Model.Trade
         /// <param name="quantity">Order quantity</param>
         /// <param name="price">Order price</param>
         /// <param name="timeInForce">Time in force, default: GTC</param>
-        public void SetLimitOrder(string symbol, OrderSide side, decimal quantity, decimal price, TimeInForce timeInForce = TimeInForce.GTC)
+        public NewOrderRequest SetLimitOrder(string symbol, OrderSide side, decimal quantity, decimal price, TimeInForce timeInForce = TimeInForce.GTC)
         {
             SetMarketOrder(symbol, side, quantity);
             Price = price;
             TimeInForce = timeInForce;
             Type = OrderType.LIMIT;
+
+            return this;
         }
 
         /// <summary>
@@ -122,12 +124,14 @@ namespace GBinanceFuturesClient.Model.Trade
         /// <param name="symbol">Symbol string</param>
         /// <param name="side">Order side</param>
         /// <param name="quantity">Order quantity</param>
-        public void SetMarketOrder(string symbol, OrderSide side, decimal quantity)
+        public NewOrderRequest SetMarketOrder(string symbol, OrderSide side, decimal quantity)
         {
             Symbol = symbol;
             Side = side;
             Type = OrderType.MARKET;
             Quantity = quantity;
+
+            return this;
         }
 
         /// <summary>
@@ -138,11 +142,13 @@ namespace GBinanceFuturesClient.Model.Trade
         /// <param name="quantity">Order quantity</param>
         /// <param name="price">Order price</param>
         /// <param name="stopPrice">Stop price</param>
-        public void SetStopLimitOrder(string symbol, OrderSide side, decimal quantity, decimal price, decimal stopPrice)
+        public NewOrderRequest SetStopLimitOrder(string symbol, OrderSide side, decimal quantity, decimal price, decimal stopPrice)
         {
             SetStopMarketOrder(symbol, side, quantity, price, stopPrice);
             Price = price;
             Type = OrderType.STOP;
+
+            return this;
         }
 
         /// <summary>
@@ -153,10 +159,12 @@ namespace GBinanceFuturesClient.Model.Trade
         /// <param name="quantity">Order quantity</param>
         /// <param name="price">Order price</param>
         /// <param name="stopPrice">Stop price</param>
-        public void SetTakeProfitLimitOrder(string symbol, OrderSide side, decimal quantity, decimal price, decimal stopPrice)
+        public NewOrderRequest SetTakeProfitLimitOrder(string symbol, OrderSide side, decimal quantity, decimal price, decimal stopPrice)
         {
             SetStopMarketOrder(symbol, side, quantity, price, stopPrice);
             Type = OrderType.TAKE_PROFIT;
+
+            return this;
         }
 
         /// <summary>
@@ -167,12 +175,14 @@ namespace GBinanceFuturesClient.Model.Trade
         /// <param name="quantity">Order quantity</param>
         /// <param name="price">Order price</param>
         /// <param name="stopPrice">Stop price</param>
-        public void SetStopMarketOrder(string symbol, OrderSide side, decimal quantity, decimal price, decimal stopPrice)
+        public NewOrderRequest SetStopMarketOrder(string symbol, OrderSide side, decimal quantity, decimal price, decimal stopPrice)
         {
             SetMarketOrder(symbol, side, quantity);
             StopPrice = stopPrice;
             Price = price;
             Type = OrderType.STOP_MARKET;
+
+            return this;
         }
 
         /// <summary>
@@ -183,10 +193,12 @@ namespace GBinanceFuturesClient.Model.Trade
         /// <param name="quantity">Order quantity</param>
         /// <param name="price">Order price</param>
         /// <param name="stopPrice">Stop price</param>
-        public void SetTakeProfitMarketOrder(string symbol, OrderSide side, decimal quantity, decimal price, decimal stopPrice)
+        public NewOrderRequest SetTakeProfitMarketOrder(string symbol, OrderSide side, decimal quantity, decimal price, decimal stopPrice)
         {
             SetStopMarketOrder(symbol, side, quantity, price, stopPrice);
             Type = OrderType.TAKE_PROFIT_MARKET;
+
+            return this;
         }
 
         /// <summary>
@@ -195,12 +207,14 @@ namespace GBinanceFuturesClient.Model.Trade
         /// <param name="symbol">Symbol string</param>
         /// <param name="side">Order side</param>
         /// <param name="callbackRate">Callback rate</param>
-        public void SetTrailingStopMarketOrder(string symbol, OrderSide side, decimal callbackRate)
+        public NewOrderRequest SetTrailingStopMarketOrder(string symbol, OrderSide side, decimal callbackRate)
         {
             Symbol = symbol;
             Side = side;
             Type = OrderType.TRAILING_STOP_MARKET;
             CallbackRate = callbackRate;
+
+            return this;
         }
     }
 }

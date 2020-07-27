@@ -100,8 +100,6 @@ namespace GBinanceFuturesClient.Manager
 
         string AddQueryAndAutorize(MethodsType method, Dictionary<string, string> query = null, object objectBody = null)
         {
-            //client.AddOwnHeaderToRequest("Content-Type", "application/x-www-form-urlencoded");
-
             // TODO change exception to UnautorizedClientException;
             if (autorization == Autorization.NONE)
             {

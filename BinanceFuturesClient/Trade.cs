@@ -204,7 +204,7 @@ namespace GBinanceFuturesClient
             if (recvWindow != 5000)
                 manager.AddQueryParam("recvWindow", recvWindow.ToString());
 
-            return manager.SendRequest<OrderInfo>(Config.ApiPublicUrl + "order ", MethodsType.GET);
+            return manager.SendRequest<OrderInfo>(Config.ApiPublicUrl + "order", MethodsType.GET);
         }
 
         /// <summary>
@@ -224,7 +224,183 @@ namespace GBinanceFuturesClient
             if (recvWindow != 5000)
                 manager.AddQueryParam("recvWindow", recvWindow.ToString());
 
-            return manager.SendRequest<OrderInfo>(Config.ApiPublicUrl + "order ", MethodsType.GET);
+            return manager.SendRequest<OrderInfo>(Config.ApiPublicUrl + "order", MethodsType.GET);
+        }
+        #endregion
+
+        #region Cancel Order
+        /// <summary>
+        /// Candel order using order id.
+        /// </summary>
+        /// <param name="symbol">Currency pair code</param>
+        /// <param name="orderId">Order identificator (long)</param>
+        /// <returns>Order info object, this same for NewOrder and GetOrder request.</returns>
+        public OrderInfo CancelOrder(string symbol, long orderId)
+        {
+            RequestManager manager = new RequestManager(session, Autorization.TRADING);
+            manager.AddQueryParam("timestamp", Tools.NowUnixTime().ToString());
+            manager.AddQueryParam("symbol", symbol);
+            manager.AddQueryParam("orderId", orderId.ToString());
+
+            return manager.SendRequest<OrderInfo>(Config.ApiPublicUrl + "order", MethodsType.DELETE);
+        }
+
+        /// <summary>
+        /// Candel order using order id.
+        /// </summary>
+        /// <param name="symbol">Currency pair code</param>
+        /// <param name="clientOrderId">Client custon order identificator (string)</param>
+        /// <returns>Order info object, this same for NewOrder and GetOrder request.</returns>
+        public OrderInfo CancelOrder(string symbol, string clientOrderId)
+        {
+            RequestManager manager = new RequestManager(session, Autorization.TRADING);
+            manager.AddQueryParam("timestamp", Tools.NowUnixTime().ToString());
+            manager.AddQueryParam("symbol", symbol);
+            manager.AddQueryParam("origClientOrderId", clientOrderId);
+
+            return manager.SendRequest<OrderInfo>(Config.ApiPublicUrl + "order", MethodsType.DELETE);
+        }
+
+        /// <summary>
+        /// Candel order using order id.
+        /// </summary>
+        /// <param name="symbol">Currency pair code</param>
+        /// <param name="orderId">Order identificator (long)</param>
+        /// <param name="recvWindow">Recv window time in unix milisecond, default 5000.</param>
+        /// <returns>Order info object, this same for NewOrder and GetOrder request.</returns>
+        public OrderInfo CancelOrder(string symbol, long orderId, long recvWindow = 5000)
+        {
+            RequestManager manager = new RequestManager(session, Autorization.TRADING);
+            manager.AddQueryParam("timestamp", Tools.NowUnixTime().ToString());
+            manager.AddQueryParam("symbol", symbol);
+            manager.AddQueryParam("orderId", orderId.ToString());
+
+            if (recvWindow != 5000)
+                manager.AddQueryParam("recvWindow", recvWindow.ToString());
+
+            return manager.SendRequest<OrderInfo>(Config.ApiPublicUrl + "order", MethodsType.DELETE);
+        }
+
+        /// <summary>
+        /// Candel order using order id.
+        /// </summary>
+        /// <param name="symbol">Currency pair code</param>
+        /// <param name="clientOrderId">Client custon order identificator (string)</param>
+        /// <param name="recvWindow">Recv window time in unix milisecond, default 5000.</param>
+        /// <returns>Order info object, this same for NewOrder and GetOrder request.</returns>
+        public OrderInfo CancelOrder(string symbol, string clientOrderId, long recvWindow = 5000)
+        {
+            RequestManager manager = new RequestManager(session, Autorization.TRADING);
+            manager.AddQueryParam("timestamp", Tools.NowUnixTime().ToString());
+            manager.AddQueryParam("symbol", symbol);
+            manager.AddQueryParam("origClientOrderId", clientOrderId);
+
+            if (recvWindow != 5000)
+                manager.AddQueryParam("recvWindow", recvWindow.ToString());
+
+            return manager.SendRequest<OrderInfo>(Config.ApiPublicUrl + "order", MethodsType.DELETE);
+        }
+        #endregion
+
+        #region Cancel all open orders
+        /// <summary>
+        /// Delete all open order on one symbol. Weight: 1.
+        /// </summary>
+        /// <param name="symbol">Currency pair code</param>
+        /// <param name="recvWindow">Recv window time in unix milisecond, default 5000.</param>
+        /// <returns>Message object, with status code and message</returns>
+        public Message CancelAllOpenOrders(string symbol, long recvWindow = 5000)
+        {
+            RequestManager manager = new RequestManager(session, Autorization.TRADING);
+            manager.AddQueryParam("timestamp", Tools.NowUnixTime().ToString());
+            manager.AddQueryParam("symbol", symbol);
+
+            if (recvWindow != 5000)
+                manager.AddQueryParam("recvWindow", recvWindow.ToString());
+            
+            return manager.SendRequest<Message>(Config.ApiPublicUrl + "allOpenOrders", MethodsType.DELETE);
+        }
+        #endregion
+
+        #region Cancel multiple orders
+        /// <summary>
+        /// Cancel multiple order, using order id list.  Weight: 1.
+        /// </summary>
+        /// <param name="symbol">Currency pair code</param>
+        /// <param name="orderIdList">List of order identificator to cancel</param>
+        /// <param name="recvWindow">Recv window time in unix milisecond, default 5000.</param>
+        /// <returns>List of valid or error response, containing response on order. Responses in the order of the list sent.</returns>
+        public List<ValidOrErrorResponse<OrderInfo>> CancelMultipleOrders(string symbol, List<long> orderIdList, long recvWindow = 5000)
+        {
+            RequestManager manager = new RequestManager(session, Autorization.TRADING);
+            manager.AddQueryParam("timestamp", Tools.NowUnixTime().ToString());
+            manager.AddQueryParam("symbol", symbol);
+            manager.AddQueryParam("orderIdList", JsonTools.SerializeAsJson(orderIdList));
+
+            if (recvWindow != 5000)
+                manager.AddQueryParam("recvWindow", recvWindow.ToString());
+
+            return manager.SendRequest(Config.ApiPublicUrl + "batchOrders", MethodsType.DELETE,
+                customDeserializer: new MultipleOrderCustomDeserializer<OrderInfo>());
+        }
+
+        /// <summary>
+        /// Cancel multiple order, using custom client order identificator list. Weight: 1.
+        /// </summary>
+        /// <param name="symbol">Currency pair code</param>
+        /// <param name="clientOrderIdList">List of client order identificator to cancel</param>
+        /// <param name="recvWindow">Recv window time in unix milisecond, default 5000.</param>
+        /// <returns>List of valid or error response, containing response on order. Responses in the order of the list sent.</returns>
+        public List<ValidOrErrorResponse<OrderInfo>> CancelMultipleOrders(string symbol, List<string> clientOrderIdList, long recvWindow = 5000)
+        {
+            RequestManager manager = new RequestManager(session, Autorization.TRADING);
+            manager.AddQueryParam("timestamp", Tools.NowUnixTime().ToString());
+            manager.AddQueryParam("symbol", symbol);
+            manager.AddQueryParam("origClientOrderIdList", JsonTools.SerializeAsJson(clientOrderIdList));
+
+            if (recvWindow != 5000)
+                manager.AddQueryParam("recvWindow", recvWindow.ToString());
+
+            return manager.SendRequest(Config.ApiPublicUrl + "batchOrders", MethodsType.DELETE,
+                customDeserializer: new MultipleOrderCustomDeserializer<OrderInfo>());
+        }
+        #endregion
+
+        #region Auto-cancel all open orders
+        /// <summary>
+        /// Auto cancel all open orders using countdown. Weight: 10.
+        /// </summary>
+        /// <param name="symbol">Currency pair code</param>
+        /// <param name="countdownTimer">Countdown time in milisecond</param>
+        /// <returns>Resonse object</returns>
+        public AutoCancelAllOpenOrdersResponse AutoCancelAllOpenOrders(string symbol, long countdownTimer)
+        {
+            RequestManager manager = new RequestManager(session, Autorization.TRADING);
+            manager.AddQueryParam("timestamp", Tools.NowUnixTime().ToString());
+            manager.AddQueryParam("symbol", symbol);
+            manager.AddQueryParam("countdownTime", countdownTimer.ToString());
+
+            return manager.SendRequest<AutoCancelAllOpenOrdersResponse>(Config.ApiPublicUrl + "countdownCancelAll ", MethodsType.POST);
+        }
+
+        /// <summary>
+        /// Auto cancel all open orders using countdown. Weight: 10.
+        /// </summary>
+        /// <param name="symbol">Currency pair code</param>
+        /// <param name="countdownTimer">Countdown time in milisecond</param>
+        /// <param name="recvWindow">Recv window time in unix milisecond, default 5000.</param>
+        /// <returns>Resonse object</returns>
+        public object AutoCancelAllOpenOrders(string symbol, long countdownTimer, long recvWindow = 5000)
+        {
+            RequestManager manager = new RequestManager(session, Autorization.TRADING);
+            manager.AddQueryParam("timestamp", Tools.NowUnixTime().ToString());
+            manager.AddQueryParam("symbol", symbol);
+            manager.AddQueryParam("countdownTime", countdownTimer.ToString());
+
+            if (recvWindow != 5000)
+                manager.AddQueryParam("recvWindow", recvWindow.ToString());
+
+            return manager.SendRequest<AutoCancelAllOpenOrdersResponse>(Config.ApiPublicUrl + "countdownCancelAll ", MethodsType.POST);
         }
         #endregion
 

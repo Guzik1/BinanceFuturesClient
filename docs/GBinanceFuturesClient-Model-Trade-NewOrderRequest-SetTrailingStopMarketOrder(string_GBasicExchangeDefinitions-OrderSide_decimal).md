@@ -3,7 +3,7 @@
 ## NewOrderRequest.SetTrailingStopMarketOrder(string, GBasicExchangeDefinitions.OrderSide, decimal) Method
 Create trailing stop market order.  
 ```csharp
-public void SetTrailingStopMarketOrder(string symbol, GBasicExchangeDefinitions.OrderSide side, decimal callbackRate);
+public GBinanceFuturesClient.Model.Trade.NewOrderRequest SetTrailingStopMarketOrder(string symbol, GBasicExchangeDefinitions.OrderSide side, decimal callbackRate);
 ```
 #### Parameters
 <a name='GBinanceFuturesClient-Model-Trade-NewOrderRequest-SetTrailingStopMarketOrder(string_GBasicExchangeDefinitions-OrderSide_decimal)-symbol'></a>
@@ -18,3 +18,5 @@ Order side
 `callbackRate` [System.Decimal](https://docs.microsoft.com/en-us/dotnet/api/System.Decimal 'System.Decimal')  
 Callback rate  
   
+#### Returns
+[NewOrderRequest](./GBinanceFuturesClient-Model-Trade-NewOrderRequest.md 'GBinanceFuturesClient.Model.Trade.NewOrderRequest')  

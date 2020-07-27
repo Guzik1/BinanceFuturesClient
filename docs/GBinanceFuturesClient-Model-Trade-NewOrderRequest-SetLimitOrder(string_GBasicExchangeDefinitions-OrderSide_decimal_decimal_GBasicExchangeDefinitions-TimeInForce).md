@@ -3,7 +3,7 @@
 ## NewOrderRequest.SetLimitOrder(string, GBasicExchangeDefinitions.OrderSide, decimal, decimal, GBasicExchangeDefinitions.TimeInForce) Method
 Create limit order request.  
 ```csharp
-public void SetLimitOrder(string symbol, GBasicExchangeDefinitions.OrderSide side, decimal quantity, decimal price, GBasicExchangeDefinitions.TimeInForce timeInForce=GBasicExchangeDefinitions.TimeInForce.GTC);
+public GBinanceFuturesClient.Model.Trade.NewOrderRequest SetLimitOrder(string symbol, GBasicExchangeDefinitions.OrderSide side, decimal quantity, decimal price, GBasicExchangeDefinitions.TimeInForce timeInForce=GBasicExchangeDefinitions.TimeInForce.GTC);
 ```
 #### Parameters
 <a name='GBinanceFuturesClient-Model-Trade-NewOrderRequest-SetLimitOrder(string_GBasicExchangeDefinitions-OrderSide_decimal_decimal_GBasicExchangeDefinitions-TimeInForce)-symbol'></a>
@@ -26,3 +26,5 @@ Order price
 `timeInForce` [GBasicExchangeDefinitions.TimeInForce](https://docs.microsoft.com/en-us/dotnet/api/GBasicExchangeDefinitions.TimeInForce 'GBasicExchangeDefinitions.TimeInForce')  
 Time in force, default: GTC  
   
+#### Returns
+[NewOrderRequest](./GBinanceFuturesClient-Model-Trade-NewOrderRequest.md 'GBinanceFuturesClient.Model.Trade.NewOrderRequest')  

@@ -1290,19 +1290,40 @@
             Transactio status. one of PENDING (pending to execution), CONFIRMED (successfully transfered), FAILED (execution failed, nothing happened to your account)
             </summary>
         </member>
+        <member name="T:GBinanceFuturesClient.Model.Trade.AutoCancelAllOpenOrdersResponse">
+            <summary>
+            Auto-cancel all open orders response on <see cref="M:GBinanceFuturesClient.Trade.AutoCancelAllOpenOrders(System.String,System.Int64)"/> and 
+            <see cref="M:GBinanceFuturesClient.Trade.AutoCancelAllOpenOrders(System.String,System.Int64,System.Int64)"/> request.
+            </summary>
+        </member>
+        <member name="F:GBinanceFuturesClient.Model.Trade.AutoCancelAllOpenOrdersResponse.Symbol">
+            <summary>
+            Currency pair code.
+            </summary>
+        </member>
+        <member name="F:GBinanceFuturesClient.Model.Trade.AutoCancelAllOpenOrdersResponse.CountdownTimer">
+            <summary>
+            Countdown timer in miliseconds.
+            </summary>
+        </member>
         <member name="T:GBinanceFuturesClient.Model.Trade.ErrorMessage">
             <summary>
-            Error message object. Using in multiple orders.
+            Error message object.
             </summary>
         </member>
-        <member name="P:GBinanceFuturesClient.Model.Trade.ErrorMessage.Code">
+        <member name="T:GBinanceFuturesClient.Model.Trade.Message">
             <summary>
-            Error code.
+            Basic server response message object.
             </summary>
         </member>
-        <member name="P:GBinanceFuturesClient.Model.Trade.ErrorMessage.Msg">
+        <member name="P:GBinanceFuturesClient.Model.Trade.Message.Code">
             <summary>
-            Error message.
+            Status code.
+            </summary>
+        </member>
+        <member name="P:GBinanceFuturesClient.Model.Trade.Message.Msg">
+            <summary>
+            Message.
             </summary>
         </member>
         <member name="T:GBinanceFuturesClient.Model.Trade.NationalAndLeverageBrackets">
@@ -1353,7 +1374,7 @@
         </member>
         <member name="T:GBinanceFuturesClient.Model.Trade.OrderInfo">
             <summary>
-            Data model for respone on <see cref="M:GBinanceFuturesClient.Trade.PlaceOrder(GBinanceFuturesClient.Model.Trade.NewOrderRequest)"/> request.
+            Data model for order information.
             </summary>
         </member>
         <member name="P:GBinanceFuturesClient.Model.Trade.OrderInfo.ClientOrderId">
@@ -1545,6 +1566,83 @@
             <param name="clientOrderId">Client order identificator</param>
             <param name="recvWindow">Custom recvWindow, default: 5000</param>
             <returns>Order information object</returns>
+        </member>
+        <member name="M:GBinanceFuturesClient.Trade.CancelOrder(System.String,System.Int64)">
+            <summary>
+            Candel order using order id.
+            </summary>
+            <param name="symbol">Currency pair code</param>
+            <param name="orderId">Order identificator (long)</param>
+            <returns>Order info object, this same for NewOrder and GetOrder request.</returns>
+        </member>
+        <member name="M:GBinanceFuturesClient.Trade.CancelOrder(System.String,System.String)">
+            <summary>
+            Candel order using order id.
+            </summary>
+            <param name="symbol">Currency pair code</param>
+            <param name="clientOrderId">Client custon order identificator (string)</param>
+            <returns>Order info object, this same for NewOrder and GetOrder request.</returns>
+        </member>
+        <member name="M:GBinanceFuturesClient.Trade.CancelOrder(System.String,System.Int64,System.Int64)">
+            <summary>
+            Candel order using order id.
+            </summary>
+            <param name="symbol">Currency pair code</param>
+            <param name="orderId">Order identificator (long)</param>
+            <param name="recvWindow">Recv window time in unix milisecond, default 5000.</param>
+            <returns>Order info object, this same for NewOrder and GetOrder request.</returns>
+        </member>
+        <member name="M:GBinanceFuturesClient.Trade.CancelOrder(System.String,System.String,System.Int64)">
+            <summary>
+            Candel order using order id.
+            </summary>
+            <param name="symbol">Currency pair code</param>
+            <param name="clientOrderId">Client custon order identificator (string)</param>
+            <param name="recvWindow">Recv window time in unix milisecond, default 5000.</param>
+            <returns>Order info object, this same for NewOrder and GetOrder request.</returns>
+        </member>
+        <member name="M:GBinanceFuturesClient.Trade.CancelAllOpenOrders(System.String,System.Int64)">
+            <summary>
+            Delete all open order on one symbol. Weight: 1.
+            </summary>
+            <param name="symbol">Currency pair code</param>
+            <param name="recvWindow">Recv window time in unix milisecond, default 5000.</param>
+            <returns>Message object, with status code and message</returns>
+        </member>
+        <member name="M:GBinanceFuturesClient.Trade.CancelMultipleOrders(System.String,System.Collections.Generic.List{System.Int64},System.Int64)">
+            <summary>
+            Cancel multiple order, using order id list.  Weight: 1.
+            </summary>
+            <param name="symbol">Currency pair code</param>
+            <param name="orderIdList">List of order identificator to cancel</param>
+            <param name="recvWindow">Recv window time in unix milisecond, default 5000.</param>
+            <returns>List of valid or error response, containing response on order. Responses in the order of the list sent.</returns>
+        </member>
+        <member name="M:GBinanceFuturesClient.Trade.CancelMultipleOrders(System.String,System.Collections.Generic.List{System.String},System.Int64)">
+            <summary>
+            Cancel multiple order, using custom client order identificator list. Weight: 1.
+            </summary>
+            <param name="symbol">Currency pair code</param>
+            <param name="clientOrderIdList">List of client order identificator to cancel</param>
+            <param name="recvWindow">Recv window time in unix milisecond, default 5000.</param>
+            <returns>List of valid or error response, containing response on order. Responses in the order of the list sent.</returns>
+        </member>
+        <member name="M:GBinanceFuturesClient.Trade.AutoCancelAllOpenOrders(System.String,System.Int64)">
+            <summary>
+            Auto cancel all open orders using countdown. Weight: 10.
+            </summary>
+            <param name="symbol">Currency pair code</param>
+            <param name="countdownTimer">Countdown time in milisecond</param>
+            <returns>Resonse object</returns>
+        </member>
+        <member name="M:GBinanceFuturesClient.Trade.AutoCancelAllOpenOrders(System.String,System.Int64,System.Int64)">
+            <summary>
+            Auto cancel all open orders using countdown. Weight: 10.
+            </summary>
+            <param name="symbol">Currency pair code</param>
+            <param name="countdownTimer">Countdown time in milisecond</param>
+            <param name="recvWindow">Recv window time in unix milisecond, default 5000.</param>
+            <returns>Resonse object</returns>
         </member>
         <member name="M:GBinanceFuturesClient.Trade.GetNationalBrackets">
             <summary>

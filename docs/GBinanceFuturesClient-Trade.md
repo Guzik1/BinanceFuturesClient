@@ -7,6 +7,15 @@ public class Trade
 ```
 Inheritance [System.Object](https://docs.microsoft.com/en-us/dotnet/api/System.Object 'System.Object') &#129106; Trade  
 ### Methods
+- [AutoCancelAllOpenOrders(string, long)](./GBinanceFuturesClient-Trade-AutoCancelAllOpenOrders(string_long).md 'GBinanceFuturesClient.Trade.AutoCancelAllOpenOrders(string, long)')
+- [AutoCancelAllOpenOrders(string, long, long)](./GBinanceFuturesClient-Trade-AutoCancelAllOpenOrders(string_long_long).md 'GBinanceFuturesClient.Trade.AutoCancelAllOpenOrders(string, long, long)')
+- [CancelAllOpenOrders(string, long)](./GBinanceFuturesClient-Trade-CancelAllOpenOrders(string_long).md 'GBinanceFuturesClient.Trade.CancelAllOpenOrders(string, long)')
+- [CancelMultipleOrders(string, System.Collections.Generic.List&lt;long&gt;, long)](./GBinanceFuturesClient-Trade-CancelMultipleOrders(string_System-Collections-Generic-List-long-_long).md 'GBinanceFuturesClient.Trade.CancelMultipleOrders(string, System.Collections.Generic.List&lt;long&gt;, long)')
+- [CancelMultipleOrders(string, System.Collections.Generic.List&lt;string&gt;, long)](./GBinanceFuturesClient-Trade-CancelMultipleOrders(string_System-Collections-Generic-List-string-_long).md 'GBinanceFuturesClient.Trade.CancelMultipleOrders(string, System.Collections.Generic.List&lt;string&gt;, long)')
+- [CancelOrder(string, long)](./GBinanceFuturesClient-Trade-CancelOrder(string_long).md 'GBinanceFuturesClient.Trade.CancelOrder(string, long)')
+- [CancelOrder(string, long, long)](./GBinanceFuturesClient-Trade-CancelOrder(string_long_long).md 'GBinanceFuturesClient.Trade.CancelOrder(string, long, long)')
+- [CancelOrder(string, string)](./GBinanceFuturesClient-Trade-CancelOrder(string_string).md 'GBinanceFuturesClient.Trade.CancelOrder(string, string)')
+- [CancelOrder(string, string, long)](./GBinanceFuturesClient-Trade-CancelOrder(string_string_long).md 'GBinanceFuturesClient.Trade.CancelOrder(string, string, long)')
 - [ChangePositionMode(bool, long)](./GBinanceFuturesClient-Trade-ChangePositionMode(bool_long).md 'GBinanceFuturesClient.Trade.ChangePositionMode(bool, long)')
 - [GetAccountTransactionHistory(string, long, long, int, int)](./GBinanceFuturesClient-Trade-GetAccountTransactionHistory(string_long_long_int_int).md 'GBinanceFuturesClient.Trade.GetAccountTransactionHistory(string, long, long, int, int)')
 - [GetCurrentPositionMode()](./GBinanceFuturesClient-Trade-GetCurrentPositionMode().md 'GBinanceFuturesClient.Trade.GetCurrentPositionMode()')

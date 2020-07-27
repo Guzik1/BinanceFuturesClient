@@ -5,18 +5,9 @@ using System.Text;
 namespace GBinanceFuturesClient.Model.Trade
 {
     /// <summary>
-    /// Error message object. Using in multiple orders.
+    /// Error message object.
     /// </summary>
-    public class ErrorMessage
+    public class ErrorMessage: Message
     {
-        /// <summary>
-        /// Error code.
-        /// </summary>
-        public int Code { get; set; }
-
-        /// <summary>
-        /// Error message.
-        /// </summary>
-        public string Msg { get; set; }
     }
 }

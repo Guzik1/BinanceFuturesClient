@@ -3,7 +3,7 @@
 ## NewOrderRequest.SetTakeProfitMarketOrder(string, GBasicExchangeDefinitions.OrderSide, decimal, decimal, decimal) Method
 Create take profit market order.  
 ```csharp
-public void SetTakeProfitMarketOrder(string symbol, GBasicExchangeDefinitions.OrderSide side, decimal quantity, decimal price, decimal stopPrice);
+public GBinanceFuturesClient.Model.Trade.NewOrderRequest SetTakeProfitMarketOrder(string symbol, GBasicExchangeDefinitions.OrderSide side, decimal quantity, decimal price, decimal stopPrice);
 ```
 #### Parameters
 <a name='GBinanceFuturesClient-Model-Trade-NewOrderRequest-SetTakeProfitMarketOrder(string_GBasicExchangeDefinitions-OrderSide_decimal_decimal_decimal)-symbol'></a>
@@ -26,3 +26,5 @@ Order price
 `stopPrice` [System.Decimal](https://docs.microsoft.com/en-us/dotnet/api/System.Decimal 'System.Decimal')  
 Stop price  
   
+#### Returns
+[NewOrderRequest](./GBinanceFuturesClient-Model-Trade-NewOrderRequest.md 'GBinanceFuturesClient.Model.Trade.NewOrderRequest')  

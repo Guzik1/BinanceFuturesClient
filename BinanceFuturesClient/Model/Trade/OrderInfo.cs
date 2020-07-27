@@ -8,7 +8,7 @@ using System.Text;
 namespace GBinanceFuturesClient.Model.Trade
 {
     /// <summary>
-    /// Data model for respone on <see cref="GBinanceFuturesClient.Trade.PlaceOrder(NewOrderRequest)"/> request.
+    /// Data model for order information.
     /// </summary>
     public class OrderInfo
     {

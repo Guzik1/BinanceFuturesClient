@@ -3,7 +3,7 @@
 ## NewOrderRequest.SetMarketOrder(string, GBasicExchangeDefinitions.OrderSide, decimal) Method
 Create market order request.  
 ```csharp
-public void SetMarketOrder(string symbol, GBasicExchangeDefinitions.OrderSide side, decimal quantity);
+public GBinanceFuturesClient.Model.Trade.NewOrderRequest SetMarketOrder(string symbol, GBasicExchangeDefinitions.OrderSide side, decimal quantity);
 ```
 #### Parameters
 <a name='GBinanceFuturesClient-Model-Trade-NewOrderRequest-SetMarketOrder(string_GBasicExchangeDefinitions-OrderSide_decimal)-symbol'></a>
@@ -18,3 +18,5 @@ Order side
 `quantity` [System.Decimal](https://docs.microsoft.com/en-us/dotnet/api/System.Decimal 'System.Decimal')  
 Order quantity  
   
+#### Returns
+[NewOrderRequest](./GBinanceFuturesClient-Model-Trade-NewOrderRequest.md 'GBinanceFuturesClient.Model.Trade.NewOrderRequest')  
