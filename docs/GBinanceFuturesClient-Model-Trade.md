@@ -13,6 +13,7 @@
 - [NationalAndLeverageBrackets](./GBinanceFuturesClient-Model-Trade-NationalAndLeverageBrackets.md 'GBinanceFuturesClient.Model.Trade.NationalAndLeverageBrackets')
 - [NewOrderRequest](./GBinanceFuturesClient-Model-Trade-NewOrderRequest.md 'GBinanceFuturesClient.Model.Trade.NewOrderRequest')
 - [OrderInfo](./GBinanceFuturesClient-Model-Trade-OrderInfo.md 'GBinanceFuturesClient.Model.Trade.OrderInfo')
+- [PositionInforamtionItem](./GBinanceFuturesClient-Model-Trade-PositionInforamtionItem.md 'GBinanceFuturesClient.Model.Trade.PositionInforamtionItem')
 - [PostionMarginChangeHistoryItem](./GBinanceFuturesClient-Model-Trade-PostionMarginChangeHistoryItem.md 'GBinanceFuturesClient.Model.Trade.PostionMarginChangeHistoryItem')
 - [ValidOrErrorResponse&lt;ValidResponseType&gt;](./GBinanceFuturesClient-Model-Trade-ValidOrErrorResponse-ValidResponseType-.md 'GBinanceFuturesClient.Model.Trade.ValidOrErrorResponse&lt;ValidResponseType&gt;')
 ### Enums

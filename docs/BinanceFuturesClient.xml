@@ -1240,6 +1240,11 @@
             <param name="side">Order side</param>
             <param name="callbackRate">Callback rate</param>
         </member>
+        <member name="T:GBinanceFuturesClient.Model.Trade.AccountBalance">
+            <summary>
+            Account balance item.
+            </summary>
+        </member>
         <member name="P:GBinanceFuturesClient.Model.Trade.AccountBalance.AccountAlias">
             <summary>
             Unique account code
@@ -1560,6 +1565,71 @@
         <member name="P:GBinanceFuturesClient.Model.Trade.OrderInfo.WorkingType">
             <summary>
             Order update time.
+            </summary>
+        </member>
+        <member name="T:GBinanceFuturesClient.Model.Trade.PositionInforamtionItem">
+            <summary>
+            Postion information item
+            </summary>
+        </member>
+        <member name="P:GBinanceFuturesClient.Model.Trade.PositionInforamtionItem.EntryPrice">
+            <summary>
+            Entry price
+            </summary>
+        </member>
+        <member name="P:GBinanceFuturesClient.Model.Trade.PositionInforamtionItem.MarginType">
+            <summary>
+            Margin type: ISOLATED or CROSS
+            </summary>
+        </member>
+        <member name="P:GBinanceFuturesClient.Model.Trade.PositionInforamtionItem.IsAutoAddMargin">
+            <summary>
+            Is auto add margin
+            </summary>
+        </member>
+        <member name="P:GBinanceFuturesClient.Model.Trade.PositionInforamtionItem.IsolatedMargin">
+            <summary>
+            Isolated margin
+            </summary>
+        </member>
+        <member name="P:GBinanceFuturesClient.Model.Trade.PositionInforamtionItem.Leverage">
+            <summary>
+            Leverage
+            </summary>
+        </member>
+        <member name="P:GBinanceFuturesClient.Model.Trade.PositionInforamtionItem.LiquidationPrice">
+            <summary>
+            Liquidation price
+            </summary>
+        </member>
+        <member name="P:GBinanceFuturesClient.Model.Trade.PositionInforamtionItem.MarkPrice">
+            <summary>
+            Mark price
+            </summary>
+        </member>
+        <member name="P:GBinanceFuturesClient.Model.Trade.PositionInforamtionItem.MaxNotionalValue">
+            <summary>
+            Max notional value
+            </summary>
+        </member>
+        <member name="P:GBinanceFuturesClient.Model.Trade.PositionInforamtionItem.PositionAmount">
+            <summary>
+            Position amount
+            </summary>
+        </member>
+        <member name="P:GBinanceFuturesClient.Model.Trade.PositionInforamtionItem.Symbol">
+            <summary>
+            Currency pari code
+            </summary>
+        </member>
+        <member name="P:GBinanceFuturesClient.Model.Trade.PositionInforamtionItem.UnRealizedProfit">
+            <summary>
+            Un-realized profit
+            </summary>
+        </member>
+        <member name="P:GBinanceFuturesClient.Model.Trade.PositionInforamtionItem.PositionSide">
+            <summary>
+            Position side
             </summary>
         </member>
         <member name="T:GBinanceFuturesClient.Model.Trade.PostionMarginChangeHistoryItem">
@@ -1930,6 +2000,27 @@
             <param name="limit">Limit of item, default: 500, max: 1000</param>
             <param name="recvWindow">Custom recvWindow, default: 5000</param>
             <returns>List of history items</returns>
+        </member>
+        <member name="M:GBinanceFuturesClient.Trade.GetPostionsInformation">
+            <summary>
+            Get postion information. Wieght: 1.
+            </summary>
+            <returns>List of positions information items</returns>
+        </member>
+        <member name="M:GBinanceFuturesClient.Trade.GetPostionsInformation(System.String,System.Int64)">
+            <summary>
+            Get postion information. Wieght: 1.
+            </summary>
+            <param name="symbol">Currency pair code</param>
+            <param name="recvWindow">Custom recvWindow, default: 5000</param>
+            <returns>List of positions information items</returns>
+        </member>
+        <member name="M:GBinanceFuturesClient.Trade.GetPostionsInformation(System.Int64)">
+            <summary>
+            Get postion information. Wieght: 1.
+            </summary>
+            <param name="recvWindow">Custom recvWindow, default: 5000</param>
+            <returns>List of positions information items</returns>
         </member>
         <member name="M:GBinanceFuturesClient.Trade.GetNationalBrackets">
             <summary>

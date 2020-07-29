@@ -5,6 +5,9 @@ using System.Text;
 
 namespace GBinanceFuturesClient.Model.Trade
 {
+    /// <summary>
+    /// Account balance item.
+    /// </summary>
     public class AccountBalance
     {
         /// <summary>

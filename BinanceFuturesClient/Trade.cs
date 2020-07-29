@@ -565,7 +565,7 @@ namespace GBinanceFuturesClient
             RequestManager manager = new RequestManager(session, Autorization.TRADING);
             manager.AddQueryParam("timestamp", Tools.NowUnixTime().ToString());
 
-            return manager.SendRequest(Config.ApiPublicUrl + "balance", MethodsType.GET, customDeserializer: new SingleOrArrayCustromDeserializer<AccountBalance>());
+            return manager.SendRequest(Config.ApiPublicV2Url + "balance", MethodsType.GET, customDeserializer: new SingleOrArrayCustromDeserializer<AccountBalance>());
         }
 
         /// <summary>
@@ -581,7 +581,7 @@ namespace GBinanceFuturesClient
             if (recvWindow != 5000)
                 manager.AddQueryParam("recvWindow", recvWindow.ToString());
 
-            return manager.SendRequest(Config.ApiPublicUrl + "balance", MethodsType.GET, customDeserializer: new SingleOrArrayCustromDeserializer<AccountBalance>());
+            return manager.SendRequest(Config.ApiPublicV2Url + "balance", MethodsType.GET, customDeserializer: new SingleOrArrayCustromDeserializer<AccountBalance>());
         }
         #endregion
 
@@ -699,7 +699,7 @@ namespace GBinanceFuturesClient
             if (recvWindow != 5000)
                 manager.AddQueryParam("recvWindow", recvWindow.ToString());
 
-            return manager.SendRequest(Config.ApiPublicUrl + "positionMargin/history", MethodsType.POST, 
+            return manager.SendRequest(Config.ApiPublicUrl + "positionMargin/history", MethodsType.GET, 
                 customDeserializer: new SingleOrArrayCustromDeserializer<PostionMarginChangeHistoryItem>());
         }
 
@@ -780,6 +780,59 @@ namespace GBinanceFuturesClient
                 customDeserializer: new SingleOrArrayCustromDeserializer<PostionMarginChangeHistoryItem>());
         }
         #endregion
+
+        #region GetPostionInformation
+        /// <summary>
+        /// Get postion information. Wieght: 1.
+        /// </summary>
+        /// <returns>List of positions information items</returns>
+        public List<PositionInforamtionItem> GetPostionsInformation()
+        {
+            RequestManager manager = new RequestManager(session, Autorization.TRADING);
+            manager.AddQueryParam("timestamp", Tools.NowUnixTime().ToString());
+
+            return manager.SendRequest(Config.ApiPublicV2Url + "positionRisk", MethodsType.GET,
+                customDeserializer: new SingleOrArrayCustromDeserializer<PositionInforamtionItem>());
+        }
+
+        /// <summary>
+        /// Get postion information. Wieght: 1.
+        /// </summary>
+        /// <param name="symbol">Currency pair code</param>
+        /// <param name="recvWindow">Custom recvWindow, default: 5000</param>
+        /// <returns>List of positions information items</returns>
+        public List<PositionInforamtionItem> GetPostionsInformation(string symbol, long recvWindow = 5000)
+        {
+            RequestManager manager = new RequestManager(session, Autorization.TRADING);
+            manager.AddQueryParam("timestamp", Tools.NowUnixTime().ToString());
+            manager.AddQueryParam("symbol", symbol);
+
+            if (recvWindow != 5000)
+                manager.AddQueryParam("recvWindow", recvWindow.ToString());
+
+            return manager.SendRequest(Config.ApiPublicV2Url + "positionRisk", MethodsType.GET,
+                customDeserializer: new SingleOrArrayCustromDeserializer<PositionInforamtionItem>());
+        }
+
+        /// <summary>
+        /// Get postion information. Wieght: 1.
+        /// </summary>
+        /// <param name="recvWindow">Custom recvWindow, default: 5000</param>
+        /// <returns>List of positions information items</returns>
+        public List<PositionInforamtionItem> GetPostionsInformation(long recvWindow = 5000)
+        {
+            RequestManager manager = new RequestManager(session, Autorization.TRADING);
+            manager.AddQueryParam("timestamp", Tools.NowUnixTime().ToString());
+
+            if (recvWindow != 5000)
+                manager.AddQueryParam("recvWindow", recvWindow.ToString());
+
+            return manager.SendRequest(Config.ApiPublicV2Url + "positionRisk", MethodsType.GET,
+                customDeserializer: new SingleOrArrayCustromDeserializer<PositionInforamtionItem>());
+        }
+        #endregion
+
+
 
         // ... //
         #region Get Notional and Leverage Brackets

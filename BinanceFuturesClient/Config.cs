@@ -21,6 +21,14 @@ namespace GBinanceFuturesClient
             }
         }
 
+        internal static string ApiPublicV2Url
+        {
+            get
+            {
+                return Url + "fapi/v2/";
+            }
+        }
+
         internal static string ApiFuturesDataUrl { 
             get 
             { 

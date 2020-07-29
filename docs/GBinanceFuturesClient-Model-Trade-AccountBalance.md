@@ -1,6 +1,7 @@
 #### [GBinanceFuturesClient](./index.md 'index')
 ### [GBinanceFuturesClient.Model.Trade](./GBinanceFuturesClient-Model-Trade.md 'GBinanceFuturesClient.Model.Trade')
 ## AccountBalance Class
+Account balance item.  
 ```csharp
 public class AccountBalance
 ```
