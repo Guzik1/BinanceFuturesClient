@@ -1280,6 +1280,81 @@
             Maximum amount for transfer out
             </summary>
         </member>
+        <member name="T:GBinanceFuturesClient.Model.Trade.AccountTradeItem">
+            <summary>
+            Single ordre/trade/position item.
+            </summary>
+        </member>
+        <member name="P:GBinanceFuturesClient.Model.Trade.AccountTradeItem.Buyer">
+            <summary>
+            It's buyer
+            </summary>
+        </member>
+        <member name="P:GBinanceFuturesClient.Model.Trade.AccountTradeItem.Commission">
+            <summary>
+            Commission
+            </summary>
+        </member>
+        <member name="P:GBinanceFuturesClient.Model.Trade.AccountTradeItem.CommissionAsset">
+            <summary>
+            Commission asset, currency code.
+            </summary>
+        </member>
+        <member name="P:GBinanceFuturesClient.Model.Trade.AccountTradeItem.Id">
+            <summary>
+            Postion identificator
+            </summary>
+        </member>
+        <member name="P:GBinanceFuturesClient.Model.Trade.AccountTradeItem.Maker">
+            <summary>
+            It's maker
+            </summary>
+        </member>
+        <member name="P:GBinanceFuturesClient.Model.Trade.AccountTradeItem.OrderId">
+            <summary>
+            Order identificator
+            </summary>
+        </member>
+        <member name="P:GBinanceFuturesClient.Model.Trade.AccountTradeItem.Price">
+            <summary>
+            Order price
+            </summary>
+        </member>
+        <member name="P:GBinanceFuturesClient.Model.Trade.AccountTradeItem.Quantity">
+            <summary>
+            Order quantity
+            </summary>
+        </member>
+        <member name="P:GBinanceFuturesClient.Model.Trade.AccountTradeItem.QuoteQuantity">
+            <summary>
+            Order quote quantity
+            </summary>
+        </member>
+        <member name="P:GBinanceFuturesClient.Model.Trade.AccountTradeItem.RealizedPnl">
+            <summary>
+            Realized Pnl
+            </summary>
+        </member>
+        <member name="P:GBinanceFuturesClient.Model.Trade.AccountTradeItem.Side">
+            <summary>
+            Order side: BUY or SELL
+            </summary>
+        </member>
+        <member name="P:GBinanceFuturesClient.Model.Trade.AccountTradeItem.PositionSide">
+            <summary>
+            Postion side
+            </summary>
+        </member>
+        <member name="P:GBinanceFuturesClient.Model.Trade.AccountTradeItem.Symbol">
+            <summary>
+            Currency pair code
+            </summary>
+        </member>
+        <member name="P:GBinanceFuturesClient.Model.Trade.AccountTradeItem.Time">
+            <summary>
+            Time in unix milisecond
+            </summary>
+        </member>
         <member name="T:GBinanceFuturesClient.Model.Trade.AccountTransactionHistory">
             <summary>
             Data model for response on <see cref="M:GBinanceFuturesClient.Trade.GetAccountTransactionHistory(System.String,System.Int64,System.Int64,System.Int32,System.Int32)"/> request.
@@ -2021,6 +2096,48 @@
             </summary>
             <param name="recvWindow">Custom recvWindow, default: 5000</param>
             <returns>List of positions information items</returns>
+        </member>
+        <member name="M:GBinanceFuturesClient.Trade.GetAccountTradeList(System.String,System.Int32,System.Int64)">
+            <summary>
+            Get account trade list. WeightL 5.
+            </summary>
+            <param name="symbol">Currency pair code</param>
+            <param name="limit">Limit of item, default: 500, max: 1000</param>
+            <param name="recvWindow">Custom recvWindow, default: 5000</param>
+            <returns>List of orders</returns>
+        </member>
+        <member name="M:GBinanceFuturesClient.Trade.GetAccountTradeList(System.String,System.Int64,System.Int64,System.Int32,System.Int64)">
+            <summary>
+            Get account trade list. WeightL 5.
+            </summary>
+            <param name="symbol">Currency pair code</param>
+            <param name="startTime">Start time from start get history items in unix milisecond</param>
+            <param name="endTime">End time to end get history items in unix milisecond</param>
+            <param name="limit">Limit of item, default: 500, max: 1000</param>
+            <param name="recvWindow">Custom recvWindow, default: 5000</param>
+            <returns>List of orders</returns>
+        </member>
+        <member name="M:GBinanceFuturesClient.Trade.GetAccountTradeList(System.String,System.Int64,System.Int32,System.Int64)">
+            <summary>
+            Get account trade list. WeightL 5.
+            </summary>
+            <param name="symbol">Currency pair code</param>
+            <param name="fromId">Order identificator from get orders, in uxni milisecond.</param>
+            <param name="limit">Limit of item, default: 500, max: 1000</param>
+            <param name="recvWindow">Custom recvWindow, default: 5000</param>
+            <returns>List of orders</returns>
+        </member>
+        <member name="M:GBinanceFuturesClient.Trade.GetAccountTradeList(System.String,System.Int64,System.Int64,System.Int64,System.Int32,System.Int64)">
+            <summary>
+            Get account trade list. WeightL 5.
+            </summary>
+            <param name="symbol">Currency pair code</param>
+            <param name="startTime">Start time from start get history items in unix milisecond</param>
+            <param name="endTime">End time to end get history items in unix milisecond</param>
+            <param name="fromId">Order identificator from get orders, in uxni milisecond.</param>
+            <param name="limit">Limit of item, default: 500, max: 1000</param>
+            <param name="recvWindow">Custom recvWindow, default: 5000</param>
+            <returns>List of orders</returns>
         </member>
         <member name="M:GBinanceFuturesClient.Trade.GetNationalBrackets">
             <summary>
