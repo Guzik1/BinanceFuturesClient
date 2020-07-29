@@ -16,6 +16,7 @@ Inheritance [System.Object](https://docs.microsoft.com/en-us/dotnet/api/System.O
 - [CancelOrder(string, long, long)](./GBinanceFuturesClient-Trade-CancelOrder(string_long_long).md 'GBinanceFuturesClient.Trade.CancelOrder(string, long, long)')
 - [CancelOrder(string, string)](./GBinanceFuturesClient-Trade-CancelOrder(string_string).md 'GBinanceFuturesClient.Trade.CancelOrder(string, string)')
 - [CancelOrder(string, string, long)](./GBinanceFuturesClient-Trade-CancelOrder(string_string_long).md 'GBinanceFuturesClient.Trade.CancelOrder(string, string, long)')
+- [ChangeLeverage(string, int, long)](./GBinanceFuturesClient-Trade-ChangeLeverage(string_int_long).md 'GBinanceFuturesClient.Trade.ChangeLeverage(string, int, long)')
 - [ChangePositionMode(bool, long)](./GBinanceFuturesClient-Trade-ChangePositionMode(bool_long).md 'GBinanceFuturesClient.Trade.ChangePositionMode(bool, long)')
 - [GetAccountBalances()](./GBinanceFuturesClient-Trade-GetAccountBalances().md 'GBinanceFuturesClient.Trade.GetAccountBalances()')
 - [GetAccountBalances(long)](./GBinanceFuturesClient-Trade-GetAccountBalances(long).md 'GBinanceFuturesClient.Trade.GetAccountBalances(long)')

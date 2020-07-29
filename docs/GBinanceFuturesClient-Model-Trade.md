@@ -6,6 +6,7 @@
 - [AccountTransactionHistoryItem](./GBinanceFuturesClient-Model-Trade-AccountTransactionHistoryItem.md 'GBinanceFuturesClient.Model.Trade.AccountTransactionHistoryItem')
 - [AutoCancelAllOpenOrdersResponse](./GBinanceFuturesClient-Model-Trade-AutoCancelAllOpenOrdersResponse.md 'GBinanceFuturesClient.Model.Trade.AutoCancelAllOpenOrdersResponse')
 - [Brackets](./GBinanceFuturesClient-Model-Trade-Brackets.md 'GBinanceFuturesClient.Model.Trade.Brackets')
+- [ChangeLeverageInfo](./GBinanceFuturesClient-Model-Trade-ChangeLeverageInfo.md 'GBinanceFuturesClient.Model.Trade.ChangeLeverageInfo')
 - [ErrorMessage](./GBinanceFuturesClient-Model-Trade-ErrorMessage.md 'GBinanceFuturesClient.Model.Trade.ErrorMessage')
 - [Message](./GBinanceFuturesClient-Model-Trade-Message.md 'GBinanceFuturesClient.Model.Trade.Message')
 - [NationalAndLeverageBrackets](./GBinanceFuturesClient-Model-Trade-NationalAndLeverageBrackets.md 'GBinanceFuturesClient.Model.Trade.NationalAndLeverageBrackets')

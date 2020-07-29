@@ -554,7 +554,7 @@ namespace GBinanceFuturesClient
         }
         #endregion
 
-        #region Futures Account Balance V2
+        #region Futures account balance V2
         /// <summary>
         /// Gett account balances. Weight: 1.
         /// </summary>
@@ -581,6 +581,32 @@ namespace GBinanceFuturesClient
                 manager.AddQueryParam("recvWindow", recvWindow.ToString());
 
             return manager.SendRequest(Config.ApiPublicUrl + "balance", MethodsType.GET, customDeserializer: new SingleOrArrayCustromDeserializer<AccountBalance>());
+        }
+        #endregion
+
+        #region Get account inforamtion v2
+        // TODO: add this method
+        #endregion
+
+        #region Change initial lavarage
+        /// <summary>
+        /// Change user's initial leverage of specific symbol market.
+        /// </summary>
+        /// <param name="symbol">Currency pair code</param>
+        /// <param name="leverage">Target initial leverage: int from 1 to 125</param>
+        /// <param name="recvWindow">Custom recvWindow, default: 5000</param>
+        /// <returns>Changed leverage info</returns>
+        public ChangeLeverageInfo ChangeLeverage(string symbol, int leverage, long recvWindow = 5000)
+        {
+            RequestManager manager = new RequestManager(session, Autorization.TRADING);
+            manager.AddQueryParam("timestamp", Tools.NowUnixTime().ToString());
+            manager.AddQueryParam("leverage", leverage.ToString());
+            manager.AddQueryParam("symbol", symbol);
+
+            if (recvWindow != 5000)
+                manager.AddQueryParam("recvWindow", recvWindow.ToString());
+
+            return manager.SendRequest<ChangeLeverageInfo>(Config.ApiPublicUrl + "leverage", MethodsType.POST);
         }
         #endregion
 

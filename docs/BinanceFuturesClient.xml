@@ -1341,6 +1341,26 @@
             Countdown timer in miliseconds.
             </summary>
         </member>
+        <member name="T:GBinanceFuturesClient.Model.Trade.ChangeLeverageInfo">
+            <summary>
+            Data model of leverage changed response on <see cref="M:GBinanceFuturesClient.Trade.ChangeLeverage(System.String,System.Int32,System.Int64)"/>
+            </summary>
+        </member>
+        <member name="P:GBinanceFuturesClient.Model.Trade.ChangeLeverageInfo.Laverage">
+            <summary>
+            Lavarage
+            </summary>
+        </member>
+        <member name="P:GBinanceFuturesClient.Model.Trade.ChangeLeverageInfo.MaxNotionalValue">
+            <summary>
+            Max national value of leverage
+            </summary>
+        </member>
+        <member name="P:GBinanceFuturesClient.Model.Trade.ChangeLeverageInfo.Symbol">
+            <summary>
+            Currency pair code for which lavarage changed
+            </summary>
+        </member>
         <member name="T:GBinanceFuturesClient.Model.Trade.ErrorMessage">
             <summary>
             Error message object.
@@ -1754,6 +1774,15 @@
             </summary>
             <param name="recvWindow">Custom recvWindow, default: 5000</param>
             <returns>List of account balance object</returns>
+        </member>
+        <member name="M:GBinanceFuturesClient.Trade.ChangeLeverage(System.String,System.Int32,System.Int64)">
+            <summary>
+            Change user's initial leverage of specific symbol market.
+            </summary>
+            <param name="symbol">Currency pair code</param>
+            <param name="leverage">Target initial leverage: int from 1 to 125</param>
+            <param name="recvWindow">Custom recvWindow, default: 5000</param>
+            <returns>Changed leverage info</returns>
         </member>
         <member name="M:GBinanceFuturesClient.Trade.GetNationalBrackets">
             <summary>
