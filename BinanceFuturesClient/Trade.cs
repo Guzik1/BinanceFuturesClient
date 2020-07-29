@@ -846,7 +846,7 @@ namespace GBinanceFuturesClient
 
         #region Get account trade list
         /// <summary>
-        /// Get account trade list. WeightL 5.
+        /// Get account trade list. Weight: 5.
         /// </summary>
         /// <param name="symbol">Currency pair code</param>
         /// <param name="limit">Limit of item, default: 500, max: 1000</param>
@@ -864,12 +864,12 @@ namespace GBinanceFuturesClient
             if (limit != 500)
                 manager.AddQueryParam("limit", limit.ToString());
 
-            return manager.SendRequest(Config.ApiPublicV2Url + "positionRisk", MethodsType.GET,
+            return manager.SendRequest(Config.ApiPublicUrl + "positionRisk", MethodsType.GET,
                 customDeserializer: new SingleOrArrayCustromDeserializer<AccountTradeItem>());
         }
 
         /// <summary>
-        /// Get account trade list. WeightL 5.
+        /// Get account trade list. Weight: 5.
         /// </summary>
         /// <param name="symbol">Currency pair code</param>
         /// <param name="startTime">Start time from start get history items in unix milisecond</param>
@@ -891,12 +891,12 @@ namespace GBinanceFuturesClient
             if (limit != 500)
                 manager.AddQueryParam("limit", limit.ToString());
 
-            return manager.SendRequest(Config.ApiPublicV2Url + "positionRisk", MethodsType.GET,
+            return manager.SendRequest(Config.ApiPublicUrl + "positionRisk", MethodsType.GET,
                 customDeserializer: new SingleOrArrayCustromDeserializer<AccountTradeItem>());
         }
 
         /// <summary>
-        /// Get account trade list. WeightL 5.
+        /// Get account trade list. Weight: 5.
         /// </summary>
         /// <param name="symbol">Currency pair code</param>
         /// <param name="fromId">Order identificator from get orders, in uxni milisecond.</param>
@@ -916,12 +916,12 @@ namespace GBinanceFuturesClient
             if (limit != 500)
                 manager.AddQueryParam("limit", limit.ToString());
 
-            return manager.SendRequest(Config.ApiPublicV2Url + "positionRisk", MethodsType.GET,
+            return manager.SendRequest(Config.ApiPublicUrl + "positionRisk", MethodsType.GET,
                 customDeserializer: new SingleOrArrayCustromDeserializer<AccountTradeItem>());
         }
 
         /// <summary>
-        /// Get account trade list. WeightL 5.
+        /// Get account trade list. Weight: 5.
         /// </summary>
         /// <param name="symbol">Currency pair code</param>
         /// <param name="startTime">Start time from start get history items in unix milisecond</param>
@@ -945,12 +945,139 @@ namespace GBinanceFuturesClient
             if (limit != 500)
                 manager.AddQueryParam("limit", limit.ToString());
 
-            return manager.SendRequest(Config.ApiPublicV2Url + "positionRisk", MethodsType.GET,
+            return manager.SendRequest(Config.ApiPublicUrl + "positionRisk", MethodsType.GET,
                 customDeserializer: new SingleOrArrayCustromDeserializer<AccountTradeItem>());
         }
         #endregion
 
+        #region Get income history
+        /// <summary>
+        /// Get income history. Weight: 20.
+        /// </summary>
+        /// <param name="limit">Limit of item, default: 500, max: 1000</param>
+        /// <param name="recvWindow">Custom recvWindow, default: 5000</param>
+        /// <returns>List of income history items</returns>
+        public List<IncomeHistoryItem> GetIncomeHistory(int limit = 500, long recvWindow = 5000)
+        {
+            RequestManager manager = new RequestManager(session, Autorization.TRADING);
+            manager.AddQueryParam("timestamp", Tools.NowUnixTime().ToString());
 
+            if (recvWindow != 5000)
+                manager.AddQueryParam("recvWindow", recvWindow.ToString());
+
+            if (limit != 500)
+                manager.AddQueryParam("limit", limit.ToString());
+
+            return manager.SendRequest(Config.ApiPublicV2Url + "income", MethodsType.GET,
+                customDeserializer: new SingleOrArrayCustromDeserializer<IncomeHistoryItem>());
+        }
+
+        /// <summary>
+        /// Get income history. Weight: 20.
+        /// </summary>
+        /// <param name="symbol">Currency pair code</param>
+        /// <param name="limit">Limit of item, default: 500, max: 1000</param>
+        /// <param name="recvWindow">Custom recvWindow, default: 5000</param>
+        /// <returns>List of income history items</returns>
+        public List<IncomeHistoryItem> GetIncomeHistory(string symbol, int limit = 500, long recvWindow = 5000)
+        {
+            RequestManager manager = new RequestManager(session, Autorization.TRADING);
+            manager.AddQueryParam("timestamp", Tools.NowUnixTime().ToString());
+            manager.AddQueryParam("symbol", symbol);
+
+            if (recvWindow != 5000)
+                manager.AddQueryParam("recvWindow", recvWindow.ToString());
+
+            if (limit != 500)
+                manager.AddQueryParam("limit", limit.ToString());
+
+            return manager.SendRequest(Config.ApiPublicUrl + "income", MethodsType.GET,
+                customDeserializer: new SingleOrArrayCustromDeserializer<IncomeHistoryItem>());
+        }
+
+        /// <summary>
+        /// Get income history. Weight: 20.
+        /// </summary>
+        /// <param name="symbol">Currency pair code</param>
+        /// <param name="startTime">Start time from start get history items in unix milisecond</param>
+        /// <param name="endTime">End time to end get history items in unix milisecond</param>
+        /// <param name="limit">Limit of item, default: 500, max: 1000</param>
+        /// <param name="recvWindow">Custom recvWindow, default: 5000</param>
+        /// <returns>List of income history items</returns>
+        public List<IncomeHistoryItem> GetIncomeHistory(string symbol, long startTime,
+            long endTime, int limit = 500, long recvWindow = 5000)
+        {
+            RequestManager manager = new RequestManager(session, Autorization.TRADING);
+            manager.AddQueryParam("timestamp", Tools.NowUnixTime().ToString());
+            manager.AddQueryParam("symbol", symbol);
+            manager.AddQueryParam("startTime", startTime.ToString());
+            manager.AddQueryParam("endTime", endTime.ToString());
+
+            if (recvWindow != 5000)
+                manager.AddQueryParam("recvWindow", recvWindow.ToString());
+
+            if (limit != 500)
+                manager.AddQueryParam("limit", limit.ToString());
+
+            return manager.SendRequest(Config.ApiPublicUrl + "income", MethodsType.GET,
+                customDeserializer: new SingleOrArrayCustromDeserializer<IncomeHistoryItem>());
+        }
+
+        /// <summary>
+        /// Get income history. Weight: 20.
+        /// </summary>
+        /// <param name="symbol">Currency pair code</param>
+        /// <param name="incomeType">Income type</param>
+        /// <param name="limit">Limit of item, default: 500, max: 1000</param>
+        /// <param name="recvWindow">Custom recvWindow, default: 5000</param>
+        /// <returns>List of income history items</returns>
+        public List<IncomeHistoryItem> GetIncomeHistory(string symbol, IncomeType incomeType, int limit = 500, long recvWindow = 5000)
+        {
+            RequestManager manager = new RequestManager(session, Autorization.TRADING);
+            manager.AddQueryParam("timestamp", Tools.NowUnixTime().ToString());
+            manager.AddQueryParam("symbol", symbol);
+            manager.AddQueryParam("incomeType", incomeType.ToString());
+
+            if (recvWindow != 5000)
+                manager.AddQueryParam("recvWindow", recvWindow.ToString());
+
+            if (limit != 500)
+                manager.AddQueryParam("limit", limit.ToString());
+
+            return manager.SendRequest(Config.ApiPublicUrl + "income", MethodsType.GET,
+                customDeserializer: new SingleOrArrayCustromDeserializer<IncomeHistoryItem>());
+        }
+
+        /// <summary>
+        /// Get income history. Weight: 20.
+        /// </summary>
+        /// <param name="symbol">Currency pair code</param>
+        /// <param name="incomeType">Income type</param>
+        /// <param name="startTime">Start time from start get history items in unix milisecond</param>
+        /// <param name="endTime">End time to end get history items in unix milisecond</param>
+        /// <param name="limit">Limit of item, default: 500, max: 1000</param>
+        /// <param name="recvWindow">Custom recvWindow, default: 5000</param>
+        /// <returns>List of income history items</returns>
+        public List<IncomeHistoryItem> GetIncomeHistory(string symbol, IncomeType incomeType, long startTime,
+            long endTime, int limit = 500, long recvWindow = 5000)
+        {
+            RequestManager manager = new RequestManager(session, Autorization.TRADING);
+            manager.AddQueryParam("timestamp", Tools.NowUnixTime().ToString());
+            manager.AddQueryParam("symbol", symbol);
+            manager.AddQueryParam("incomeType", incomeType.ToString());
+            manager.AddQueryParam("startTime", startTime.ToString());
+            manager.AddQueryParam("endTime", endTime.ToString());
+
+            if (recvWindow != 5000)
+                manager.AddQueryParam("recvWindow", recvWindow.ToString());
+
+            if (limit != 500)
+                manager.AddQueryParam("limit", limit.ToString());
+
+            return manager.SendRequest(Config.ApiPublicUrl + "income", MethodsType.GET,
+                customDeserializer: new SingleOrArrayCustromDeserializer<IncomeHistoryItem>());
+        }
+        #endregion
 
         // ... //
         #region Get Notional and Leverage Brackets

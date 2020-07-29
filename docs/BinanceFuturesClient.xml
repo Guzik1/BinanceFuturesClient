@@ -1471,6 +1471,41 @@
             Error message object.
             </summary>
         </member>
+        <member name="T:GBinanceFuturesClient.Model.Trade.IncomeHistoryItem">
+            <summary>
+            Income history item
+            </summary>
+        </member>
+        <member name="P:GBinanceFuturesClient.Model.Trade.IncomeHistoryItem.Symbol">
+            <summary>
+            Currency pair code
+            </summary>
+        </member>
+        <member name="P:GBinanceFuturesClient.Model.Trade.IncomeHistoryItem.IncomeType">
+            <summary>
+            Income type
+            </summary>
+        </member>
+        <member name="P:GBinanceFuturesClient.Model.Trade.IncomeHistoryItem.Income">
+            <summary>
+            Income
+            </summary>
+        </member>
+        <member name="P:GBinanceFuturesClient.Model.Trade.IncomeHistoryItem.Asset">
+            <summary>
+            Currency code
+            </summary>
+        </member>
+        <member name="P:GBinanceFuturesClient.Model.Trade.IncomeHistoryItem.Info">
+            <summary>
+            Information
+            </summary>
+        </member>
+        <member name="P:GBinanceFuturesClient.Model.Trade.IncomeHistoryItem.Time">
+            <summary>
+            Time in unix milisecond timestamp
+            </summary>
+        </member>
         <member name="T:GBinanceFuturesClient.Model.Trade.MarginType">
             <summary>
             Margin type enum.
@@ -2099,7 +2134,7 @@
         </member>
         <member name="M:GBinanceFuturesClient.Trade.GetAccountTradeList(System.String,System.Int32,System.Int64)">
             <summary>
-            Get account trade list. WeightL 5.
+            Get account trade list. Weight: 5.
             </summary>
             <param name="symbol">Currency pair code</param>
             <param name="limit">Limit of item, default: 500, max: 1000</param>
@@ -2108,7 +2143,7 @@
         </member>
         <member name="M:GBinanceFuturesClient.Trade.GetAccountTradeList(System.String,System.Int64,System.Int64,System.Int32,System.Int64)">
             <summary>
-            Get account trade list. WeightL 5.
+            Get account trade list. Weight: 5.
             </summary>
             <param name="symbol">Currency pair code</param>
             <param name="startTime">Start time from start get history items in unix milisecond</param>
@@ -2119,7 +2154,7 @@
         </member>
         <member name="M:GBinanceFuturesClient.Trade.GetAccountTradeList(System.String,System.Int64,System.Int32,System.Int64)">
             <summary>
-            Get account trade list. WeightL 5.
+            Get account trade list. Weight: 5.
             </summary>
             <param name="symbol">Currency pair code</param>
             <param name="fromId">Order identificator from get orders, in uxni milisecond.</param>
@@ -2129,7 +2164,7 @@
         </member>
         <member name="M:GBinanceFuturesClient.Trade.GetAccountTradeList(System.String,System.Int64,System.Int64,System.Int64,System.Int32,System.Int64)">
             <summary>
-            Get account trade list. WeightL 5.
+            Get account trade list. Weight: 5.
             </summary>
             <param name="symbol">Currency pair code</param>
             <param name="startTime">Start time from start get history items in unix milisecond</param>
@@ -2138,6 +2173,56 @@
             <param name="limit">Limit of item, default: 500, max: 1000</param>
             <param name="recvWindow">Custom recvWindow, default: 5000</param>
             <returns>List of orders</returns>
+        </member>
+        <member name="M:GBinanceFuturesClient.Trade.GetIncomeHistory(System.Int32,System.Int64)">
+            <summary>
+            Get income history. Weight: 20.
+            </summary>
+            <param name="limit">Limit of item, default: 500, max: 1000</param>
+            <param name="recvWindow">Custom recvWindow, default: 5000</param>
+            <returns>List of income history items</returns>
+        </member>
+        <member name="M:GBinanceFuturesClient.Trade.GetIncomeHistory(System.String,System.Int32,System.Int64)">
+            <summary>
+            Get income history. Weight: 20.
+            </summary>
+            <param name="symbol">Currency pair code</param>
+            <param name="limit">Limit of item, default: 500, max: 1000</param>
+            <param name="recvWindow">Custom recvWindow, default: 5000</param>
+            <returns>List of income history items</returns>
+        </member>
+        <member name="M:GBinanceFuturesClient.Trade.GetIncomeHistory(System.String,System.Int64,System.Int64,System.Int32,System.Int64)">
+            <summary>
+            Get income history. Weight: 20.
+            </summary>
+            <param name="symbol">Currency pair code</param>
+            <param name="startTime">Start time from start get history items in unix milisecond</param>
+            <param name="endTime">End time to end get history items in unix milisecond</param>
+            <param name="limit">Limit of item, default: 500, max: 1000</param>
+            <param name="recvWindow">Custom recvWindow, default: 5000</param>
+            <returns>List of income history items</returns>
+        </member>
+        <member name="M:GBinanceFuturesClient.Trade.GetIncomeHistory(System.String,GBinanceFuturesClient.Model.Trade.IncomeType,System.Int32,System.Int64)">
+            <summary>
+            Get income history. Weight: 20.
+            </summary>
+            <param name="symbol">Currency pair code</param>
+            <param name="incomeType">Income type</param>
+            <param name="limit">Limit of item, default: 500, max: 1000</param>
+            <param name="recvWindow">Custom recvWindow, default: 5000</param>
+            <returns>List of income history items</returns>
+        </member>
+        <member name="M:GBinanceFuturesClient.Trade.GetIncomeHistory(System.String,GBinanceFuturesClient.Model.Trade.IncomeType,System.Int64,System.Int64,System.Int32,System.Int64)">
+            <summary>
+            Get income history. Weight: 20.
+            </summary>
+            <param name="symbol">Currency pair code</param>
+            <param name="incomeType">Income type</param>
+            <param name="startTime">Start time from start get history items in unix milisecond</param>
+            <param name="endTime">End time to end get history items in unix milisecond</param>
+            <param name="limit">Limit of item, default: 500, max: 1000</param>
+            <param name="recvWindow">Custom recvWindow, default: 5000</param>
+            <returns>List of income history items</returns>
         </member>
         <member name="M:GBinanceFuturesClient.Trade.GetNationalBrackets">
             <summary>

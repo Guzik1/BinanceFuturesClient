@@ -1,7 +1,7 @@
 #### [GBinanceFuturesClient](./index.md 'index')
 ### [GBinanceFuturesClient](./GBinanceFuturesClient.md 'GBinanceFuturesClient').[Trade](./GBinanceFuturesClient-Trade.md 'GBinanceFuturesClient.Trade')
 ## Trade.GetAccountTradeList(string, long, int, long) Method
-Get account trade list. WeightL 5.  
+Get account trade list. Weight: 5.  
 ```csharp
 public System.Collections.Generic.List<GBinanceFuturesClient.Model.Trade.AccountTradeItem> GetAccountTradeList(string symbol, long fromId, int limit=500, long recvWindow=5000L);
 ```

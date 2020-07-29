@@ -10,6 +10,7 @@
 - [ChangedIsolatedPostionMargin](./GBinanceFuturesClient-Model-Trade-ChangedIsolatedPostionMargin.md 'GBinanceFuturesClient.Model.Trade.ChangedIsolatedPostionMargin')
 - [ChangeLeverageInfo](./GBinanceFuturesClient-Model-Trade-ChangeLeverageInfo.md 'GBinanceFuturesClient.Model.Trade.ChangeLeverageInfo')
 - [ErrorMessage](./GBinanceFuturesClient-Model-Trade-ErrorMessage.md 'GBinanceFuturesClient.Model.Trade.ErrorMessage')
+- [IncomeHistoryItem](./GBinanceFuturesClient-Model-Trade-IncomeHistoryItem.md 'GBinanceFuturesClient.Model.Trade.IncomeHistoryItem')
 - [Message](./GBinanceFuturesClient-Model-Trade-Message.md 'GBinanceFuturesClient.Model.Trade.Message')
 - [NationalAndLeverageBrackets](./GBinanceFuturesClient-Model-Trade-NationalAndLeverageBrackets.md 'GBinanceFuturesClient.Model.Trade.NationalAndLeverageBrackets')
 - [NewOrderRequest](./GBinanceFuturesClient-Model-Trade-NewOrderRequest.md 'GBinanceFuturesClient.Model.Trade.NewOrderRequest')
