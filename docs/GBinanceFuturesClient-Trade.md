@@ -17,6 +17,8 @@ Inheritance [System.Object](https://docs.microsoft.com/en-us/dotnet/api/System.O
 - [CancelOrder(string, string)](./GBinanceFuturesClient-Trade-CancelOrder(string_string).md 'GBinanceFuturesClient.Trade.CancelOrder(string, string)')
 - [CancelOrder(string, string, long)](./GBinanceFuturesClient-Trade-CancelOrder(string_string_long).md 'GBinanceFuturesClient.Trade.CancelOrder(string, string, long)')
 - [ChangePositionMode(bool, long)](./GBinanceFuturesClient-Trade-ChangePositionMode(bool_long).md 'GBinanceFuturesClient.Trade.ChangePositionMode(bool, long)')
+- [GetAccountBalances()](./GBinanceFuturesClient-Trade-GetAccountBalances().md 'GBinanceFuturesClient.Trade.GetAccountBalances()')
+- [GetAccountBalances(long)](./GBinanceFuturesClient-Trade-GetAccountBalances(long).md 'GBinanceFuturesClient.Trade.GetAccountBalances(long)')
 - [GetAccountTransactionHistory(string, long, long, int, int)](./GBinanceFuturesClient-Trade-GetAccountTransactionHistory(string_long_long_int_int).md 'GBinanceFuturesClient.Trade.GetAccountTransactionHistory(string, long, long, int, int)')
 - [GetAllOpenOrders(string)](./GBinanceFuturesClient-Trade-GetAllOpenOrders(string).md 'GBinanceFuturesClient.Trade.GetAllOpenOrders(string)')
 - [GetAllOpenOrders(string, long)](./GBinanceFuturesClient-Trade-GetAllOpenOrders(string_long).md 'GBinanceFuturesClient.Trade.GetAllOpenOrders(string, long)')

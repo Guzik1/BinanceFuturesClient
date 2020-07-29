@@ -1,6 +1,7 @@
 #### [GBinanceFuturesClient](./index.md 'index')
 ## GBinanceFuturesClient.Model.Trade Namespace
 ### Classes
+- [AccountBalance](./GBinanceFuturesClient-Model-Trade-AccountBalance.md 'GBinanceFuturesClient.Model.Trade.AccountBalance')
 - [AccountTransactionHistory](./GBinanceFuturesClient-Model-Trade-AccountTransactionHistory.md 'GBinanceFuturesClient.Model.Trade.AccountTransactionHistory')
 - [AccountTransactionHistoryItem](./GBinanceFuturesClient-Model-Trade-AccountTransactionHistoryItem.md 'GBinanceFuturesClient.Model.Trade.AccountTransactionHistoryItem')
 - [AutoCancelAllOpenOrdersResponse](./GBinanceFuturesClient-Model-Trade-AutoCancelAllOpenOrdersResponse.md 'GBinanceFuturesClient.Model.Trade.AutoCancelAllOpenOrdersResponse')

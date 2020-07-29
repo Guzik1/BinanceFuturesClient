@@ -1240,6 +1240,41 @@
             <param name="side">Order side</param>
             <param name="callbackRate">Callback rate</param>
         </member>
+        <member name="P:GBinanceFuturesClient.Model.Trade.AccountBalance.AccountAlias">
+            <summary>
+            Unique account code
+            </summary>
+        </member>
+        <member name="P:GBinanceFuturesClient.Model.Trade.AccountBalance.Asset">
+            <summary>
+            Asset name
+            </summary>
+        </member>
+        <member name="P:GBinanceFuturesClient.Model.Trade.AccountBalance.Balance">
+            <summary>
+            Wallet ballande
+            </summary>
+        </member>
+        <member name="P:GBinanceFuturesClient.Model.Trade.AccountBalance.CrossWalletBalance">
+            <summary>
+            Crossed wallet balance
+            </summary>
+        </member>
+        <member name="P:GBinanceFuturesClient.Model.Trade.AccountBalance.CrossUnPnl">
+            <summary>
+            Unrealized profit or loss of crossed positions
+            </summary>
+        </member>
+        <member name="P:GBinanceFuturesClient.Model.Trade.AccountBalance.AvailableBalance">
+            <summary>
+            Available balance
+            </summary>
+        </member>
+        <member name="P:GBinanceFuturesClient.Model.Trade.AccountBalance.MaxWithdrawAmount">
+            <summary>
+            Maximum amount for transfer out
+            </summary>
+        </member>
         <member name="T:GBinanceFuturesClient.Model.Trade.AccountTransactionHistory">
             <summary>
             Data model for response on <see cref="M:GBinanceFuturesClient.Trade.GetAccountTransactionHistory(System.String,System.Int64,System.Int64,System.Int32,System.Int32)"/> request.
@@ -1706,6 +1741,19 @@
             <param name="limit">Limit of order, default: 500, max: 1000</param>
             <param name="recvWindow">Custom recvWindow, default: 5000</param>
             <returns>List of order information object</returns>
+        </member>
+        <member name="M:GBinanceFuturesClient.Trade.GetAccountBalances">
+            <summary>
+            Gett account balances. Weight: 1.
+            </summary>
+            <returns>List of account balance object</returns>
+        </member>
+        <member name="M:GBinanceFuturesClient.Trade.GetAccountBalances(System.Int64)">
+            <summary>
+            Gett account balances. Weight: 1.
+            </summary>
+            <param name="recvWindow">Custom recvWindow, default: 5000</param>
+            <returns>List of account balance object</returns>
         </member>
         <member name="M:GBinanceFuturesClient.Trade.GetNationalBrackets">
             <summary>

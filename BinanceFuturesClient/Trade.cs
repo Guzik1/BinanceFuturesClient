@@ -554,6 +554,36 @@ namespace GBinanceFuturesClient
         }
         #endregion
 
+        #region Futures Account Balance V2
+        /// <summary>
+        /// Gett account balances. Weight: 1.
+        /// </summary>
+        /// <returns>List of account balance object</returns>
+        public List<AccountBalance> GetAccountBalances()
+        {
+            RequestManager manager = new RequestManager(session, Autorization.TRADING);
+            manager.AddQueryParam("timestamp", Tools.NowUnixTime().ToString());
+
+            return manager.SendRequest(Config.ApiPublicUrl + "balance", MethodsType.GET, customDeserializer: new SingleOrArrayCustromDeserializer<AccountBalance>());
+        }
+
+        /// <summary>
+        /// Gett account balances. Weight: 1.
+        /// </summary>
+        /// <param name="recvWindow">Custom recvWindow, default: 5000</param>
+        /// <returns>List of account balance object</returns>
+        public List<AccountBalance> GetAccountBalances(long recvWindow = 5000)
+        {
+            RequestManager manager = new RequestManager(session, Autorization.TRADING);
+            manager.AddQueryParam("timestamp", Tools.NowUnixTime().ToString());
+
+            if (recvWindow != 5000)
+                manager.AddQueryParam("recvWindow", recvWindow.ToString());
+
+            return manager.SendRequest(Config.ApiPublicUrl + "balance", MethodsType.GET, customDeserializer: new SingleOrArrayCustromDeserializer<AccountBalance>());
+        }
+        #endregion
+
 
 
         // ... //
