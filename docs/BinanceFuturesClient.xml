@@ -1644,6 +1644,69 @@
             <param name="recvWindow">Recv window time in unix milisecond, default 5000.</param>
             <returns>Resonse object</returns>
         </member>
+        <member name="M:GBinanceFuturesClient.Trade.GetCurrentOpenOrder(System.String,System.Int64,System.Int64)">
+            <summary>
+            Get current open order. Usind order id. Weight: 1.
+            </summary>
+            <param name="symbol">Currency pair code</param>
+            <param name="orderId">Order identificator (long)</param>
+            <param name="recvWindow">Custom recvWindow, default: 5000</param>
+            <returns>order information object</returns>
+        </member>
+        <member name="M:GBinanceFuturesClient.Trade.GetCurrentOpenOrder(System.String,System.String,System.Int64)">
+            <summary>
+            Get current open order. Usind order id. Weight: 1.
+            </summary>
+            <param name="symbol">Currency pair code</param>
+            <param name="clientOrderId">Custom client order identificator (string)</param>
+            <param name="recvWindow">Custom recvWindow, default: 5000</param>
+            <returns>order information object</returns>
+        </member>
+        <member name="M:GBinanceFuturesClient.Trade.GetAllOpenOrders(System.String)">
+            <summary>
+            Get current all open orders on one symbol. Weight: 1
+            </summary>
+            <param name="symbol">Currency pair code</param>
+            <returns>List of current open order information.</returns>
+        </member>
+        <member name="M:GBinanceFuturesClient.Trade.GetAllOpenOrders(System.String,System.Int64)">
+            <summary>
+            Get current all open orders on one symbol. Weight: 1
+            </summary>
+            <param name="symbol">Currency pair code</param>
+            <param name="recvWindow">Custom recvWindow, default: 5000</param>
+            <returns>List of current open order information.</returns>
+        </member>
+        <member name="M:GBinanceFuturesClient.Trade.GetAllOrders(System.String,System.Int32,System.Int64)">
+            <summary>
+            Get all orders from account. Weight: 5.
+            </summary>
+            <param name="symbol">Currency pair code</param>
+            <param name="limit">Limit of order, default: 500, max: 1000</param>
+            <param name="recvWindow">Custom recvWindow, default: 5000</param>
+            <returns>List of order information object</returns>
+        </member>
+        <member name="M:GBinanceFuturesClient.Trade.GetAllOrders(System.String,System.Int64,System.Int32,System.Int64)">
+            <summary>
+            Get all orders from account. Weight: 5.
+            </summary>
+            <param name="symbol">Currency pair code</param>
+            <param name="orderId">Order identificator, If orderId is set, it will get orders >= that orderId. Otherwise most recent orders are returned.</param>
+            <param name="limit">Limit of order, default: 500, max: 1000</param>
+            <param name="recvWindow">Custom recvWindow, default: 5000</param>
+            <returns>List of order information object</returns>
+        </member>
+        <member name="M:GBinanceFuturesClient.Trade.GetAllOrders(System.String,System.Int64,System.Int64,System.Int32,System.Int64)">
+            <summary>
+            Get all orders from account. Weight: 5.
+            </summary>
+            <param name="symbol">Currency pair code</param>
+            <param name="startTime">Get all order from startTime in unix milisecond</param>
+            <param name="endTime">Get all order to endTime, in uxni milisecond</param>
+            <param name="limit">Limit of order, default: 500, max: 1000</param>
+            <param name="recvWindow">Custom recvWindow, default: 5000</param>
+            <returns>List of order information object</returns>
+        </member>
         <member name="M:GBinanceFuturesClient.Trade.GetNationalBrackets">
             <summary>
             Get Notional and Leverage Brackets. Weight: 1.

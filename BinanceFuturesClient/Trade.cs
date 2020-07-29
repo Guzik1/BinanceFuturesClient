@@ -404,6 +404,156 @@ namespace GBinanceFuturesClient
         }
         #endregion
 
+        #region Get query current open order
+        /// <summary>
+        /// Get current open order. Usind order id. Weight: 1.
+        /// </summary>
+        /// <param name="symbol">Currency pair code</param>
+        /// <param name="orderId">Order identificator (long)</param>
+        /// <param name="recvWindow">Custom recvWindow, default: 5000</param>
+        /// <returns>order information object</returns>
+        public OrderInfo GetCurrentOpenOrder(string symbol, long orderId, long recvWindow = 5000)
+        {
+            RequestManager manager = new RequestManager(session, Autorization.TRADING);
+            manager.AddQueryParam("timestamp", Tools.NowUnixTime().ToString());
+            manager.AddQueryParam("symbol", symbol);
+            manager.AddQueryParam("orderId", orderId.ToString());
+
+            if (recvWindow != 5000)
+                manager.AddQueryParam("recvWindow", recvWindow.ToString());
+
+            return manager.SendRequest<OrderInfo>(Config.ApiPublicUrl + "openOrder", MethodsType.GET);
+        }
+
+        /// <summary>
+        /// Get current open order. Usind order id. Weight: 1.
+        /// </summary>
+        /// <param name="symbol">Currency pair code</param>
+        /// <param name="clientOrderId">Custom client order identificator (string)</param>
+        /// <param name="recvWindow">Custom recvWindow, default: 5000</param>
+        /// <returns>order information object</returns>
+        public OrderInfo GetCurrentOpenOrder(string symbol, string clientOrderId, long recvWindow = 5000)
+        {
+            RequestManager manager = new RequestManager(session, Autorization.TRADING);
+            manager.AddQueryParam("timestamp", Tools.NowUnixTime().ToString());
+            manager.AddQueryParam("symbol", symbol);
+            manager.AddQueryParam("origClientOrderId", clientOrderId);
+
+            if (recvWindow != 5000)
+                manager.AddQueryParam("recvWindow", recvWindow.ToString());
+
+            return manager.SendRequest<OrderInfo>(Config.ApiPublicUrl + "openOrder", MethodsType.GET);
+        }
+        #endregion
+
+        #region Get current all open orders
+        /// <summary>
+        /// Get current all open orders on one symbol. Weight: 1
+        /// </summary>
+        /// <param name="symbol">Currency pair code</param>
+        /// <returns>List of current open order information.</returns>
+        public List<OrderInfo> GetAllOpenOrders(string symbol)
+        {
+            RequestManager manager = new RequestManager(session, Autorization.TRADING);
+            manager.AddQueryParam("timestamp", Tools.NowUnixTime().ToString());
+            manager.AddQueryParam("symbol", symbol);
+
+            return manager.SendRequest(Config.ApiPublicUrl + "openOrders", MethodsType.GET, customDeserializer: new SingleOrArrayCustromDeserializer<OrderInfo>());
+        }
+
+        /// <summary>
+        /// Get current all open orders on one symbol. Weight: 1
+        /// </summary>
+        /// <param name="symbol">Currency pair code</param>
+        /// <param name="recvWindow">Custom recvWindow, default: 5000</param>
+        /// <returns>List of current open order information.</returns>
+        public List<OrderInfo> GetAllOpenOrders(string symbol, long recvWindow = 5000)
+        {
+            RequestManager manager = new RequestManager(session, Autorization.TRADING);
+            manager.AddQueryParam("timestamp", Tools.NowUnixTime().ToString());
+            manager.AddQueryParam("symbol", symbol);
+
+            if (recvWindow != 5000)
+                manager.AddQueryParam("recvWindow", recvWindow.ToString());
+
+            return manager.SendRequest(Config.ApiPublicUrl + "openOrders", MethodsType.GET, customDeserializer: new SingleOrArrayCustromDeserializer<OrderInfo>());
+        }
+        #endregion
+
+        #region Get all orders
+        /// <summary>
+        /// Get all orders from account. Weight: 5.
+        /// </summary>
+        /// <param name="symbol">Currency pair code</param>
+        /// <param name="limit">Limit of order, default: 500, max: 1000</param>
+        /// <param name="recvWindow">Custom recvWindow, default: 5000</param>
+        /// <returns>List of order information object</returns>
+        public List<OrderInfo> GetAllOrders(string symbol, int limit = 500, long recvWindow = 5000)
+        {
+            RequestManager manager = new RequestManager(session, Autorization.TRADING);
+            manager.AddQueryParam("timestamp", Tools.NowUnixTime().ToString());
+            manager.AddQueryParam("symbol", symbol);
+
+            if (recvWindow != 5000)
+                manager.AddQueryParam("recvWindow", recvWindow.ToString());
+            
+            if(limit != 500)
+                manager.AddQueryParam("limit", limit.ToString());
+
+            return manager.SendRequest(Config.ApiPublicUrl + "allOrders", MethodsType.GET, customDeserializer: new SingleOrArrayCustromDeserializer<OrderInfo>());
+        }
+
+        /// <summary>
+        /// Get all orders from account. Weight: 5.
+        /// </summary>
+        /// <param name="symbol">Currency pair code</param>
+        /// <param name="orderId">Order identificator, If orderId is set, it will get orders >= that orderId. Otherwise most recent orders are returned.</param>
+        /// <param name="limit">Limit of order, default: 500, max: 1000</param>
+        /// <param name="recvWindow">Custom recvWindow, default: 5000</param>
+        /// <returns>List of order information object</returns>
+        public List<OrderInfo> GetAllOrders(string symbol, long orderId, int limit = 500, long recvWindow = 5000)
+        {
+            RequestManager manager = new RequestManager(session, Autorization.TRADING);
+            manager.AddQueryParam("timestamp", Tools.NowUnixTime().ToString());
+            manager.AddQueryParam("symbol", symbol);
+            manager.AddQueryParam("orderId", orderId.ToString());
+
+            if (recvWindow != 5000)
+                manager.AddQueryParam("recvWindow", recvWindow.ToString());
+
+            if (limit != 500)
+                manager.AddQueryParam("limit", limit.ToString());
+
+            return manager.SendRequest(Config.ApiPublicUrl + "allOrders", MethodsType.GET, customDeserializer: new SingleOrArrayCustromDeserializer<OrderInfo>());
+        }
+
+        /// <summary>
+        /// Get all orders from account. Weight: 5.
+        /// </summary>
+        /// <param name="symbol">Currency pair code</param>
+        /// <param name="startTime">Get all order from startTime in unix milisecond</param>
+        /// <param name="endTime">Get all order to endTime, in uxni milisecond</param>
+        /// <param name="limit">Limit of order, default: 500, max: 1000</param>
+        /// <param name="recvWindow">Custom recvWindow, default: 5000</param>
+        /// <returns>List of order information object</returns>
+        public List<OrderInfo> GetAllOrders(string symbol, long startTime, long endTime, int limit = 500, long recvWindow = 5000)
+        {
+            RequestManager manager = new RequestManager(session, Autorization.TRADING);
+            manager.AddQueryParam("timestamp", Tools.NowUnixTime().ToString());
+            manager.AddQueryParam("symbol", symbol);
+            manager.AddQueryParam("startTime", startTime.ToString());
+            manager.AddQueryParam("endTime", endTime.ToString());
+
+            if (recvWindow != 5000)
+                manager.AddQueryParam("recvWindow", recvWindow.ToString());
+
+            if (limit != 500)
+                manager.AddQueryParam("limit", limit.ToString());
+
+            return manager.SendRequest(Config.ApiPublicUrl + "allOrders", MethodsType.GET, customDeserializer: new SingleOrArrayCustromDeserializer<OrderInfo>());
+        }
+        #endregion
+
 
 
         // ... //
