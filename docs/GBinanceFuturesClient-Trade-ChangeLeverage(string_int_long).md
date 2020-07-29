@@ -1,7 +1,7 @@
 #### [GBinanceFuturesClient](./index.md 'index')
 ### [GBinanceFuturesClient](./GBinanceFuturesClient.md 'GBinanceFuturesClient').[Trade](./GBinanceFuturesClient-Trade.md 'GBinanceFuturesClient.Trade')
 ## Trade.ChangeLeverage(string, int, long) Method
-Change user's initial leverage of specific symbol market.  
+Change user's initial leverage of specific symbol market. Weight: 1.  
 ```csharp
 public GBinanceFuturesClient.Model.Trade.ChangeLeverageInfo ChangeLeverage(string symbol, int leverage, long recvWindow=5000L);
 ```

@@ -1,4 +1,5 @@
-﻿using GBinanceFuturesClient.Inside;
+﻿using GBasicExchangeDefinitions;
+using GBinanceFuturesClient.Inside;
 using GBinanceFuturesClient.Manager;
 using GBinanceFuturesClient.Model.Internal;
 using GBinanceFuturesClient.Model.Trade;
@@ -590,7 +591,7 @@ namespace GBinanceFuturesClient
 
         #region Change initial lavarage
         /// <summary>
-        /// Change user's initial leverage of specific symbol market.
+        /// Change user's initial leverage of specific symbol market. Weight: 1.
         /// </summary>
         /// <param name="symbol">Currency pair code</param>
         /// <param name="leverage">Target initial leverage: int from 1 to 125</param>
@@ -610,7 +611,175 @@ namespace GBinanceFuturesClient
         }
         #endregion
 
+        #region Change margin type
+        /// <summary>
+        /// Change margin type betwen two option. Weight: 1
+        /// </summary>
+        /// <param name="symbol">Currency pair code</param>
+        /// <param name="marginType">Margin type: isolated or corssed</param>
+        /// <param name="recvWindow">Custom recvWindow, default: 5000</param>
+        /// <returns>Server response message</returns>
+        public Message ChangeMarginType(string symbol, MarginType marginType, long recvWindow = 5000)
+        {
+            RequestManager manager = new RequestManager(session, Autorization.TRADING);
+            manager.AddQueryParam("timestamp", Tools.NowUnixTime().ToString());
+            manager.AddQueryParam("marginType", marginType.ToString());
+            manager.AddQueryParam("symbol", symbol);
 
+            if (recvWindow != 5000)
+                manager.AddQueryParam("recvWindow", recvWindow.ToString());
+
+            return manager.SendRequest<Message>(Config.ApiPublicUrl + "marginType", MethodsType.POST);
+        }
+        #endregion
+
+        #region Modify isolated position margin
+        /// <summary>
+        /// Change isolated postion margin. Weight: 1.
+        /// </summary>
+        /// <param name="symbol">Currency pair code</param>
+        /// <param name="amount">Change amount</param>
+        /// <param name="type">Change type: 1: Add position margin，2: Reduce position margin</param>
+        /// <param name="recvWindow">Custom recvWindow, default: 5000</param>
+        /// <returns>Changed isolated postion margin object response</returns>
+        public ChangedIsolatedPostionMargin ChangeIsolatedPostionMargin(string symbol, decimal amount, int type, long recvWindow = 5000)
+        {
+            RequestManager manager = new RequestManager(session, Autorization.TRADING);
+            manager.AddQueryParam("timestamp", Tools.NowUnixTime().ToString());
+            manager.AddQueryParam("type", type.ToString());
+            manager.AddQueryParam("amount", amount.ToString());
+            manager.AddQueryParam("symbol", symbol);
+
+            if (recvWindow != 5000)
+                manager.AddQueryParam("recvWindow", recvWindow.ToString());
+
+            return manager.SendRequest<ChangedIsolatedPostionMargin>(Config.ApiPublicUrl + "positionMargin", MethodsType.POST);
+        }
+
+        /// <summary>
+        /// Change isolated postion margin. Weight: 1.
+        /// </summary>
+        /// <param name="symbol">Currency pair code</param>
+        /// <param name="positionSide">Postion side, use it in Hedge Mode. </param>
+        /// <param name="amount">Change amount</param>
+        /// <param name="type">Change type: 1: Add position margin，2: Reduce position margin</param>
+        /// <param name="recvWindow">Custom recvWindow, default: 5000</param>
+        /// <returns>Changed isolated postion margin object response</returns>
+        public ChangedIsolatedPostionMargin ChangeIsolatedPostionMargin(string symbol, PositionSide positionSide, decimal amount, int type, long recvWindow = 5000)
+        {
+            RequestManager manager = new RequestManager(session, Autorization.TRADING);
+            manager.AddQueryParam("timestamp", Tools.NowUnixTime().ToString());
+            manager.AddQueryParam("type", type.ToString());
+            manager.AddQueryParam("amount", amount.ToString());
+            manager.AddQueryParam("symbol", symbol);
+            manager.AddQueryParam("positionSide", positionSide.ToString());
+
+            if (recvWindow != 5000)
+                manager.AddQueryParam("recvWindow", recvWindow.ToString());
+
+            return manager.SendRequest<ChangedIsolatedPostionMargin>(Config.ApiPublicUrl + "positionMargin", MethodsType.POST);
+        }
+        #endregion
+
+        #region Get postion margin change history
+        /// <summary>
+        /// Get postion margin change history. Weight: 1.
+        /// </summary>
+        /// <param name="symbol">Currency pair code</param>
+        /// <param name="limit">Limit of item, default: 500, max: 1000</param>
+        /// <param name="recvWindow">Custom recvWindow, default: 5000</param>
+        /// <returns>List of history items</returns>
+        public List<PostionMarginChangeHistoryItem> GetPositionMarginChangeHistory(string symbol, int limit = 500, long recvWindow = 5000)
+        {
+            RequestManager manager = new RequestManager(session, Autorization.TRADING);
+            manager.AddQueryParam("timestamp", Tools.NowUnixTime().ToString());
+            manager.AddQueryParam("symbol", symbol);
+            manager.AddQueryParam("limit", limit.ToString());
+
+            if (recvWindow != 5000)
+                manager.AddQueryParam("recvWindow", recvWindow.ToString());
+
+            return manager.SendRequest(Config.ApiPublicUrl + "positionMargin/history", MethodsType.POST, 
+                customDeserializer: new SingleOrArrayCustromDeserializer<PostionMarginChangeHistoryItem>());
+        }
+
+        /// <summary>
+        /// Get postion margin change history. Weight: 1.
+        /// </summary>
+        /// <param name="symbol">Currency pair code</param>
+        /// <param name="type">Operation type: 1: Add position margin，2: Reduce position margin</param>
+        /// <param name="limit">Limit of item, default: 500, max: 1000</param>
+        /// <param name="recvWindow">Custom recvWindow, default: 5000</param>
+        /// <returns>List of history items</returns>
+        public List<PostionMarginChangeHistoryItem> GetPositionMarginChangeHistory(string symbol, int type, int limit = 500, long recvWindow = 5000)
+        {
+            RequestManager manager = new RequestManager(session, Autorization.TRADING);
+            manager.AddQueryParam("timestamp", Tools.NowUnixTime().ToString());
+            manager.AddQueryParam("symbol", symbol);
+            manager.AddQueryParam("type", type.ToString());
+            manager.AddQueryParam("limit", limit.ToString());
+
+            if (recvWindow != 5000)
+                manager.AddQueryParam("recvWindow", recvWindow.ToString());
+
+            return manager.SendRequest(Config.ApiPublicUrl + "positionMargin/history", MethodsType.POST,
+                customDeserializer: new SingleOrArrayCustromDeserializer<PostionMarginChangeHistoryItem>());
+        }
+
+        /// <summary>
+        /// Get postion margin change history. Weight: 1.
+        /// </summary>
+        /// <param name="symbol">Currency pair code</param>
+        /// <param name="startTime">Start time from start get history items in unix milisecond</param>
+        /// <param name="endTime">End time to end get history items in unix milisecond</param>
+        /// <param name="limit">Limit of item, default: 500, max: 1000</param>
+        /// <param name="recvWindow">Custom recvWindow, default: 5000</param>
+        /// <returns>List of history items</returns>
+        public List<PostionMarginChangeHistoryItem> GetPositionMarginChangeHistory(string symbol, long startTime, long endTime,
+            int limit = 500, long recvWindow = 5000)
+        {
+            RequestManager manager = new RequestManager(session, Autorization.TRADING);
+            manager.AddQueryParam("timestamp", Tools.NowUnixTime().ToString());
+            manager.AddQueryParam("symbol", symbol);
+            manager.AddQueryParam("startTime", startTime.ToString());
+            manager.AddQueryParam("endTime", endTime.ToString());
+            manager.AddQueryParam("limit", limit.ToString());
+
+            if (recvWindow != 5000)
+                manager.AddQueryParam("recvWindow", recvWindow.ToString());
+
+            return manager.SendRequest(Config.ApiPublicUrl + "positionMargin/history", MethodsType.POST,
+                customDeserializer: new SingleOrArrayCustromDeserializer<PostionMarginChangeHistoryItem>());
+        }
+
+        /// <summary>
+        /// Get postion margin change history. Weight: 1.
+        /// </summary>
+        /// <param name="symbol">Currency pair code</param>
+        /// <param name="startTime">Start time from start get history items in unix milisecond</param>
+        /// <param name="endTime">End time to end get history items in unix milisecond</param>
+        /// <param name="type">Operation type: 1: Add position margin，2: Reduce position margin</param>
+        /// <param name="limit">Limit of item, default: 500, max: 1000</param>
+        /// <param name="recvWindow">Custom recvWindow, default: 5000</param>
+        /// <returns>List of history items</returns>
+        public List<PostionMarginChangeHistoryItem> GetPositionMarginChangeHistory(string symbol, long startTime, long endTime, int type,
+            int limit = 500, long recvWindow = 5000)
+        {
+            RequestManager manager = new RequestManager(session, Autorization.TRADING);
+            manager.AddQueryParam("timestamp", Tools.NowUnixTime().ToString());
+            manager.AddQueryParam("symbol", symbol);
+            manager.AddQueryParam("startTime", startTime.ToString());
+            manager.AddQueryParam("endTime", endTime.ToString());
+            manager.AddQueryParam("type", type.ToString());
+            manager.AddQueryParam("limit", limit.ToString());
+
+            if (recvWindow != 5000)
+                manager.AddQueryParam("recvWindow", recvWindow.ToString());
+
+            return manager.SendRequest(Config.ApiPublicUrl + "positionMargin/history", MethodsType.POST,
+                customDeserializer: new SingleOrArrayCustromDeserializer<PostionMarginChangeHistoryItem>());
+        }
+        #endregion
 
         // ... //
         #region Get Notional and Leverage Brackets

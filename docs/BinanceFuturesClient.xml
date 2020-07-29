@@ -1341,6 +1341,31 @@
             Countdown timer in miliseconds.
             </summary>
         </member>
+        <member name="T:GBinanceFuturesClient.Model.Trade.ChangedIsolatedPostionMargin">
+            <summary>
+            Change isolated postion margin object response on <see cref="M:GBinanceFuturesClient.Trade.ChangeMarginType(System.String,GBinanceFuturesClient.Model.Trade.MarginType,System.Int64)"/> request.
+            </summary>
+        </member>
+        <member name="P:GBinanceFuturesClient.Model.Trade.ChangedIsolatedPostionMargin.Amount">
+            <summary>
+            Amount of margin
+            </summary>
+        </member>
+        <member name="P:GBinanceFuturesClient.Model.Trade.ChangedIsolatedPostionMargin.Code">
+            <summary>
+            Response code
+            </summary>
+        </member>
+        <member name="P:GBinanceFuturesClient.Model.Trade.ChangedIsolatedPostionMargin.Msg">
+            <summary>
+            Respone message
+            </summary>
+        </member>
+        <member name="P:GBinanceFuturesClient.Model.Trade.ChangedIsolatedPostionMargin.Type">
+            <summary>
+            Modif position margin type: 1: Add position margin，2: Reduce position margin.
+            </summary>
+        </member>
         <member name="T:GBinanceFuturesClient.Model.Trade.ChangeLeverageInfo">
             <summary>
             Data model of leverage changed response on <see cref="M:GBinanceFuturesClient.Trade.ChangeLeverage(System.String,System.Int32,System.Int64)"/>
@@ -1364,6 +1389,21 @@
         <member name="T:GBinanceFuturesClient.Model.Trade.ErrorMessage">
             <summary>
             Error message object.
+            </summary>
+        </member>
+        <member name="T:GBinanceFuturesClient.Model.Trade.MarginType">
+            <summary>
+            Margin type enum.
+            </summary>
+        </member>
+        <member name="F:GBinanceFuturesClient.Model.Trade.MarginType.ISOLATED">
+            <summary>
+            Isolated margin type
+            </summary>
+        </member>
+        <member name="F:GBinanceFuturesClient.Model.Trade.MarginType.CROSSED">
+            <summary>
+            Crossed margin type
             </summary>
         </member>
         <member name="T:GBinanceFuturesClient.Model.Trade.Message">
@@ -1520,6 +1560,41 @@
         <member name="P:GBinanceFuturesClient.Model.Trade.OrderInfo.WorkingType">
             <summary>
             Order update time.
+            </summary>
+        </member>
+        <member name="T:GBinanceFuturesClient.Model.Trade.PostionMarginChangeHistoryItem">
+            <summary>
+            Data model for item of postion margin change history.
+            </summary>
+        </member>
+        <member name="P:GBinanceFuturesClient.Model.Trade.PostionMarginChangeHistoryItem.Amount">
+            <summary>
+            Change amount
+            </summary>
+        </member>
+        <member name="P:GBinanceFuturesClient.Model.Trade.PostionMarginChangeHistoryItem.Asset">
+            <summary>
+            Asset, currency code
+            </summary>
+        </member>
+        <member name="P:GBinanceFuturesClient.Model.Trade.PostionMarginChangeHistoryItem.Symbol">
+            <summary>
+            Currency pair code.
+            </summary>
+        </member>
+        <member name="P:GBinanceFuturesClient.Model.Trade.PostionMarginChangeHistoryItem.Time">
+            <summary>
+            Change time in unix milisecond
+            </summary>
+        </member>
+        <member name="P:GBinanceFuturesClient.Model.Trade.PostionMarginChangeHistoryItem.Type">
+            <summary>
+            Change type, 1: Add position margin，2: Reduce position margin
+            </summary>
+        </member>
+        <member name="P:GBinanceFuturesClient.Model.Trade.PostionMarginChangeHistoryItem.PositionSide">
+            <summary>
+            Postion side
             </summary>
         </member>
         <member name="T:GBinanceFuturesClient.Model.Trade.ValidOrErrorResponse`1">
@@ -1777,12 +1852,84 @@
         </member>
         <member name="M:GBinanceFuturesClient.Trade.ChangeLeverage(System.String,System.Int32,System.Int64)">
             <summary>
-            Change user's initial leverage of specific symbol market.
+            Change user's initial leverage of specific symbol market. Weight: 1.
             </summary>
             <param name="symbol">Currency pair code</param>
             <param name="leverage">Target initial leverage: int from 1 to 125</param>
             <param name="recvWindow">Custom recvWindow, default: 5000</param>
             <returns>Changed leverage info</returns>
+        </member>
+        <member name="M:GBinanceFuturesClient.Trade.ChangeMarginType(System.String,GBinanceFuturesClient.Model.Trade.MarginType,System.Int64)">
+            <summary>
+            Change margin type betwen two option. Weight: 1
+            </summary>
+            <param name="symbol">Currency pair code</param>
+            <param name="marginType">Margin type: isolated or corssed</param>
+            <param name="recvWindow">Custom recvWindow, default: 5000</param>
+            <returns>Server response message</returns>
+        </member>
+        <member name="M:GBinanceFuturesClient.Trade.ChangeIsolatedPostionMargin(System.String,System.Decimal,System.Int32,System.Int64)">
+            <summary>
+            Change isolated postion margin. Weight: 1.
+            </summary>
+            <param name="symbol">Currency pair code</param>
+            <param name="amount">Change amount</param>
+            <param name="type">Change type: 1: Add position margin，2: Reduce position margin</param>
+            <param name="recvWindow">Custom recvWindow, default: 5000</param>
+            <returns>Changed isolated postion margin object response</returns>
+        </member>
+        <member name="M:GBinanceFuturesClient.Trade.ChangeIsolatedPostionMargin(System.String,GBasicExchangeDefinitions.PositionSide,System.Decimal,System.Int32,System.Int64)">
+            <summary>
+            Change isolated postion margin. Weight: 1.
+            </summary>
+            <param name="symbol">Currency pair code</param>
+            <param name="positionSide">Postion side, use it in Hedge Mode. </param>
+            <param name="amount">Change amount</param>
+            <param name="type">Change type: 1: Add position margin，2: Reduce position margin</param>
+            <param name="recvWindow">Custom recvWindow, default: 5000</param>
+            <returns>Changed isolated postion margin object response</returns>
+        </member>
+        <member name="M:GBinanceFuturesClient.Trade.GetPositionMarginChangeHistory(System.String,System.Int32,System.Int64)">
+            <summary>
+            Get postion margin change history. Weight: 1.
+            </summary>
+            <param name="symbol">Currency pair code</param>
+            <param name="limit">Limit of item, default: 500, max: 1000</param>
+            <param name="recvWindow">Custom recvWindow, default: 5000</param>
+            <returns>List of history items</returns>
+        </member>
+        <member name="M:GBinanceFuturesClient.Trade.GetPositionMarginChangeHistory(System.String,System.Int32,System.Int32,System.Int64)">
+            <summary>
+            Get postion margin change history. Weight: 1.
+            </summary>
+            <param name="symbol">Currency pair code</param>
+            <param name="type">Operation type: 1: Add position margin，2: Reduce position margin</param>
+            <param name="limit">Limit of item, default: 500, max: 1000</param>
+            <param name="recvWindow">Custom recvWindow, default: 5000</param>
+            <returns>List of history items</returns>
+        </member>
+        <member name="M:GBinanceFuturesClient.Trade.GetPositionMarginChangeHistory(System.String,System.Int64,System.Int64,System.Int32,System.Int64)">
+            <summary>
+            Get postion margin change history. Weight: 1.
+            </summary>
+            <param name="symbol">Currency pair code</param>
+            <param name="startTime">Start time from start get history items in unix milisecond</param>
+            <param name="endTime">End time to end get history items in unix milisecond</param>
+            <param name="limit">Limit of item, default: 500, max: 1000</param>
+            <param name="recvWindow">Custom recvWindow, default: 5000</param>
+            <returns>List of history items</returns>
+        </member>
+        <member name="M:GBinanceFuturesClient.Trade.GetPositionMarginChangeHistory(System.String,System.Int64,System.Int64,System.Int32,System.Int32,System.Int64)">
+            <summary>
+            Get postion margin change history. Weight: 1.
+            </summary>
+            <param name="symbol">Currency pair code</param>
+            <param name="startTime">Start time from start get history items in unix milisecond</param>
+            <param name="endTime">End time to end get history items in unix milisecond</param>
+            <param name="type">Operation type: 1: Add position margin，2: Reduce position margin</param>
+            <param name="limit">Limit of item, default: 500, max: 1000</param>
+            <param name="recvWindow">Custom recvWindow, default: 5000</param>
+            <returns>List of history items</returns>
         </member>
         <member name="M:GBinanceFuturesClient.Trade.GetNationalBrackets">
             <summary>
