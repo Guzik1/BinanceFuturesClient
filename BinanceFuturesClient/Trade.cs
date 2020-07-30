@@ -6,6 +6,7 @@ using GBinanceFuturesClient.Model.Trade;
 using RestApiClient;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Text;
 
 namespace GBinanceFuturesClient
@@ -586,7 +587,33 @@ namespace GBinanceFuturesClient
         #endregion
 
         #region Get account inforamtion v2
-        // TODO: add this method
+        /// <summary>
+        /// Get account information.
+        /// </summary>
+        /// <returns>Account inforamtion</returns>
+        public AccountInformation GetAccountInformation()
+        {
+            RequestManager manager = new RequestManager(session, Autorization.TRADING);
+            manager.AddQueryParam("timestamp", Tools.NowUnixTime().ToString());
+
+            return manager.SendRequest(Config.ApiPublicV2Url + "account", MethodsType.GET);
+        }
+
+        /// <summary>
+        /// Get account information.
+        /// </summary>
+        /// <param name="recvWindow">Custom recvWindow, default: 5000</param>
+        /// <returns>Account inforamtion</returns>
+        public AccountInformation GetAccountInformation(long recvWindow = 5000)
+        {
+            RequestManager manager = new RequestManager(session, Autorization.TRADING);
+            manager.AddQueryParam("timestamp", Tools.NowUnixTime().ToString());
+
+            if(recvWindow != 5000)
+                manager.AddQueryParam("recvWindow", recvWindow.ToString());
+
+            return manager.SendRequest(Config.ApiPublicV2Url + "account", MethodsType.GET);
+        }
         #endregion
 
         #region Change initial lavarage
@@ -1079,7 +1106,6 @@ namespace GBinanceFuturesClient
         }
         #endregion
 
-        // ... //
         #region Get Notional and Leverage Brackets
         /// <summary>
         /// Get Notional and Leverage Brackets. Weight: 1.

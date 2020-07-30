@@ -23,6 +23,8 @@ Inheritance [System.Object](https://docs.microsoft.com/en-us/dotnet/api/System.O
 - [ChangePositionMode(bool, long)](./GBinanceFuturesClient-Trade-ChangePositionMode(bool_long).md 'GBinanceFuturesClient.Trade.ChangePositionMode(bool, long)')
 - [GetAccountBalances()](./GBinanceFuturesClient-Trade-GetAccountBalances().md 'GBinanceFuturesClient.Trade.GetAccountBalances()')
 - [GetAccountBalances(long)](./GBinanceFuturesClient-Trade-GetAccountBalances(long).md 'GBinanceFuturesClient.Trade.GetAccountBalances(long)')
+- [GetAccountInformation()](./GBinanceFuturesClient-Trade-GetAccountInformation().md 'GBinanceFuturesClient.Trade.GetAccountInformation()')
+- [GetAccountInformation(long)](./GBinanceFuturesClient-Trade-GetAccountInformation(long).md 'GBinanceFuturesClient.Trade.GetAccountInformation(long)')
 - [GetAccountTradeList(string, int, long)](./GBinanceFuturesClient-Trade-GetAccountTradeList(string_int_long).md 'GBinanceFuturesClient.Trade.GetAccountTradeList(string, int, long)')
 - [GetAccountTradeList(string, long, int, long)](./GBinanceFuturesClient-Trade-GetAccountTradeList(string_long_int_long).md 'GBinanceFuturesClient.Trade.GetAccountTradeList(string, long, int, long)')
 - [GetAccountTradeList(string, long, long, int, long)](./GBinanceFuturesClient-Trade-GetAccountTradeList(string_long_long_int_long).md 'GBinanceFuturesClient.Trade.GetAccountTradeList(string, long, long, int, long)')

@@ -1280,6 +1280,226 @@
             Maximum amount for transfer out
             </summary>
         </member>
+        <member name="T:GBinanceFuturesClient.Model.Trade.AccountInformation">
+            <summary>
+            Account information is reponse on <see cref="T:GBinanceFuturesClient.Trade"/>
+            </summary>
+        </member>
+        <member name="P:GBinanceFuturesClient.Model.Trade.AccountInformation.FeeTier">
+            <summary>
+            Account commisssion tier 
+            </summary>
+        </member>
+        <member name="P:GBinanceFuturesClient.Model.Trade.AccountInformation.CanTrade">
+            <summary>
+            true if can trade
+            </summary>
+        </member>
+        <member name="P:GBinanceFuturesClient.Model.Trade.AccountInformation.CanDeposit">
+            <summary>
+            true if can transfer in asset
+            </summary>
+        </member>
+        <member name="P:GBinanceFuturesClient.Model.Trade.AccountInformation.CanWithdraw">
+            <summary>
+            true if can transfer out asset
+            </summary>
+        </member>
+        <member name="P:GBinanceFuturesClient.Model.Trade.AccountInformation.UpdateTime">
+            <summary>
+            Update time
+            </summary>
+        </member>
+        <member name="P:GBinanceFuturesClient.Model.Trade.AccountInformation.TotalInitialMargin">
+            <summary>
+            Total initial margin required with current mark price (useless with isolated positions)
+            </summary>
+        </member>
+        <member name="P:GBinanceFuturesClient.Model.Trade.AccountInformation.TotalMaintMargin">
+            <summary>
+            Total maintenance margin required
+            </summary>
+        </member>
+        <member name="P:GBinanceFuturesClient.Model.Trade.AccountInformation.TotalWalletBalance">
+            <summary>
+            Total wallet balance
+            </summary>
+        </member>
+        <member name="P:GBinanceFuturesClient.Model.Trade.AccountInformation.TotalUnrealizedProfit">
+            <summary>
+            Total unrealized profit
+            </summary>
+        </member>
+        <member name="P:GBinanceFuturesClient.Model.Trade.AccountInformation.TotalMarginBalance">
+            <summary>
+            Total margin balance
+            </summary>
+        </member>
+        <member name="P:GBinanceFuturesClient.Model.Trade.AccountInformation.TotalPositionInitialMargin">
+            <summary>
+            Initial margin required for positions with current mark price
+            </summary>
+        </member>
+        <member name="P:GBinanceFuturesClient.Model.Trade.AccountInformation.TotalOpenOrderInitialMargin">
+            <summary>
+            Initial margin required for open orders with current mark price
+            </summary>
+        </member>
+        <member name="P:GBinanceFuturesClient.Model.Trade.AccountInformation.TotalCrossWalletBalance">
+            <summary>
+            Crossed wallet balance
+            </summary>
+        </member>
+        <member name="P:GBinanceFuturesClient.Model.Trade.AccountInformation.TotalCrossUnPnl">
+            <summary>
+            Unrealized profit of crossed positions
+            </summary>
+        </member>
+        <member name="P:GBinanceFuturesClient.Model.Trade.AccountInformation.AvailableBalance">
+            <summary>
+            Available balance
+            </summary>
+        </member>
+        <member name="P:GBinanceFuturesClient.Model.Trade.AccountInformation.MaxWithdrawAmount">
+            <summary>
+            Maximum amount for transfer out
+            </summary>
+        </member>
+        <member name="P:GBinanceFuturesClient.Model.Trade.AccountInformation.Assets">
+            <summary>
+            List of assets.
+            </summary>
+        </member>
+        <member name="P:GBinanceFuturesClient.Model.Trade.AccountInformation.Positions">
+            <summary>
+            Positions of all sumbols in the market.
+            </summary>
+        </member>
+        <member name="T:GBinanceFuturesClient.Model.Trade.AssetInformationItem">
+            <summary>
+            Asset information item
+            </summary>
+        </member>
+        <member name="P:GBinanceFuturesClient.Model.Trade.AssetInformationItem.Asset">
+            <summary>
+            Currency code
+            </summary>
+        </member>
+        <member name="P:GBinanceFuturesClient.Model.Trade.AssetInformationItem.WalletBalance">
+            <summary>
+            Wallet balance
+            </summary>
+        </member>
+        <member name="P:GBinanceFuturesClient.Model.Trade.AssetInformationItem.UnrealizedProfit">
+            <summary>
+            Unrealized profit
+            </summary>
+        </member>
+        <member name="P:GBinanceFuturesClient.Model.Trade.AssetInformationItem.MarginBalance">
+            <summary>
+            Margin balance
+            </summary>
+        </member>
+        <member name="P:GBinanceFuturesClient.Model.Trade.AssetInformationItem.MaintMargin">
+            <summary>
+            Maintenance margin required
+            </summary>
+        </member>
+        <member name="P:GBinanceFuturesClient.Model.Trade.AssetInformationItem.InitialMargin">
+            <summary>
+            Total initial margin required with current mark price
+            </summary>
+        </member>
+        <member name="P:GBinanceFuturesClient.Model.Trade.AssetInformationItem.PositionInitialMargin">
+            <summary>
+            Initial margin required for positions with current mark price
+            </summary>
+        </member>
+        <member name="P:GBinanceFuturesClient.Model.Trade.AssetInformationItem.OpenOrderInitialMargin">
+            <summary>
+            Initial margin required for open orders with current mark price
+            </summary>
+        </member>
+        <member name="P:GBinanceFuturesClient.Model.Trade.AssetInformationItem.CrossWalletBalance">
+            <summary>
+            Crossed wallet balance
+            </summary>
+        </member>
+        <member name="P:GBinanceFuturesClient.Model.Trade.AssetInformationItem.CrossUnPnl">
+            <summary>
+            Unrealized profit of crossed positions
+            </summary>
+        </member>
+        <member name="P:GBinanceFuturesClient.Model.Trade.AssetInformationItem.AvailableBalance">
+            <summary>
+            Available balance
+            </summary>
+        </member>
+        <member name="P:GBinanceFuturesClient.Model.Trade.AssetInformationItem.MaxWithdrawAmount">
+            <summary>
+            Maximum amount for transfer out
+            </summary>
+        </member>
+        <member name="T:GBinanceFuturesClient.Model.Trade.PositionInformationItem">
+            <summary>
+            Position information item
+            </summary>
+        </member>
+        <member name="P:GBinanceFuturesClient.Model.Trade.PositionInformationItem.Symbol">
+            <summary>
+            Currency pair code
+            </summary>
+        </member>
+        <member name="P:GBinanceFuturesClient.Model.Trade.PositionInformationItem.InitialMargin">
+            <summary>
+            Initial margin required with current mark price
+            </summary>
+        </member>
+        <member name="P:GBinanceFuturesClient.Model.Trade.PositionInformationItem.MaintMargin">
+            <summary>
+            Maintenance margin required
+            </summary>
+        </member>
+        <member name="P:GBinanceFuturesClient.Model.Trade.PositionInformationItem.UnrealizedProfit">
+            <summary>
+            Unrealized profit
+            </summary>
+        </member>
+        <member name="P:GBinanceFuturesClient.Model.Trade.PositionInformationItem.PositionInitialMargin">
+            <summary>
+            Initial margin required for positions with current mark price
+            </summary>
+        </member>
+        <member name="P:GBinanceFuturesClient.Model.Trade.PositionInformationItem.OpenOrderInitialMargin">
+            <summary>
+            Initial margin required for open orders with current mark price
+            </summary>
+        </member>
+        <member name="P:GBinanceFuturesClient.Model.Trade.PositionInformationItem.Leverage">
+            <summary>
+            Current initial leverage 
+            </summary>
+        </member>
+        <member name="P:GBinanceFuturesClient.Model.Trade.PositionInformationItem.Isolated">
+            <summary>
+            True if the position is isolated
+            </summary>
+        </member>
+        <member name="P:GBinanceFuturesClient.Model.Trade.PositionInformationItem.EntryPrice">
+            <summary>
+            Average entry price
+            </summary>
+        </member>
+        <member name="P:GBinanceFuturesClient.Model.Trade.PositionInformationItem.MaxNotional">
+            <summary>
+            Maximum available notional with current leverage
+            </summary>
+        </member>
+        <member name="P:GBinanceFuturesClient.Model.Trade.PositionInformationItem.PositionSide">
+            <summary>
+            Position side
+            </summary>
+        </member>
         <member name="T:GBinanceFuturesClient.Model.Trade.AccountTradeItem">
             <summary>
             Single ordre/trade/position item.
@@ -1505,6 +1725,29 @@
             <summary>
             Time in unix milisecond timestamp
             </summary>
+        </member>
+        <member name="T:GBinanceFuturesClient.Model.Trade.IncomeType">
+            <summary>
+            Income types enum
+            </summary>
+        </member>
+        <member name="F:GBinanceFuturesClient.Model.Trade.IncomeType.TRANSFER">
+            <summary>Transfer</summary>
+        </member>
+        <member name="F:GBinanceFuturesClient.Model.Trade.IncomeType.WELCOME_BONUS">
+            <summary>Welcome bonus</summary>
+        </member>
+        <member name="F:GBinanceFuturesClient.Model.Trade.IncomeType.REALIZED_PNL">
+            <summary>Realized PNL</summary>
+        </member>
+        <member name="F:GBinanceFuturesClient.Model.Trade.IncomeType.FUNDING_FEE">
+            <summary>Funding fee</summary>
+        </member>
+        <member name="F:GBinanceFuturesClient.Model.Trade.IncomeType.COMMISSION">
+            <summary>Commission</summary>
+        </member>
+        <member name="F:GBinanceFuturesClient.Model.Trade.IncomeType.INSURANCE_CLEAR">
+            <summary>Insurance clear</summary>
         </member>
         <member name="T:GBinanceFuturesClient.Model.Trade.MarginType">
             <summary>
@@ -2029,6 +2272,19 @@
             </summary>
             <param name="recvWindow">Custom recvWindow, default: 5000</param>
             <returns>List of account balance object</returns>
+        </member>
+        <member name="M:GBinanceFuturesClient.Trade.GetAccountInformation">
+            <summary>
+            Get account information.
+            </summary>
+            <returns>Account inforamtion</returns>
+        </member>
+        <member name="M:GBinanceFuturesClient.Trade.GetAccountInformation(System.Int64)">
+            <summary>
+            Get account information.
+            </summary>
+            <param name="recvWindow">Custom recvWindow, default: 5000</param>
+            <returns>Account inforamtion</returns>
         </member>
         <member name="M:GBinanceFuturesClient.Trade.ChangeLeverage(System.String,System.Int32,System.Int64)">
             <summary>

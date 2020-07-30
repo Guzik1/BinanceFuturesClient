@@ -11,7 +11,7 @@ public System.Collections.Generic.List<GBinanceFuturesClient.Model.Trade.IncomeH
 Currency pair code  
   
 <a name='GBinanceFuturesClient-Trade-GetIncomeHistory(string_GBinanceFuturesClient-Model-Trade-IncomeType_int_long)-incomeType'></a>
-`incomeType` [GBinanceFuturesClient.Model.Trade.IncomeType](https://docs.microsoft.com/en-us/dotnet/api/GBinanceFuturesClient.Model.Trade.IncomeType 'GBinanceFuturesClient.Model.Trade.IncomeType')  
+`incomeType` [IncomeType](./GBinanceFuturesClient-Model-Trade-IncomeType.md 'GBinanceFuturesClient.Model.Trade.IncomeType')  
 Income type  
   
 <a name='GBinanceFuturesClient-Trade-GetIncomeHistory(string_GBinanceFuturesClient-Model-Trade-IncomeType_int_long)-limit'></a>

@@ -6,4 +6,4 @@ Income type
 public GBinanceFuturesClient.Model.Trade.IncomeType IncomeType { get; set; }
 ```
 #### Property Value
-[GBinanceFuturesClient.Model.Trade.IncomeType](https://docs.microsoft.com/en-us/dotnet/api/GBinanceFuturesClient.Model.Trade.IncomeType 'GBinanceFuturesClient.Model.Trade.IncomeType')  
+[IncomeType](./GBinanceFuturesClient-Model-Trade-IncomeType.md 'GBinanceFuturesClient.Model.Trade.IncomeType')  
