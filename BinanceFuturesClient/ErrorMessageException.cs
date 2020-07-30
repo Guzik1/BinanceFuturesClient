@@ -54,7 +54,7 @@ namespace GBinanceFuturesClient
         /// <returns>Return string, format: "ErrorMessageException : msg: " + Message + ", code: " + code</returns>
         public override string ToString()
         {
-            return "ErrorMessageException : msg: " + Message + ", code: " + code;
+            return "ErrorMessageException: message: " + Message + ", code: " + code;
         }
     }
 }

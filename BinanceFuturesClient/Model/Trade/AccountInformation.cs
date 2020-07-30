@@ -7,7 +7,8 @@ using System.Text;
 namespace GBinanceFuturesClient.Model.Trade
 {
     /// <summary>
-    /// Account information is reponse on <see cref="GBinanceFuturesClient.Trade"/>
+    /// Account information is reponse on <see cref="GBinanceFuturesClient.Trade.GetAccountInformation()"/> and
+    /// <see cref="GBinanceFuturesClient.Trade.GetAccountInformation(long)"/> requst.
     /// </summary>
     public class AccountInformation
     {

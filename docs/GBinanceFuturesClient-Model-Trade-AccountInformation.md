@@ -1,7 +1,8 @@
 #### [GBinanceFuturesClient](./index.md 'index')
 ### [GBinanceFuturesClient.Model.Trade](./GBinanceFuturesClient-Model-Trade.md 'GBinanceFuturesClient.Model.Trade')
 ## AccountInformation Class
-Account information is reponse on [Trade](./GBinanceFuturesClient-Trade.md 'GBinanceFuturesClient.Trade')  
+Account information is reponse on [GetAccountInformation()](./GBinanceFuturesClient-Trade-GetAccountInformation().md 'GBinanceFuturesClient.Trade.GetAccountInformation()') and  
+[GetAccountInformation(long)](./GBinanceFuturesClient-Trade-GetAccountInformation(long).md 'GBinanceFuturesClient.Trade.GetAccountInformation(long)') requst.  
 ```csharp
 public class AccountInformation
 ```

@@ -1282,7 +1282,8 @@
         </member>
         <member name="T:GBinanceFuturesClient.Model.Trade.AccountInformation">
             <summary>
-            Account information is reponse on <see cref="T:GBinanceFuturesClient.Trade"/>
+            Account information is reponse on <see cref="M:GBinanceFuturesClient.Trade.GetAccountInformation"/> and
+            <see cref="M:GBinanceFuturesClient.Trade.GetAccountInformation(System.Int64)"/> requst.
             </summary>
         </member>
         <member name="P:GBinanceFuturesClient.Model.Trade.AccountInformation.FeeTier">
@@ -2042,6 +2043,32 @@
             True if the response is valid, for error response false.
             </summary>
         </member>
+        <member name="T:GBinanceFuturesClient.RateLimitException">
+            <summary>
+            Rate limit exception, throw when server was code return 429 (rate limit) or 418 (ip ban).
+            </summary>
+        </member>
+        <member name="P:GBinanceFuturesClient.RateLimitException.Code">
+            <summary>
+            Server error code.
+            </summary>
+        </member>
+        <member name="P:GBinanceFuturesClient.RateLimitException.IsExceedingRateLimitError">
+            <summary>
+            Exceeding rate limit
+            </summary>
+        </member>
+        <member name="P:GBinanceFuturesClient.RateLimitException.IsIpBanError">
+            <summary>
+            Is ban for ip (wait 2/3 minute to send new resuest)
+            </summary>
+        </member>
+        <member name="M:GBinanceFuturesClient.RateLimitException.ToString">
+            <summary>
+            Convert exception object to string.
+            </summary>
+            <returns>Return string, format: "ErrorMessageException : msg: " + Message + ", code: " + code</returns>
+        </member>
         <member name="T:GBinanceFuturesClient.Trade">
             <summary>
             Binance futures account/trade endpoints methods.
@@ -2492,6 +2519,35 @@
             </summary>
             <param name="symbol">Currency pair code.</param>
             <returns>Brackets object.</returns>
+        </member>
+        <member name="T:GBinanceFuturesClient.UnautorizedClientException">
+            <summary>
+            Unautorized client exception, throw when client is unautorized to send request in autorized method.
+            </summary>
+        </member>
+        <member name="M:GBinanceFuturesClient.UnautorizedClientException.#ctor">
+            <summary>
+            Default constructor.
+            </summary>
+        </member>
+        <member name="M:GBinanceFuturesClient.UnautorizedClientException.#ctor(System.String)">
+            <summary>
+            Constructor with message.
+            </summary>
+            <param name="message">Error message.</param>
+        </member>
+        <member name="M:GBinanceFuturesClient.UnautorizedClientException.#ctor(System.String,System.Exception)">
+            <summary>
+            Constructor with error code, error message and exception stack.
+            </summary>
+            <param name="message">Error message.</param>
+            <param name="innerException">Inner exception stack.</param>
+        </member>
+        <member name="M:GBinanceFuturesClient.UnautorizedClientException.ToString">
+            <summary>
+            Convert exception object to string.
+            </summary>
+            <returns>Return string, format: "ErrorMessageException : msg: " + Message + ", code: " + code</returns>
         </member>
     </members>
 </doc>

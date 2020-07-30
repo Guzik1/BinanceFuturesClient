@@ -100,7 +100,6 @@ namespace GBinanceFuturesClient.Manager
 
         string AddQueryAndAutorize(MethodsType method, Dictionary<string, string> query = null, object objectBody = null)
         {
-            // TODO change exception to UnautorizedClientException;
             if (autorization == Autorization.NONE)
             {
                 client.AddQuery(query);
@@ -108,7 +107,7 @@ namespace GBinanceFuturesClient.Manager
             else if (autorization == Autorization.MARKET)
             {
                 if (!session.IsMarketAutorized)
-                    throw new Exception("Client is unautorized, use SetAutorizationData() method for autorize client, " +
+                    throw new UnautorizedClientException("Client is unautorized, use SetAutorizationData() method for autorize client, " +
                         "method required public api key.");
 
                 client.AddQuery(query);
@@ -117,7 +116,7 @@ namespace GBinanceFuturesClient.Manager
             else if (autorization == Autorization.TRADING)
             {
                 if (!session.IsTradingAutorized)
-                    throw new Exception("Client is unautorized, use SetAutorizationData() method for autorize client, " +
+                    throw new UnautorizedClientException("Client is unautorized, use SetAutorizationData() method for autorize client, " +
                         "method required public and private api key.");
 
                 client.AddOwnHeaderToRequest("X-MBX-APIKEY", session.PublicKey);
@@ -193,11 +192,17 @@ namespace GBinanceFuturesClient.Manager
         {
             if (rc.ResponseHasNoErrors())
                 return true;
-            else
+            else if (rc.GetStatusCode == 400)
             {
                 ErrorMessage error = JsonTools.DeserializeFromJson<ErrorMessage>(rc.GetResponseToString);
                 throw new ErrorMessageException(error.Code, error.Msg);
             }
+            else if (rc.GetStatusCode == 429)
+                throw new RateLimitException(429, "Rate limit, too many request.", true);
+            else if (rc.GetStatusCode == 418)
+                throw new RateLimitException(418, "Rate limit, too many request (ban ip).", isBan: true);
+            else
+                throw new RateLimitException(403, "Rate limit, too many weight (WPF error).", true);
         }
     }
 }

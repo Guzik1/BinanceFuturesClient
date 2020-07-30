@@ -30,7 +30,7 @@ namespace GBinanceFuturesClient.Model.Internal
                     ValidType validObject = ((JObject)responseDeserialized[i]).ToObject<ValidType>();
                     output.Add(new ValidOrErrorResponse<ValidType>(validObject));
                 }
-                catch (Exception) { // TODO: change exception to invalidCast or etc.
+                catch (Exception) {
                     ErrorMessage errorObject = ((JObject)responseDeserialized[i]).ToObject<ErrorMessage>();
                     output.Add(new ValidOrErrorResponse<ValidType>(errorObject));
                 }

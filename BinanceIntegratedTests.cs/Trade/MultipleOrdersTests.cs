@@ -89,7 +89,6 @@ namespace BinanceIntegratedTests.Trade
             }
         }
 
-        // TODO: Write this tests.
         [Test]
         public void AllOrderTypeTest()
         {
