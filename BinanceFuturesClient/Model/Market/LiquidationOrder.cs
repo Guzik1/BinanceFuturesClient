@@ -1,4 +1,6 @@
-﻿using Newtonsoft.Json;
+﻿using GBasicExchangeDefinitions;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -48,17 +50,20 @@ namespace GBinanceFuturesClient.Model.Market
         /// Time in force.
         /// </summary>
         [JsonProperty("timeInForce")]
-        public string TimeInForce { get; set; }
+        [JsonConverter(typeof(StringEnumConverter))]
+        public TimeInForce TimeInForce { get; set; }
 
         /// <summary>
         /// Order type, for example Limit.
         /// </summary>
-        public string Type { get; set; }
+        [JsonConverter(typeof(StringEnumConverter))]
+        public OrderType Type { get; set; }
 
         /// <summary>
         /// Side type: BUY or SELL.
         /// </summary>
-        public string Side { get; set; }
+        [JsonConverter(typeof(StringEnumConverter))]
+        public OrderSide Side { get; set; }
 
         /// <summary>
         /// Liquidation time in unix timestamp.
