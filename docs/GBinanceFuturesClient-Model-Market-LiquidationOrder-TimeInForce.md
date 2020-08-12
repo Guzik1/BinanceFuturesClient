@@ -3,7 +3,7 @@
 ## LiquidationOrder.TimeInForce Property
 Time in force.  
 ```csharp
-public string TimeInForce { get; set; }
+public GBasicExchangeDefinitions.TimeInForce TimeInForce { get; set; }
 ```
 #### Property Value
-[System.String](https://docs.microsoft.com/en-us/dotnet/api/System.String 'System.String')  
+[GBasicExchangeDefinitions.TimeInForce](https://docs.microsoft.com/en-us/dotnet/api/GBasicExchangeDefinitions.TimeInForce 'GBasicExchangeDefinitions.TimeInForce')  

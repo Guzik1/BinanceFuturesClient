@@ -1,7 +1,7 @@
 #### [GBinanceFuturesClient](./index.md 'index')
 ### [GBinanceFuturesClient.Model.Trade](./GBinanceFuturesClient-Model-Trade.md 'GBinanceFuturesClient.Model.Trade').[OrderInfo](./GBinanceFuturesClient-Model-Trade-OrderInfo.md 'GBinanceFuturesClient.Model.Trade.OrderInfo')
 ## OrderInfo.WorkingType Property
-Order update time.  
+Order working type.  
 ```csharp
 public GBasicExchangeDefinitions.WorkingType WorkingType { get; set; }
 ```

@@ -3,7 +3,7 @@
 ## LiquidationOrder.Type Property
 Order type, for example Limit.  
 ```csharp
-public string Type { get; set; }
+public GBasicExchangeDefinitions.OrderType Type { get; set; }
 ```
 #### Property Value
-[System.String](https://docs.microsoft.com/en-us/dotnet/api/System.String 'System.String')  
+[GBasicExchangeDefinitions.OrderType](https://docs.microsoft.com/en-us/dotnet/api/GBasicExchangeDefinitions.OrderType 'GBasicExchangeDefinitions.OrderType')  

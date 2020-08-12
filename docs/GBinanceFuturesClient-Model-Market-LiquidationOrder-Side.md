@@ -3,7 +3,7 @@
 ## LiquidationOrder.Side Property
 Side type: BUY or SELL.  
 ```csharp
-public string Side { get; set; }
+public GBasicExchangeDefinitions.OrderSide Side { get; set; }
 ```
 #### Property Value
-[System.String](https://docs.microsoft.com/en-us/dotnet/api/System.String 'System.String')  
+[GBasicExchangeDefinitions.OrderSide](https://docs.microsoft.com/en-us/dotnet/api/GBasicExchangeDefinitions.OrderSide 'GBasicExchangeDefinitions.OrderSide')  

@@ -1099,147 +1099,6 @@
             Is buyer maker flag.
             </summary>
         </member>
-        <member name="T:GBinanceFuturesClient.Model.Trade.NewOrderRequest">
-            <summary>
-            Data model for use request in <see cref="M:GBinanceFuturesClient.Trade.PlaceOrder(GBinanceFuturesClient.Model.Trade.NewOrderRequest)"/> request.
-            </summary>
-        </member>
-        <member name="P:GBinanceFuturesClient.Model.Trade.NewOrderRequest.Symbol">
-            <summary>
-            Currency pair symbol. Required.
-            </summary>
-        </member>
-        <member name="P:GBinanceFuturesClient.Model.Trade.NewOrderRequest.Side">
-            <summary>
-            Order side, buy or sell. Required.
-            </summary>
-        </member>
-        <member name="P:GBinanceFuturesClient.Model.Trade.NewOrderRequest.PositionSide">
-            <summary>
-            Default BOTH for One-way Mode, LONG or SHORT for Hedge Mode. It must be sent with Hedge Mode.
-            </summary>
-        </member>
-        <member name="P:GBinanceFuturesClient.Model.Trade.NewOrderRequest.Type">
-            <summary>
-            Order type. Required.
-            </summary>
-        </member>
-        <member name="P:GBinanceFuturesClient.Model.Trade.NewOrderRequest.TimeInForce">
-            <summary>
-            Time in force, default GTC. Required only in Limit order.
-            </summary>
-        </member>
-        <member name="P:GBinanceFuturesClient.Model.Trade.NewOrderRequest.Quantity">
-            <summary>
-            Order quantity. Required.
-            </summary>
-        </member>
-        <member name="P:GBinanceFuturesClient.Model.Trade.NewOrderRequest.ReduceOnly">
-            <summary>
-            Reduce only, "true" or "false". Defalt "false".
-            </summary>
-        </member>
-        <member name="P:GBinanceFuturesClient.Model.Trade.NewOrderRequest.Price">
-            <summary>
-            Order price.
-            </summary>
-        </member>
-        <member name="P:GBinanceFuturesClient.Model.Trade.NewOrderRequest.NewClientOrderId">
-            <summary>
-            A unique id among open orders. Automatically generated if not sent. For each order NewClientOrderId, it must be different.
-            </summary>
-        </member>
-        <member name="P:GBinanceFuturesClient.Model.Trade.NewOrderRequest.StopPrice">
-            <summary>
-            Stop price. Used with STOP/STOP_MARKET or TAKE_PROFIT/TAKE_PROFIT_MARKET orders.
-            </summary>
-        </member>
-        <member name="P:GBinanceFuturesClient.Model.Trade.NewOrderRequest.ActivationPrice">
-            <summary>
-            Order activation price. Used with TRAILING_STOP_MARKET orders, default as the latest price（supporting different workingType).
-            </summary>
-        </member>
-        <member name="P:GBinanceFuturesClient.Model.Trade.NewOrderRequest.CallbackRate">
-            <summary>
-            callback order price. Used with TRAILING_STOP_MARKET orders, min 0.1, max 5 where 1 for 1%.
-            </summary>
-        </member>
-        <member name="P:GBinanceFuturesClient.Model.Trade.NewOrderRequest.WorkingType">
-            <summary>
-            Working type. stopPrice triggered by: "MARK_PRICE", "CONTRACT_PRICE". Default "CONTRACT_PRICE"
-            </summary>
-        </member>
-        <member name="P:GBinanceFuturesClient.Model.Trade.NewOrderRequest.NewOrderRespType">
-            <summary>
-            New order response type, "ACK" or "RESULT", default "ACK".
-            </summary>
-        </member>
-        <member name="M:GBinanceFuturesClient.Model.Trade.NewOrderRequest.SetLimitOrder(System.String,GBasicExchangeDefinitions.OrderSide,System.Decimal,System.Decimal,GBasicExchangeDefinitions.TimeInForce)">
-            <summary>
-            Create limit order request.
-            </summary>
-            <param name="symbol">Symbol string</param>
-            <param name="side">Order side</param>
-            <param name="quantity">Order quantity</param>
-            <param name="price">Order price</param>
-            <param name="timeInForce">Time in force, default: GTC</param>
-        </member>
-        <member name="M:GBinanceFuturesClient.Model.Trade.NewOrderRequest.SetMarketOrder(System.String,GBasicExchangeDefinitions.OrderSide,System.Decimal)">
-            <summary>
-            Create market order request.
-            </summary>
-            <param name="symbol">Symbol string</param>
-            <param name="side">Order side</param>
-            <param name="quantity">Order quantity</param>
-        </member>
-        <member name="M:GBinanceFuturesClient.Model.Trade.NewOrderRequest.SetStopLimitOrder(System.String,GBasicExchangeDefinitions.OrderSide,System.Decimal,System.Decimal,System.Decimal)">
-            <summary>
-            Create stop limit order.
-            </summary>
-            <param name="symbol">Symbol string</param>
-            <param name="side">Order side</param>
-            <param name="quantity">Order quantity</param>
-            <param name="price">Order price</param>
-            <param name="stopPrice">Stop price</param>
-        </member>
-        <member name="M:GBinanceFuturesClient.Model.Trade.NewOrderRequest.SetTakeProfitLimitOrder(System.String,GBasicExchangeDefinitions.OrderSide,System.Decimal,System.Decimal,System.Decimal)">
-            <summary>
-            Create take profit limit order.
-            </summary>
-            <param name="symbol">Symbol string</param>
-            <param name="side">Order side</param>
-            <param name="quantity">Order quantity</param>
-            <param name="price">Order price</param>
-            <param name="stopPrice">Stop price</param>
-        </member>
-        <member name="M:GBinanceFuturesClient.Model.Trade.NewOrderRequest.SetStopMarketOrder(System.String,GBasicExchangeDefinitions.OrderSide,System.Decimal,System.Decimal,System.Decimal)">
-            <summary>
-            Create stop market order.
-            </summary>
-            <param name="symbol">Symbol string</param>
-            <param name="side">Order side</param>
-            <param name="quantity">Order quantity</param>
-            <param name="price">Order price</param>
-            <param name="stopPrice">Stop price</param>
-        </member>
-        <member name="M:GBinanceFuturesClient.Model.Trade.NewOrderRequest.SetTakeProfitMarketOrder(System.String,GBasicExchangeDefinitions.OrderSide,System.Decimal,System.Decimal,System.Decimal)">
-            <summary>
-            Create take profit market order.
-            </summary>
-            <param name="symbol">Symbol string</param>
-            <param name="side">Order side</param>
-            <param name="quantity">Order quantity</param>
-            <param name="price">Order price</param>
-            <param name="stopPrice">Stop price</param>
-        </member>
-        <member name="M:GBinanceFuturesClient.Model.Trade.NewOrderRequest.SetTrailingStopMarketOrder(System.String,GBasicExchangeDefinitions.OrderSide,System.Decimal)">
-            <summary>
-            Create trailing stop market order.
-            </summary>
-            <param name="symbol">Symbol string</param>
-            <param name="side">Order side</param>
-            <param name="callbackRate">Callback rate</param>
-        </member>
         <member name="T:GBinanceFuturesClient.Model.Trade.AccountBalance">
             <summary>
             Account balance item.
@@ -1826,6 +1685,147 @@
             Maintenance ratio for this bracket
             </summary>
         </member>
+        <member name="T:GBinanceFuturesClient.Model.Trade.NewOrderRequest">
+            <summary>
+            Data model for use request in <see cref="M:GBinanceFuturesClient.Trade.PlaceOrder(GBinanceFuturesClient.Model.Trade.NewOrderRequest)"/> request.
+            </summary>
+        </member>
+        <member name="P:GBinanceFuturesClient.Model.Trade.NewOrderRequest.Symbol">
+            <summary>
+            Currency pair symbol. Required.
+            </summary>
+        </member>
+        <member name="P:GBinanceFuturesClient.Model.Trade.NewOrderRequest.Side">
+            <summary>
+            Order side, buy or sell. Required.
+            </summary>
+        </member>
+        <member name="P:GBinanceFuturesClient.Model.Trade.NewOrderRequest.PositionSide">
+            <summary>
+            Default BOTH for One-way Mode, LONG or SHORT for Hedge Mode. It must be sent with Hedge Mode.
+            </summary>
+        </member>
+        <member name="P:GBinanceFuturesClient.Model.Trade.NewOrderRequest.Type">
+            <summary>
+            Order type. Required.
+            </summary>
+        </member>
+        <member name="P:GBinanceFuturesClient.Model.Trade.NewOrderRequest.TimeInForce">
+            <summary>
+            Time in force, default GTC. Required only in Limit order.
+            </summary>
+        </member>
+        <member name="P:GBinanceFuturesClient.Model.Trade.NewOrderRequest.Quantity">
+            <summary>
+            Order quantity. Required.
+            </summary>
+        </member>
+        <member name="P:GBinanceFuturesClient.Model.Trade.NewOrderRequest.ReduceOnly">
+            <summary>
+            Reduce only, "true" or "false". Defalt "false".
+            </summary>
+        </member>
+        <member name="P:GBinanceFuturesClient.Model.Trade.NewOrderRequest.Price">
+            <summary>
+            Order price.
+            </summary>
+        </member>
+        <member name="P:GBinanceFuturesClient.Model.Trade.NewOrderRequest.NewClientOrderId">
+            <summary>
+            A unique id among open orders. Automatically generated if not sent. For each order NewClientOrderId, it must be different.
+            </summary>
+        </member>
+        <member name="P:GBinanceFuturesClient.Model.Trade.NewOrderRequest.StopPrice">
+            <summary>
+            Stop price. Used with STOP/STOP_MARKET or TAKE_PROFIT/TAKE_PROFIT_MARKET orders.
+            </summary>
+        </member>
+        <member name="P:GBinanceFuturesClient.Model.Trade.NewOrderRequest.ActivationPrice">
+            <summary>
+            Order activation price. Used with TRAILING_STOP_MARKET orders, default as the latest price（supporting different workingType).
+            </summary>
+        </member>
+        <member name="P:GBinanceFuturesClient.Model.Trade.NewOrderRequest.CallbackRate">
+            <summary>
+            callback order price. Used with TRAILING_STOP_MARKET orders, min 0.1, max 5 where 1 for 1%.
+            </summary>
+        </member>
+        <member name="P:GBinanceFuturesClient.Model.Trade.NewOrderRequest.WorkingType">
+            <summary>
+            Working type. stopPrice triggered by: "MARK_PRICE", "CONTRACT_PRICE". Default "CONTRACT_PRICE"
+            </summary>
+        </member>
+        <member name="P:GBinanceFuturesClient.Model.Trade.NewOrderRequest.NewOrderRespType">
+            <summary>
+            New order response type, "ACK" or "RESULT", default "ACK".
+            </summary>
+        </member>
+        <member name="M:GBinanceFuturesClient.Model.Trade.NewOrderRequest.SetLimitOrder(System.String,GBasicExchangeDefinitions.OrderSide,System.Decimal,System.Decimal,GBasicExchangeDefinitions.TimeInForce)">
+            <summary>
+            Create limit order request.
+            </summary>
+            <param name="symbol">Symbol string</param>
+            <param name="side">Order side</param>
+            <param name="quantity">Order quantity</param>
+            <param name="price">Order price</param>
+            <param name="timeInForce">Time in force, default: GTC</param>
+        </member>
+        <member name="M:GBinanceFuturesClient.Model.Trade.NewOrderRequest.SetMarketOrder(System.String,GBasicExchangeDefinitions.OrderSide,System.Decimal)">
+            <summary>
+            Create market order request.
+            </summary>
+            <param name="symbol">Symbol string</param>
+            <param name="side">Order side</param>
+            <param name="quantity">Order quantity</param>
+        </member>
+        <member name="M:GBinanceFuturesClient.Model.Trade.NewOrderRequest.SetStopLimitOrder(System.String,GBasicExchangeDefinitions.OrderSide,System.Decimal,System.Decimal,System.Decimal)">
+            <summary>
+            Create stop limit order.
+            </summary>
+            <param name="symbol">Symbol string</param>
+            <param name="side">Order side</param>
+            <param name="quantity">Order quantity</param>
+            <param name="price">Order price</param>
+            <param name="stopPrice">Stop price</param>
+        </member>
+        <member name="M:GBinanceFuturesClient.Model.Trade.NewOrderRequest.SetTakeProfitLimitOrder(System.String,GBasicExchangeDefinitions.OrderSide,System.Decimal,System.Decimal,System.Decimal)">
+            <summary>
+            Create take profit limit order.
+            </summary>
+            <param name="symbol">Symbol string</param>
+            <param name="side">Order side</param>
+            <param name="quantity">Order quantity</param>
+            <param name="price">Order price</param>
+            <param name="stopPrice">Stop price</param>
+        </member>
+        <member name="M:GBinanceFuturesClient.Model.Trade.NewOrderRequest.SetStopMarketOrder(System.String,GBasicExchangeDefinitions.OrderSide,System.Decimal,System.Decimal,System.Decimal)">
+            <summary>
+            Create stop market order.
+            </summary>
+            <param name="symbol">Symbol string</param>
+            <param name="side">Order side</param>
+            <param name="quantity">Order quantity</param>
+            <param name="price">Order price</param>
+            <param name="stopPrice">Stop price</param>
+        </member>
+        <member name="M:GBinanceFuturesClient.Model.Trade.NewOrderRequest.SetTakeProfitMarketOrder(System.String,GBasicExchangeDefinitions.OrderSide,System.Decimal,System.Decimal,System.Decimal)">
+            <summary>
+            Create take profit market order.
+            </summary>
+            <param name="symbol">Symbol string</param>
+            <param name="side">Order side</param>
+            <param name="quantity">Order quantity</param>
+            <param name="price">Order price</param>
+            <param name="stopPrice">Stop price</param>
+        </member>
+        <member name="M:GBinanceFuturesClient.Model.Trade.NewOrderRequest.SetTrailingStopMarketOrder(System.String,GBasicExchangeDefinitions.OrderSide,System.Decimal)">
+            <summary>
+            Create trailing stop market order.
+            </summary>
+            <param name="symbol">Symbol string</param>
+            <param name="side">Order side</param>
+            <param name="callbackRate">Callback rate</param>
+        </member>
         <member name="T:GBinanceFuturesClient.Model.Trade.OrderInfo">
             <summary>
             Data model for order information.
@@ -1918,7 +1918,7 @@
         </member>
         <member name="P:GBinanceFuturesClient.Model.Trade.OrderInfo.WorkingType">
             <summary>
-            Order update time.
+            Order working type.
             </summary>
         </member>
         <member name="T:GBinanceFuturesClient.Model.Trade.PositionInforamtionItem">

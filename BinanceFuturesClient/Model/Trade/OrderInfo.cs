@@ -115,7 +115,7 @@ namespace GBinanceFuturesClient.Model.Trade
         public long UpdateTime { get; set; }
 
         /// <summary>
-        /// Order update time.
+        /// Order working type.
         /// </summary>
         [JsonConverter(typeof(StringEnumConverter))]
         [JsonProperty("workingType")]
